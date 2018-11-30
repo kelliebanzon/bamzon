@@ -1,1 +1,7 @@
+what is happenign
+
+This is to test merge conflicts
+
+asdaosnd
+
 test2.txt
