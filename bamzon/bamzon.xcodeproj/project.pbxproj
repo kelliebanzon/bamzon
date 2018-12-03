@@ -11,6 +11,11 @@
 		ABC5821521B4A59F00DDC094 /* DBUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821421B4A59F00DDC094 /* DBUtility.swift */; };
 		ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821621B4A5BA00DDC094 /* NotificationUtility.swift */; };
 		ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */; };
+		ABC5821B21B4A84600DDC094 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821A21B4A84600DDC094 /* Date.swift */; };
+		ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */; };
+		ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */; };
+		ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822021B4AB2500DDC094 /* Permissions.swift */; };
+		ABC5822321B4ABA200DDC094 /* RegisteredTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */; };
 		ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC101219E51B400F23E42 /* AppDelegate.swift */; };
 		ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC103219E51B400F23E42 /* ViewController.swift */; };
 		ABEFC107219E51B400F23E42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC105219E51B400F23E42 /* Main.storyboard */; };
@@ -23,6 +28,11 @@
 		ABC5821421B4A59F00DDC094 /* DBUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUtility.swift; sourceTree = "<group>"; };
 		ABC5821621B4A5BA00DDC094 /* NotificationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtility.swift; sourceTree = "<group>"; };
 		ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatUtility.swift; sourceTree = "<group>"; };
+		ABC5821A21B4A84600DDC094 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStats.swift; sourceTree = "<group>"; };
+		ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		ABC5822021B4AB2500DDC094 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredTeam.swift; sourceTree = "<group>"; };
 		ABEFC0FE219E51B400F23E42 /* bamzon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamzon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEFC101219E51B400F23E42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABEFC103219E51B400F23E42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +56,11 @@
 		ABC5820E21B4A47B00DDC094 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ABC5821A21B4A84600DDC094 /* Date.swift */,
+				ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */,
+				ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */,
+				ABC5822021B4AB2500DDC094 /* Permissions.swift */,
+				ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -180,8 +195,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */,
+				ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */,
 				ABC5821521B4A59F00DDC094 /* DBUtility.swift in Sources */,
+				ABC5822321B4ABA200DDC094 /* RegisteredTeam.swift in Sources */,
 				ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */,
+				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
+				ABC5821B21B4A84600DDC094 /* Date.swift in Sources */,
 				ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */,
 				ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */,
 				ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */,
