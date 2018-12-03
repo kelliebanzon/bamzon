@@ -10,10 +10,10 @@ import Foundation
 
 class Attendace {
     func refresh() {
-        //TODO: implement refresh
+        // TODO: implement refresh
     }
     
     func updateAttendance(player: User) {
-        //TODO: implement update attendance
+        // TODO: implement update attendance
     }
 }

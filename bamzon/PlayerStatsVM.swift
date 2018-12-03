@@ -10,6 +10,6 @@ import Foundation
 
 class PlayerStatsVM {
     func refresh() {
-        //TODO: implement refresh
+        // TODO: implement refresh
     }
 }

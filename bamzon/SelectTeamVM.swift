@@ -10,6 +10,6 @@ import Foundation
 
 class SelectTeamVM {
     func refresh() {
-        //TODO: implement refresh teams to select
+        // TODO: implement refresh teams to select
     }
 }

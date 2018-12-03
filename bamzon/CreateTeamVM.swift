@@ -10,6 +10,6 @@ import Foundation
 
 class CreateTeamVM {
     func createTeam(name: String, sport: String) {
-        //TODO: implement craete team
+        // TODO: implement craete team
     }
 }

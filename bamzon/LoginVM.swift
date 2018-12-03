@@ -10,6 +10,6 @@ import Foundation
 
 class LoginVM {
     func checkLogin() {
-        //TODO: implement check login
+        // TODO: implement check login
     }
 }

@@ -10,6 +10,6 @@ import Foundation
 
 class CreateAccountVM {
     func checkCode(code: Int) {
-        //TODO: implement check 
+        // TODO: implement checkCode
     }
 }

@@ -10,10 +10,10 @@ import Foundation
 
 class RosterVM{
     func refresh() {
-        //TODO: implement refresh
+        // TODO: implement refresh
     }
     
-    func updateRoster(roster: [Player]) {
-        //TODO: implement update roster
+    func updateRoster(roster: [User]) {
+        // TODO: implement update roster
     }
 }

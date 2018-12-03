@@ -11,10 +11,10 @@ import Foundation
 
 class CalendarVM {
     func refresh() {
-        //TODO: implement refresh
+        // TODO: implement refresh
     }
     
     func updateEvents(events: [Event]) {
-        //TODO: implement update Events
+        // TODO: implement update Events
     }
 }

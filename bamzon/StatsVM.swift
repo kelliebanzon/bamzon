@@ -10,10 +10,10 @@ import Foundation
 
 class StatsVM{
     func refresh() {
-        //TODO: implement refresh
+        // TODO: implement refresh
     }
     
     func updateStats() {
-        //TODO: implement update stats
+        // TODO: implement update stats
     }
 }

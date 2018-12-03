@@ -10,6 +10,6 @@ import Foundation
 
 class JoinTeamVM {
     func sendJoinRequest(req: JoinRequest) {
-        //TODO: implement sendJoinRequest
+        // TODO: implement sendJoinRequest
     }
 }

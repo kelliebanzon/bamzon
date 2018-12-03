@@ -11,6 +11,6 @@ import Foundation
 class SettingsVM {
     
     func updateSettings() {
-        //TODO: implement update settings
+        // TODO: implement update settings
     }
 }
