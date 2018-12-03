@@ -7,6 +7,21 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseStorage
+import FirebaseDatabase
 
-
-// @Kevin TODO
+class DBUtility {
+    
+    var fbDatabase : DatabaseReference!
+    var fbImageDatabase : StorageReference!
+    
+    func writeToDB() {
+        //TODO: implement write to DB
+    }
+    
+    func queryFromDB() {
+        //TODO: implement query from DB
+    }
+    
+}
