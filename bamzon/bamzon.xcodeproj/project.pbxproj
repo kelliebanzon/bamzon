@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A81FA06521B4A94A00CAEF5F /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06421B4A94A00CAEF5F /* CreateAccountVM.swift */; };
-		A81FA06721B4A9E600CAEF5F /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06621B4A9E600CAEF5F /* LoginVM.swift */; };
-		A81FA06921B4AA0700CAEF5F /* CreateTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06821B4AA0700CAEF5F /* CreateTeamVM.swift */; };
-		A81FA06B21B4AA6E00CAEF5F /* SelectTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06A21B4AA6E00CAEF5F /* SelectTeamVM.swift */; };
-		A81FA06D21B4AAAA00CAEF5F /* JoinTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06C21B4AAAA00CAEF5F /* JoinTeamVM.swift */; };
-		A81FA06F21B4AAD900CAEF5F /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA06E21B4AAD900CAEF5F /* StatsVM.swift */; };
-		A81FA07121B4AB2100CAEF5F /* RosterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07021B4AB2100CAEF5F /* RosterVM.swift */; };
-		A81FA07321B4AB6F00CAEF5F /* CalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07221B4AB6F00CAEF5F /* CalendarVM.swift */; };
-		A81FA07521B4AB9700CAEF5F /* AttendanceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07421B4AB9700CAEF5F /* AttendanceVM.swift */; };
-		A81FA07721B4ABC500CAEF5F /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07621B4ABC500CAEF5F /* SettingsVM.swift */; };
-		A81FA07921B4ABF800CAEF5F /* PlayerStatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07821B4ABF800CAEF5F /* PlayerStatsVM.swift */; };
-		A81FA07B21B4AC0E00CAEF5F /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81FA07A21B4AC0E00CAEF5F /* ProfileVM.swift */; };
+		A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D221B71E57000E287A /* JoinTeamVM.swift */; };
+		A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D321B71E57000E287A /* CreateTeamVM.swift */; };
+		A81439E021B71E58000E287A /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D421B71E57000E287A /* LoginVM.swift */; };
+		A81439E121B71E58000E287A /* PlayerStatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D521B71E58000E287A /* PlayerStatsVM.swift */; };
+		A81439E221B71E58000E287A /* RosterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D621B71E58000E287A /* RosterVM.swift */; };
+		A81439E321B71E58000E287A /* AttendanceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D721B71E58000E287A /* AttendanceVM.swift */; };
+		A81439E421B71E58000E287A /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D821B71E58000E287A /* ProfileVM.swift */; };
+		A81439E521B71E58000E287A /* SettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D921B71E58000E287A /* SettingsVM.swift */; };
+		A81439E621B71E58000E287A /* SelectTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439DA21B71E58000E287A /* SelectTeamVM.swift */; };
+		A81439E721B71E58000E287A /* CalendarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439DB21B71E58000E287A /* CalendarVM.swift */; };
+		A81439E821B71E58000E287A /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439DC21B71E58000E287A /* CreateAccountVM.swift */; };
+		A81439E921B71E58000E287A /* StatsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439DD21B71E58000E287A /* StatsVM.swift */; };
+		A81439EB21B72419000E287A /* EventVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439EA21B72419000E287A /* EventVM.swift */; };
+		A81439ED21B7246B000E287A /* JoinRequestsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439EC21B7246B000E287A /* JoinRequestsVM.swift */; };
+		A81439EF21B724D8000E287A /* RSVPVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439EE21B724D8000E287A /* RSVPVM.swift */; };
 		AB47757121B4E2CB00A1DCD5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757021B4E2CB00A1DCD5 /* Team.swift */; };
 		AB47757321B4E3DE00A1DCD5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757221B4E3DE00A1DCD5 /* User.swift */; };
 		AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */; };
@@ -44,18 +47,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A81FA06421B4A94A00CAEF5F /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA06621B4A9E600CAEF5F /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA06821B4AA0700CAEF5F /* CreateTeamVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA06A21B4AA6E00CAEF5F /* SelectTeamVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA06C21B4AAAA00CAEF5F /* JoinTeamVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA06E21B4AAD900CAEF5F /* StatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07021B4AB2100CAEF5F /* RosterVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07221B4AB6F00CAEF5F /* CalendarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07421B4AB9700CAEF5F /* AttendanceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07621B4ABC500CAEF5F /* SettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07821B4ABF800CAEF5F /* PlayerStatsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsVM.swift; sourceTree = SOURCE_ROOT; };
-		A81FA07A21B4AC0E00CAEF5F /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = SOURCE_ROOT; };
+		A81439D221B71E57000E287A /* JoinTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = "<group>"; };
+		A81439D321B71E57000E287A /* CreateTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = "<group>"; };
+		A81439D421B71E57000E287A /* LoginVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		A81439D521B71E58000E287A /* PlayerStatsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsVM.swift; sourceTree = "<group>"; };
+		A81439D621B71E58000E287A /* RosterVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosterVM.swift; sourceTree = "<group>"; };
+		A81439D721B71E58000E287A /* AttendanceVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceVM.swift; sourceTree = "<group>"; };
+		A81439D821B71E58000E287A /* ProfileVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
+		A81439D921B71E58000E287A /* SettingsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVM.swift; sourceTree = "<group>"; };
+		A81439DA21B71E58000E287A /* SelectTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectTeamVM.swift; sourceTree = "<group>"; };
+		A81439DB21B71E58000E287A /* CalendarVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarVM.swift; sourceTree = "<group>"; };
+		A81439DC21B71E58000E287A /* CreateAccountVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
+		A81439DD21B71E58000E287A /* StatsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsVM.swift; sourceTree = "<group>"; };
+		A81439EA21B72419000E287A /* EventVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventVM.swift; sourceTree = "<group>"; };
+		A81439EC21B7246B000E287A /* JoinRequestsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestsVM.swift; sourceTree = "<group>"; };
+		A81439EE21B724D8000E287A /* RSVPVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPVM.swift; sourceTree = "<group>"; };
 		AB47757021B4E2CB00A1DCD5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		AB47757221B4E3DE00A1DCD5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
@@ -118,18 +124,21 @@
 		ABC5820F21B4A48900DDC094 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A81FA06421B4A94A00CAEF5F /* CreateAccountVM.swift */,
-				A81FA06621B4A9E600CAEF5F /* LoginVM.swift */,
-				A81FA06821B4AA0700CAEF5F /* CreateTeamVM.swift */,
-				A81FA06A21B4AA6E00CAEF5F /* SelectTeamVM.swift */,
-				A81FA06C21B4AAAA00CAEF5F /* JoinTeamVM.swift */,
-				A81FA06E21B4AAD900CAEF5F /* StatsVM.swift */,
-				A81FA07021B4AB2100CAEF5F /* RosterVM.swift */,
-				A81FA07221B4AB6F00CAEF5F /* CalendarVM.swift */,
-				A81FA07421B4AB9700CAEF5F /* AttendanceVM.swift */,
-				A81FA07621B4ABC500CAEF5F /* SettingsVM.swift */,
-				A81FA07821B4ABF800CAEF5F /* PlayerStatsVM.swift */,
-				A81FA07A21B4AC0E00CAEF5F /* ProfileVM.swift */,
+				A81439D721B71E58000E287A /* AttendanceVM.swift */,
+				A81439DB21B71E58000E287A /* CalendarVM.swift */,
+				A81439DC21B71E58000E287A /* CreateAccountVM.swift */,
+				A81439D321B71E57000E287A /* CreateTeamVM.swift */,
+				A81439D221B71E57000E287A /* JoinTeamVM.swift */,
+				A81439D421B71E57000E287A /* LoginVM.swift */,
+				A81439D521B71E58000E287A /* PlayerStatsVM.swift */,
+				A81439D821B71E58000E287A /* ProfileVM.swift */,
+				A81439EC21B7246B000E287A /* JoinRequestsVM.swift */,
+				A81439EE21B724D8000E287A /* RSVPVM.swift */,
+				A81439D621B71E58000E287A /* RosterVM.swift */,
+				A81439DA21B71E58000E287A /* SelectTeamVM.swift */,
+				A81439D921B71E58000E287A /* SettingsVM.swift */,
+				A81439DD21B71E58000E287A /* StatsVM.swift */,
+				A81439EA21B72419000E287A /* EventVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -259,35 +268,38 @@
 			files = (
 				AB47757321B4E3DE00A1DCD5 /* User.swift in Sources */,
 				AB47757921B4E89900A1DCD5 /* RSVP.swift in Sources */,
+				A81439E821B71E58000E287A /* CreateAccountVM.swift in Sources */,
+				A81439E321B71E58000E287A /* AttendanceVM.swift in Sources */,
 				ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */,
+				A81439E221B71E58000E287A /* RosterVM.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
 				AB47757B21B4E8E400A1DCD5 /* Event.swift in Sources */,
+				A81439E621B71E58000E287A /* SelectTeamVM.swift in Sources */,
 				ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */,
+				A81439E521B71E58000E287A /* SettingsVM.swift in Sources */,
+				A81439EF21B724D8000E287A /* RSVPVM.swift in Sources */,
 				ABC5822321B4ABA200DDC094 /* RegisteredTeam.swift in Sources */,
-				A81FA07321B4AB6F00CAEF5F /* CalendarVM.swift in Sources */,
-				A81FA06521B4A94A00CAEF5F /* CreateAccountVM.swift in Sources */,
 				ABC5822721B4AFF000DDC094 /* Location.swift in Sources */,
-				A81FA06F21B4AAD900CAEF5F /* StatsVM.swift in Sources */,
-				A81FA07B21B4AC0E00CAEF5F /* ProfileVM.swift in Sources */,
+				A81439EB21B72419000E287A /* EventVM.swift in Sources */,
 				ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */,
+				A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */,
 				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
+				A81439E721B71E58000E287A /* CalendarVM.swift in Sources */,
 				ABC5821B21B4A84600DDC094 /* Date.swift in Sources */,
+				A81439E021B71E58000E287A /* LoginVM.swift in Sources */,
+				A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */,
 				ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */,
-				A81FA07121B4AB2100CAEF5F /* RosterVM.swift in Sources */,
 				AB47757121B4E2CB00A1DCD5 /* Team.swift in Sources */,
-				A81FA06721B4A9E600CAEF5F /* LoginVM.swift in Sources */,
-				A81FA07921B4ABF800CAEF5F /* PlayerStatsVM.swift in Sources */,
-				A81FA06B21B4AA6E00CAEF5F /* SelectTeamVM.swift in Sources */,
+				A81439E421B71E58000E287A /* ProfileVM.swift in Sources */,
 				ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */,
 				ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */,
 				AB47757D21B4E90700A1DCD5 /* TeamCalendar.swift in Sources */,
-				A81FA06D21B4AAAA00CAEF5F /* JoinTeamVM.swift in Sources */,
+				A81439E921B71E58000E287A /* StatsVM.swift in Sources */,
+				A81439ED21B7246B000E287A /* JoinRequestsVM.swift in Sources */,
 				ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */,
-				A81FA07521B4AB9700CAEF5F /* AttendanceVM.swift in Sources */,
-				A81FA06921B4AA0700CAEF5F /* CreateTeamVM.swift in Sources */,
 				ABC5821321B4A56600DDC094 /* ImageUtility.swift in Sources */,
 				AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */,
-				A81FA07721B4ABC500CAEF5F /* SettingsVM.swift in Sources */,
+				A81439E121B71E58000E287A /* PlayerStatsVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
