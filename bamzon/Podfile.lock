@@ -1,0 +1,20 @@
+PODS:
+  - JTAppleCalendar (7.1.5)
+  - XLPagerTabStrip (8.1.1)
+
+DEPENDENCIES:
+  - JTAppleCalendar (~> 7.0)
+  - XLPagerTabStrip (~> 8.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - JTAppleCalendar
+    - XLPagerTabStrip
+
+SPEC CHECKSUMS:
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
+  XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
+
+PODFILE CHECKSUM: dde10af549dc714fc217a892dd2e0f3a26b85ed3
+
+COCOAPODS: 1.5.3

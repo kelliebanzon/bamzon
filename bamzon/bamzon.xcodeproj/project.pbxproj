@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792B5ED1A923DAFC62051B25 /* Pods_bamzon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */; };
 		A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D221B71E57000E287A /* JoinTeamVM.swift */; };
 		A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D321B71E57000E287A /* CreateTeamVM.swift */; };
 		A81439E021B71E58000E287A /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D421B71E57000E287A /* LoginVM.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.release.xcconfig"; sourceTree = "<group>"; };
 		A81439D221B71E57000E287A /* JoinTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = "<group>"; };
 		A81439D321B71E57000E287A /* CreateTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = "<group>"; };
 		A81439D421B71E57000E287A /* LoginVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
@@ -119,6 +121,8 @@
 		ABEFC108219E51B900F23E42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABEFC10B219E51B900F23E42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABEFC10D219E51B900F23E42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +130,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792B5ED1A923DAFC62051B25 /* Pods_bamzon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DEC61E063A958D2A72A0A0C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */,
+				1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8A48D3C6EA427E763D8240E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A81439F321B72A62000E287A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +236,8 @@
 			children = (
 				ABEFC100219E51B400F23E42 /* bamzon */,
 				ABEFC0FF219E51B400F23E42 /* Products */,
+				4DEC61E063A958D2A72A0A0C /* Pods */,
+				8A48D3C6EA427E763D8240E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,9 +273,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABEFC110219E51B900F23E42 /* Build configuration list for PBXNativeTarget "bamzon" */;
 			buildPhases = (
+				9CDE49054FF3D1740EEA8EB3 /* [CP] Check Pods Manifest.lock */,
 				ABEFC0FA219E51B400F23E42 /* Sources */,
 				ABEFC0FB219E51B400F23E42 /* Frameworks */,
 				ABEFC0FC219E51B400F23E42 /* Resources */,
+				F657CED3C9584E5D9AACEE6F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -308,6 +334,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9CDE49054FF3D1740EEA8EB3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bamzon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F657CED3C9584E5D9AACEE6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-bamzon/Pods-bamzon-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bamzon/Pods-bamzon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		ABEFC0FA219E51B400F23E42 /* Sources */ = {
@@ -504,6 +571,7 @@
 		};
 		ABEFC111219E51B900F23E42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -518,6 +586,7 @@
 		};
 		ABEFC112219E51B900F23E42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
