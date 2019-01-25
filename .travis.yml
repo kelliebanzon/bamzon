@@ -1,5 +1,5 @@
 language: objective-c
 osx_image: xcode10.1
-xcode_workspace: bamzon.xcworkspace
+xcode_workspace: bamzon/bamzon.xcworkspace
 xcode_scheme: bamzon
 xcode_sdk: iphonesimulator12.1
