@@ -56,12 +56,31 @@
 		ABC5822321B4ABA200DDC094 /* RegisteredTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */; };
 		ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822421B4AF2C00DDC094 /* Organization.swift */; };
 		ABC5822721B4AFF000DDC094 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822621B4AFF000DDC094 /* Location.swift */; };
+		ABEF640221FBBDE800716ACB /* bamzonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640121FBBDE800716ACB /* bamzonUITests.swift */; };
+		ABEF641021FBBF9700716ACB /* bamzonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640F21FBBF9700716ACB /* bamzonTests.swift */; };
 		ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC101219E51B400F23E42 /* AppDelegate.swift */; };
 		ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC103219E51B400F23E42 /* ViewController.swift */; };
 		ABEFC107219E51B400F23E42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC105219E51B400F23E42 /* Main.storyboard */; };
 		ABEFC109219E51B900F23E42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC108219E51B900F23E42 /* Assets.xcassets */; };
 		ABEFC10C219E51B900F23E42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC10A219E51B900F23E42 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ABEF640421FBBDE800716ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABEFC0F6219E51B400F23E42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABEFC0FD219E51B400F23E42;
+			remoteInfo = bamzon;
+		};
+		ABEF641221FBBF9700716ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABEFC0F6219E51B400F23E42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABEFC0FD219E51B400F23E42;
+			remoteInfo = bamzon;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +133,12 @@
 		ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredTeam.swift; sourceTree = "<group>"; };
 		ABC5822421B4AF2C00DDC094 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		ABC5822621B4AFF000DDC094 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		ABEF63FF21FBBDE800716ACB /* bamzonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABEF640121FBBDE800716ACB /* bamzonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonUITests.swift; sourceTree = "<group>"; };
+		ABEF640321FBBDE800716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABEF640F21FBBF9700716ACB /* bamzonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonTests.swift; sourceTree = "<group>"; };
+		ABEF641121FBBF9700716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABEFC0FE219E51B400F23E42 /* bamzon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamzon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEFC101219E51B400F23E42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABEFC103219E51B400F23E42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +151,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ABEF63FC21FBBDE800716ACB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABEF640A21FBBF9700716ACB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABEFC0FB219E51B400F23E42 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,10 +270,30 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		ABEF640021FBBDE800716ACB /* bamzonUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ABEF640121FBBDE800716ACB /* bamzonUITests.swift */,
+				ABEF640321FBBDE800716ACB /* Info.plist */,
+			);
+			path = bamzonUITests;
+			sourceTree = "<group>";
+		};
+		ABEF640E21FBBF9700716ACB /* bamzonTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABEF640F21FBBF9700716ACB /* bamzonTests.swift */,
+				ABEF641121FBBF9700716ACB /* Info.plist */,
+			);
+			path = bamzonTests;
+			sourceTree = "<group>";
+		};
 		ABEFC0F5219E51B400F23E42 = {
 			isa = PBXGroup;
 			children = (
 				ABEFC100219E51B400F23E42 /* bamzon */,
+				ABEF640021FBBDE800716ACB /* bamzonUITests */,
+				ABEF640E21FBBF9700716ACB /* bamzonTests */,
 				ABEFC0FF219E51B400F23E42 /* Products */,
 				4DEC61E063A958D2A72A0A0C /* Pods */,
 				8A48D3C6EA427E763D8240E7 /* Frameworks */,
@@ -245,6 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				ABEFC0FE219E51B400F23E42 /* bamzon.app */,
+				ABEF63FF21FBBDE800716ACB /* bamzonUITests.xctest */,
+				ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,6 +330,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ABEF63FE21FBBDE800716ACB /* bamzonUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABEF640821FBBDE800716ACB /* Build configuration list for PBXNativeTarget "bamzonUITests" */;
+			buildPhases = (
+				ABEF63FB21FBBDE800716ACB /* Sources */,
+				ABEF63FC21FBBDE800716ACB /* Frameworks */,
+				ABEF63FD21FBBDE800716ACB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABEF640521FBBDE800716ACB /* PBXTargetDependency */,
+			);
+			name = bamzonUITests;
+			productName = bamzonUITests;
+			productReference = ABEF63FF21FBBDE800716ACB /* bamzonUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		ABEF640C21FBBF9700716ACB /* bamzonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABEF641421FBBF9700716ACB /* Build configuration list for PBXNativeTarget "bamzonTests" */;
+			buildPhases = (
+				ABEF640921FBBF9700716ACB /* Sources */,
+				ABEF640A21FBBF9700716ACB /* Frameworks */,
+				ABEF640B21FBBF9700716ACB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABEF641321FBBF9700716ACB /* PBXTargetDependency */,
+			);
+			name = bamzonTests;
+			productName = bamzonTests;
+			productReference = ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ABEFC0FD219E51B400F23E42 /* bamzon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABEFC110219E51B900F23E42 /* Build configuration list for PBXNativeTarget "bamzon" */;
@@ -294,10 +391,20 @@
 		ABEFC0F6219E51B400F23E42 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = bamzon;
 				TargetAttributes = {
+					ABEF63FE21FBBDE800716ACB = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ABEFC0FD219E51B400F23E42;
+					};
+					ABEF640C21FBBF9700716ACB = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ABEFC0FD219E51B400F23E42;
+					};
 					ABEFC0FD219E51B400F23E42 = {
 						CreatedOnToolsVersion = 9.4.1;
 						ProvisioningStyle = Automatic;
@@ -318,11 +425,27 @@
 			projectRoot = "";
 			targets = (
 				ABEFC0FD219E51B400F23E42 /* bamzon */,
+				ABEF63FE21FBBDE800716ACB /* bamzonUITests */,
+				ABEF640C21FBBF9700716ACB /* bamzonTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ABEF63FD21FBBDE800716ACB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABEF640B21FBBF9700716ACB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABEFC0FC219E51B400F23E42 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -377,6 +500,22 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ABEF63FB21FBBDE800716ACB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABEF640221FBBDE800716ACB /* bamzonUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABEF640921FBBF9700716ACB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABEF641021FBBF9700716ACB /* bamzonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABEFC0FA219E51B400F23E42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -436,6 +575,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		ABEF640521FBBDE800716ACB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABEFC0FD219E51B400F23E42 /* bamzon */;
+			targetProxy = ABEF640421FBBDE800716ACB /* PBXContainerItemProxy */;
+		};
+		ABEF641321FBBF9700716ACB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABEFC0FD219E51B400F23E42 /* bamzon */;
+			targetProxy = ABEF641221FBBF9700716ACB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		ABEFC105219E51B400F23E42 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -456,6 +608,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		ABEF640621FBBDE800716ACB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
+				INFOPLIST_FILE = bamzonUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon.bamzonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = bamzon;
+			};
+			name = Debug;
+		};
+		ABEF640721FBBDE800716ACB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
+				INFOPLIST_FILE = bamzonUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon.bamzonUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = bamzon;
+			};
+			name = Release;
+		};
+		ABEF641521FBBF9700716ACB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
+				INFOPLIST_FILE = bamzonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon.bamzonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bamzon.app/bamzon";
+			};
+			name = Debug;
+		};
+		ABEF641621FBBF9700716ACB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
+				INFOPLIST_FILE = bamzonTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon.bamzonTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bamzon.app/bamzon";
+			};
+			name = Release;
+		};
 		ABEFC10E219E51B900F23E42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -602,6 +826,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ABEF640821FBBDE800716ACB /* Build configuration list for PBXNativeTarget "bamzonUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABEF640621FBBDE800716ACB /* Debug */,
+				ABEF640721FBBDE800716ACB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABEF641421FBBF9700716ACB /* Build configuration list for PBXNativeTarget "bamzonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABEF641521FBBF9700716ACB /* Debug */,
+				ABEF641621FBBF9700716ACB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABEFC0F9219E51B400F23E42 /* Build configuration list for PBXProject "bamzon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

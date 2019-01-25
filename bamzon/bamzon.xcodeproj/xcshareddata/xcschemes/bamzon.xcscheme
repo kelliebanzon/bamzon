@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AB2C4AE321FAD8FC000C663D"
+               BlueprintIdentifier = "ABEF63FE21FBBDE800716ACB"
                BuildableName = "bamzonUITests.xctest"
                BlueprintName = "bamzonUITests"
                ReferencedContainer = "container:bamzon.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AB2C4AF121FAD905000C663D"
+               BlueprintIdentifier = "ABEF640C21FBBF9700716ACB"
                BuildableName = "bamzonTests.xctest"
                BlueprintName = "bamzonTests"
                ReferencedContainer = "container:bamzon.xcodeproj">
