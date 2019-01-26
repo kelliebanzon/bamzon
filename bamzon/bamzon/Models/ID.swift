@@ -8,12 +8,20 @@
 
 import Foundation
 
-class ID: Codable {
+class ID: Codable, Hashable {
     var type: String
     var num: UInt
+    
+    var hashValue: Int {
+        return type.hashValue * num.hashValue
+    }
     
     init(type: String, num: UInt){
         self.type = type
         self.num = num
     }
+}
+
+func ==(lhs: ID, rhs: ID) -> Bool {
+    return lhs.type == rhs.type && lhs.num == rhs.num
 }
