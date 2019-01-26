@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

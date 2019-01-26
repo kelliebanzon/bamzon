@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SelectTeamVC: UIViewController {
+class SelectTeamVC: UIViewController, DisplayableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

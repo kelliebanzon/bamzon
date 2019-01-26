@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class JoinRequestsVC: UIViewController {
+class JoinRequestsVC: UIViewController, DisplayableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +20,8 @@ class JoinRequestsVC: UIViewController {
         // TODO: implement display
     }
     
-    func update() {
-        // TODO: implement update
+    func refresh() {
+        // TODO: implement refresh
     }
     
     func approve() {

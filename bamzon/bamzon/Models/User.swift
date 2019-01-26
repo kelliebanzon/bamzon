@@ -9,7 +9,7 @@
 import Foundation
 
 struct User {
-    var userID: UInt
+    var userID: ID
     var firstName: String
     var lastName: String
     var nickname: String?

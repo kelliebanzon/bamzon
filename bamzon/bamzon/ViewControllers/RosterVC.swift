@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RosterVC: UIViewController {
+class RosterVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,10 @@ class RosterVC: UIViewController {
     
     func edit() {
         // TODO: implement edit
+    }
+    
+    func refresh() {
+        // TODO: implement refresh
     }
     
     func selectUser() {

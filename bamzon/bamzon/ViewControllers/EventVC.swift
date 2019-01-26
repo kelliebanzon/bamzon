@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class EventVC: UIViewController {
+class EventVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StatsVC: UIViewController {
+class StatsVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

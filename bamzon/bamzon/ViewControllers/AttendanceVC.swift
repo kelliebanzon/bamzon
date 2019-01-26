@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AttendanceVC: UIViewController {
+class AttendanceVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

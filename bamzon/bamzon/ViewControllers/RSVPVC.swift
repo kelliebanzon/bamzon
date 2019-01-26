@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RSVPVC: UIViewController {
+class RSVPVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

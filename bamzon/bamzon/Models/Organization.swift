@@ -9,8 +9,8 @@
 import Foundation
 
 struct Organization {
-    var orgID: UInt
+    var orgID: ID
     var name: String
     var location: Location
-    var teamIDs: [UInt]
+    var teamIDs: [ID]
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct RSVP {
-    var yesUserIDs: [UInt]?
-    var noUserIDs: [UInt]?
-    var pendingUserIDs: [UInt]?
+    var yesUserIDs: [ID]?
+    var noUserIDs: [ID]?
+    var pendingUserIDs: [ID]?
 }

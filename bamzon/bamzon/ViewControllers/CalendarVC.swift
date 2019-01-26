@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarVC: UIViewController {
+class CalendarVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

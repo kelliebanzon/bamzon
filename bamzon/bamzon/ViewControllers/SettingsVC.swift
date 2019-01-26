@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsVC: UIViewController {
+class SettingsVC: UIViewController, DisplayableProtocol, EditableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

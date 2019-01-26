@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TeamHomeVC: UIViewController {
+class TeamHomeVC: UIViewController, DisplayableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

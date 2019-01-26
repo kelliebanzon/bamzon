@@ -9,13 +9,13 @@
 import Foundation
 
 struct Team {
-    var teamID: UInt
-    var orgID: UInt
-    var userIDs: [UInt]?
+    var teamID: ID
+    var orgID: ID
+    var userIDs: [ID]?
     var teamName: String
     var sport: String? // TODO: should sport be an optional?
     var stats: TeamStats
     var calendar: TeamCalendar
     var joinRequests: [JoinRequest]?
-    var blacklistUserIDs: [UInt]?
+    var blacklistUserIDs: [ID]?
 }

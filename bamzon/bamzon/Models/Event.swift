@@ -11,7 +11,7 @@ import Foundation
 struct Event {
     var name: String
     var location: Location?
-    var contactUserIDs: [UInt]?
+    var contactUserIDs: [ID]?
     var description: String?
     var date: Date // TODO: should this be a custom date object?
     var rsvps: [RSVP]?

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CreateAccountVC: UIViewController {
+class CreateAccountVC: UIViewController, DisplayableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

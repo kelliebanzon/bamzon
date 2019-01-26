@@ -58,6 +58,11 @@
 		ABC5822721B4AFF000DDC094 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822621B4AFF000DDC094 /* Location.swift */; };
 		ABEF640221FBBDE800716ACB /* bamzonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640121FBBDE800716ACB /* bamzonUITests.swift */; };
 		ABEF641021FBBF9700716ACB /* bamzonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640F21FBBF9700716ACB /* bamzonTests.swift */; };
+		ABEF641C21FBE68F00716ACB /* DisplayableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */; };
+		ABEF641E21FBE90D00716ACB /* RefreshableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */; };
+		ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641F21FBE95300716ACB /* EditableProtocol.swift */; };
+		ABEF642221FBEBF100716ACB /* IDUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF642121FBEBF100716ACB /* IDUtility.swift */; };
+		ABEF642421FBECB200716ACB /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF642321FBECB200716ACB /* ID.swift */; };
 		ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC101219E51B400F23E42 /* AppDelegate.swift */; };
 		ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC103219E51B400F23E42 /* ViewController.swift */; };
 		ABEFC107219E51B400F23E42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC105219E51B400F23E42 /* Main.storyboard */; };
@@ -139,6 +144,11 @@
 		ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEF640F21FBBF9700716ACB /* bamzonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonTests.swift; sourceTree = "<group>"; };
 		ABEF641121FBBF9700716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableProtocol.swift; sourceTree = "<group>"; };
+		ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableProtocol.swift; sourceTree = "<group>"; };
+		ABEF641F21FBE95300716ACB /* EditableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableProtocol.swift; sourceTree = "<group>"; };
+		ABEF642121FBEBF100716ACB /* IDUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDUtility.swift; sourceTree = "<group>"; };
+		ABEF642321FBECB200716ACB /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
 		ABEFC0FE219E51B400F23E42 /* bamzon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamzon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEFC101219E51B400F23E42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABEFC103219E51B400F23E42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,20 +208,20 @@
 			children = (
 				A81439F421B72A74000E287A /* CreateAccountVC.swift */,
 				A81439F621B72BB8000E287A /* LoginVC.swift */,
-				A81439FE21B72DC2000E287A /* TeamHomeVC.swift */,
-				A81439FC21B72D51000E287A /* JoinTeamVC.swift */,
-				A8143A0021B72E05000E287A /* StatsVC.swift */,
-				A8143A0221B72E3B000E287A /* RosterVC.swift */,
-				A81439F821B72C09000E287A /* SelectTeamVC.swift */,
-				A8143A0421B72E72000E287A /* CalendarVC.swift */,
-				A8143A0621B72F94000E287A /* AttendanceVC.swift */,
-				A8143A0C21B73026000E287A /* ProfileVC.swift */,
-				A8143A0E21B73048000E287A /* EventVC.swift */,
-				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
-				A8143A1021B73078000E287A /* RSVPVC.swift */,
-				A8143A0A21B73006000E287A /* PlayerStatsVC.swift */,
-				A8143A1221B730A3000E287A /* JoinRequestsVC.swift */,
 				A81439FA21B72CB3000E287A /* CreateTeamVC.swift */,
+				A81439FC21B72D51000E287A /* JoinTeamVC.swift */,
+				A81439F821B72C09000E287A /* SelectTeamVC.swift */,
+				A81439FE21B72DC2000E287A /* TeamHomeVC.swift */,
+				A8143A0021B72E05000E287A /* StatsVC.swift */,
+				A8143A0A21B73006000E287A /* PlayerStatsVC.swift */,
+				A8143A0221B72E3B000E287A /* RosterVC.swift */,
+				A8143A0C21B73026000E287A /* ProfileVC.swift */,
+				A8143A0421B72E72000E287A /* CalendarVC.swift */,
+				A8143A0E21B73048000E287A /* EventVC.swift */,
+				A8143A1021B73078000E287A /* RSVPVC.swift */,
+				A8143A0621B72F94000E287A /* AttendanceVC.swift */,
+				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
+				A8143A1221B730A3000E287A /* JoinRequestsVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -221,6 +231,7 @@
 			children = (
 				ABC5821A21B4A84600DDC094 /* Date.swift */,
 				AB47757A21B4E8E400A1DCD5 /* Event.swift */,
+				ABEF642321FBECB200716ACB /* ID.swift */,
 				AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */,
 				ABC5822621B4AFF000DDC094 /* Location.swift */,
 				AB47757621B4E82200A1DCD5 /* Media.swift */,
@@ -262,8 +273,9 @@
 		ABC5821121B4A4A100DDC094 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				ABC5821221B4A56600DDC094 /* ImageUtility.swift */,
 				ABC5821421B4A59F00DDC094 /* DBUtility.swift */,
+				ABEF642121FBEBF100716ACB /* IDUtility.swift */,
+				ABC5821221B4A56600DDC094 /* ImageUtility.swift */,
 				ABC5821621B4A5BA00DDC094 /* NotificationUtility.swift */,
 				ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */,
 			);
@@ -286,6 +298,16 @@
 				ABEF641121FBBF9700716ACB /* Info.plist */,
 			);
 			path = bamzonTests;
+			sourceTree = "<group>";
+		};
+		ABEF641821FBE56D00716ACB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */,
+				ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */,
+				ABEF641F21FBE95300716ACB /* EditableProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		ABEFC0F5219E51B400F23E42 = {
@@ -313,9 +335,10 @@
 		ABEFC100219E51B400F23E42 /* bamzon */ = {
 			isa = PBXGroup;
 			children = (
-				A81439F321B72A62000E287A /* ViewControllers */,
 				ABC5820E21B4A47B00DDC094 /* Models */,
+				A81439F321B72A62000E287A /* ViewControllers */,
 				ABC5820F21B4A48900DDC094 /* ViewModels */,
+				ABEF641821FBE56D00716ACB /* Protocols */,
 				ABC5821121B4A4A100DDC094 /* Utilities */,
 				ABEFC101219E51B400F23E42 /* AppDelegate.swift */,
 				ABEFC103219E51B400F23E42 /* ViewController.swift */,
@@ -542,6 +565,9 @@
 				A8143A0721B72F94000E287A /* AttendanceVC.swift in Sources */,
 				A81439EB21B72419000E287A /* EventVM.swift in Sources */,
 				ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */,
+				ABEF641C21FBE68F00716ACB /* DisplayableProtocol.swift in Sources */,
+				ABEF642421FBECB200716ACB /* ID.swift in Sources */,
+				ABEF642221FBEBF100716ACB /* IDUtility.swift in Sources */,
 				A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */,
 				A8143A1121B73078000E287A /* RSVPVC.swift in Sources */,
 				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
@@ -560,12 +586,14 @@
 				A8143A0521B72E72000E287A /* CalendarVC.swift in Sources */,
 				ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */,
 				AB47757D21B4E90700A1DCD5 /* TeamCalendar.swift in Sources */,
+				ABEF641E21FBE90D00716ACB /* RefreshableProtocol.swift in Sources */,
 				A8143A0121B72E05000E287A /* StatsVC.swift in Sources */,
 				A81439E921B71E58000E287A /* StatsVM.swift in Sources */,
 				A81439FD21B72D51000E287A /* JoinTeamVC.swift in Sources */,
 				A81439ED21B7246B000E287A /* JoinRequestsVM.swift in Sources */,
 				ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */,
 				ABC5821321B4A56600DDC094 /* ImageUtility.swift in Sources */,
+				ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */,
 				AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */,
 				A8143A0B21B73006000E287A /* PlayerStatsVC.swift in Sources */,
 				A81439E121B71E58000E287A /* PlayerStatsVM.swift in Sources */,

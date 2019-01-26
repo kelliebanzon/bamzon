@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class JoinTeamVC: UIViewController {
+class JoinTeamVC: UIViewController, DisplayableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()

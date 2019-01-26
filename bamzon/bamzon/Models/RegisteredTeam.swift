@@ -9,8 +9,8 @@
 import Foundation
 
 struct RegisteredTeam {
-    var regID: UInt
-    var teamID: UInt
-    var stats: [UInt: PlayerStats]?
-    var permissions: [UInt: Permissions]?
+    var regID: ID
+    var teamID: ID
+    var stats: [ID: PlayerStats]?
+    var permissions: [ID: Permissions]?
 }
