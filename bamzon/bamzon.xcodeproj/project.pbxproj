@@ -63,6 +63,7 @@
 		ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641F21FBE95300716ACB /* EditableProtocol.swift */; };
 		ABEF642221FBEBF100716ACB /* IDUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF642121FBEBF100716ACB /* IDUtility.swift */; };
 		ABEF642421FBECB200716ACB /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF642321FBECB200716ACB /* ID.swift */; };
+		ABEF642621FE6E0700716ACB /* PlayerAttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF642521FE6E0700716ACB /* PlayerAttendanceVC.swift */; };
 		ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC101219E51B400F23E42 /* AppDelegate.swift */; };
 		ABEFC104219E51B400F23E42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEFC103219E51B400F23E42 /* ViewController.swift */; };
 		ABEFC107219E51B400F23E42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABEFC105219E51B400F23E42 /* Main.storyboard */; };
@@ -149,6 +150,7 @@
 		ABEF641F21FBE95300716ACB /* EditableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableProtocol.swift; sourceTree = "<group>"; };
 		ABEF642121FBEBF100716ACB /* IDUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDUtility.swift; sourceTree = "<group>"; };
 		ABEF642321FBECB200716ACB /* ID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ID.swift; sourceTree = "<group>"; };
+		ABEF642521FE6E0700716ACB /* PlayerAttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAttendanceVC.swift; sourceTree = "<group>"; };
 		ABEFC0FE219E51B400F23E42 /* bamzon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bamzon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEFC101219E51B400F23E42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABEFC103219E51B400F23E42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				A8143A0E21B73048000E287A /* EventVC.swift */,
 				A8143A1021B73078000E287A /* RSVPVC.swift */,
 				A8143A0621B72F94000E287A /* AttendanceVC.swift */,
+				ABEF642521FE6E0700716ACB /* PlayerAttendanceVC.swift */,
 				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
 				A8143A1221B730A3000E287A /* JoinRequestsVC.swift */,
 			);
@@ -575,6 +578,7 @@
 				A8143A1321B730A3000E287A /* JoinRequestsVC.swift in Sources */,
 				A81439F521B72A74000E287A /* CreateAccountVC.swift in Sources */,
 				A81439E721B71E58000E287A /* CalendarVM.swift in Sources */,
+				ABEF642621FE6E0700716ACB /* PlayerAttendanceVC.swift in Sources */,
 				ABC5821B21B4A84600DDC094 /* Date.swift in Sources */,
 				A81439E021B71E58000E287A /* LoginVM.swift in Sources */,
 				A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */,
