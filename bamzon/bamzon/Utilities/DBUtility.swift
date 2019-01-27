@@ -13,8 +13,10 @@ import FirebaseDatabase
 
 class DBUtility {
     
-    var fbDatabase : DatabaseReference!
-    var fbImageDatabase : StorageReference!
+    //var fbDatabase : DatabaseReference!
+    //var fbImageDatabase : StorageReference!
+    static let ref = DatabaseReference
+    
     
     func writeToDB() {
         //TODO: implement write to DB

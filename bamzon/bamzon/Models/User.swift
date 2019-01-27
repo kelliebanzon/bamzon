@@ -11,7 +11,7 @@ import UIKit
 import FirebaseDatabase
 
 class User {
-    var userID: UInt
+    var userID: ID
     var firstName: String
     var lastName: String
     var nickname: String?
@@ -24,7 +24,7 @@ class User {
     var teams: [RegisteredTeam]?
     let ref: DatabaseReference?
     
-    init(userID: UInt, firstName: String, lastName: String, nickname: String, phone: String?, email: String?, year: Year?, bio: String?, imageURL: URL?, picture: UIImage?, teams: [RegisteredTeam]?) {
+    init(userID: ID, firstName: String, lastName: String, nickname: String, phone: String?, email: String?, year: Year?, bio: String?, imageURL: URL?, picture: UIImage?, teams: [RegisteredTeam]?) {
         self.userID = userID
         self.firstName = firstName
         self.lastName = lastName
@@ -41,7 +41,7 @@ class User {
     }
     
     init(){
-        userID = 0
+        userID = ID(type: IdType.user, num: 0)
         firstName = "N/A"
         lastName = "N/A"
         ref = nil
@@ -50,8 +50,7 @@ class User {
     init(key: String, snapshot: DataSnapshot){
         
         let snapvalues = snapshot.value as! [String : AnyObject]
-        
-        userID = snapvalues["userID"] as? UInt ?? 0
+        userID = snapvalues["userID"] as? ID ?? ID(type: IdType.user, num: 0)
         firstName = snapvalues["firstName"] as? String ?? "N/A"
         lastName = snapvalues["lastName"] as? String ?? "N/A"
         //picture = snapvalues["picture"] as? UIImage ?? UIImage(named: "kyle.jpeg")
@@ -62,9 +61,9 @@ class User {
         let urlString = snapvalues["url"] as? String ?? "https://pbs.twimg.com/profile_images/986303890487324672/Rxhn6l5C_400x400.jpg"
         imageURL = URL(string: urlString)!
         
-        /*for team in (snapshot.childSnapshot(forPath: "teams").children.allObjects as! [DataSnapshot]) {
-            teams!.append(Team(key: team.key, snapshot: team))
-        }*/
+        for team in (snapshot.childSnapshot(forPath: "registeredTeams").children.allObjects as! [DataSnapshot]) {
+            teams!.append(RegisteredTeam(key: team.key, snapshot: team))
+        }
         
         ref = snapshot.ref
         
