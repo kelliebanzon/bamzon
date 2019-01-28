@@ -63,7 +63,7 @@ class User {
         
         for team in (snapshot.childSnapshot(forPath: "registeredTeams").children.allObjects as! [DataSnapshot]) {
             teams!.append(RegisteredTeam(key: team.key, snapshot: team))
-        }
+        
         ref = snapshot.ref
         
     }
