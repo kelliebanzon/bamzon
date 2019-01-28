@@ -7,6 +7,7 @@
 //g
 
 import Foundation
+import FirebaseDatabase
 
 struct Event {
     var name: String

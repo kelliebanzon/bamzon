@@ -7,7 +7,31 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 struct Media {
     var url: String // TODO: should this be a URL?
+    let ref: DatabaseReference?
+    
+    init(url: String){
+        self.url = url
+        ref = nil
+    }
+    
+    init(){
+        url = "N/A"
+        ref = nil
+    }
+    
+    init(key: String, snapshot: DataSnapshot){        
+        let snapvalues = snapshot.value as! [String : AnyObject]
+        url = snapvalues["url"] as? String ?? "N/A"
+        ref = snapshot.ref
+    }
+    
+    func toAnyObject() -> Any {
+        return [
+            "url" : url
+        ]
+    }
 }
