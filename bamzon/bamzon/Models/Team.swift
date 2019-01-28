@@ -56,7 +56,7 @@ class Team {
         
         
         for request in (snapshot.childSnapshot(forPath: "joinRequests").children.allObjects as! [DataSnapshot]) {
-            joinRequestkjs!.append(JoinRequest(key: request.key, snapshot: request))
+            joinRequests!.append(JoinRequest(key: request.key, snapshot: request))
         }
         
         ref = snapshot.ref
