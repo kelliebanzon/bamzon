@@ -68,3 +68,6 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 bamzon/.DS_Store
+Podfile.lock
+Pods/
+bamzon.xcodeproj/project.pbxproj
