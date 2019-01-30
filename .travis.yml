@@ -5,3 +5,5 @@ xcode_scheme: bamzon
 xcode_sdk: iphonesimulator12.1
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
 podfile: bamzon/Podfile
+before_install:
+ - gem install cocoapods
