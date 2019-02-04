@@ -12,9 +12,5 @@ target 'bamzon' do
   pod 'Firebase/Storage'
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'XLPagerTabStrip', '~> 8.1'
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Storage'
 
 end
