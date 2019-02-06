@@ -27,23 +27,22 @@ struct RSVP {
     }
     
     init(key: String, snapshot: DataSnapshot){
-        let snapvalues = snapshot.value as! [String : AnyObject]
-        
         for yesUserID in (snapshot.childSnapshot(forPath:
             "yesUserIDs").children.allObjects as! [DataSnapshot]) {
-                yesUserIDs!.append(ID(key: yesUserID.key, snapshot: yesUserID))
+                yesUserIDs!.append(IDUtility.generateIDFromString(idString: yesUserID.key))
         }
         
         for noUserID in (snapshot.childSnapshot(forPath:
             "noUserIDs").children.allObjects as! [DataSnapshot]) {
-                noUserIDs!.append(ID(key: noUserID.key, snapshot: noUserID))
+                noUserIDs!.append(IDUtility.generateIDFromString(idString: noUserID.key))
         }
         
         for pendingUserID in (snapshot.childSnapshot(forPath:
             "pendingUserIDs").children.allObjects as! [DataSnapshot]) {
-                pendingUserIDs!.append(ID(key: pendingUserID.key, snapshot: pendingUserID))
+                pendingUserIDs!.append(IDUtility.generateIDFromString(idString: pendingUserID.key))
         }
         
+        ref = snapshot.ref
     }
     
     

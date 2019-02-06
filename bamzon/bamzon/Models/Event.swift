@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 
 struct Event {
+    
     var name: String
     var location: Location?
     var contactUserIDs: [ID]?
@@ -50,7 +51,7 @@ struct Event {
         
         for contactUserID in (snapshot.childSnapshot(forPath:
             "contactUserIDs").children.allObjects as! [DataSnapshot]) {
-                contactUserIDs!.append(ID(key: contactUserID.key, snapshot:                                 contactUserID))
+                contactUserIDs!.append(IDUtility.generateIDFromString(idString: contactUserID.key))
         }
         
         description = snapvalues["description"] as? String ?? "N/A"
@@ -63,11 +64,11 @@ struct Event {
         
         for tag in (snapshot.childSnapshot(forPath:
             "tags").children.allObjects as! [DataSnapshot]) {
-                tags!.append(String(key: tag.key, snapshot: tag))
+                tags!.append(tag.key)
         }
         
         for med in (snapshot.childSnapshot(forPath: "media").children.allObjects as! [DataSnapshot]) {
-            media![med.key] = med.value
+            media![med.key] = Media(key: med.key, snapshot: med)
         }
         
         let urlString = "https://pbs.twimg.com/profile_images/986303890487324672/Rxhn6l5C_400x400.jpg"
@@ -75,11 +76,25 @@ struct Event {
         links = ["N/A": imageURL]
         links = snapvalues["links"] as? [String: URL] ?? ["N/A": imageURL]
         
-        for link in (snapshot.childSnapshot(forPath: "links").children.allObjects as! [DataSnapshot]) {
-            links![link.key] = link.value
+        for link in (snapshot.childSnapshot(forPath: "links").children.allObjects as! [DataSnapshot])
+        {
+            links[link.key] = URL(string: snapvalues[link.key] as! String)
         }
         
         ref = snapshot.ref
-        
+    }
+    
+    func toAnyObject() -> Any {
+        return [
+            "name" : name,
+            "location" : location?.toAnyObject(),
+            "contactUserIDs" : contactUserIDs,
+            "description" : description,
+            "date" : date,
+            "rsvps" : rsvps,
+            "tags" : tags,
+            "media" : media,
+            "links" : links
+        ]
     }
 }

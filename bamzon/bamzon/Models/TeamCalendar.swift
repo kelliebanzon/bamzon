@@ -7,7 +7,39 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-struct TeamCalendar {
-    var events: [Event]
+class TeamCalendar {
+    var events: [Event]?
+    let ref : DatabaseReference?
+    
+    init(events: [Event]){
+        self.events = events
+        ref = nil
+    }
+    
+    init(){
+        events = []
+        ref = nil
+    }
+    
+    init(key: String, snapshot: DataSnapshot){
+        for event in (snapshot.childSnapshot(forPath: "events").children.allObjects as! [DataSnapshot]) {
+            events!.append(Event(key: event.key, snapshot: event))
+        }
+        ref = snapshot.ref
+    }
+    
+    func toAnyObject() -> Any {
+        var anyEvents = [Any]()
+        if events != nil {
+            for event in events! {
+                anyEvents.append(event.toAnyObject())
+            }
+        }
+        
+        return [
+            "events" : anyEvents
+        ]
+    }
 }

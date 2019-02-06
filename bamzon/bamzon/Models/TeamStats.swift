@@ -50,17 +50,15 @@ class TeamStats {
         }
         
         ref = snapshot.ref
-        
     }
     
     func toAnyObject() -> Any {
-        
         return [
             "memberCount" : memberCount,
             "wins" : wins,
             "losses" : losses,
             "ties" : ties,
-            "fields" : fields as Any
+            "fields" : [fields]
         ]
     }
     

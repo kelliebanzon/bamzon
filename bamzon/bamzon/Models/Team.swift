@@ -21,7 +21,7 @@ class Team {
     var blacklistUserIDs: [ID]?
     let ref: DatabaseReference?
     
-    init(teamID: ID, orgID: ID, userIDs: [ID]?, teamName: String, sport: String?, stats: TeamStats, calendar: TeamCalendar, joinRequests: [JoinRequest]?, blacklistUserIDs: [ID]?) {
+    init(teamID: ID, orgID: ID, userIDs: [ID]?, teamName: String, sport: String?, stats: TeamStats, calendar: TeamCalendar, joinRequests: [JoinRequest], blacklistUserIDs: [ID]?) {
         self.teamID = teamID
         self.orgID = orgID
         self.userIDs = userIDs
@@ -39,7 +39,8 @@ class Team {
         orgID = ID(type: IdType.org, num: 0)
         teamName = "N/A"
         stats = TeamStats()
-        calendar = TeamCalendar(Event)
+        calendar = TeamCalendar()
+        joinRequests = []
         ref = nil
     }
     
@@ -50,8 +51,9 @@ class Team {
         teamID = snapvalues["teamID"] as? ID ?? ID(type: IdType.team, num: 0)
         orgID = snapvalues["orgID"] as? ID ?? ID(type: IdType.org, num: 0)
         teamName = snapvalues["teamName"] as? String ?? "N/A"
-        sport = snapvalues["sport"] as? String ?? "N/A"
+        sport = snapvalues["sport"] as? String ?? nil
         stats = snapvalues["stats"] as? TeamStats ?? TeamStats()
+        calendar = snapvalues["calendar"] as? TeamCalendar ?? TeamCalendar()
         
         
         
@@ -71,16 +73,30 @@ class Team {
             }
         }
         
+        var anyJoinRequests = [Any]()
+        if joinRequests != nil {
+            for joinRequest in joinRequests! {
+                anyJoinRequests.append(joinRequest.toAnyObject())
+            }
+        }
+       
+        var anyBlacklistIds = [Any]()
+        if blacklistUserIDs != nil {
+            for blacklistId in blacklistUserIDs! {
+                anyBlacklistIds.append(blacklistId.getString())
+            }
+        }
+        
         return [
-            "teamID" : teamID.num + teamID.type.rawValue,
-            "orgID" : teamID.num + teamID.type.rawValue,
-            "userIDs" : anyUserIDs
-            "teamName": teamName
-            "sport" :
-            "stats" :
-            "calendar" :
-            "joinRequests":
-            "blacklistUserIDs" :
+            "teamID" : teamID.getString(),
+            "orgID" : orgID.getString(),
+            "userIDs" : anyUserIDs,
+            "teamName": teamName,
+            "sport" : sport ?? "",
+            "stats" : stats,
+            "calendar" : calendar.toAnyObject(),
+            "joinRequests" : anyJoinRequests,
+            "blacklistUserIDs" : anyBlacklistIds
         ]
     }
 }

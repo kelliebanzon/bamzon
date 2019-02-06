@@ -12,24 +12,46 @@ class IDUtility {
     
     // TODO: need some variable to keep track of what number ID we're on
     
-    func generateNum() -> UInt {
+    static func generateNum() -> UInt {
         // TODO: implement generateNum
         return 0
     }
     
-    func generateUserID() -> ID {
+    static func generateUserID() -> ID {
         // TODO: implement generateUserID
-        return ID(type: "U", num: 0)
+        return ID(type: IdType.user, num: 0)
     }
     
-    func generateTeamID() -> ID {
+    static func generateTeamID() -> ID {
         // TODO: implement generateTeamID
-        return ID(type: "T", num: 0)
+        return ID(type: IdType.team, num: 0)
     }
     
-    func generateOrgID() -> ID {
+    static func generateOrgID() -> ID {
         // TODO: implement generateOrgID
-        return ID(type: "O", num: 0)
+        return ID(type: IdType.org, num: 0)
     }
     
+    static func generateGenericID() -> ID {
+        return ID(type: IdType.org, num: 0)
+    }
+    
+    static func generateIDFromString(idString: String) -> ID {
+        let type = IdType.init(rawValue: String(idString[0]))
+        let num = (UInt)(String(idString[1...idString.count]))
+        
+        return ID(type: type ?? IdType.other, num: num ?? 0)
+    }
+    
+}
+
+enum IdType: String, Codable {
+    case regTeam = "r"
+    case user = "u"
+    case team = "t"
+    case event = "e"
+    case org = "o"
+    case location = "l"
+    case media = "m"
+    case other = "z"
 }

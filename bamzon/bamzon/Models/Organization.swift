@@ -13,7 +13,7 @@ struct Organization {
     var orgID: ID
     var name: String
     var location: Location
-    var teamIDs: [ID]
+    var teamIDs: [ID]?
     let ref: DatabaseReference?
     
     init(orgID: ID, name: String, location: Location, teamIDs: [ID]){
@@ -25,7 +25,7 @@ struct Organization {
     }
     
     init(){
-        orgID = ID()
+        orgID = ID(type: IdType.org, num: 0)
         name = "N/A"
         location = Location()
         teamIDs = []
@@ -34,13 +34,14 @@ struct Organization {
     
     init(key: String, snapshot: DataSnapshot){
         let snapvalues = snapshot.value as! [String : AnyObject]
-        orgID = snapvalues["orgID"] as? ID ?? ID()
+        orgID = snapvalues["orgID"] as? ID ?? ID(type: IdType.org, num: 0)
+
         name = snapvalues["name"] as? String ?? "N/A"
         location = snapvalues["location"] as? Location ?? Location()
         
         for teamID in (snapshot.childSnapshot(forPath:
             "teamIDs").children.allObjects as! [DataSnapshot]){
-                teamIDs.append(ID(key: teamID.key, snapshot: teamID))
+                teamIDs!.append(IDUtility.generateIDFromString(idString: teamID.key))
         }
         
         ref = snapshot.ref

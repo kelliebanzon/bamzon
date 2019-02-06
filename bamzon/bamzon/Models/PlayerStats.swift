@@ -7,7 +7,32 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-struct PlayerStats {
+class PlayerStats {
     var fields: [String: Any]?
+    let ref : DatabaseReference?
+    
+    init(fields: [String: Any]?){
+        self.fields = fields
+        ref = nil
+    }
+    
+    init(){
+        fields = [:]
+        ref = nil
+    }
+    
+    init(key: String, snapshot: DataSnapshot){
+        for field in (snapshot.childSnapshot(forPath: "fields").children.allObjects as! [DataSnapshot]) {
+            fields![field.key] = field.value
+        }
+        
+        ref = snapshot.ref
+        
+    }
+    
+    func toAnyObject() -> Any {
+        return [fields]
+    }
 }

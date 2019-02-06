@@ -35,3 +35,37 @@ extension Int {
     }
     
 }
+
+/* This was added mainly for the substring fuction,
+ * but I added entire utility in case we need it for anything else
+ * Source:
+ * https://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language/38215613#38215613
+ */
+extension StringProtocol {
+    
+    subscript(offset: Int) -> Element {
+        return self[index(startIndex, offsetBy: offset)]
+    }
+    
+    subscript(_ range: CountableRange<Int>) -> SubSequence {
+        return prefix(range.lowerBound + range.count)
+            .suffix(range.count)
+    }
+    subscript(range: CountableClosedRange<Int>) -> SubSequence {
+        return prefix(range.lowerBound + range.count)
+            .suffix(range.count)
+    }
+    
+    subscript(range: PartialRangeThrough<Int>) -> SubSequence {
+        return prefix(range.upperBound.advanced(by: 1))
+    }
+    subscript(range: PartialRangeUpTo<Int>) -> SubSequence {
+        return prefix(range.upperBound)
+    }
+    subscript(range: PartialRangeFrom<Int>) -> SubSequence {
+        return suffix(Swift.max(0, count - range.lowerBound))
+    }
+}
+extension Substring {
+    var string: String { return String(self) }
+}
