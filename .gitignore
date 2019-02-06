@@ -72,3 +72,4 @@ Podfile.lock
 Pods/
 bamzon/Pods/
 bamzon.xcodeproj/project.pbxproj
+GoogleService-Info.plist
