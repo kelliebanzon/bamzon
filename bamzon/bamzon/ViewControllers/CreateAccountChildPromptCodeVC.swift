@@ -1,5 +1,5 @@
 //
-//  CreateAccountPromptCodeVC.swift
+//  CreateAccountChildPromptCodeVC.swift
 //  bamzon
 //
 //  Created by Kellie Banzon on 02/07/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAccountPromptCodeVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
+class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +27,13 @@ class CreateAccountPromptCodeVC: UIViewController, DisplayableProtocol, UITextFi
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 1
         tempLabel.textColor = .white
-        tempLabel.text = "CreateAccountPromptCodeVC"
+        tempLabel.text = "CreateAccountChildPromptCodeVC"
         self.view.addSubview(tempLabel)
     }
     
 //    @ kyle: when you're ready to transition to the account success creation page,
 //    add this line of code to your function:
-//    let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountSuccessVC")
+//    let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC")
 //    present(nextVC, animated: true, completion: nil)
 
     /*

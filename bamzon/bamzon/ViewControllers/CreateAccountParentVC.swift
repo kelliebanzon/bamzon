@@ -1,5 +1,5 @@
 //
-//  CreateAccountVC.swift
+//  CreateAccountParentVC.swift
 //  bamzon
 //
 //  Created by Krein, Kevin on 12/4/18.
@@ -33,7 +33,7 @@ class CreateAccountParentVC: UIViewController, DisplayableProtocol {
             ])
         
         // add child view controller view to container
-        let childEmailVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountPromptEmailVC")
+        let childEmailVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptEmailVC")
         addChildViewController(childEmailVC)
         childEmailVC.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(childEmailVC.view)

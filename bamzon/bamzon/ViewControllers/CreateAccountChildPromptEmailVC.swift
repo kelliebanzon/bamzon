@@ -1,5 +1,5 @@
 //
-//  CreateAccountChild1VC.swift
+//  CreateAccountChildPromptEmailVC.swift
 //  bamzon
 //
 //  Created by Kellie Banzon on 02/05/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAccountPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
+class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     var firstName : UITextField?
     var lastName : UITextField?
@@ -128,9 +128,9 @@ class CreateAccountPromptEmailVC: UIViewController, DisplayableProtocol, UITextF
         } else if (validEmail(email: (email?.text)!)){
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
-            print("present CreateAccountPromptCodeVC")
+            //print("present CreateAccountChildPromptCodeVC")
             // TODO: check how this changes when embedded in a nav controller
-            let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountPromptCodeVC")
+            let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC")
             present(nextVC, animated: true, completion: nil)
         }
     }

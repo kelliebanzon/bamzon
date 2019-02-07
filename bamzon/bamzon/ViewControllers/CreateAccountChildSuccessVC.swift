@@ -1,5 +1,5 @@
 //
-//  CreateAccountSuccessVC.swift
+//  CreateAccountChildSuccessVC.swift
 //  bamzon
 //
 //  Created by Kellie Banzon on 02/07/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAccountSuccessVC: UIViewController, DisplayableProtocol {
+class CreateAccountChildSuccessVC: UIViewController, DisplayableProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class CreateAccountSuccessVC: UIViewController, DisplayableProtocol {
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 1
         tempLabel.textColor = .white
-        tempLabel.text = "CreateAccountSuccessVC"
+        tempLabel.text = "CreateAccountChildSuccessVC"
         self.view.addSubview(tempLabel)
     }
 

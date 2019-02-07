@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="-2407" y="1351"/>
         </scene>
-        <!--Create Account Prompt EmailVC-->
+        <!--Create Account Child Prompt EmailVC-->
         <scene sceneID="KjV-kr-frG">
             <objects>
-                <viewController storyboardIdentifier="CreateAccountPromptEmailVC" id="wa8-dA-LNd" customClass="CreateAccountPromptEmailVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountChildPromptEmailVC" id="wa8-dA-LNd" customClass="CreateAccountChildPromptEmailVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rYI-Ol-D4I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="-3041" y="2286"/>
         </scene>
-        <!--Create Account Prompt CodeVC-->
+        <!--Create Account Child Prompt CodeVC-->
         <scene sceneID="9aO-g9-pGx">
             <objects>
-                <viewController storyboardIdentifier="CreateAccountPromptCodeVC" id="N6O-88-Zat" customClass="CreateAccountPromptCodeVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountChildPromptCodeVC" id="N6O-88-Zat" customClass="CreateAccountChildPromptCodeVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IBt-UV-rI3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="-2407" y="2285"/>
         </scene>
-        <!--Create Account SuccessVC-->
+        <!--Create Account Child SuccessVC-->
         <scene sceneID="j5r-6o-FKb">
             <objects>
-                <viewController storyboardIdentifier="CreateAccountSuccessVC" id="kYd-CD-U81" customClass="CreateAccountSuccessVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAccountChildSuccessVC" id="kYd-CD-U81" customClass="CreateAccountChildSuccessVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lvM-oL-LMN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -289,10 +289,55 @@
             </objects>
             <point key="canvasLocation" x="6841" y="3090"/>
         </scene>
-        <!--StatsVC-->
+        <!--Stats Child PersonalVC-->
+        <scene sceneID="N2p-DP-k5k">
+            <objects>
+                <viewController storyboardIdentifier="StatsChildPersonalVC" id="Rbf-8z-QRG" customClass="StatsChildPersonalVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DRs-wg-4V4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="QmX-qZ-31v"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BOj-AY-OcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5031" y="-651"/>
+        </scene>
+        <!--Stats Child Other PlayerVC-->
+        <scene sceneID="Wu7-nU-MH1">
+            <objects>
+                <viewController storyboardIdentifier="StatsChildOtherPlayerVC" id="M5v-7T-6j1" customClass="StatsChildOtherPlayerVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UwC-qv-T1B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SvQ-Ow-AJj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I51-gK-TVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5671" y="-652"/>
+        </scene>
+        <!--Stats Child TeamVC-->
+        <scene sceneID="kvP-g6-Q8I">
+            <objects>
+                <viewController storyboardIdentifier="StatsChildTeamVC" id="TnL-M5-jTG" customClass="StatsChildTeamVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k4E-CQ-vwU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dZV-3Y-SdV"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sve-pU-2DO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6316" y="-652"/>
+        </scene>
+        <!--Stats ParentVC-->
         <scene sceneID="Vtg-RH-9ld">
             <objects>
-                <viewController id="SW5-DR-6p6" customClass="StatsVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SW5-DR-6p6" customClass="StatsParentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qmh-tf-Wxz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -304,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="5672" y="128"/>
         </scene>
-        <!--Player StatsVC-->
+        <!--Stats Child PersonalVC-->
         <scene sceneID="fB2-XT-lXC">
             <objects>
-                <viewController id="hbN-Ex-7cm" customClass="PlayerStatsVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hbN-Ex-7cm" customClass="StatsChildPersonalVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FD7-0b-hAN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

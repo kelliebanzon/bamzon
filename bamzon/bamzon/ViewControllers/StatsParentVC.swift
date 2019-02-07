@@ -1,5 +1,5 @@
 //
-//  PlayerStatsVC.swift
+//  StatsVC.swift
 //  bamzon
 //
 //  Created by Krein, Kevin on 12/4/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class PlayerStatsVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,10 @@ class PlayerStatsVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
     }
     
     func edit() {
-        // TODO: implement edit
+        // TODO: implement edit stats
+    }
+    
+    func viewPlayerStats(playerID: CLong) {
+        // TODO: implement view player stats
     }
 }
