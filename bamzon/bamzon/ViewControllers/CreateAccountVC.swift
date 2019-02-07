@@ -96,20 +96,20 @@ class CreateAccountVC: UIViewController, DisplayableProtocol {
         button.layer.cornerRadius = 8
         button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         button.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
-        //button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
-        //button.addTarget(self, action: #selector(unhighlightButton), for: .touchUpOutside)
-        //button.addTarget(self, action: #selector(unhighlightButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: .touchUpOutside)
+        button.addTarget(self, action: #selector(unhighlightButton), for: .touchUpInside)
         self.view.addSubview(button)
     }
     
     // Highlight the button upon touchDown
     @objc func highlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellow")
+        sender.backgroundColor = UIColor(named: "TSYellowDark")
     }
     
     // Unhighlight the button upon touchDown
     @objc func unhighlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor.clear
+        sender.backgroundColor = UIColor(named: "TSYellow")
     }
     
     // General function to validate fields
