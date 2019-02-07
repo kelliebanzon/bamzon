@@ -25,20 +25,89 @@
             </objects>
             <point key="canvasLocation" x="-1900" y="-358"/>
         </scene>
-        <!--Create AccountVC-->
+        <!--Create Account ParentVC-->
         <scene sceneID="f3R-xU-4XR">
             <objects>
-                <viewController id="bWO-35-ca0" customClass="CreateAccountVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bWO-35-ca0" customClass="CreateAccountParentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ek3-lS-JpG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vBj-TU-1JC">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ozq-3T-SoY"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="vBj-TU-1JC" id="obk-gl-hXW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVG-Xe-k5a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2407" y="1351"/>
+        </scene>
+        <!--Create Account Prompt EmailVC-->
+        <scene sceneID="KjV-kr-frG">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountPromptEmailVC" id="wa8-dA-LNd" customClass="CreateAccountPromptEmailVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rYI-Ol-D4I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8Rl-oP-HNu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ax-0t-aqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3041" y="2286"/>
+        </scene>
+        <!--Create Account Prompt CodeVC-->
+        <scene sceneID="9aO-g9-pGx">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountPromptCodeVC" id="N6O-88-Zat" customClass="CreateAccountPromptCodeVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IBt-UV-rI3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cyH-r6-lUX"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tzf-dh-FcK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2407" y="2285"/>
+        </scene>
+        <!--Create Account SuccessVC-->
+        <scene sceneID="j5r-6o-FKb">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountSuccessVC" id="kYd-CD-U81" customClass="CreateAccountSuccessVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lvM-oL-LMN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UUd-SI-SJJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q4S-aq-89Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1769" y="2285"/>
+        </scene>
+        <!--Create Account Child Prompt EmailVC-->
+        <scene sceneID="b7c-Wb-LBl">
+            <objects>
+                <viewController id="Myt-nK-bH5" customClass="CreateAccountChildPromptEmailVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M7m-fT-wlZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vZp-0T-yvV"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VX-D7-age" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3396" y="1369"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="YsB-bo-i4C">

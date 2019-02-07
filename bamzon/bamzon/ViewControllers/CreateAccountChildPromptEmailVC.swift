@@ -1,60 +1,28 @@
 //
-//  CreateAccountVC.swift
+//  CreateAccountChild1VC.swift
 //  bamzon
 //
-//  Created by Krein, Kevin on 12/4/18.
-//  Written by Kyle Vu on 1/27/19
-//  Copyright © 2018 bamzon. All rights reserved.
+//  Created by Kellie Banzon on 02/05/19.
+//  Copyright © 2019 bamzon. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
+class CreateAccountPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     var firstName : UITextField?
     var lastName : UITextField?
     var email : UITextField?
     
-    @IBOutlet weak var containerView: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = UIColor(named: "TSNavy")
+        
+        // Do any additional setup after loading the view.
         display()
-        
-        // add container
-//        let containerView = UIView()
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(containerView)
-//        NSLayoutConstraint.activate([
-//            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//            ])
-//
-//        // add child view controller view to container
-//
-//        let childVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChild1VC")
-//        addChildViewController(childVC)
-//        childVC.view.translatesAutoresizingMaskIntoConstraints = false
-//        containerView.addSubview(childVC.view)
-//
-//        NSLayoutConstraint.activate([
-//            childVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-//            childVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-//            childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-//            childVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-//            ])
-//
-//        childVC.didMove(toParentViewController: self)
-        
-        //Some property on ChildVC that needs to be set
-        //childVC.dataSource = self
     }
     
     func display() {
+        view.backgroundColor = UIColor(named: "TSTeal")
         
         // Padding variables
         let firstPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
@@ -108,6 +76,7 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
         email?.textColor = .white
         email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
         email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email?.delegate = self
         self.view.addSubview(email!)
         
         let emailBar = CAShapeLayer()
@@ -130,8 +99,14 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
         button.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
         button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
         button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
-        //button.addTarget(self, action: #selector(unhighlightButton), for: .touchUpInside)
         self.view.addSubview(button)
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        checkFields()
+        return true
     }
     
     // Highlight the button upon touchDown
@@ -144,18 +119,19 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
         sender.backgroundColor = UIColor(named: "TSYellow")
     }
     
+    
     // General function to validate fields
-    @objc func checkFields(sender: UIButton!) {
+    @objc func checkFields() {
         if (firstName?.text == "" || lastName?.text == "" || email?.text == "")
         {
-            missingFieldsError()
+            throwMissingFieldsError()
         } else if (validEmail(email: (email?.text)!)){
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
-        }
-        else {
-            print("performSegue ShowCreateAccountPromptEmail")
-            // TODO: performSegue(withIdentifier: "ShowCreateAccountPromptEmail", sender: self)
+            print("present CreateAccountPromptCodeVC")
+            // TODO: check how this changes when embedded in a nav controller
+            let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountPromptCodeVC")
+            present(nextVC, animated: true, completion: nil)
         }
     }
     
@@ -169,6 +145,7 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
     // Email validation function
     // TODO:
     // - Add validation to check to see if that email has already been registered or not
+    // - Move this to VM
     func validEmail(email: String) -> Bool {
         if (!email.contains("@") || !email.contains(".")) {
             let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
@@ -180,7 +157,7 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
     }
     
     // Error message presented if there are missing fields
-    func missingFieldsError() {
+    func throwMissingFieldsError() {
         let alert = UIAlertController(title: "Missing Fields", message: "First name, last name, and a valid email are requried.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -188,22 +165,15 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
         lastName?.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
     }
-    
-    /*func displayEmailPromptContainer(){
-        guard let promptEmailChildVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateAccountChildPromptEmailVC") as? CreateAccountChildPromptEmailVC else {
-            return
-        }
-        
-        addChildViewController(promptEmailChildVC)
-        //Or, you could add auto layout constraint instead of relying on AutoResizing contraints
-        /*childVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        childVC.view.frame = containerView.bounds*/
-        
-        containerView.addSubview(promptEmailChildVC.view)
-        promptEmailChildVC.didMove(toParentViewController: self)
-        
-        //Some property on ChildVC that needs to be set
-        promptEmailChildVC.dataSource = self
-        performSegue(withIdentifier: "CreateAccountPromptEmailVC", sender: self)
-    }*/
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
