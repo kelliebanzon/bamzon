@@ -38,7 +38,7 @@ class IDUtility {
     
     static func generateIDFromString(idString: String) -> ID {
         let type = IdType.init(rawValue: String(idString[0]))
-        let num = (UInt)(String(idString[1...idString.count]))
+        let num:UInt? = UInt(idString.suffix(idString.count-1).string)
         
         return ID(type: type ?? IdType.other, num: num ?? 0)
     }

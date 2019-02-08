@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import bamzon
 
 class bamzonTests: XCTestCase {
 
@@ -21,6 +22,7 @@ class bamzonTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+         
     }
 
     func testPerformanceExample() {
@@ -28,6 +30,27 @@ class bamzonTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testCreateIDFromString(){
+        let testIDString = "u100"
+        let expected = ID(type: IdType.user, num: 100)
+        let testOut = IDUtility.generateIDFromString(idString: testIDString)
+        print(testOut.num)
+        print(testOut.type)
+        
+        XCTAssertTrue(expected.type == testOut.type)
+        XCTAssertTrue(expected.num == testOut.num)
+
+    }
+    
+    func testIDToString(){
+        let expected = "u100"
+        let testID = ID(type: IdType.user, num: 100)
+        let testOut = testID.getString()
+        
+        XCTAssertTrue(expected.elementsEqual(testOut))
+        
     }
 
 }
