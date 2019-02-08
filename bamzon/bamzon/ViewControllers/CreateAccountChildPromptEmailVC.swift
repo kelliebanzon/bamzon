@@ -101,6 +101,23 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(button)
         
+        // Existing Account Button
+        let existingAccount = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        let attributedString = NSAttributedString(
+            string: NSLocalizedString("Already have an account?", comment: ""),
+            attributes:[
+                NSAttributedStringKey.font :UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                NSAttributedStringKey.foregroundColor : UIColor.white,
+                NSAttributedStringKey.underlineStyle:1.0
+            ])
+        existingAccount.titleLabel?.numberOfLines = 1
+        existingAccount.titleLabel?.adjustsFontSizeToFitWidth = true
+        existingAccount.titleLabel?.textAlignment = .center
+        existingAccount.center = CGPoint(x: view.center.x, y: 515)
+        existingAccount.setAttributedTitle(attributedString, for: .normal)
+        existingAccount.addTarget(self, action: #selector(loginPage), for: .touchUpInside)
+        self.view.addSubview(existingAccount)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -117,6 +134,13 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     // Unhighlight the button upon touchDown
     @objc func unhighlightButton(sender: UIButton!) {
         sender.backgroundColor = UIColor(named: "TSYellow")
+    }
+    
+    // Send user to login page if they have an existing account
+    @objc func loginPage() {
+        let alert = UIAlertController(title: "Login Page", message: "Send the user to the login VC.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
