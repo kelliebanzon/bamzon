@@ -67,9 +67,9 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-bamzon/.DS_Store
+*/.DS_Store
 Podfile.lock
-Pods/
-bamzon/Pods/
-bamzon.xcodeproj/project.pbxproj
+# Pods/
+# bamzon/Pods/
+# bamzon.xcodeproj/project.pbxproj
 GoogleService-Info.plist
