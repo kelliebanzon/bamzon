@@ -68,7 +68,7 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 */.DS_Store
-Podfile.lock
+*/Podfile.lock
 # Pods/
 # bamzon/Pods/
 # bamzon.xcodeproj/project.pbxproj
