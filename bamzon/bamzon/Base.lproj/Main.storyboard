@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1900" y="-358"/>
-        </scene>
         <!--Create Account ParentVC-->
         <scene sceneID="f3R-xU-4XR">
             <objects>
@@ -109,10 +94,55 @@
             </objects>
             <point key="canvasLocation" x="-1306" y="1351"/>
         </scene>
-        <!--Create TeamVC-->
+        <!--Create Team Child NameVC-->
+        <scene sceneID="K9B-Up-hRD">
+            <objects>
+                <viewController storyboardIdentifier="CreateTeamChildNameVC" id="pUM-GP-Q6f" customClass="CreateTeamChildNameVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LAl-gg-Bfq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="21P-bI-6Fy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdx-Pd-FO0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1199" y="-170"/>
+        </scene>
+        <!--Create Team Child SettingsVC-->
+        <scene sceneID="nsS-dk-T38">
+            <objects>
+                <viewController storyboardIdentifier="CreateTeamChildSettingsVC" id="3Cs-x4-oUt" customClass="CreateTeamChildSettingsVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QKP-4G-oEK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Q9L-Sg-H1d"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xoo-UM-SbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-583" y="-170"/>
+        </scene>
+        <!--Create Team Child LoadingVC-->
+        <scene sceneID="wVP-aD-yea">
+            <objects>
+                <viewController storyboardIdentifier="CreateTeamChildLoadingVC" id="H20-ES-d0q" customClass="CreateTeamChildLoadingVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W2X-6c-xdp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aRZ-1g-ccp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lHX-dz-ZXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="38" y="-170"/>
+        </scene>
+        <!--Create Team ParentVC-->
         <scene sceneID="JkX-KN-ypy">
             <objects>
-                <viewController id="WTS-QY-9mY" customClass="CreateTeamVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WTS-QY-9mY" customClass="CreateTeamParentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1b9-Rn-Spy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -404,7 +434,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ez-jf-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="538"/>
+            <point key="canvasLocation" x="1004" y="538"/>
         </scene>
     </scenes>
 </document>
