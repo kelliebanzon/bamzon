@@ -11,7 +11,7 @@ import Foundation
 enum Permissions: String {
     case editTeamInfo = "EditTeamInfo"
     case manageJoinRequests = "ManageJoinRequests"
-    case editRoster = "EditRoste"
+    case editRoster = "EditRoster"
     case editCalendar = "EditAttendance"
     case editStats = "EditStats"
 }

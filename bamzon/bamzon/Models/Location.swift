@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Firebase
 
-struct Location {
+struct Location: FirebaseCompatable {
     var number: String
     var street: String
     var street2: String?
@@ -16,9 +17,10 @@ struct Location {
     var state: String // TODO: change state to be an enum
     var zip: UInt
     var country: String?
+    var locID: ID
 
-
-    init(number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?){
+    init(locID: ID, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?){
+        self.locID = locID
         self.number = number
         self.street = street
         self.street2 = street2
@@ -26,6 +28,38 @@ struct Location {
         self.state = state
         self.zip = zip
         self.country = country
+    }
+    
+    init(snapshot: DataSnapshot?) {
+        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
+        locID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+        number = payload["number"] as? String ?? "N/A"
+        street = payload["street"] as? String ?? "N/A"
+        street2 = payload["street2"] as? String ?? nil
+        city = payload["city"] as? String ?? "N/A"
+        state = payload["state"] as? String ?? "N/A"
+        zip = payload["zip"] as? UInt ?? 999
+        country = payload["country"] as? String ?? "N/A"
+    }
+    
+    func getTable() -> String {
+        return "locations"
+    }
+    
+    func getChildPath() -> String {
+        return locID.asString()
+    }
+    
+    func formatForDB() -> [String: Any] {
+        return
+            ["city": city,
+             "country": country ?? "",
+             "street": street,
+             "street2": street2 ?? "",
+             "state": state,
+             "zip": zip,
+             "number": number
+        ]
     }
 }
 
@@ -46,4 +80,3 @@ struct Location {
     }
     
 }*/
-

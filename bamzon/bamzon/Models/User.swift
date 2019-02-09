@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Firebase
 
-struct User {
+struct User: FirebaseCompatable {
     var userID: ID
     var firstName: String
     var lastName: String
@@ -18,18 +19,56 @@ struct User {
     var schoolYear: Year?
     var bio: String?
     var imageURL: String? // TODO: should this be a URL?
-    var teams: [Team]?
+    var teamIDs: [ID]?
     
-    init(userID: ID, firstName: String, lastName: String, nickname: String, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teams: [Team]?) {
+    init(userID: ID, firstName: String, lastName: String, nickname: String, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teamIDs: [ID]?) {
         self.userID = userID
         self.firstName = firstName
         self.lastName = lastName
+        self.nickname = nickname
         self.phone = phone
         self.email = email
         self.schoolYear = schoolYear
         self.bio = bio
         self.imageURL = imageURL
-        self.teams = teams
+        self.teamIDs = teamIDs
+    }
+    
+    init(snapshot: DataSnapshot?) {
+        userID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
+        userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
+        firstName = payload["firstName"] as? String ?? "N/A"
+        lastName = payload["lastNme"] as? String ?? "N/A"
+        nickname = payload["nickname"] as? String ?? "N/A"
+        phone = payload["phone"] as? String ?? "N/A"
+        email = payload["email"] as? String ?? "N/A"
+        schoolYear = Year(rawValue: payload["schoolYear"] as? Int ?? 0)
+        bio = payload["bio"] as? String ?? "N/A"
+        imageURL = payload["imageURL"] as? String ?? "N/A"
+        teamIDs = IDUtility.stringsToIds(strs: payload["teamIds"] as? [String] ?? [])
+    }
+
+    
+    func formatForDB() -> [String : Any] {
+        return
+            ["firstName": firstName,
+             "lastName": lastName,
+             "nickname": nickname ?? "",
+             "phone": phone ?? "",
+             "email": email ?? "",
+             "schoolYear": schoolYear ?? "",
+             "bio": bio ?? "",
+             "imageURL": imageURL ?? "",
+             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
+    }
+    
+    func getTable() -> String {
+        return "users"
+    }
+    
+    func getChildPath() -> String {
+        return userID.asString()
     }
     
 }

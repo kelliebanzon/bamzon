@@ -13,5 +13,10 @@ target 'bamzon' do
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'XLPagerTabStrip', '~> 8.1'
   pod 'SwiftLint'
+  
+  target 'bamzonTests' do
+      inherit! :search_paths
+      pod 'Firebase'
+  end
 
 end
