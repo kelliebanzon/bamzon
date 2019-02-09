@@ -13,6 +13,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Profile"
         display()
     }
     

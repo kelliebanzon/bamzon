@@ -43,7 +43,9 @@
 		A8143A1121B73078000E287A /* RSVPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A1021B73078000E287A /* RSVPVC.swift */; };
 		A8143A1321B730A3000E287A /* JoinRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A1221B730A3000E287A /* JoinRequestsVC.swift */; };
 		AB277835220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */; };
+		AB2BB74E220E3B1200243F77 /* SelectTeamNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */; };
 		AB33BECB220CFBAC00432884 /* StatsChildTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */; };
+		AB3CE1AD220E15990086478C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3CE1AC220E15990086478C /* TabBarController.swift */; };
 		AB47757121B4E2CB00A1DCD5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757021B4E2CB00A1DCD5 /* Team.swift */; };
 		AB47757321B4E3DE00A1DCD5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757221B4E3DE00A1DCD5 /* User.swift */; };
 		AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */; };
@@ -131,7 +133,9 @@
 		A8143A1021B73078000E287A /* RSVPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPVC.swift; sourceTree = "<group>"; };
 		A8143A1221B730A3000E287A /* JoinRequestsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestsVC.swift; sourceTree = "<group>"; };
 		AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsChildOtherPlayerVC.swift; sourceTree = "<group>"; };
+		AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamNavController.swift; sourceTree = "<group>"; };
 		AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsChildTeamVC.swift; sourceTree = "<group>"; };
+		AB3CE1AC220E15990086478C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AB47757021B4E2CB00A1DCD5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		AB47757221B4E3DE00A1DCD5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 				ABEF642521FE6E0700716ACB /* PlayerAttendanceVC.swift */,
 				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
 				A8143A1221B730A3000E287A /* JoinRequestsVC.swift */,
+				AB3CE1AC220E15990086478C /* TabBarController.swift */,
+				AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				ABEF642421FBECB200716ACB /* ID.swift in Sources */,
 				ABEF642221FBEBF100716ACB /* IDUtility.swift in Sources */,
 				A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */,
+				AB3CE1AD220E15990086478C /* TabBarController.swift in Sources */,
 				A8143A1121B73078000E287A /* RSVPVC.swift in Sources */,
 				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
 				A8143A0321B72E3B000E287A /* RosterVC.swift in Sources */,
@@ -623,6 +630,7 @@
 				A81439FF21B72DC2000E287A /* TeamHomeVC.swift in Sources */,
 				A81439E421B71E58000E287A /* ProfileVM.swift in Sources */,
 				ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */,
+				AB2BB74E220E3B1200243F77 /* SelectTeamNavController.swift in Sources */,
 				A8143A0521B72E72000E287A /* CalendarVC.swift in Sources */,
 				ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */,
 				AB47757D21B4E90700A1DCD5 /* TeamCalendar.swift in Sources */,

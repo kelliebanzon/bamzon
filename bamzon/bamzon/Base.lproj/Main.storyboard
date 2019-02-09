@@ -94,21 +94,6 @@
             </objects>
             <point key="canvasLocation" x="-1769" y="2285"/>
         </scene>
-        <!--Create Account Child Prompt EmailVC-->
-        <scene sceneID="b7c-Wb-LBl">
-            <objects>
-                <viewController id="Myt-nK-bH5" customClass="CreateAccountChildPromptEmailVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="M7m-fT-wlZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="vZp-0T-yvV"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1VX-D7-age" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3396" y="1369"/>
-        </scene>
         <!--LoginVC-->
         <scene sceneID="YsB-bo-i4C">
             <objects>
@@ -364,6 +349,20 @@
             </objects>
             <point key="canvasLocation" x="6841" y="127"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="ad1-Co-99T">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarController" id="BcX-Ux-UQF" customClass="TabBarController" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="f78-jB-WCX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFi-S7-TL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1913" y="1602"/>
+        </scene>
         <!--Select TeamVC-->
         <scene sceneID="qTX-3Y-fR8">
             <objects>
@@ -377,7 +376,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcT-p5-k3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="1351"/>
+            <point key="canvasLocation" x="3585" y="1602"/>
+        </scene>
+        <!--Select Team Nav Controller-->
+        <scene sceneID="6O7-V2-1Vu">
+            <objects>
+                <navigationController storyboardIdentifier="SelectTeamNavController" id="il5-hj-Fr8" customClass="SelectTeamNavController" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6St-qC-Mew">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x6O-RQ-UHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2743" y="1602"/>
         </scene>
         <!--Join TeamVC-->
         <scene sceneID="Kjp-nB-Ufz">
