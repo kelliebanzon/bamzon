@@ -67,6 +67,5 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-bamzon/.DS_Store
-bamzon/Podfile.lock
-bamzon/Pods/Manifest.lock
+*/.DS_Store
+*/Podfile.lock
