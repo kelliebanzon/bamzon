@@ -10,7 +10,7 @@ import UIKit
 
 class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
 
-    var code : UITextField?
+    var code: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         // Do any additional setup after loading the view.
     }
     
-    func display(){
+    func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
         let codePaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
@@ -69,7 +69,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     
     // Function call to VM to verify code
     @objc func verifyCode() {
-        if (code?.text == "123456") {
+        if code?.text == "123456" {
             let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC")
             present(nextVC, animated: true, completion: nil)
         } else {
@@ -81,7 +81,6 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     
 //    @ kyle: when you're ready to transition to the account success creation page,
 //    add this line of code to your function:
-    
 
     /*
     // MARK: - Navigation

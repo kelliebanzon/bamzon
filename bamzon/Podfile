@@ -12,5 +12,6 @@ target 'bamzon' do
   pod 'Firebase/Storage'
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'XLPagerTabStrip', '~> 8.1'
+  pod 'SwiftLint'
 
 end

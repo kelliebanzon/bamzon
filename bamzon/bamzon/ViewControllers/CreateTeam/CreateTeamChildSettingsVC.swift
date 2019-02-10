@@ -33,7 +33,6 @@ class CreateTeamChildSettingsVC: UIViewController, DisplayableProtocol {
         self.view.addSubview(tempLabel)
     }
     
-    
     /*
      // MARK: - Navigation
      

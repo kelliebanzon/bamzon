@@ -67,7 +67,7 @@
 		ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822421B4AF2C00DDC094 /* Organization.swift */; };
 		ABC5822721B4AFF000DDC094 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822621B4AFF000DDC094 /* Location.swift */; };
 		ABEF640221FBBDE800716ACB /* bamzonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640121FBBDE800716ACB /* bamzonUITests.swift */; };
-		ABEF641021FBBF9700716ACB /* bamzonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640F21FBBF9700716ACB /* bamzonTests.swift */; };
+		ABEF641021FBBF9700716ACB /* bamzonTests in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640F21FBBF9700716ACB /* bamzonTests */; };
 		ABEF641C21FBE68F00716ACB /* DisplayableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */; };
 		ABEF641E21FBE90D00716ACB /* RefreshableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */; };
 		ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641F21FBE95300716ACB /* EditableProtocol.swift */; };
@@ -163,7 +163,7 @@
 		ABEF640121FBBDE800716ACB /* bamzonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonUITests.swift; sourceTree = "<group>"; };
 		ABEF640321FBBDE800716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABEF640F21FBBF9700716ACB /* bamzonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonTests.swift; sourceTree = "<group>"; };
+		ABEF640F21FBBF9700716ACB /* bamzonTests */ = {isa = PBXFileReference; lastKnownFileType = text; path = bamzonTests; sourceTree = "<group>"; };
 		ABEF641121FBBF9700716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableProtocol.swift; sourceTree = "<group>"; };
 		ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableProtocol.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		ABEF640E21FBBF9700716ACB /* bamzonTests */ = {
 			isa = PBXGroup;
 			children = (
-				ABEF640F21FBBF9700716ACB /* bamzonTests.swift */,
+				ABEF640F21FBBF9700716ACB /* bamzonTests */,
 				ABEF641121FBBF9700716ACB /* Info.plist */,
 			);
 			path = bamzonTests;
@@ -457,6 +457,7 @@
 				ABEFC0FB219E51B400F23E42 /* Frameworks */,
 				ABEFC0FC219E51B400F23E42 /* Resources */,
 				F657CED3C9584E5D9AACEE6F /* [CP] Embed Pods Frameworks */,
+				AB6E5D5C220F99D300808283 /* Run Script: SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -563,6 +564,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AB6E5D5C220F99D300808283 /* Run Script: SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script: SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		F657CED3C9584E5D9AACEE6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,7 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABEF641021FBBF9700716ACB /* bamzonTests.swift in Sources */,
+				ABEF641021FBBF9700716ACB /* bamzonTests in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T639RZ32V;
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = bamzon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon;
@@ -925,6 +945,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9T639RZ32V;
+				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = bamzon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.calpoly.bamzon.bamzon;

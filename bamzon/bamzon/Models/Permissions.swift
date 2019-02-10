@@ -9,5 +9,5 @@
 import Foundation
 
 enum Permissions {
-    case EditTeamInfo, ManageJoinRequests, EditRoster, EditCalendar, EditAttendance, EditStats
+    case editTeamInfo, manageJoinRequests, editRoster, editCalendar, editAttendance, editStats
 }

@@ -11,13 +11,13 @@ import UIKit
 
 class LoginVC: UIViewController, DisplayableProtocol {
     
-    var email : UITextField?
+    var email: UITextField?
     var password: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        display();
+        display()
     }
     
     func display() {
@@ -34,7 +34,7 @@ class LoginVC: UIViewController, DisplayableProtocol {
         topLabel.textColor = .white
         topLabel.textAlignment = .center
         topLabel.text = "Sign in with your TeamSync credentials"
-        self.view.addSubview(topLabel);
+        self.view.addSubview(topLabel)
         
         //Top label constraints
         topLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +44,7 @@ class LoginVC: UIViewController, DisplayableProtocol {
         //Why is this one switched? view first instead of topLabel?
         let rightLabelConstraint = view.trailingAnchor.constraint(equalTo: topLabel.trailingAnchor, constant: 20)
         self.view.addConstraints([horizLabelConstraint, vertLabelConstraint, leftLabelConstraint, rightLabelConstraint])
-        
-  
+
         //Email
         
         //Email Text Field

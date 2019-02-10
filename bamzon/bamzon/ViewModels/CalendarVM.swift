@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class CalendarVM {
     func refresh() {
         //TODO: implement refresh

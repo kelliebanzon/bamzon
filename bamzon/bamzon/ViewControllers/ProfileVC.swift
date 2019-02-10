@@ -44,9 +44,9 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         let profilePictureImageViewBottom = NSLayoutConstraint(item: profilePictureImageView, attribute: .bottom, relatedBy: .greaterThanOrEqual, toItem: view, attribute: .bottom, multiplier: 1, constant: 300)
         NSLayoutConstraint.activate([profilePictureImageViewTop, profilePictureImageViewLeading, profilePictureImageViewTrailing, profilePictureImageViewBottom])
         
-        /*nameLabel.translatesAutoresizingMaskIntoConstraints = false
-         let nameLabelTop = NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 30)
-         let nameLabelLeft = NSLayoutConstraint(item: <#T##Any#>, attribute: <#T##NSLayoutAttribute#>, relatedBy: <#T##NSLayoutRelation#>, toItem: <#T##Any?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)*/
+//        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+//         let nameLabelTop = NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 30)
+//         let nameLabelLeft = NSLayoutConstraint(item: <#T##Any#>, attribute: <#T##NSLayoutAttribute#>, relatedBy: <#T##NSLayoutRelation#>, toItem: <#T##Any?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
         
     }
     

@@ -15,7 +15,7 @@ class CreateTeamChildNameVC: UIViewController, DisplayableProtocol {
         display()
     }
     
-    func display(){
+    func display() {
         // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
         
@@ -32,7 +32,18 @@ class CreateTeamChildNameVC: UIViewController, DisplayableProtocol {
         self.view.addSubview(tempLabel)
     }
     
-
+    func promptTeamName() {
+        // TODO: implement prompt team name
+    }
+    
+    func promptOrganization() {
+        // TODO: implement prompt organization
+    }
+    
+    func promptSport() {
+        // TODO: implement prompt sport
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StatsVM{
+class StatsVM {
     func refresh() {
         //TODO: implement refresh
     }

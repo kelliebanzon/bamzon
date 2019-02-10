@@ -23,8 +23,7 @@ extension Int {
         let secsInt = Int(secs.rounded(.down))
         if secsInt < 10 {
             return String(minsInt) + ":0" + String(secsInt)
-        }
-        else {
+        } else {
             return String(minsInt) + ":" + String(secsInt)
         }
     }

@@ -29,7 +29,7 @@ class CreateAccountParentVC: UIViewController, DisplayableProtocol {
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             ])
         
         // add child view controller view to container

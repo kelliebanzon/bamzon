@@ -10,7 +10,7 @@ import Foundation
 
 class NotificationUtility {
     
-    func sendNotification(message: String){
+    func sendNotification(message: String) {
         
     }
     

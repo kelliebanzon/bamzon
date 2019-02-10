@@ -8,7 +8,7 @@
 
 import Foundation
 
-class EventVM{
+class EventVM {
     func refresh() {
         //TODO: implement refresh
     }

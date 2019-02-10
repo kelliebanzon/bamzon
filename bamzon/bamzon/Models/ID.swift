@@ -16,12 +16,12 @@ class ID: Codable, Hashable {
         return type.hashValue * num.hashValue
     }
     
-    init(type: String, num: UInt){
+    init(type: String, num: UInt) {
         self.type = type
         self.num = num
     }
 }
 
-func ==(lhs: ID, rhs: ID) -> Bool {
+func == (lhs: ID, rhs: ID) -> Bool {
     return lhs.type == rhs.type && lhs.num == rhs.num
 }

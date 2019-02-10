@@ -10,9 +10,9 @@ import UIKit
 
 class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
-    var firstName : UITextField?
-    var lastName : UITextField?
-    var email : UITextField?
+    var firstName: UITextField?
+    var lastName: UITextField?
+    var email: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,10 +105,10 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         let existingAccount = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         let attributedString = NSAttributedString(
             string: NSLocalizedString("Already have an account?", comment: ""),
-            attributes:[
-                NSAttributedStringKey.font :UIFont(name: "HelveticaNeue-Medium", size: 20)!,
-                NSAttributedStringKey.foregroundColor : UIColor.white,
-                NSAttributedStringKey.underlineStyle:1.0
+            attributes: [
+                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.underlineStyle: 1.0
             ])
         existingAccount.titleLabel?.numberOfLines = 1
         existingAccount.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -143,13 +143,11 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     // General function to validate fields
     @objc func checkFields() {
-        if (firstName?.text == "" || lastName?.text == "" || email?.text == "")
-        {
+        if firstName?.text == "" || lastName?.text == "" || email?.text == "" {
             throwMissingFieldsError()
-        } else if (validEmail(email: (email?.text)!)){
+        } else if validEmail(email: (email?.text)!) {
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
             //print("present CreateAccountChildPromptCodeVC")
@@ -171,7 +169,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     // - Add validation to check to see if that email has already been registered or not
     // - Move this to VM
     func validEmail(email: String) -> Bool {
-        if (!email.contains("@") || !email.contains(".")) {
+        if !email.contains("@") || !email.contains(".") {
             let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

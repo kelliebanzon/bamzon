@@ -74,6 +74,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - SwiftLint (0.30.1)
   - XLPagerTabStrip (8.1.1)
 
 DEPENDENCIES:
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - JTAppleCalendar (~> 7.0)
+  - SwiftLint
   - XLPagerTabStrip (~> 8.1)
 
 SPEC REPOS:
@@ -100,6 +102,7 @@ SPEC REPOS:
     - JTAppleCalendar
     - leveldb-library
     - nanopb
+    - SwiftLint
     - XLPagerTabStrip
 
 SPEC CHECKSUMS:
@@ -117,8 +120,9 @@ SPEC CHECKSUMS:
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   XLPagerTabStrip: 63166e21c9844fa30f2d95d30f335e73be5caf22
 
-PODFILE CHECKSUM: 1bbd17678eb01cb98dd6f48604d619665d51223b
+PODFILE CHECKSUM: eb13d085d2ec08fc28b138628a3b29abe00fabf2
 
 COCOAPODS: 1.5.3

@@ -12,9 +12,9 @@ import UIKit
 
 class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
     
-    var firstName : UITextField?
-    var lastName : UITextField?
-    var email : UITextField?
+    var firstName: UITextField?
+    var lastName: UITextField?
+    var email: UITextField?
     
     @IBOutlet weak var containerView: UIView!
     
@@ -146,14 +146,12 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
     
     // General function to validate fields
     @objc func checkFields(sender: UIButton!) {
-        if (firstName?.text == "" || lastName?.text == "" || email?.text == "")
-        {
+        if firstName?.text == "" || lastName?.text == "" || email?.text == "" {
             missingFieldsError()
-        } else if (validEmail(email: (email?.text)!)){
+        } else if validEmail(email: (email?.text)!) {
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
-        }
-        else {
+        } else {
             print("performSegue ShowCreateAccountPromptEmail")
             // TODO: performSegue(withIdentifier: "ShowCreateAccountPromptEmail", sender: self)
         }
@@ -170,7 +168,7 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
     // TODO:
     // - Add validation to check to see if that email has already been registered or not
     func validEmail(email: String) -> Bool {
-        if (!email.contains("@") || !email.contains(".")) {
+        if !email.contains("@") || !email.contains(".") {
             let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -188,22 +186,5 @@ class CreateAccountMasterVC: UIViewController, DisplayableProtocol {
         lastName?.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
     }
-    
-    /*func displayEmailPromptContainer(){
-        guard let promptEmailChildVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateAccountChildPromptEmailVC") as? CreateAccountChildPromptEmailVC else {
-            return
-        }
-        
-        addChildViewController(promptEmailChildVC)
-        //Or, you could add auto layout constraint instead of relying on AutoResizing contraints
-        /*childVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        childVC.view.frame = containerView.bounds*/
-        
-        containerView.addSubview(promptEmailChildVC.view)
-        promptEmailChildVC.didMove(toParentViewController: self)
-        
-        //Some property on ChildVC that needs to be set
-        promptEmailChildVC.dataSource = self
-        performSegue(withIdentifier: "CreateAccountPromptEmailVC", sender: self)
-    }*/
+
 }

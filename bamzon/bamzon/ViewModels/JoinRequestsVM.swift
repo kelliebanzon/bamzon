@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JoinRequestsVM{
+class JoinRequestsVM {
     func approve() {
         //TODO: implement approve join request
     }

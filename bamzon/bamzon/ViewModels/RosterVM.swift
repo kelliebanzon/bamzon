@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RosterVM{
+class RosterVM {
     func refresh() {
         //TODO: implement refresh
     }

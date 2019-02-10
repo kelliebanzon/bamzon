@@ -17,6 +17,5 @@ class SelectTeamNavController: UINavigationController, DisplayableProtocol {
     func display() {
         // TODO: display
     }
-    
 
 }
