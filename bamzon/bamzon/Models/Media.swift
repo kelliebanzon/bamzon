@@ -10,4 +10,8 @@ import Foundation
 
 struct Media {
     var url: String // TODO: should this be a URL?
+    
+    init(url: String) {
+        self.url = url
+    }
 }

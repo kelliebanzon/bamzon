@@ -10,4 +10,9 @@ import Foundation
 
 struct TeamCalendar {
     var events: [Event]
+
+    init(events: [Event]){
+        self.events = events
+    }
+    
 }

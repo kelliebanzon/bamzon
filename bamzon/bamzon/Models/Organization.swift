@@ -13,4 +13,11 @@ struct Organization {
     var name: String
     var location: Location
     var teamIDs: [ID]
+
+    init(orgID: ID, name: String, location: Location, teamIDs: [ID]){
+        self.orgID = orgID
+        self.name = name
+        self.location = location
+        self.teamIDs = teamIDs
+    }
 }

@@ -13,9 +13,23 @@ struct Event {
     var location: Location?
     var contactUserIDs: [ID]?
     var description: String?
-    var date: Date // TODO: should this be a custom date object?
+    var date: String?
     var rsvps: [RSVP]?
     var tags: [String]?
     var media: [String: Media]?
     var links: [String: URL] // TODO: should this be a url or a string?
+    
+    init(name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: [RSVP]?, tags: [String]?, media: [String: Media]?, links: [String: URL]){
+        self.name = name
+        self.location = location
+        self.contactUserIDs = contactUserIDs
+        self.description = description
+        self.date = date
+        self.rsvps = rsvps
+        self.tags = tags
+        self.media = media
+        self.links = links
+    }
 }
+
+

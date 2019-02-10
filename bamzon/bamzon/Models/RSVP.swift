@@ -12,4 +12,10 @@ struct RSVP {
     var yesUserIDs: [ID]?
     var noUserIDs: [ID]?
     var pendingUserIDs: [ID]?
+    
+    init(yesUserIDs: [ID]?, noUserIDs: [ID]?, pendingUserIDs: [ID]?){
+        self.yesUserIDs = yesUserIDs
+        self.noUserIDs = noUserIDs
+        self.pendingUserIDs = pendingUserIDs
+    }
 }

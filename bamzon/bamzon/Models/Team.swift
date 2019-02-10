@@ -18,4 +18,16 @@ struct Team {
     var calendar: TeamCalendar
     var joinRequests: [JoinRequest]?
     var blacklistUserIDs: [ID]?
+
+    init(teamID: ID, orgID: ID, userIDs: [ID]?, teamName: String, sport: String?, stats: TeamStats, calendar: TeamCalendar, joinRequests: [JoinRequest], blacklistUserIDs: [ID]?) {
+        self.teamID = teamID
+        self.orgID = orgID
+        self.userIDs = userIDs
+        self.teamName = teamName
+        self.sport = sport
+        self.stats = stats
+        self.calendar = calendar
+        self.joinRequests = joinRequests
+        self.blacklistUserIDs = blacklistUserIDs
+    }
 }
