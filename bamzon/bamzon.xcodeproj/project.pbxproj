@@ -66,8 +66,8 @@
 		ABC5822321B4ABA200DDC094 /* RegisteredTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */; };
 		ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822421B4AF2C00DDC094 /* Organization.swift */; };
 		ABC5822721B4AFF000DDC094 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822621B4AFF000DDC094 /* Location.swift */; };
+		ABE1927A220FA75C007DBA70 /* bamzonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE19278220FA758007DBA70 /* bamzonTests.swift */; };
 		ABEF640221FBBDE800716ACB /* bamzonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640121FBBDE800716ACB /* bamzonUITests.swift */; };
-		ABEF641021FBBF9700716ACB /* bamzonTests in Sources */ = {isa = PBXBuildFile; fileRef = ABEF640F21FBBF9700716ACB /* bamzonTests */; };
 		ABEF641C21FBE68F00716ACB /* DisplayableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */; };
 		ABEF641E21FBE90D00716ACB /* RefreshableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */; };
 		ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEF641F21FBE95300716ACB /* EditableProtocol.swift */; };
@@ -159,11 +159,11 @@
 		ABC5822221B4ABA200DDC094 /* RegisteredTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisteredTeam.swift; sourceTree = "<group>"; };
 		ABC5822421B4AF2C00DDC094 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		ABC5822621B4AFF000DDC094 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		ABE19278220FA758007DBA70 /* bamzonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bamzonTests.swift; sourceTree = "<group>"; };
 		ABEF63FF21FBBDE800716ACB /* bamzonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABEF640121FBBDE800716ACB /* bamzonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonUITests.swift; sourceTree = "<group>"; };
 		ABEF640321FBBDE800716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABEF640F21FBBF9700716ACB /* bamzonTests */ = {isa = PBXFileReference; lastKnownFileType = text; path = bamzonTests; sourceTree = "<group>"; };
 		ABEF641121FBBF9700716ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableProtocol.swift; sourceTree = "<group>"; };
 		ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableProtocol.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		ABEF640E21FBBF9700716ACB /* bamzonTests */ = {
 			isa = PBXGroup;
 			children = (
-				ABEF640F21FBBF9700716ACB /* bamzonTests */,
+				ABE19278220FA758007DBA70 /* bamzonTests.swift */,
 				ABEF641121FBBF9700716ACB /* Info.plist */,
 			);
 			path = bamzonTests;
@@ -625,7 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABEF641021FBBF9700716ACB /* bamzonTests in Sources */,
+				ABE1927A220FA75C007DBA70 /* bamzonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
