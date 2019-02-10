@@ -20,6 +20,7 @@ class ID: Codable, Hashable {
         self.type = type
         self.num = num
     }
+
 }
 
 func == (lhs: ID, rhs: ID) -> Bool {

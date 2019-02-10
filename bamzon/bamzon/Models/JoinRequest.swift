@@ -11,4 +11,9 @@ import Foundation
 struct JoinRequest {
     var user: User
     var team: Team
+
+    init(user: User, team: Team){
+        self.user = user
+        self.team = team
+    }
 }

@@ -16,4 +16,11 @@ struct TeamStats {
     var ties: Int
     var fields: [String: Any]?
     
+    init(memberCount: Int, wins: Int, losses: Int, ties: Int, fields: [String: Any]?) {
+        self.memberCount = memberCount
+        self.wins = wins
+        self.losses = losses
+        self.ties = ties
+        self.fields = fields
+    }
 }

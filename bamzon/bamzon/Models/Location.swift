@@ -16,6 +16,17 @@ struct Location {
     var state: String // TODO: change state to be an enum
     var zip: UInt
     var country: String?
+
+
+    init(number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?){
+        self.number = number
+        self.street = street
+        self.street2 = street2
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.country = country
+    }
 }
 
 /*class LocationFuncs { // TODO: figure out how to add struct-specific functions
@@ -35,3 +46,4 @@ struct Location {
     }
     
 }*/
+

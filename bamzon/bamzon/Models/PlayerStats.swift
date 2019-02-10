@@ -10,4 +10,8 @@ import Foundation
 
 struct PlayerStats {
     var fields: [String: Any]?
+    
+    init(fields: [String: Any]?){
+        self.fields = fields
+    }
 }
