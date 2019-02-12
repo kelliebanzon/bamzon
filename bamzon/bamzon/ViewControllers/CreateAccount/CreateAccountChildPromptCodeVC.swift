@@ -10,6 +10,8 @@ import UIKit
 
 class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
 
+    var email: String?
+    var name: String?
     var code: UITextField?
     
     override func viewDidLoad() {
@@ -31,7 +33,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 0
         tempLabel.textColor = .white
-        tempLabel.text = "Please enter the security code \remailed to [EMAIL]"
+        tempLabel.text = "Please enter the \rsecurity code emailed \rto " + email!
         self.view.addSubview(tempLabel)
         
         // Security Code
@@ -70,8 +72,10 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     // Function call to VM to verify code
     @objc func verifyCode() {
         if code?.text == "123456" {
-            let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC")
-            present(nextVC, animated: true, completion: nil)
+            if let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC") as? CreateAccountChildSuccessVC {
+                nextVC.name = name!
+                present(nextVC, animated: true, completion: nil)
+            }
         } else {
             let alert = UIAlertController(title: "Uh oh!", message: "That code doesn't look right 😰\rPlease try again.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

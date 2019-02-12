@@ -10,6 +10,8 @@ import UIKit
 
 class CreateAccountChildSuccessVC: UIViewController, DisplayableProtocol {
 
+    var name: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
@@ -26,7 +28,7 @@ class CreateAccountChildSuccessVC: UIViewController, DisplayableProtocol {
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 0
         tempLabel.textColor = .white
-        tempLabel.text = "[NAME],\rwhat a great name!\rLet's get started."
+        tempLabel.text = name! + " \rwhat a great name!\rLet's get started."
         self.view.addSubview(tempLabel)
     }
 

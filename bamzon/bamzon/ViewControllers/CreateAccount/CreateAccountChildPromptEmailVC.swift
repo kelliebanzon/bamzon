@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     var firstName: UITextField?
     var lastName: UITextField?
     var email: UITextField?
+    var createAccountVM: CreateAccountVM?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createAccountVM = CreateAccountVM.init(parentVC: self)
         
         // Do any additional setup after loading the view.
         display()
@@ -85,20 +88,8 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         self.view.layer.addSublayer(emailBar)
         
         // Next Button
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-        button.center = CGPoint(x: view.center.x, y: 450)
-        button.setTitle("Continue", for: .normal)
-        button.backgroundColor = UIColor(named: "TSYellow")
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        button.layer.masksToBounds = false
-        button.layer.shadowRadius = 1.0
-        button.layer.shadowOpacity = 0.5
-        button.layer.cornerRadius = 8
-        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        let button = FormatUtility.createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withCenter: CGPoint(x: view.center.x, y: 450))
         button.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
-        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
-        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(button)
         
         // Existing Account Button
@@ -138,9 +129,10 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     // Send user to login page if they have an existing account
     @objc func loginPage() {
-        let alert = UIAlertController(title: "Login Page", message: "Send the user to the login VC.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Login Page", message: "Send the user to the login VC.", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+        self.mockSegue(toIdentifier: "LoginVC")
     }
     
     // General function to validate fields
@@ -150,10 +142,21 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         } else if validEmail(email: (email?.text)!) {
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
-            //print("present CreateAccountChildPromptCodeVC")
-            // TODO: check how this changes when embedded in a nav controller
-            let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC")
-            present(nextVC, animated: true, completion: nil)
+            if Auth.auth().currentUser != nil {
+                //print("present CreateAccountChildPromptCodeVC")
+                // TODO: check how this changes when embedded in a nav controller
+                if let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC {
+                    if firstName != nil && lastName != nil && email != nil {
+                        nextVC.name = (firstName?.text)! + " " + (lastName?.text)!
+                        nextVC.email = (email?.text)!
+                        createAccountVM?.parentVC = nextVC
+                        
+                        self.mockSegue(to: nextVC)
+                    }
+                }
+            } else {
+                return
+            }
         }
     }
     
@@ -162,11 +165,24 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         print("\tFirst Name: " + fName)
         print("\t Last Name: " + lName)
         print("\t     Email: " + email)
+
+        //TODO: place for a password. change variable in create account
+        //TODO: Uncomment to acutually create accounts on firebase
+        // to view or modify current users go here:
+        // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
+        if createAccountVM != nil {
+            createAccountVM!.createAccount(email: email, password: "password")
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Error, try again.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)        }
+        return
     }
     
     // Email validation function
     // TODO:
     // - Add validation to check to see if that email has already been registered or not
+    //     - Firebase already does this.
     // - Move this to VM
     func validEmail(email: String) -> Bool {
         if !email.contains("@") || !email.contains(".") {
@@ -179,6 +195,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     }
     
     // Error message presented if there are missing fields
+    //TODO: make error color less harsh
     func throwMissingFieldsError() {
         let alert = UIAlertController(title: "Missing Fields", message: "First name, last name, and a valid email are requried.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

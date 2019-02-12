@@ -79,6 +79,8 @@
 		ABF67C43220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C42220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift */; };
 		ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */; };
 		ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */; };
+		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
+		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +179,8 @@
 		ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildPromptCodeVC.swift; sourceTree = "<group>"; };
 		ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildSuccessVC.swift; sourceTree = "<group>"; };
 		B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
+		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
 		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +335,8 @@
 				ABC5821221B4A56600DDC094 /* ImageUtility.swift */,
 				ABC5821621B4A5BA00DDC094 /* NotificationUtility.swift */,
 				ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */,
+				D3B4CBAE22111CF700CD42BC /* VCUtility.swift */,
+				D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -638,6 +644,7 @@
 				ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */,
 				A81439E221B71E58000E287A /* RosterVM.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
+				D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */,
 				AB47757B21B4E8E400A1DCD5 /* Event.swift in Sources */,
 				A81439E621B71E58000E287A /* SelectTeamVM.swift in Sources */,
 				AB277835220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift in Sources */,
@@ -688,6 +695,7 @@
 				ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */,
 				AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */,
 				A8143A0B21B73006000E287A /* StatsChildPersonalVC.swift in Sources */,
+				D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */,
 				A81439E121B71E58000E287A /* PlayerStatsVM.swift in Sources */,
 				A8143A0921B72FD5000E287A /* SettingsVC.swift in Sources */,
 			);
