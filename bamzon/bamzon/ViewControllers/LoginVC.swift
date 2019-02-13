@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginVC: UIViewController, DisplayableProtocol {
+class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     var email: UITextField?
     var password: UITextField?
@@ -54,6 +54,9 @@ class LoginVC: UIViewController, DisplayableProtocol {
         email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
         email?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         email?.textColor = .white
+        email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
+        email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email?.delegate = self
         self.view.addSubview(email!)
         
         //Email Text Field constraints
@@ -65,10 +68,10 @@ class LoginVC: UIViewController, DisplayableProtocol {
         self.view.addConstraints([horizEmailConstraint!, vertEmailConstraint!, leftEmailConstraint!, rightEmailConstraint])
         
         //Email Bar
-        /*let emailBar = CAShapeLayer()
-        emailBar.path = UIBezierPath(roundedRect: CGRect(), cornerRadius: 8).cgPath
-        emailBar.fillColor = UIColor.white.cgColor
-        self.view.layer.addSublayer(emailBar)*/
+        /*let nameBar = CAShapeLayer()
+        nameBar.path = UIBezierPath(roundedRect: CGRect(x: , y: , width: view.frame.width - 40, height: 2), cornerRadius: 8).cgPath
+        nameBar.fillColor = UIColor.white.cgColor
+        self.view.layer.addSublayer(nameBar)*/
         
         //Password Text Field
         password = UITextField()
@@ -101,6 +104,11 @@ class LoginVC: UIViewController, DisplayableProtocol {
         loginButton.layer.shadowOpacity = 0.5
         loginButton.layer.cornerRadius = 8
         loginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        
+        //loginButton functions
+        loginButton.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        loginButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(loginButton)
         
         //loginButton constraints
@@ -111,19 +119,25 @@ class LoginVC: UIViewController, DisplayableProtocol {
         let heightLoginButtonConstraint = loginButton.heightAnchor.constraint(equalToConstant: 50)
         self.view.addConstraints([horizLoginButtonConstraint, vertLoginButtonConstraint, widthLoginButtonConstraint, heightLoginButtonConstraint])
         
+        //forgot button
         let forgotButton = UIButton()
-        forgotButton.setTitle("Forgot Password?", for: .normal)
-        forgotButton.backgroundColor = UIColor(named: "TSYellow")
-        forgotButton.layer.shadowColor = UIColor.black.cgColor
-        forgotButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        forgotButton.layer.masksToBounds = false
-        forgotButton.layer.shadowRadius = 1.0
-        forgotButton.layer.shadowOpacity = 0.5
-        forgotButton.layer.cornerRadius = 8
-        forgotButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        let attributedString = NSAttributedString(
+            string: NSLocalizedString("Forgot password?", comment: ""),
+            attributes: [
+                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.underlineStyle: 1.0
+            ])
+        forgotButton.titleLabel?.numberOfLines = 1
+        forgotButton.titleLabel?.textAlignment = .center
+        forgotButton.setAttributedTitle(attributedString, for: .normal)
+        
+        //forgotButton functions
+        forgotButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        forgotButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(forgotButton)
         
-        //loginButton constraints
+        //forgotButton constraints
         forgotButton.translatesAutoresizingMaskIntoConstraints = false
         let horizForgotButtonConstraint = forgotButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let vertForgotButtonConstraint = forgotButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 30)
@@ -131,29 +145,80 @@ class LoginVC: UIViewController, DisplayableProtocol {
         let heightForgotButtonConstraint = forgotButton.heightAnchor.constraint(equalToConstant: 50)
         self.view.addConstraints([horizForgotButtonConstraint, vertForgotButtonConstraint, widthForgotButtonConstraint, heightForgotButtonConstraint])
         
+        //memberButton (don't have an account yet button)
         let memberButton = UIButton()
-        memberButton.setTitle("Already a member?", for: .normal)
-        memberButton.backgroundColor = UIColor(named: "TSYellow")
-        memberButton.layer.shadowColor = UIColor.black.cgColor
-        memberButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        memberButton.layer.masksToBounds = false
-        memberButton.layer.shadowRadius = 1.0
-        memberButton.layer.shadowOpacity = 0.5
-        memberButton.layer.cornerRadius = 8
-        memberButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        let attributedStringAcc = NSAttributedString(
+            string: NSLocalizedString("Don't have an account yet?", comment: ""),
+            attributes: [
+                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
+                NSAttributedStringKey.foregroundColor: UIColor.white,
+                NSAttributedStringKey.underlineStyle: 1.0
+            ])
+        memberButton.titleLabel?.numberOfLines = 0
+        memberButton.titleLabel?.textAlignment = .center
+        memberButton.setAttributedTitle(attributedStringAcc, for: .normal)
+        
+        //memberButton functions
         self.view.addSubview(memberButton)
         
-        //loginButton constraints
+        //memberButton constraints
         memberButton.translatesAutoresizingMaskIntoConstraints = false
         let horizMemberButtonConstraint = memberButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let vertMemberButtonConstraint = memberButton.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 30)
-        let widthMemberButtonConstraint = memberButton.widthAnchor.constraint(equalToConstant: 220)
-        let heightMemberButtonConstraint = memberButton.heightAnchor.constraint(equalToConstant: 50)
-        self.view.addConstraints([horizMemberButtonConstraint, vertMemberButtonConstraint, widthMemberButtonConstraint, heightMemberButtonConstraint])
+        let vertMemberButtonConstraint = memberButton.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 10)
+        let leftMemberButtonConstraint = memberButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        let rightMemberButtonConstraint = view.trailingAnchor.constraint(equalTo: memberButton.trailingAnchor, constant: 20)
+        
+        self.view.addConstraints([horizMemberButtonConstraint, vertMemberButtonConstraint, leftMemberButtonConstraint, rightMemberButtonConstraint])
         
     }
     
+    // General function to validate fields
+    @objc func checkFields() {
+        if email?.text == "" || password?.text == "" {
+            throwMissingFieldsError()
+        } else if validEmail(email: (email?.text)!) {
+            // TODO: Use credentials to validate with firebase
+            checkLogin()
+            //print("present CreateAccountChildPromptCodeVC")
+            // TODO: check how this changes when embedded in a nav controller
+        }
+    }
+    
+    // Highlight the button upon touchDown
+    @objc func highlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellowDark")
+    }
+    
+    // Unhighlight the button upon touchDown
+    @objc func unhighlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellow")
+    }
+    
+    // Email validation function
+    // TODO:
+    // - Add validation to check to see if that email has already been registered or not
+    // - Move this to VM
+    func validEmail(email: String) -> Bool {
+        if !email.contains("@") || !email.contains(".") {
+            let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    // Error message presented if there are missing fields
+    func throwMissingFieldsError() {
+        let alert = UIAlertController(title: "Missing Fields", message: "Email and password are required.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+        password?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+    }
+
     func checkLogin() {
+        print("checking login...")
         // TODO: implement check login
     }
 }

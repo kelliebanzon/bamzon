@@ -7,4 +7,4 @@ disabled_rules: # rule identifiers to exclude from running
   - line_length
   - trailing_whitespace # will try to implement this after fixing xcode
   - todo
-
+  - function_body_length
