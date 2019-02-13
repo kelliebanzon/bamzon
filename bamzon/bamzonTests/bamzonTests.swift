@@ -52,5 +52,17 @@ class bamzonTests: XCTestCase {
         XCTAssertTrue(expected.elementsEqual(testOut))
         
     }
+    
+    func testCreateIDFromStringThrowsError(){
+        let testIDString = "k100"
+        let expected = ID(type: IdType.other, num: 100)
+        let testOut = IDUtility.generateIDFromString(idString: testIDString)
+        print(testOut.num)
+        print(testOut.type)
+        
+        XCTAssertTrue(expected.type == testOut.type)
+        XCTAssertTrue(expected.num == testOut.num)
+        
+    }
 
 }
