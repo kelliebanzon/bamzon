@@ -13,9 +13,11 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     var email: UITextField?
     var password: UITextField?
+    var loginVM: LoginVM?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginVM = LoginVM(parentVC: self)
         // Do any additional setup after loading the view, typically from a nib.
         display()
     }
@@ -94,21 +96,9 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         //Buttons
         
         //loginButton
-        let loginButton = UIButton()
-        loginButton.setTitle("Log in", for: .normal)
-        loginButton.backgroundColor = UIColor(named: "TSYellow")
-        loginButton.layer.shadowColor = UIColor.black.cgColor
-        loginButton.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        loginButton.layer.masksToBounds = false
-        loginButton.layer.shadowRadius = 1.0
-        loginButton.layer.shadowOpacity = 0.5
-        loginButton.layer.cornerRadius = 8
-        loginButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        
-        //loginButton functions
-        loginButton.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
-        loginButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
-        loginButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        let loginButton = FormatUtility.createDefaultButton(withText: "Log in", withFrame: nil, withCenter: nil)
+        loginButton.addTarget(self, action: #selector(checkLogin), for: .touchUpInside)
+
         self.view.addSubview(loginButton)
         
         //loginButton constraints
@@ -135,6 +125,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         //forgotButton functions
         forgotButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
         forgotButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+
         self.view.addSubview(forgotButton)
         
         //forgotButton constraints
@@ -217,8 +208,13 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         password?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
     }
 
-    func checkLogin() {
-        print("checking login...")
-        // TODO: implement check login
+    @objc func checkLogin() {
+        if let validLogin = loginVM?.checkLogin(email: email?.text ?? "", password: password?.text ?? "") {
+                let alert = UIAlertController(title: "Invalid Login", message: validLogin, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "retry", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+        } else {
+            self.mockSegue(toIdentifier: "ProfileVC")
+        }
     }
 }
