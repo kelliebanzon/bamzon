@@ -68,7 +68,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         //first name
         let fNameLabel = UILabel()
         fNameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
-        fNameLabel.numberOfLines = 0
+        fNameLabel.numberOfLines = 1
         fNameLabel.textColor = .white
         fNameLabel.textAlignment = .left
         fNameLabel.text = fName
@@ -79,7 +79,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         
         //fname constraints
         fNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        //let fNameHorizLabelConstraint = fNameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let fNameBottomConstraint = fNameLabel.bottomAnchor.constraint(equalTo: lNameLabel.topAnchor, constant: -2)
         let fNameLeftConstraint = fNameLabel.leadingAnchor.constraint(equalTo: profilePictureImageView.trailingAnchor, constant: 20)
         let fNameRightConstraint = view.trailingAnchor.constraint(equalTo: fNameLabel.trailingAnchor, constant: 20)
@@ -155,7 +154,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         contactLabel.text = "Contact Information"
         self.view.addSubview(contactLabel)
         
-        //bio label constraints
+        //contact label constraints
         contactLabel.translatesAutoresizingMaskIntoConstraints = false
         let contactLabelLeftConstraint = contactLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         let contactLabelTopConstraint = contactLabel.topAnchor.constraint(equalTo: bio.bottomAnchor, constant: 30)

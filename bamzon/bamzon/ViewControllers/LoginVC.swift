@@ -63,8 +63,9 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         self.view.addConstraints([horizEmailConstraint!, vertEmailConstraint!, leftEmailConstraint!, rightEmailConstraint])
         
         //Email Bar
-        /*let nameBar = CAShapeLayer()
-        nameBar.path = UIBezierPath(roundedRect: CGRect(x: , y: , width: view.frame.width - 40, height: 2), cornerRadius: 8).cgPath
+        /*let absoluteframe: CGRect = (email?.convert(email!.frame, to: UIApplication.shared.keyWindow))!
+        let nameBar = CAShapeLayer()
+        nameBar.path = UIBezierPath(roundedRect: CGRect(x: absoluteframe.minX, y: absoluteframe.minY, width: view.frame.width - 40, height: 2), cornerRadius: 8).cgPath
         nameBar.fillColor = UIColor.white.cgColor
         self.view.layer.addSublayer(nameBar)*/
         
@@ -107,12 +108,10 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         forgotButton.titleLabel?.numberOfLines = 1
         forgotButton.titleLabel?.textAlignment = .center
         forgotButton.setAttributedTitle(attributedString, for: .normal)
+        self.view.addSubview(forgotButton)
         
         //forgotButton functions
-        forgotButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
-        forgotButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
 
-        self.view.addSubview(forgotButton)
         
         //forgotButton constraints
         forgotButton.translatesAutoresizingMaskIntoConstraints = false
