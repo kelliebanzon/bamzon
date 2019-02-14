@@ -27,86 +27,30 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // Padding variables
-        let firstPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        let lastPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        let emailPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        
         // Top Label
-        let topLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 400, height: 120))
-        topLabel.center = CGPoint(x: view.frame.midX, y: 150)
-        topLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
-        topLabel.textAlignment = .center
-        topLabel.numberOfLines = 0
-        topLabel.textColor = .white
-        topLabel.text = "First, tell us a little \rbit about yourself!"
+        let topLabel = pageLabel(withText: "First, tell us a little \rbit about yourself!", withFrame: nil, withCenter: nil)
         self.view.addSubview(topLabel)
         
         // First Name
-        firstName = UITextField(frame: CGRect(x: 20, y: 240, width: 340, height: 35))
-        firstName?.leftView = firstPaddingView
-        firstName?.leftViewMode = .always
-        firstName?.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        firstName?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        firstName?.textColor = .white
+        firstName = createDefaultTextField(withText: "First Name", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
         self.view.addSubview(firstName!)
         
-        let nameBar = CAShapeLayer()
-        nameBar.path = UIBezierPath(roundedRect: CGRect(x: 20, y: 275, width: view.frame.width - 40, height: 2), cornerRadius: 8).cgPath
-        nameBar.fillColor = UIColor.white.cgColor
-        self.view.layer.addSublayer(nameBar)
-        
         // Last Name
-        lastName = UITextField(frame: CGRect(x: 20, y: 300, width: 340, height: 35))
-        lastName?.leftView = lastPaddingView
-        lastName?.leftViewMode = .always
-        lastName?.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        lastName?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        lastName?.textColor = .white
+        lastName = createDefaultTextField(withText: "Last Name", withFrame: CGRect(x: 20, y: 300, width: 340, height: 35), withCenter: nil, withPadding: nil)
         self.view.addSubview(lastName!)
         
-        let lastBar = CAShapeLayer()
-        lastBar.path = UIBezierPath(roundedRect: CGRect(x: 22, y: 335, width: 335, height: 2), cornerRadius: 8).cgPath
-        lastBar.fillColor = UIColor.white.cgColor
-        self.view.layer.addSublayer(lastBar)
-        
         // Email
-        email = UITextField(frame: CGRect(x: 20, y: 360, width: 355, height: 35))
-        email?.leftView = emailPaddingView
-        email?.leftViewMode = .always
-        email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        email?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        email?.textColor = .white
+        email = createDefaultTextField(withText: "Email", withFrame: CGRect(x: 20, y: 360, width: 355, height: 35), withCenter: nil, withPadding: nil)
         email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
         email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
         email?.delegate = self
         self.view.addSubview(email!)
         
-        let emailBar = CAShapeLayer()
-        emailBar.path = UIBezierPath(roundedRect: CGRect(x: 22, y: 395, width: 335, height: 2), cornerRadius: 8).cgPath
-        emailBar.fillColor = UIColor.white.cgColor
-        self.view.layer.addSublayer(emailBar)
-        
         // Next Button
-        let button = FormatUtility.createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withCenter: CGPoint(x: view.center.x, y: 450))
-        button.addTarget(self, action: #selector(checkFields), for: .touchUpInside)
+        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
         self.view.addSubview(button)
-        
-        // Existing Account Button
-        let existingAccount = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        let attributedString = NSAttributedString(
-            string: NSLocalizedString("Already have an account?", comment: ""),
-            attributes: [
-                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.underlineStyle: 1.0
-            ])
-        existingAccount.titleLabel?.numberOfLines = 1
-        existingAccount.titleLabel?.adjustsFontSizeToFitWidth = true
-        existingAccount.titleLabel?.textAlignment = .center
-        existingAccount.center = CGPoint(x: view.center.x, y: 515)
-        existingAccount.setAttributedTitle(attributedString, for: .normal)
-        existingAccount.addTarget(self, action: #selector(loginPage), for: .touchUpInside)
+                // Existing Account Button
+        let existingAccount = defaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
         self.view.addSubview(existingAccount)
         
     }
@@ -117,21 +61,8 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         return true
     }
     
-    // Highlight the button upon touchDown
-    @objc func highlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellowDark")
-    }
-    
-    // Unhighlight the button upon touchDown
-    @objc func unhighlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellow")
-    }
-    
     // Send user to login page if they have an existing account
     @objc func loginPage() {
-//        let alert = UIAlertController(title: "Login Page", message: "Send the user to the login VC.", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
         self.mockSegue(toIdentifier: "LoginVC")
     }
     
@@ -143,7 +74,6 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
             // Initial account creation in the backend should go here
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
             if Auth.auth().currentUser != nil {
-                //print("present CreateAccountChildPromptCodeVC")
                 // TODO: check how this changes when embedded in a nav controller
                 if let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC {
                     if firstName != nil && lastName != nil && email != nil {
@@ -151,7 +81,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
                         nextVC.email = (email?.text)!
                         createAccountVM?.parentVC = nextVC
                         
-                        self.mockSegue(to: nextVC)
+                        self.mockSegue(toVC: nextVC)
                     }
                 }
             } else {
@@ -167,7 +97,6 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         print("\t     Email: " + email)
 
         //TODO: place for a password. change variable in create account
-        //TODO: Uncomment to acutually create accounts on firebase
         // to view or modify current users go here:
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
         if createAccountVM != nil {

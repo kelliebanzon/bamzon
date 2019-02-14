@@ -22,13 +22,7 @@ class CreateAccountChildSuccessVC: UIViewController, DisplayableProtocol {
         view.backgroundColor = UIColor(named: "TSTeal")
         // TODO: temporary identifier code. delete this once you write the real display func
         // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 420))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 0
-        tempLabel.textColor = .white
-        tempLabel.text = name! + " \rwhat a great name!\rLet's get started."
+        let tempLabel = pageLabel(withText: name! + " \rwhat a great name!\rLet's get started.", withFrame: CGRect(x: 0, y: 0, width: 300, height: 420), withCenter: CGPoint(x: view.frame.midX, y: view.frame.midY))
         self.view.addSubview(tempLabel)
     }
 

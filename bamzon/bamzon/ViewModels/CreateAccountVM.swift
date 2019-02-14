@@ -62,7 +62,7 @@ class CreateAccountVM {
                 if self.parentVC2 != nil {
                     //TODO: This part is broken except for the alert
                     // It wont segue or set vc2
-                    self.parentVC2?.mockSegue(to: self.parentVC)
+                    self.parentVC2?.mockSegue(toVC: self.parentVC)
                     print("segued")
                     self.parentVC2!.present(alertController, animated: true, completion: nil)
                     self.parentVC2 = nil

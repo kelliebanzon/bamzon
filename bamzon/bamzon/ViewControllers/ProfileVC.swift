@@ -228,16 +228,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         self.view.addConstraints([emailTextLabelLeftConstraint, emailTextLabelBottomConstraint, emailTextLabelRightConstraint])
     }
     
-    // Highlight the button upon touchDown
-    @objc func highlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellowDark")
-    }
-    
-    // Unhighlight the button upon touchDown
-    @objc func unhighlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellow")
-    }
-    
     func adjustUITextViewHeight(arg: UITextView) {
         arg.translatesAutoresizingMaskIntoConstraints = true
         arg.sizeToFit()

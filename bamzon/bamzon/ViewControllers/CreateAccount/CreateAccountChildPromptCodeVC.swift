@@ -23,47 +23,17 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        let codePaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        
         // TODO: temporary identifier code. delete this once you write the real display func
         // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 30, width: 400, height: 120))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: 150)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 0
-        tempLabel.textColor = .white
-        tempLabel.text = "Please enter the \rsecurity code emailed \rto " + email!
+        let tempLabel = pageLabel(withText: "Please enter the \rsecurity code emailed \rto " + email!, withFrame: CGRect(x: 0, y: 30, width: 400, height: 120), withCenter: nil)
         self.view.addSubview(tempLabel)
         
         // Security Code
-        code = UITextField(frame: CGRect(x: 20, y: 240, width: 340, height: 35))
-        code?.center = CGPoint(x: view.frame.midX, y: view.frame.midY - 35)
-        code?.leftView = codePaddingView
-        code?.leftViewMode = .always
-        code?.attributedPlaceholder = NSAttributedString(string: "Security Code", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        code?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        code?.textColor = .white
+        code = createDefaultTextField(withText: "Security Code", withFrame: nil, withCenter: CGPoint(x: view.frame.midX, y: view.frame.midY - 35), withPadding: nil)
         self.view.addSubview(code!)
         
-        let codeBar = CAShapeLayer()
-        codeBar.path = UIBezierPath(roundedRect: CGRect(x: 20, y: view.frame.midY - 15, width: view.frame.width - 40, height: 2), cornerRadius: 8).cgPath
-        codeBar.fillColor = UIColor.white.cgColor
-        self.view.layer.addSublayer(codeBar)
-        
         // Verify Button
-        let verify = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-        verify.center = CGPoint(x: view.center.x, y: view.frame.midY + 35)
-        verify.setTitle("Verify", for: .normal)
-        verify.backgroundColor = UIColor(named: "TSYellow")
-        verify.layer.shadowColor = UIColor.black.cgColor
-        verify.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        verify.layer.masksToBounds = false
-        verify.layer.shadowRadius = 1.0
-        verify.layer.shadowOpacity = 0.5
-        verify.layer.cornerRadius = 8
-        verify.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        verify.addTarget(self, action: #selector(verifyCode), for: .touchUpInside)
+        let verify = createDefaultButton(withText: "Verify", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(verifyCode), withCenter: CGPoint(x: view.center.x, y: view.frame.midY + 35))
         //verify.addTarget(self, action: #selector(highlightverify), for: .touchDown)
         //verify.addTarget(self, action: #selector(unhighlightverify), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(verify)
@@ -77,9 +47,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
                 present(nextVC, animated: true, completion: nil)
             }
         } else {
-            let alert = UIAlertController(title: "Uh oh!", message: "That code doesn't look right 😰\rPlease try again.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            alert(withTitle: "Uh oh!", withMessage: "That code doesn't look right 😰\rPlease try again.")
         }
     }
     

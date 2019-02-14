@@ -26,8 +26,8 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        let emailPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        let passwordPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        let emailPadding = CGRect(x: 0, y: 0, width: 5, height: 20)
+        let passwordPadding =  CGRect(x: 0, y: 0, width: 5, height: 20)
    
         //Top label
         let topLabel = UILabel()
@@ -50,14 +50,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         //Email
         
         //Email Text Field
-        email = UITextField()
-        email?.leftView = emailPaddingView
-        email?.leftViewMode = .always
-        email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        email?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        email?.textColor = .white
-        email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
-        email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email = createDefaultTextField(withText: "Email", withFrame: nil, withCenter: nil, withPadding: emailPadding)
         email?.delegate = self
         self.view.addSubview(email!)
         
@@ -76,12 +69,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         self.view.layer.addSublayer(nameBar)*/
         
         //Password Text Field
-        password = UITextField()
-        password?.leftView = passwordPaddingView
-        password?.leftViewMode = .always
-        password?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
-        password?.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        password?.textColor = .white
+        password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: nil)
         password?.isSecureTextEntry = true
         self.view.addSubview(password!)
         
@@ -96,9 +84,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         //Buttons
         
         //loginButton
-        let loginButton = FormatUtility.createDefaultButton(withText: "Log in", withFrame: nil, withCenter: nil)
-        loginButton.addTarget(self, action: #selector(checkLogin), for: .touchUpInside)
-
+        let loginButton = createDefaultButton(withText: "Log in", withFrame: nil, withAction: #selector(checkLogin), withCenter: nil)
         self.view.addSubview(loginButton)
         
         //loginButton constraints
@@ -173,16 +159,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
             //print("present CreateAccountChildPromptCodeVC")
             // TODO: check how this changes when embedded in a nav controller
         }
-    }
-    
-    // Highlight the button upon touchDown
-    @objc func highlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellowDark")
-    }
-    
-    // Unhighlight the button upon touchDown
-    @objc func unhighlightButton(sender: UIButton!) {
-        sender.backgroundColor = UIColor(named: "TSYellow")
     }
     
     // Email validation function
