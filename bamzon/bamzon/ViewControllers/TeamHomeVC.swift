@@ -95,7 +95,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         nextLabel.text = "Next Practice"
         self.view.addSubview(nextLabel)
         
-        //bio label constraints
+        //next practice label constraints
         nextLabel.translatesAutoresizingMaskIntoConstraints = false
         let nextLabelLeftConstraint = nextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         let nextLabelTopConstraint = nextLabel.topAnchor.constraint(equalTo: teamPictureImageView.bottomAnchor, constant: 30)
@@ -106,7 +106,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         /*let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 120))
         tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
         tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        tempLabel.textAlignment = .center
+        tempLabel.textAlignment = .ce nter
         tempLabel.numberOfLines = 1
         tempLabel.textColor = .white
         tempLabel.text = "TeamHomeVC"
