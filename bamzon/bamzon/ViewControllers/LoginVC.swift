@@ -70,7 +70,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         self.view.layer.addSublayer(nameBar)*/
         
         //Password Text Field
-        password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: nil)
+        password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: passwordPadding)
         password?.isSecureTextEntry = true
         self.view.addSubview(password!)
         

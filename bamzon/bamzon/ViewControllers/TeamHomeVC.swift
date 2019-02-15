@@ -24,8 +24,8 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         // TODO: change these to user names
         let tName = "Cal Poly Swim Club"
         let memberCount = 78
-        let nextPracticeLoc = "Dryland - Doerr Field"
-        let nextPracticeTime = "6:30 - 7:30 pm"
+        //let nextPracticeLoc = "Dryland - Doerr Field"
+        //let nextPracticeTime = "6:30 - 7:30 pm"
         
         //image view
         let teamPictureImageView = UIImageView()
