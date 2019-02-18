@@ -27,7 +27,7 @@ struct PlayerStats: FirebaseCompatable {
         fields = payload["fields"] as? [String: Any] ?? [:]
     }
     
-    func formatForDB() -> [String : Any] {
+    func formatForDB() -> [String: Any] {
         return
             ["fields": fields ?? [:],
              "teamID": teamID.asString()]

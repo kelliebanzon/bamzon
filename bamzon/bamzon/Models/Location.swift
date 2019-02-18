@@ -19,7 +19,7 @@ struct Location: FirebaseCompatable {
     var country: String?
     var locID: ID
 
-    init(locID: ID, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?){
+    init(locID: ID, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?) {
         self.locID = locID
         self.number = number
         self.street = street

@@ -48,9 +48,8 @@ struct User: FirebaseCompatable {
         imageURL = payload["imageURL"] as? String ?? "N/A"
         teamIDs = IDUtility.stringsToIds(strs: payload["teamIds"] as? [String] ?? [])
     }
-
     
-    func formatForDB() -> [String : Any] {
+    func formatForDB() -> [String: Any] {
         return
             ["firstName": firstName,
              "lastName": lastName,

@@ -45,8 +45,8 @@ class IDUtility {
     // these two might be better elsewhere
     static func idsToStrings(ids: [ID]?) -> [String] {
         var stringArr = [String]()
-        ids?.forEach { id in
-            stringArr.append(id.asString())
+        ids?.forEach { nextID in
+            stringArr.append(nextID.asString())
         }
         return stringArr
     }

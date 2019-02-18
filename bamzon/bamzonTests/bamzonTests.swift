@@ -31,7 +31,7 @@ class BamzonTests: XCTestCase {
         }
     }
     
-    func testCreateIDFromString(){
+    func testCreateIDFromString() {
         let testIDString = "u100" //fixme changed from IDType.user to string for demo
         let expected = ID(type: "u", num: 100)
         let testOut = IDUtility.generateIDFromString(idString: testIDString)
@@ -43,7 +43,7 @@ class BamzonTests: XCTestCase {
         
     }
     
-    func testIDToString(){
+    func testIDToString() {
         let expected = "u100"
         let testID = ID(type: "u", num: 100)
         let testOut = testID.asString()

@@ -30,7 +30,7 @@ struct RSVP: FirebaseCompatable {
         noUserIDs = IDUtility.stringsToIds(strs: payload["noUserIds"] as? [String] ?? [])
     }
     
-    func formatForDB() -> [String : Any] {
+    func formatForDB() -> [String: Any] {
         return
             ["yesUserIds": IDUtility.idsToStrings(ids: yesUserIDs ?? []),
              "noUserIds": IDUtility.idsToStrings(ids: noUserIDs ?? []),
