@@ -20,6 +20,10 @@ class ID: Codable, Hashable {
         self.type = type
         self.num = num
     }
+    
+    func asString() -> String {
+        return "\(type)\(num)"
+    }
 
 }
 

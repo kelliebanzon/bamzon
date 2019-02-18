@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */; };
 		656EBA732208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		656EBA742208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		656EBA752208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
+		65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821421B4A59F00DDC094 /* DBUtility.swift */; };
+		70E76698C40180FCF38B767F /* Pods_bamzonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */; };
 		792B5ED1A923DAFC62051B25 /* Pods_bamzon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */; };
 		A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D221B71E57000E287A /* JoinTeamVM.swift */; };
 		A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439D321B71E57000E287A /* CreateTeamVM.swift */; };
@@ -102,6 +105,10 @@
 
 /* Begin PBXFileReference section */
 		1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.release.xcconfig"; sourceTree = "<group>"; };
+		21331CC28C02F1D861EB4BF6 /* Pods-bamzonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.release.xcconfig"; sourceTree = "<group>"; };
+		5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCompatable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A81439D221B71E57000E287A /* JoinTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = "<group>"; };
 		A81439D321B71E57000E287A /* CreateTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = "<group>"; };
@@ -196,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70E76698C40180FCF38B767F /* Pods_bamzonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +223,8 @@
 			children = (
 				F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */,
 				1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */,
+				21331CC28C02F1D861EB4BF6 /* Pods-bamzonTests.debug.xcconfig */,
+				42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -223,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */,
+				5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,6 +299,7 @@
 		ABC5820E21B4A47B00DDC094 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */,
 				AB47757A21B4E8E400A1DCD5 /* Event.swift */,
 				ABEF642321FBECB200716ACB /* ID.swift */,
 				AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */,
@@ -295,7 +307,6 @@
 				AB47757621B4E82200A1DCD5 /* Media.swift */,
 				ABC5822421B4AF2C00DDC094 /* Organization.swift */,
 				ABC5822021B4AB2500DDC094 /* Permissions.swift */,
-				ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */,
 				AB47757821B4E89900A1DCD5 /* RSVP.swift */,
 				AB47757021B4E2CB00A1DCD5 /* Team.swift */,
 				AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */,
@@ -365,6 +376,7 @@
 				ABEF641B21FBE68F00716ACB /* DisplayableProtocol.swift */,
 				ABEF641D21FBE90D00716ACB /* RefreshableProtocol.swift */,
 				ABEF641F21FBE95300716ACB /* EditableProtocol.swift */,
+				6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -434,9 +446,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABEF641421FBBF9700716ACB /* Build configuration list for PBXNativeTarget "bamzonTests" */;
 			buildPhases = (
+				93232F18CCEDD488D3C1E72F /* [CP] Check Pods Manifest.lock */,
 				ABEF640921FBBF9700716ACB /* Sources */,
 				ABEF640A21FBBF9700716ACB /* Frameworks */,
 				ABEF640B21FBBF9700716ACB /* Resources */,
+				EF570DF12A42DF5454262CCD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -546,6 +560,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		93232F18CCEDD488D3C1E72F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bamzonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9CDE49054FF3D1740EEA8EB3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +617,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		EF570DF12A42DF5454262CCD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		F657CED3C9584E5D9AACEE6F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -651,6 +711,7 @@
 				ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */,
 				A81439FB21B72CB3000E287A /* CreateTeamParentVC.swift in Sources */,
 				AB6E5D57220F900E00808283 /* CreateTeamChildNameVC.swift in Sources */,
+				A81439FB21B72CB3000E287A /* CreateTeamParentVC.swift in Sources */,
 				A81439E521B71E58000E287A /* SettingsVM.swift in Sources */,
 				A81439EF21B724D8000E287A /* RSVPVM.swift in Sources */,
 				ABC5822721B4AFF000DDC094 /* Location.swift in Sources */,
@@ -668,11 +729,13 @@
 				A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */,
 				AB3CE1AD220E15990086478C /* TabBarController.swift in Sources */,
 				A8143A1121B73078000E287A /* RSVPVC.swift in Sources */,
+				6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */,
 				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
 				A8143A0321B72E3B000E287A /* RosterVC.swift in Sources */,
 				A8143A1321B730A3000E287A /* JoinRequestsVC.swift in Sources */,
 				A81439F521B72A74000E287A /* CreateAccountParentVC.swift in Sources */,
 				A81439E721B71E58000E287A /* CalendarVM.swift in Sources */,
+				65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */,
 				ABEF642621FE6E0700716ACB /* PlayerAttendanceVC.swift in Sources */,
 				A81439E021B71E58000E287A /* LoginVM.swift in Sources */,
 				A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */,
@@ -773,6 +836,7 @@
 		};
 		ABEF641521FBBF9700716ACB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21331CC28C02F1D861EB4BF6 /* Pods-bamzonTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -792,6 +856,7 @@
 		};
 		ABEF641621FBBF9700716ACB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

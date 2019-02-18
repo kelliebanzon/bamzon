@@ -9,7 +9,7 @@
 
 import Foundation
 import UIKit
-
+import Firebase
 class CreateAccountParentVC: UIViewController, DisplayableProtocol {
     
     @IBOutlet weak var containerView: UIView!

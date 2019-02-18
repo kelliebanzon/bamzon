@@ -1,0 +1,6 @@
+framework module Pods_bamzonTests {
+  umbrella header "Pods-bamzonTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
