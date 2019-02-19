@@ -22,11 +22,8 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func display() {
-        // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: temporary identifier code. delete this once you write the real display func
-        // Temp Label
         //roster label
         let rosterLabel = UILabel()
         rosterLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
@@ -42,12 +39,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         let rosterLeftConstraint = rosterLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         self.view.addConstraints([rosterTopConstraint, rosterLeftConstraint])
         
-        //table view
-        /*let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height*/
-        
-        //myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
         myTableView = UITableView()
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         myTableView.dataSource = self
@@ -189,35 +180,7 @@ class CustomTableViewCell: UITableViewCell {
         contentView.addSubview(userRole)
         setupAutoLayout()
     }
-    
-    /*override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        //contentView.backgroundColor = UIColor(named: "TSTeal")
-        
-        imgUser.translatesAutoresizingMaskIntoConstraints = false
-        userName.translatesAutoresizingMaskIntoConstraints = false
-        userNumber.translatesAutoresizingMaskIntoConstraints = false
-        userEmail.translatesAutoresizingMaskIntoConstraints = false
-        userYear.translatesAutoresizingMaskIntoConstraints = false
-        userRole.translatesAutoresizingMaskIntoConstraints = false
-        
-        //username
-        userName.text = "Brandon"
-        userName.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
-        userName.numberOfLines = 0
-        userName.textColor = .white
-        userName.textAlignment = .center
-        
-        contentView.addSubview(imgUser)
-        contentView.addSubview(userName)
-        contentView.addSubview(userNumber)
-        contentView.addSubview(userEmail)
-        contentView.addSubview(userYear)
-        contentView.addSubview(userRole)
-        setupAutoLayout()
-    }*/
-    
+
     func setupAutoLayout() {
         //image constraints
         let imgLeftConstraint = imgUser.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)

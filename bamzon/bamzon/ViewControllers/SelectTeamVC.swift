@@ -9,38 +9,105 @@
 import Foundation
 import UIKit
 
-class SelectTeamVC: UIViewController, DisplayableProtocol, RefreshableProtocol {
+class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
+
+    let fname = "Jake"
+    let teamArray: NSArray = ["Cal Poly Swim Club", "Triathlon Team", "Men's Water Polo"]
+    let locationArray: NSArray = ["Cal Poly, SLO", "Bishop Peak Tri", "Morro Bay HS"]
+    private var myTableView: UITableView!
+    private let cellId = "MyTeamCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Select Team"
         display()
     }
     
     func display() {
         // TODO: implement display
+        view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: temporary identifier code. delete this once you write the real display func
-        // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 120))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 1
-        tempLabel.textColor = .white
-        tempLabel.text = "SelectTeamVC"
-        self.view.addSubview(tempLabel)
+        //create team button
+        let createButton = createDefaultButton(withText: "Create a Team", withFrame: nil, withAction: #selector(createTeam), withCenter: nil)
+        self.view.addSubview(createButton)
+        
+        //create team button constraints
+        createButton.translatesAutoresizingMaskIntoConstraints = false
+        let createLeftConstraint = createButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
+        let createTopConstraint = createButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60)
+        let createRightConstraint = createButton.rightAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -10)
+        self.view.addConstraints([createLeftConstraint, createTopConstraint, createRightConstraint])
+        
+        //join team button
+        let joinButton = createDefaultButton(withText: "Join a Team", withFrame: nil, withAction: #selector(joinTeam), withCenter: nil)
+        self.view.addSubview(joinButton)
+        
+        //create team button constraints
+        joinButton.translatesAutoresizingMaskIntoConstraints = false
+        let joinLeftConstraint = joinButton.leadingAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10)
+        let joinTopConstraint = joinButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60)
+        let joinRightConstraint = self.view.trailingAnchor.constraint(equalTo: joinButton.trailingAnchor, constant: 20)
+        self.view.addConstraints([joinLeftConstraint, joinTopConstraint, joinRightConstraint])
+        
+        //Teamsync label
+        let teamsyncLabel = UILabel()
+        teamsyncLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
+        teamsyncLabel.numberOfLines = 0
+        teamsyncLabel.textColor = .white
+        teamsyncLabel.textAlignment = .center
+        teamsyncLabel.text = "TeamSync"
+        self.view.addSubview(teamsyncLabel)
+        
+        //TeamSync label constraints
+        teamsyncLabel.translatesAutoresizingMaskIntoConstraints = false
+        let teamHorizConstraint = teamsyncLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let teamTopConstraint = teamsyncLabel.topAnchor.constraint(equalTo: joinButton.bottomAnchor, constant: 20)
+        self.view.addConstraints([teamHorizConstraint, teamTopConstraint])
+        
+        //greeting label
+        let greetLabel = UILabel()
+        greetLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        greetLabel.numberOfLines = 0
+        greetLabel.textColor = .white
+        greetLabel.textAlignment = .center
+        greetLabel.text = "Hey \(fname), lookin' good today! Select a team to view more info"
+        self.view.addSubview(greetLabel)
+        
+        //greet label constraints
+        greetLabel.translatesAutoresizingMaskIntoConstraints = false
+        let greetHorizConstraint = greetLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let greetVertConstraint = greetLabel.topAnchor.constraint(equalTo: teamsyncLabel.bottomAnchor, constant: 10)
+        let greetLeftConstraint = greetLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 40)
+        let greetRightConstraint = self.view.trailingAnchor.constraint(equalTo: greetLabel.trailingAnchor, constant: 40)
+        self.view.addConstraints([greetHorizConstraint, greetVertConstraint, greetLeftConstraint, greetRightConstraint])
+        
+        //select team table view
+        myTableView = UITableView()
+        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyTeamCell")
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.register(SelectTeamTableViewCell.self, forCellReuseIdentifier: self.cellId)
+        myTableView.backgroundColor = UIColor(named: "TSTeal")
+        self.view.addSubview(myTableView)
+        
+        //tableview constraints
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
+        let tableHeightConstraint = myTableView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: greetLabel.bottomAnchor, constant: 10)
+        let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
+        self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
     
     func refresh() {
         // TODO: implement refresh
     }
     
-    func createTeam() {
+    @objc func createTeam() {
     // TODO: implement create team
     }
     
-    func joinTeam() {
+    @objc func joinTeam() {
     // TODO: implement join team
     }
     
@@ -50,5 +117,101 @@ class SelectTeamVC: UIViewController, DisplayableProtocol, RefreshableProtocol {
     
     func logout() {
     // TODO: implement logout
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Num: \(indexPath.row)")
+        print("Value: \(teamArray[indexPath.row])")
+        //viewTeam()
+        //TODO: Find a way to access cell elements here? So we can set each cell label to be what's in the array by using indexpath
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return teamArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SelectTeamTableViewCell
+        // swiftlint:enable force_cast
+        return cell
+    }
+}
+
+class SelectTeamTableViewCell: UITableViewCell {
+    
+    let imgUser: UIImageView = {
+        let pic = UIImageView()
+        pic.contentMode = .scaleAspectFill
+        pic.clipsToBounds = true
+        pic.image = UIImage(named: "BZN-Square-Logo")
+        pic.layer.cornerRadius = 35
+        pic.translatesAutoresizingMaskIntoConstraints = false
+        return pic
+    }()
+    let teamName: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        label.numberOfLines = 1
+        label.textColor = .white
+        label.textAlignment = .left
+        label.text = "Team Name"
+        label.minimumScaleFactor = 0.25
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let teamLocation: UILabel = {
+        let loc = UILabel()
+        loc.font = UIFont(name: "HelveticaNeue", size: 17)
+        loc.numberOfLines = 1
+        loc.textColor = .white
+        loc.textAlignment = .left
+        loc.text = "Team Location"
+        loc.translatesAutoresizingMaskIntoConstraints = false
+        return loc
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = UIColor(named: "TSTeal")
+        addSubviewsAndLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addSubviewsAndLayout() {
+        contentView.addSubview(teamName)
+        contentView.addSubview(imgUser)
+        contentView.addSubview(teamLocation)
+        setupAutoLayout()
+    }
+    
+    func setupAutoLayout() {
+        //image constraints
+        let imgLeftConstraint = imgUser.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
+        let imgVertConstraint = imgUser.topAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -35)
+        let imgWidthConstraint = imgUser.widthAnchor.constraint(equalToConstant: 70)
+        let imgHeightConstraint = imgUser.heightAnchor.constraint(equalToConstant: 70)
+        self.contentView.addConstraints([imgLeftConstraint, imgVertConstraint, imgWidthConstraint, imgHeightConstraint])
+        
+        //name constraints
+        let nameLeftConstraint = teamName.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
+        let nameTopConstraint = teamName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
+        let nameWidthConstraint = teamName.widthAnchor.constraint(equalToConstant: 100)
+        self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
+        
+        //number constraints
+        let numLeftConstraint = teamLocation.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
+        let numTopConstraint = teamLocation.topAnchor.constraint(equalTo: teamName.bottomAnchor, constant: 5)
+        self.contentView.addConstraints([numLeftConstraint, numTopConstraint])
+        
     }
 }

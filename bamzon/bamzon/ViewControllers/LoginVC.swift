@@ -111,7 +111,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         self.view.addSubview(forgotButton)
         
         //forgotButton functions
-
         
         //forgotButton constraints
         forgotButton.translatesAutoresizingMaskIntoConstraints = false
