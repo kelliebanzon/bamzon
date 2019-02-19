@@ -18,6 +18,9 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     }
     
     func display() {
+        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "person"), style: .plain, target: self, action: nil), animated: false)
+        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: nil, action: nil), animated: true)
+
         view.backgroundColor = UIColor(named: "TSTeal")
         
         let tName = "Cal Poly Swim Club"

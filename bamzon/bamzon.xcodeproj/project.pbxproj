@@ -56,6 +56,7 @@
 		AB47757921B4E89900A1DCD5 /* RSVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757821B4E89900A1DCD5 /* RSVP.swift */; };
 		AB47757B21B4E8E400A1DCD5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757A21B4E8E400A1DCD5 /* Event.swift */; };
 		AB47757D21B4E90700A1DCD5 /* TeamCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */; };
+		AB4A95302215E72800AEA954 /* WizardNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A952F2215E72800AEA954 /* WizardNC.swift */; };
 		AB6E5D57220F900E00808283 /* CreateTeamChildNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E5D56220F900E00808283 /* CreateTeamChildNameVC.swift */; };
 		AB6E5D59220F906F00808283 /* CreateTeamChildSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E5D58220F906F00808283 /* CreateTeamChildSettingsVC.swift */; };
 		AB6E5D5B220F922100808283 /* CreateTeamChildLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6E5D5A220F922100808283 /* CreateTeamChildLoadingVC.swift */; };
@@ -152,6 +153,7 @@
 		AB47757821B4E89900A1DCD5 /* RSVP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVP.swift; sourceTree = "<group>"; };
 		AB47757A21B4E8E400A1DCD5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendar.swift; sourceTree = "<group>"; };
+		AB4A952F2215E72800AEA954 /* WizardNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardNC.swift; sourceTree = "<group>"; };
 		AB6E5D56220F900E00808283 /* CreateTeamChildNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamChildNameVC.swift; sourceTree = "<group>"; };
 		AB6E5D58220F906F00808283 /* CreateTeamChildSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamChildSettingsVC.swift; sourceTree = "<group>"; };
 		AB6E5D5A220F922100808283 /* CreateTeamChildLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamChildLoadingVC.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				A8143A1221B730A3000E287A /* JoinRequestsVC.swift */,
 				AB3CE1AC220E15990086478C /* TabBarController.swift */,
 				AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */,
+				AB4A952F2215E72800AEA954 /* WizardNC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				A8143A0121B72E05000E287A /* StatsParentVC.swift in Sources */,
 				A81439E921B71E58000E287A /* StatsVM.swift in Sources */,
 				A81439FD21B72D51000E287A /* JoinTeamVC.swift in Sources */,
+				AB4A95302215E72800AEA954 /* WizardNC.swift in Sources */,
 				ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */,
 				A81439ED21B7246B000E287A /* JoinRequestsVM.swift in Sources */,
 				ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */,
