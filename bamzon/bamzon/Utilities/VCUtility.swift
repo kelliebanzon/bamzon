@@ -97,9 +97,9 @@ extension UIViewController {
             textField.center = center
         }
         
-        let bar = createTextFieldBar(withRect: CGRect(x: textField.center.x-textField.frame.width/2, y: textField.center.y+textField.frame.height/2, width: textField.frame.width, height: 2))
+        /*let bar = createTextFieldBar(withRect: CGRect(x: textField.center.x-textField.frame.width/2, y: textField.center.y+textField.frame.height/2, width: textField.frame.width, height: 2))
         print(textField.frame)
-        self.view.layer.addSublayer(bar)
+        self.view.layer.addSublayer(bar)*/
         
         textField.leftViewMode = .always
         textField.attributedPlaceholder = NSAttributedString(string: withText, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
