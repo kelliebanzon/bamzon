@@ -24,12 +24,13 @@ struct PlayerPerms: FirebaseCompatable {
         let payload = snapshot?.value as? [String: AnyObject] ?? [:]
         teamID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
         userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
-        permissions = payload["permissions"] as? [String] ?? []
+        permissions = stringsToPerms(strs: payload["permissions"] as? [String] ?? [])
     }
     
-    func formatForDB() -> [String : Any] {
+    func formatForDB() -> [String: Any] {
         return
-            ["permissions": permissions]
+            ["permissions": permsToStrings(perms: permissions),
+             "userId": userID.asString()]
     }
     
     func getTable() -> String {
@@ -39,22 +40,22 @@ struct PlayerPerms: FirebaseCompatable {
     func getChildPath() -> String {
         return "\(userID.asString())/\(teamID.asString())"
     }
-    
-    func permsToStrings(perms: [Permissions]) -> [String] {
-        var strArr = [](Permissions)
-        perms.forEach { perm in
-            strArr.apend(perm.rawValue)
-        }
-        return strArr
+}
+
+func permsToStrings(perms: [Permissions]) -> [String] {
+    var strArr = [String]()
+    perms.forEach { perm in
+        strArr.append(perm.rawValue)
     }
-    
-    func stringsToPerms(strs: [String]) -> [Permissions] {
-        var permArr = [](Permissions)
-        strs.forEach { str in
-            permArr.apend(Permissions.str)
-        }
-        return permArr
+    return strArr
+}
+
+func stringsToPerms(strs: [String]) -> [Permissions] {
+    var permArr = [Permissions]()
+    strs.forEach { str in
+        permArr.append(Permissions(rawValue: str) ?? Permissions.permError)
     }
+    return permArr
 }
 
 enum Permissions: String {
@@ -63,4 +64,5 @@ enum Permissions: String {
     case editRoster = "EditRoster"
     case editCalendar = "EditAttendance"
     case editStats = "EditStats"
+    case permError = "PermissionsError"
 }

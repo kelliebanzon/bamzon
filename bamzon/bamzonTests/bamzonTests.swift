@@ -21,7 +21,6 @@ class BamzonTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
     }
     
     func testPerformanceExample() {
@@ -52,4 +51,19 @@ class BamzonTests: XCTestCase {
         
     }
     
+    func testIDsToStrings() {
+        let expected  = ["u100", "t200"]
+        let testIDs = [ID(type: "u", num: 100), ID(type: "t", num: 200)]
+        let testOut = IDUtility.idsToStrings(ids: testIDs)
+        
+        XCTAssertEqual(expected, testOut)
+    }
+    
+    func testStringsToIDs() {
+        let testStrings  = ["u100", "t200"]
+        let expected = [ID(type: "u", num: 100), ID(type: "t", num: 200)]
+        let testOut = IDUtility.stringsToIds(strs: testStrings)
+        
+        XCTAssertEqual(expected, testOut)
+    }
 }

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //setViewsNav()
         self.window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+
         return true
     }
 
