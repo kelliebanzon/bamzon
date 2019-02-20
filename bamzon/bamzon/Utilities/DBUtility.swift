@@ -30,7 +30,6 @@ class DBUtility {
         let path = keyArr.joined(separator: "/")
         
         print("reading from \(table)/\(path)")
-        
         fbDatabase.child(table).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(snapshot)

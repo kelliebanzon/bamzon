@@ -70,7 +70,7 @@
 		ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */; };
 		ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */; };
 		ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */; };
-		ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822021B4AB2500DDC094 /* Permissions.swift */; };
+		ABC5822121B4AB2500DDC094 /* PlayerPerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822021B4AB2500DDC094 /* PlayerPerms.swift */; };
 		ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822421B4AF2C00DDC094 /* Organization.swift */; };
 		ABC5822721B4AFF000DDC094 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5822621B4AFF000DDC094 /* Location.swift */; };
 		ABE1927A220FA75C007DBA70 /* bamzonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE19278220FA758007DBA70 /* bamzonTests.swift */; };
@@ -173,7 +173,7 @@
 		ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatUtility.swift; sourceTree = "<group>"; };
 		ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStats.swift; sourceTree = "<group>"; };
 		ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
-		ABC5822021B4AB2500DDC094 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		ABC5822021B4AB2500DDC094 /* PlayerPerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPerms.swift; sourceTree = "<group>"; };
 		ABC5822421B4AF2C00DDC094 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		ABC5822621B4AFF000DDC094 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		ABE19278220FA758007DBA70 /* bamzonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bamzonTests.swift; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 				ABC5822621B4AFF000DDC094 /* Location.swift */,
 				AB47757621B4E82200A1DCD5 /* Media.swift */,
 				ABC5822421B4AF2C00DDC094 /* Organization.swift */,
-				ABC5822021B4AB2500DDC094 /* Permissions.swift */,
+				ABC5822021B4AB2500DDC094 /* PlayerPerms.swift */,
 				AB47757821B4E89900A1DCD5 /* RSVP.swift */,
 				AB47757021B4E2CB00A1DCD5 /* Team.swift */,
 				AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */,
@@ -729,7 +729,7 @@
 				AB0EB61F221D30D400C4917E /* AttendanceTabVC.swift in Sources */,
 				A81439E321B71E58000E287A /* AttendanceVM.swift in Sources */,
 				AB6E5D5B220F922100808283 /* CreateTeamChildLoadingVC.swift in Sources */,
-				ABC5822121B4AB2500DDC094 /* Permissions.swift in Sources */,
+				ABC5822121B4AB2500DDC094 /* PlayerPerms.swift in Sources */,
 				A81439E221B71E58000E287A /* RosterVM.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
 				D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */,
