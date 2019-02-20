@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */; };
+		655E8051221D381800BDA6A2 /* FirTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655E8050221D381800BDA6A2 /* FirTable.swift */; };
 		656EBA732208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		656EBA742208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		656EBA752208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
@@ -115,6 +116,7 @@
 		42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCompatable.swift; sourceTree = "<group>"; };
+		655E8050221D381800BDA6A2 /* FirTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirTable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A81439D221B71E57000E287A /* JoinTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = "<group>"; };
 		A81439D321B71E57000E287A /* CreateTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */,
 				ABC5821C21B4A8FF00DDC094 /* TeamStats.swift */,
 				AB47757221B4E3DE00A1DCD5 /* User.swift */,
+				655E8050221D381800BDA6A2 /* FirTable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				A81439E421B71E58000E287A /* ProfileVM.swift in Sources */,
 				ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */,
 				AB2BB74E220E3B1200243F77 /* SelectTeamNavController.swift in Sources */,
+				655E8051221D381800BDA6A2 /* FirTable.swift in Sources */,
 				A8143A0521B72E72000E287A /* CalendarVC.swift in Sources */,
 				ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */,
 				AB47757D21B4E90700A1DCD5 /* TeamCalendar.swift in Sources */,

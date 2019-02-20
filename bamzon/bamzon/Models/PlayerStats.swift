@@ -33,8 +33,8 @@ struct PlayerStats: FirebaseCompatable {
              "teamID": teamID.asString()]
     }
     
-    func getTable() -> String {
-        return "playerStats"
+    func getTable() -> FirTable {
+        return FirTable.playerStats
     }
     
     func getChildPath() -> String {

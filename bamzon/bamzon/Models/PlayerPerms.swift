@@ -33,8 +33,8 @@ struct PlayerPerms: FirebaseCompatable {
              "userId": userID.asString()]
     }
     
-    func getTable() -> String {
-        return "playerPermissions"
+    func getTable() -> FirTable {
+        return FirTable.playerPerms
     }
     
     func getChildPath() -> String {

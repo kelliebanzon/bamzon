@@ -49,8 +49,8 @@ struct Event: FirebaseCompatable {
              "links": links]
     }
     
-    func getTable() -> String {
-        return "events"
+    func getTable() -> FirTable {
+        return FirTable.event
     }
     
     func getChildPath() -> String {
@@ -77,7 +77,7 @@ struct Event: FirebaseCompatable {
         
         if locIDString != "" && locIDString != "NoLocFound" {
             let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: "locations", keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
+            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
                 thisEvent.location = Location(snapshot: locSnap)
                 print("event location fetch succeeded: event is \(thisEvent)")
             })
@@ -86,7 +86,7 @@ struct Event: FirebaseCompatable {
         }
         
         if eventID != ID(type: "z", num: 0) {
-            DBUtility.readFromDB(table: "RSVPs", keys: eventID, completion: {(rsvpSnap: DataSnapshot) -> Void in
+            DBUtility.readFromDB(table: FirTable.rsvp, keys: eventID, completion: {(rsvpSnap: DataSnapshot) -> Void in
                 thisEvent.rsvps = RSVP(snapshot: rsvpSnap)
                 print("event rsvp fetch succeeded: event is \(thisEvent)")
             })

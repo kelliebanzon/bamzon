@@ -29,7 +29,7 @@ struct TeamCalendar: FirebaseCompatable {
         if eventIDs.isEmpty {
             for eIDString in eventIDs {
                 let eventID = IDUtility.generateIDFromString(idString: eIDString)
-                DBUtility.readFromDB(table: "locations", keys: eventID, completion: {(eventSnap: DataSnapshot) -> Void in
+                DBUtility.readFromDB(table: FirTable.location, keys: eventID, completion: {(eventSnap: DataSnapshot) -> Void in
                 thisCalendar.events.append(Event(snapshot: eventSnap))
                 print("event location fetch succeeded: calendar is \(thisCalendar)")
                 })
@@ -47,8 +47,8 @@ struct TeamCalendar: FirebaseCompatable {
         return ["events": IDUtility.idsToStrings(ids: eventIDList)]
     }
     
-    func getTable() -> String {
-        return "teamCalendars"
+    func getTable() -> FirTable {
+        return FirTable.teamCalendar
     }
     
     func getChildPath() -> String {

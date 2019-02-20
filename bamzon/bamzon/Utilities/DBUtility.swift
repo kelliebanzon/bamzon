@@ -17,11 +17,11 @@ class DBUtility {
     var fbImageDatabase: StorageReference!
     
     static func writeToDB(objToWrite: FirebaseCompatable) {
-    fbDatabase.child(objToWrite.getTable()).child(objToWrite.getChildPath()).setValue(objToWrite.formatForDB())
+    fbDatabase.child(objToWrite.getTable().rawValue).child(objToWrite.getChildPath()).setValue(objToWrite.formatForDB())
     }
     
     // Event, PlayerStats, and Permissions requre two IDs to index
-    static func readFromDB(table: String, keys: ID..., completion: @escaping (DataSnapshot) -> Void) {
+    static func readFromDB(table: FirTable, keys: ID..., completion: @escaping (DataSnapshot) -> Void) {
         var keyArr = [String]()
         for key in keys {
             keyArr.append(key.asString())
@@ -30,16 +30,16 @@ class DBUtility {
         let path = keyArr.joined(separator: "/")
         
         print("reading from \(table)/\(path)")
-        fbDatabase.child(table).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(snapshot)
             } else {
-                print("Firebase Query Failed! No result found for key(s): \(path) in table: \(table)")
+                print("Firebase Query Failed! No result found for key(s): \(path) in table: \(table.rawValue)")
             }
         })
     }
     
-    static func deleteFromDB(table: String, keys: ID...) {
+    static func deleteFromDB(table: FirTable, keys: ID...) {
         var keyArr = [String]()
         for key in keys {
             keyArr.append(key.asString())
@@ -47,6 +47,6 @@ class DBUtility {
         
         let path = keyArr.joined(separator: "/")
         
-        fbDatabase.child(table).child(path).removeValue()
+        fbDatabase.child(table.rawValue).child(path).removeValue()
     }
 }

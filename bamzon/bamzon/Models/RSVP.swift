@@ -37,8 +37,8 @@ struct RSVP: FirebaseCompatable {
              "pendingUserIds": IDUtility.idsToStrings(ids: pendingUserIDs ?? [])]
     }
     
-    func getTable() -> String {
-        return "RSVPs"
+    func getTable() -> FirTable {
+        return FirTable.rsvp
     }
     
     func getChildPath() -> String {

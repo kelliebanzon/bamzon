@@ -36,7 +36,7 @@ struct Organization: FirebaseCompatable {
             var thisOrg = self
             print("fetching location of id: \(locIDString)")
             let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: "locations", keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
+            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
                 thisOrg.location = Location(snapshot: locSnap)
                 print("org location worked. org: \(thisOrg)")
             })
@@ -52,8 +52,8 @@ struct Organization: FirebaseCompatable {
              "teamIds": IDUtility.idsToStrings(ids: teamIDs)]
     }
 
-    func getTable() -> String {
-        return "organizations"
+    func getTable() -> FirTable {
+        return FirTable.organization
     }
     func getChildPath() -> String {
         return orgID.asString()

@@ -28,8 +28,8 @@ struct Media: FirebaseCompatable {
         return ["url": url]
     }
     
-    func getTable() -> String {
-        return "media"
+    func getTable() -> FirTable {
+        return FirTable.media
     }
     
     func getChildPath() -> String {

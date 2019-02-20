@@ -32,8 +32,8 @@ struct JoinRequest: FirebaseCompatable {
                 "teamId": teamID.asString()]
     }
     
-    func getTable() -> String {
-        return "joinRequests"
+    func getTable() -> FirTable {
+        return FirTable.joinRequest
     }
     
     func getChildPath() -> String {

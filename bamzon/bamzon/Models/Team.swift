@@ -49,10 +49,10 @@ struct Team: FirebaseCompatable {
         var thisTeam = self
        
         if teamID != ID(type: "z", num: 0) {
-            DBUtility.readFromDB(table: "teamCalendars", keys: teamID, completion: {(tcSnap: DataSnapshot) -> Void in
+            DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(tcSnap: DataSnapshot) -> Void in
                 thisTeam.calendar = TeamCalendar(snapshot: tcSnap)
             })
-            DBUtility.readFromDB(table: "teamStats", keys: teamID, completion: {(tsSnap: DataSnapshot) -> Void in
+            DBUtility.readFromDB(table: FirTable.teamStats, keys: teamID, completion: {(tsSnap: DataSnapshot) -> Void in
                 thisTeam.stats = TeamStats(snapshot: tsSnap)
             })
         }
@@ -68,8 +68,8 @@ struct Team: FirebaseCompatable {
              "userIds": IDUtility.idsToStrings(ids: userIDs)]
     }
     
-    func getTable() -> String {
-        return "teams"
+    func getTable() -> FirTable {
+        return FirTable.team
     }
     
     func getChildPath() -> String {

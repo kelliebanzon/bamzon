@@ -42,8 +42,8 @@ struct Location: FirebaseCompatable {
         country = payload["country"] as? String ?? "N/A"
     }
     
-    func getTable() -> String {
-        return "locations"
+    func getTable() -> FirTable {
+        return FirTable.location
     }
     
     func getChildPath() -> String {

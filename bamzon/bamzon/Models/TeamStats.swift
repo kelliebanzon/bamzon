@@ -45,8 +45,8 @@ struct TeamStats: FirebaseCompatable {
              "ties": ties]
     }
     
-    func getTable() -> String {
-        return "teamStats"
+    func getTable() -> FirTable {
+        return FirTable.teamStats
     }
     
     func getChildPath() -> String {

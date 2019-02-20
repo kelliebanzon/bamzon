@@ -62,8 +62,8 @@ struct User: FirebaseCompatable {
              "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
     }
     
-    func getTable() -> String {
-        return "users"
+    func getTable() -> FirTable {
+        return FirTable.user
     }
     
     func getChildPath() -> String {
