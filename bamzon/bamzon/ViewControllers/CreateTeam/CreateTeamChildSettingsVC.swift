@@ -20,17 +20,27 @@ class CreateTeamChildSettingsVC: UIViewController, DisplayableProtocol {
         // TODO: display
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: temporary identifier code. delete this once you write the real display func
+        let topLabel = pageLabel(withText: "SPORT?!\rWoah, that's impressive", withFrame: CGRect(x: 0, y: 30, width: 400, height: 120), withCenter: nil)
+        self.view.addSubview(topLabel)
         
-        // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 420))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 0
-        tempLabel.textColor = .white
-        tempLabel.text = "CreateTeamChildSettingsVC"
-        self.view.addSubview(tempLabel)
+        // Next Button
+        let nextButton = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x + 90, y: 450))
+        self.view.addSubview(nextButton)
+        
+        // Back Button
+        let backButton = createDefaultButton(withText: "Back", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(goBack), withCenter: CGPoint(x: view.center.x - 90, y: 450))
+        self.view.addSubview(backButton)
+    }
+    
+    // General function to validate fields
+    @objc func checkFields() {
+        let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateTeamChildLoadingVC") as? CreateTeamChildLoadingVC
+        
+        self.mockSegue(toVC: nextVC!)
+    }
+    
+    @objc func goBack() {
+        alert(withTitle: "⚠️ WORK IN PROGRESS ⚠️", withMessage: "Back button to be implemented...")
     }
     
     /*
