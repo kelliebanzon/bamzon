@@ -17,8 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+
+        //setViewsNav()
+        self.window?.rootViewController = TabBarController()
+        window?.makeKeyAndVisible()
         return true
+    }
+
+//    // TODO: do these functions belong in this file?
+    func setWizardNav() {
+        let nav = WizardNC()
+        self.window?.rootViewController = nav
+    }
+//
+    func setViewsNav() {
+        let nav = ViewNC()
+        nav.viewControllers = [TabBarController()]
+        self.window?.rootViewController = nav
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

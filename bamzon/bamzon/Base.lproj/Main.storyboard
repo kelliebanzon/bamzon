@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bWO-35-ca0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BcX-Ux-UQF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -244,10 +244,10 @@
             </objects>
             <point key="canvasLocation" x="7908" y="1602"/>
         </scene>
-        <!--AttendanceVC-->
+        <!--Attendance ParentVC-->
         <scene sceneID="mA4-4U-qmD">
             <objects>
-                <viewController storyboardIdentifier="AttendanceVC" id="t1w-yR-g7B" customClass="AttendanceVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttendanceVC" id="t1w-yR-g7B" customClass="AttendanceParentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pjc-pS-pDl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -259,10 +259,10 @@
             </objects>
             <point key="canvasLocation" x="5671" y="2329"/>
         </scene>
-        <!--Player AttendanceVC-->
+        <!--Attendance PlayerVC-->
         <scene sceneID="DNe-y1-9Vd">
             <objects>
-                <viewController storyboardIdentifier="PlayerAttendanceVC" id="ZVd-Sv-Wtu" customClass="PlayerAttendanceVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttendancePlayerVC" id="ZVd-Sv-Wtu" customClass="AttendancePlayerVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JF2-r5-BDX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,7 +272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZd-CX-Npc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6841" y="2328"/>
+            <point key="canvasLocation" x="9518" y="2328"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="jlX-fG-wV8">
@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOj-AY-OcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5031" y="-651"/>
+            <point key="canvasLocation" x="6198" y="-621"/>
         </scene>
         <!--Stats Child Other PlayerVC-->
         <scene sceneID="Wu7-nU-MH1">
@@ -332,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I51-gK-TVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5671" y="-652"/>
+            <point key="canvasLocation" x="6838" y="-622"/>
         </scene>
         <!--Stats Child TeamVC-->
         <scene sceneID="kvP-g6-Q8I">
@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sve-pU-2DO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6316" y="-652"/>
+            <point key="canvasLocation" x="7484" y="-622"/>
         </scene>
         <!--Stats ParentVC-->
         <scene sceneID="Vtg-RH-9ld">
@@ -364,10 +364,10 @@
             </objects>
             <point key="canvasLocation" x="5672" y="128"/>
         </scene>
-        <!--Stats Child PersonalVC-->
+        <!--Stats TabVC-->
         <scene sceneID="fB2-XT-lXC">
             <objects>
-                <viewController id="hbN-Ex-7cm" customClass="StatsChildPersonalVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatsTabVC" id="hbN-Ex-7cm" customClass="StatsTabVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FD7-0b-hAN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -378,6 +378,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e81-VT-9hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6841" y="127"/>
+        </scene>
+        <!--Attendance TabVC-->
+        <scene sceneID="A8Y-0n-1BO">
+            <objects>
+                <viewController storyboardIdentifier="AttendanceTabVC" id="XHg-6a-TU4" customClass="AttendanceTabVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VfO-gq-87O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YWT-dz-7cf"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tzu-fR-1LP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6838" y="2328"/>
+        </scene>
+        <!--Attendance Child PlayersVC-->
+        <scene sceneID="KU0-Gu-4hE">
+            <objects>
+                <viewController storyboardIdentifier="AttendanceChildPlayersVC" id="aea-Mc-zZU" customClass="AttendanceChildPlayersVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cik-mg-ke3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="uRP-TZ-zs2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VS9-Y0-bjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7783" y="2328"/>
+        </scene>
+        <!--Attendance Child PracticesVC-->
+        <scene sceneID="Qs4-X5-CT5">
+            <objects>
+                <viewController storyboardIdentifier="AttendanceChildPracticesVC" id="QL3-cf-jZr" customClass="AttendanceChildPracticesVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="reF-5Z-zHe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Kff-26-ye9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4i-2c-tsX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8524" y="2328"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ad1-Co-99T">

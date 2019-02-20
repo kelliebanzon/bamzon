@@ -20,7 +20,6 @@ class WizardNC: UINavigationController, DisplayableProtocol {
         // TODO: display
     }
     
-    
     /*
      // MARK: - Navigation
      

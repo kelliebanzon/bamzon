@@ -1,5 +1,5 @@
 //
-//  StatsVC.swift
+//  AttendanceParentVC.swift
 //  bamzon
 //
 //  Created by Krein, Kevin on 12/4/18.
@@ -9,17 +9,18 @@
 import Foundation
 import UIKit
 
-class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class AttendanceParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Stats"
+        self.title = "Attendance"
         display()
     }
     
     func display() {
+        // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
-
+        
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
@@ -31,7 +32,7 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
             ])
 
         // add child view controller view to container
-        let childVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StatsTabVC")
+        let childVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttendanceTabVC")
         addChildViewController(childVC)
         childVC.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(childVC.view)
@@ -45,17 +46,16 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
 
         childVC.didMove(toParentViewController: self)
     }
-
-    // TODO: these functions no longer belong in this file
+    
     func refresh() {
         // TODO: implement refresh
     }
     
     func edit() {
-        // TODO: implement edit stats
+        // TODO: implement edit
     }
     
-    func viewPlayerStats(playerID: CLong) {
-        // TODO: implement view player stats
+    func viewPlayer(playerID: CLong) {
+        // TODO: implement view player
     }
 }

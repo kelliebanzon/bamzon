@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewNC: UIViewController, DisplayableProtocol {
+class ViewNC: UINavigationController, DisplayableProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +17,10 @@ class ViewNC: UIViewController, DisplayableProtocol {
     }
     
     func display() {
-        // TODO: display
+        navigationBar.barStyle = .default
+        navigationBar.isTranslucent = true
+        navigationBar.barTintColor = UIColor(named: "TSNavy")
     }
-    
     
     /*
      // MARK: - Navigation

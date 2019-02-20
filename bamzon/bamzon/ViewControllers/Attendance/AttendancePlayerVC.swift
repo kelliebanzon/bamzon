@@ -1,5 +1,5 @@
 //
-//  PlayerAttendanceVC.swift
+//  AttendancePlayerVC.swift
 //  bamzon
 //
 //  Created by Kellie Banzon on 01/27/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayerAttendanceVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class AttendancePlayerVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()

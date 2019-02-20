@@ -1,22 +1,22 @@
 //
-//  StatsChildPersonalVC.swift
+//  AttendanceChildPracticesVC.swift
 //  bamzon
 //
-//  Created by Krein, Kevin on 12/4/18.
-//  Copyright © 2018 bamzon. All rights reserved.
+//  Created by Kellie Banzon on 02/19/19.
+//  Copyright © 2019 bamzon. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import XLPagerTabStrip
 
-class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
-    
+class AttendanceChildPracticesVC: UIViewController, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
     }
-    
+
     func display() {
         // TODO: implement display
         view.backgroundColor = UIColor(named: "TSOrange")
@@ -29,14 +29,14 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, Displayable
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 1
         tempLabel.textColor = .white
-        tempLabel.text = "StatsChildPersonalVC"
+        tempLabel.text = "AttendanceChildPracticesVC"
         self.view.addSubview(tempLabel)
     }
-    
+
     func refresh() {
         // TODO: implement refresh
     }
-    
+
     func edit() {
         // TODO: implement edit
     }
@@ -44,7 +44,7 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, Displayable
     // MARK: - Navigation
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "My Stats")
+        return IndicatorInfo(title: "Practices")
     }
 
     /*

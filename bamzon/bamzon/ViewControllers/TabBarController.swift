@@ -19,19 +19,17 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
         view.backgroundColor = UIColor(named: "TSTeal")
         
         //tabBar.barStyle = UIBarStyle(rawValue: 1) ?? UIBarStyle(rawValue: 0)!
-        tabBar.barStyle = .black
+        tabBar.barStyle = .default
         tabBar.isTranslucent = true
-        tabBar.barTintColor = UIColor(named: "TSNavy") ?? UIColor.black
+        tabBar.barTintColor = UIColor(named: "TSNavy")
         tabBar.tintColor = UIColor(named: "TSYellow")
         tabBar.unselectedItemTintColor = UIColor(named: "BZNDarkGray")
         
-        //let attendanceVC = AttendanceVC()
-        //attendanceVC.tabBarItem = UITabBarItem(title: <#T##String?#>, image: <#T##UIImage?#>, selectedImage: <#T##UIImage?#>)
         let rosterVC = RosterVC()
 //        rosterVC.tabBarItem = UITabBarItem(title: "Roster", image: UIImage(named: "home"), selectedImage: UIImage(named: "home-TSYellow"))
         rosterVC.tabBarItem = UITabBarItem(title: "Roster", image: UIImage(named: "clipboard"), tag: 0)
 
-        let attendanceVC = AttendanceVC()
+        let attendanceVC = AttendanceParentVC()
 //        attendanceVC.tabBarItem = UITabBarItem(title: "Attendance", image: UIImage(named: "home-TSNavy"), selectedImage: UIImage(named: "home-TSYellow"))
         attendanceVC.tabBarItem = UITabBarItem(title: "Attendance", image: UIImage(named: "checkbox"), tag: 1)
 
