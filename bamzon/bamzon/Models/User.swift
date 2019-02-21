@@ -39,7 +39,7 @@ struct User: FirebaseCompatable {
         let payload = snapshot?.value as? [String: AnyObject] ?? [:]
         userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
         firstName = payload["firstName"] as? String ?? "N/A"
-        lastName = payload["lastNme"] as? String ?? "N/A"
+        lastName = payload["lastName"] as? String ?? "N/A"
         nickname = payload["nickname"] as? String ?? "N/A"
         phone = payload["phone"] as? String ?? "N/A"
         email = payload["email"] as? String ?? "N/A"
