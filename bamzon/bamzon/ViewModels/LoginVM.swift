@@ -14,14 +14,8 @@ import Firebase
 
 class LoginVM {
     
-    var parentVC: UIViewController
-    
-    init(parentVC: UIViewController) {
-        self.parentVC = parentVC
-    }
-    
-    func checkLogin(email: String, password: String) -> String? {
-        var toReturn : String?
+    static func checkLogin(email: String, password: String) -> String? {
+        var toReturn: String?
         //TODO: fix this so it isn't always false
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {

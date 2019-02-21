@@ -17,7 +17,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginVM = LoginVM(parentVC: self)
         // Do any additional setup after loading the view, typically from a nib.
         display()
     }
@@ -183,7 +182,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     }
 
     @objc func checkLogin() {
-        if let validLogin = loginVM?.checkLogin(email: email?.text ?? "", password: password?.text ?? "") {
+        if let validLogin = LoginVM.checkLogin(email: email?.text ?? "", password: password?.text ?? "") {
                 let alert = UIAlertController(title: "Invalid Login", message: validLogin, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "retry", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)

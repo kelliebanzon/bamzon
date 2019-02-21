@@ -119,6 +119,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         print("\t  Org Name: " + (orgName!.text)!)
         print("\t Team Name: " + teamName!.text!)
         print("\tSport Type: " + sportType!.text!)
+        CreateTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
         
         self.mockSegue(toVC: nextVC!)
     }

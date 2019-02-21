@@ -39,6 +39,12 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         self.view.addSubview(verify)
     }
     
+    @objc func unwindToPrevious() {
+        if let prevVC = storyboard!.instantiateViewController(withIdentifier: "CreateChild") as? CreateAccountChildSuccessVC {
+            present(prevVC, animated: true, completion: nil)
+        }
+    }
+    
     // Function call to VM to verify code
     @objc func verifyCode() {
         if code?.text == "123456" {

@@ -7,12 +7,27 @@
 //
 
 import Foundation
+import Firebase
 
 class CalendarVM {
-    func refresh() {
-        //TODO: implement refresh
+    let teamID: ID
+    var calendar: TeamCalendar
+    
+    init(teamID: ID, calendar: TeamCalendar) {
+        self.teamID = teamID
+        self.calendar = calendar;
     }
     
+    
+    func refresh() {
+        DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
+            for event in eventSnap {
+                self.calendar.events.append(Event(snapshot: event))}
+            }
+        )
+    }
+
+    //Uhhhhhh
     func updateEvents(events: [Event]) {
         //TODO: implement update Events
     }

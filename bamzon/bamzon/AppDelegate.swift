@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         //setViewsNav()
-        self.window?.rootViewController = TabBarController()
-        window?.makeKeyAndVisible()
+        //self.window?.rootViewController = TabBarController()
+        //window?.makeKeyAndVisible()
 
         return true
     }

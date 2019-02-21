@@ -22,11 +22,11 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     var firstName: UITextField?
     var lastName: UITextField?
     var email: UITextField?
-    var createAccountVM: CreateAccountVM?
+    var user: User?
+    var nextVC: CreateAccountChildPromptCodeVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createAccountVM = CreateAccountVM.init(parentVC: self)
         // Do any additional setup after loading the view.
         display()
         self.view.addSubview(scrollView)
@@ -107,13 +107,12 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
             initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
             if Auth.auth().currentUser != nil {
                 // TODO: check how this changes when embedded in a nav controller
-                if let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC {
+                self.nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC
+                if nextVC != nil {
                     if firstName != nil && lastName != nil && email != nil {
-                        nextVC.name = (firstName?.text)! + " " + (lastName?.text)!
-                        nextVC.email = (email?.text)!
-                        createAccountVM?.parentVC = nextVC
-                        
-                        self.mockSegue(toVC: nextVC)
+                        self.nextVC!.name = (firstName?.text)! + " " + (lastName?.text)!
+                        self.nextVC!.email = (email?.text)!
+                        self.mockSegue(toVC: nextVC!)
                     }
                 }
             } else {
@@ -131,13 +130,12 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         //TODO: place for a password. change variable in create account
         // to view or modify current users go here:
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
-        if createAccountVM != nil {
-            createAccountVM!.createAccount(email: email, password: "password")
-        } else {
-            let alert = UIAlertController(title: "Error", message: "Error, try again.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)        }
-        return
+        CreateAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: { alert in if let realAlert = alert { print("display")
+            self.present(realAlert, animated: true, completion: nil)
+            if self.nextVC != nil {
+                self.nextVC!.present(realAlert, animated: true, completion: nil)
+            }
+            }})
     }
     
     // Email validation function

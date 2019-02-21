@@ -68,6 +68,27 @@ class DBUtility {
         })
     }
     
+    //TODO: this function is identical to above except for one thing.
+    // ie. duplicate code, not sure how to fix but it should be
+    // snapshot was a problem
+    static func readAllChildrenFromDB(table: FirTable, keys: ID..., completion: @escaping ([DataSnapshot]) -> Void) {
+        var keyArr = [String]()
+        for key in keys {
+            keyArr.append(key.asString())
+        }
+        
+        let path = keyArr.joined(separator: "/")
+        
+        print("reading from \(table)/\(path)")
+        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                completion(snapshot.children.allObjects as? [DataSnapshot] ?? [snapshot])
+            } else {
+                print("Firebase Query Failed! No result found for key(s): \(path) in table: \(table.rawValue)")
+            }
+        })
+    }
+    
     static func deleteFromDB(table: FirTable, keys: ID...) {
         var keyArr = [String]()
         for key in keys {

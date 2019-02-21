@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class ProfileVM {
+    var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
+    func editProfilePic() {
+        
+    }
+    
+}
