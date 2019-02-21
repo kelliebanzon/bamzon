@@ -11,7 +11,7 @@ import UIKit
 
 class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
-    let requestArray: NSArray = ["Request1", "Request2", "Request3"]
+    let requestArray: NSArray = ["Request1", "Request2", "Request3", "Request4", "Request5", "Request6", "Request7", "Request8", "Request9"]
     private var myTableView: UITableView!
     private let cellId = "requestCell"
     
@@ -69,7 +69,7 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 85
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -112,8 +112,62 @@ class RequestTableViewCell: UITableViewCell {
         label.textColor = .white
         label.textAlignment = .left
         label.text = "Team Location"
+        label.minimumScaleFactor = 0.25
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    //acceptbutton
+    let accept: UIButton = {
+        let button = UIButton()
+        button.setTitle("Accept", for: .normal)
+        button.backgroundColor = UIColor(named: "TSYellow")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        button.layer.masksToBounds = false
+        button.layer.shadowRadius = 1.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 12)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let reject: UIButton = {
+        let button = UIButton()
+        button.setTitle("Reject", for: .normal)
+        button.backgroundColor = UIColor(named: "TSYellow")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        button.layer.masksToBounds = false
+        button.layer.shadowRadius = 1.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 12)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let block: UIButton = {
+        let button = UIButton()
+        button.setTitle("Block", for: .normal)
+        button.backgroundColor = UIColor(named: "TSYellow")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        button.layer.masksToBounds = false
+        button.layer.shadowRadius = 1.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: 12)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -129,6 +183,9 @@ class RequestTableViewCell: UITableViewCell {
     func addSubviewsAndLayout() {
         contentView.addSubview(userName)
         contentView.addSubview(teamName)
+        contentView.addSubview(accept)
+        contentView.addSubview(reject)
+        contentView.addSubview(block)
         setupAutoLayout()
     }
     
@@ -137,13 +194,42 @@ class RequestTableViewCell: UITableViewCell {
         //name constraints
         let nameLeftConstraint = userName.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
         let nameTopConstraint = userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15)
-        let nameWidthConstraint = userName.widthAnchor.constraint(equalToConstant: 150)
+        let nameWidthConstraint = userName.widthAnchor.constraint(equalToConstant: 130)
         self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
         
         //team name constraints
         let teamLeftConstraint = teamName.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
         let teamTopConstraint = teamName.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 5)
-        self.contentView.addConstraints([teamLeftConstraint, teamTopConstraint])
+        let teamWidthConstraint = teamName.widthAnchor.constraint(equalToConstant: 130)
+        self.contentView.addConstraints([teamLeftConstraint, teamTopConstraint, teamWidthConstraint])
         
+        //block constraints
+        let blockRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: block.trailingAnchor, constant: 10)
+        let blockTopConstraint = block.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        let blockWidthConstraint = block.widthAnchor.constraint(equalToConstant: 50)
+        self.contentView.addConstraints([blockRightConstraint, blockTopConstraint, blockWidthConstraint])//, teamWidthConstraint])
+    
+        //accept constraints
+        let acceptLeftConstraint = accept.leadingAnchor.constraint(greaterThanOrEqualTo: userName.trailingAnchor, constant: 10)
+        let acceptTopConstraint = accept.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        let acceptWidthConstraint = accept.widthAnchor.constraint(equalToConstant: 50)
+        self.contentView.addConstraints([acceptLeftConstraint, acceptTopConstraint, acceptWidthConstraint])
+            
+        //reject constraints
+        let rejectRightConstraint = reject.trailingAnchor.constraint(equalTo: block.leadingAnchor, constant: -5)
+        let rejectTopConstraint = reject.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        let rejectLeftConstraint = reject.leadingAnchor.constraint(equalTo: accept.trailingAnchor, constant: 5)
+        let rejectWidthConstraint = reject.widthAnchor.constraint(equalToConstant: 50)
+        self.contentView.addConstraints([rejectRightConstraint, rejectTopConstraint, rejectLeftConstraint, rejectWidthConstraint])
+        
+    }
+    // Highlight the button upon touchDown
+    @objc func highlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellowDark")
+    }
+    
+    // Unhighlight the button upon touchDown
+    @objc func unhighlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellow")
     }
 }
