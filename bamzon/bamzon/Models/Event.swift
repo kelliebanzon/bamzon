@@ -18,11 +18,11 @@ struct Event: FirebaseCompatable {
     var rsvps: RSVP?
     var tags: [String]?
     var media: [String: Media]?
-    var links: [String: String] // TODO: should this be a url or a string?
+    var links: [String: String]? // TODO: should this be a url or a string?
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: RSVP?, tags: [String]?, media: [String: Media]?, links: [String: String]) {
+    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: RSVP?, tags: [String]?, media: [String: Media]?, links: [String: String]?) {
         self.name = name
         self.location = location
         self.contactUserIDs = contactUserIDs
@@ -46,7 +46,7 @@ struct Event: FirebaseCompatable {
              "date": date ?? "",
              "tags": tags ?? [],
              "media": media ?? [:],
-             "links": links]
+             "links": links ?? [:]]
     }
     
     func getTable() -> FirTable {
@@ -54,7 +54,7 @@ struct Event: FirebaseCompatable {
     }
     
     func getChildPath() -> String {
-        return "\(teamID.asString())/\(eventID.asString())"
+        return "\(eventID.asString())"
     }
     
     init(snapshot: DataSnapshot?) {

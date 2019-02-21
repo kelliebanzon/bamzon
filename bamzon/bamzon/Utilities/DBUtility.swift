@@ -20,7 +20,36 @@ class DBUtility {
     fbDatabase.child(objToWrite.getTable().rawValue).child(objToWrite.getChildPath()).setValue(objToWrite.formatForDB())
     }
     
-    // Event, PlayerStats, and Permissions requre two IDs to index
+    /*  Fetches a model object from the database
+    *
+    *   table: FirTable => The name of the table you're trying to get an item from.
+    *       Indexed by class name, eg. FirTable.joinRequest
+    *   keys: the ID or IDs of the item you're looking for.
+    *       All classes require a single ID, except for playerStats and playerPerms
+    *   completion: a closure that takes a DataSnapshot and returns void. Usually used
+    *       to assign an item to a variable. Returns when the asynchronous fetch is done.
+    *
+    *   Example:
+    *
+    *   readFromDB(FirTable.team, ID(type: IDType.team, num: 404), completion  {(snap:
+    *       DataSnapshot) -> Void in
+    *       var team = Team(snapshot: snap)})
+    *
+    *   keys:
+    *       Event: event ID
+    *       JoinRequest: join request ID
+    *       Location: location ID
+    *       Media: media ID
+    *       Organization: org ID
+    *       PlayerPerms: user ID, team ID
+    *       PlayerStats: team ID, user ID
+    *       RSVP: event ID
+    *       Team: team ID
+    *       TeamCalendar: team ID
+    *       TeamStats: team ID
+    *       User: user ID
+    */
+ 
     static func readFromDB(table: FirTable, keys: ID..., completion: @escaping (DataSnapshot) -> Void) {
         var keyArr = [String]()
         for key in keys {

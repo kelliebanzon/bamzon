@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 struct Location: FirebaseCompatable {
+    var name: String
     var number: String
     var street: String
     var street2: String?
@@ -19,8 +20,9 @@ struct Location: FirebaseCompatable {
     var country: String?
     var locID: ID
 
-    init(locID: ID, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?) {
+    init(locID: ID, name: String, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?) {
         self.locID = locID
+        self.name = name
         self.number = number
         self.street = street
         self.street2 = street2
@@ -34,6 +36,7 @@ struct Location: FirebaseCompatable {
         let payload = snapshot?.value as? [String: AnyObject] ?? [:]
         locID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
         number = payload["number"] as? String ?? "N/A"
+        name = payload["name"] as? String ?? "N/A"
         street = payload["street"] as? String ?? "N/A"
         street2 = payload["street2"] as? String ?? nil
         city = payload["city"] as? String ?? "N/A"
@@ -53,6 +56,7 @@ struct Location: FirebaseCompatable {
     func formatForDB() -> [String: Any] {
         return
             ["city": city,
+             "name": name,
              "country": country ?? "",
              "street": street,
              "street2": street2 ?? "",
