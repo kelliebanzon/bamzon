@@ -33,6 +33,7 @@ struct Location: FirebaseCompatable {
     }
 
     init(locID: ID, name: String, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?) {
+        self.locID = locID
         self.name = name
         self.number = number
         self.street = street

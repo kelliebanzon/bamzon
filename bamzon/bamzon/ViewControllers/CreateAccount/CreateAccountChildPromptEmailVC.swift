@@ -45,7 +45,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     func setupScrollView() {
         // Use "nav.navigationBar.bottomAnchor" after navigation bar is placed
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant:  70).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true

@@ -10,9 +10,7 @@ import UIKit
 
 class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
-//    let heyerPool = Location(locID: IDUtility.generateLocationID(), number: String(1), street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93410, country: "United States")
-//    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: heyerPool, contactUserIDs: nil, description: "Conditioning", date: "2019/02/21", rsvps: nil, tags: nil, media: nil, links: ["link name": "link addr"])]
-    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), number: String(1), street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93410, country: "United States"), contactUserIDs: nil, description: "Conditioning", date: "2019/02/21", rsvps: nil, tags: nil, media: nil, links: ["link name": "link addr"])]
+    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), name: "Heyer Pool", number: "1", street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93405, country: "United States"), contactUserIDs: nil, description: "Dry land", date: "Tomorrow", rsvps: nil, tags: nil, media: nil, links: nil)]
 
     let profilePictureImageView = UIImageView()
     let nameLabel = UILabel()
