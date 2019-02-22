@@ -139,6 +139,36 @@
             </objects>
             <point key="canvasLocation" x="38" y="-170"/>
         </scene>
+        <!--Join Team Child Select TeamVC-->
+        <scene sceneID="0hW-eg-X36">
+            <objects>
+                <viewController storyboardIdentifier="JoinTeamChildSelectTeamVC" id="6wl-1x-RKw" customClass="JoinTeamChildSelectTeamVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nvh-4x-H6N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="z6s-SP-4Jq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aFa-yz-zux" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004" y="-170"/>
+        </scene>
+        <!--Join Team Child Request SentVC-->
+        <scene sceneID="6Tm-CC-Prd">
+            <objects>
+                <viewController storyboardIdentifier="JoinTeamChildRequestSentVC" id="x6A-Fx-FRf" customClass="JoinTeamChildRequestSentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BBO-3r-ufm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="arg-BF-IKn"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbh-7h-Tpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1695" y="-170"/>
+        </scene>
         <!--Create Team ParentVC-->
         <scene sceneID="JkX-KN-ypy">
             <objects>
@@ -466,10 +496,10 @@
             </objects>
             <point key="canvasLocation" x="2743" y="1602"/>
         </scene>
-        <!--Join TeamVC-->
+        <!--Join Team ParentVC-->
         <scene sceneID="Kjp-nB-Ufz">
             <objects>
-                <viewController storyboardIdentifier="JoinTeamVC" id="hSn-xl-4n6" customClass="JoinTeamVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JoinTeamParentVC" id="hSn-xl-4n6" customClass="JoinTeamParentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e60-bi-YGM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
