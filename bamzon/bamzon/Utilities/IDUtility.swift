@@ -30,6 +30,16 @@ class IDUtility {
         // TODO: implement generateOrgID
         return ID(type: IdType.org.rawValue, num: 0)
     }
+
+    static func generateEventID() -> ID {
+        // TODO: implement generateEventID
+        return ID(type: IdType.event.rawValue, num: 0)
+    }
+
+    static func generateLocationID() -> ID {
+        // TODO: implement generateLocationID
+        return ID(type: IdType.location.rawValue, num: 0)
+    }
     
     static func generateGenericID() -> ID {
         return ID(type: IdType.org.rawValue, num: 0)

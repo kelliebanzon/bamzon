@@ -20,8 +20,19 @@ struct Location: FirebaseCompatable {
     var country: String?
     var locID: ID
 
+    var description: String {
+        var acc = "\(number) \(street)"
+        if let st2 = street2 {
+            acc += "\n\(st2)"
+        }
+        acc += "\n\(city), \(state) \(zip)"
+        if let ctry = country {
+            acc += "\n\(ctry)"
+        }
+        return acc
+    }
+
     init(locID: ID, name: String, number: String, street: String, street2: String?, city: String, state: String, zip: UInt, country: String?) {
-        self.locID = locID
         self.name = name
         self.number = number
         self.street = street
