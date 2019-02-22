@@ -40,6 +40,9 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         
         orgName!.addTarget(self, action: #selector(selectOrg), for: UIControlEvents.allTouchEvents)
         
+        orgName!.inputView = UIView() // Hide keyboard
+        orgName!.tintColor = UIColor.clear
+        
         // Team Name Label
         teamName = createDefaultTextField(withText: "Team Name", withFrame: CGRect(x: 20, y: 300, width: 340, height: 35), withCenter: nil, withPadding: nil)
         self.view.addSubview(teamName!)
@@ -49,6 +52,9 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         self.view.addSubview(sportType!)
         
         sportType!.addTarget(self, action: #selector(selectTeam), for: UIControlEvents.allTouchEvents)
+        
+        sportType!.inputView = UIView() // Hide keyboard
+        sportType!.tintColor = UIColor.clear
         
         // Next Button
         let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
@@ -105,6 +111,10 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
             sportType!.text? = sport
             sportTableView.removeFromSuperview()
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func promptTeamName() {
