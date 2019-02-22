@@ -56,7 +56,7 @@ struct User: FirebaseCompatable {
              "nickname": nickname ?? "",
              "phone": phone ?? "",
              "email": email ?? "",
-             "schoolYear": schoolYear ?? "",
+             "schoolYear": schoolYear?.rawValue ?? "",
              "bio": bio ?? "",
              "imageURL": imageURL ?? "",
              "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
