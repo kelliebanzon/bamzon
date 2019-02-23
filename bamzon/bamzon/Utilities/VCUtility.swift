@@ -25,7 +25,7 @@ extension UIViewController {
         self.present(toVC, animated: true, completion: nil)
     }
 
-    @available(*, deprecated, message: "VCs will be named in the Nav Controller")
+    @available(*, deprecated, message: "VCs will be named in the Nav Controller. If you need a header label, use createDefaultHeader1Label()")
     func pageLabel(withText: String, withFrame: CGRect?, withCenter: CGPoint?) -> UILabel {
         let pageLabel: UILabel
         if let frame = withFrame {
