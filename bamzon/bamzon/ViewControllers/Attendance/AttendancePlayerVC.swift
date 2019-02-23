@@ -12,8 +12,11 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
 
     let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), name: "Heyer Pool", number: "1", street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93405, country: "United States"), contactUserIDs: nil, description: "Dry land", date: "Tomorrow", rsvps: nil, tags: nil, media: nil, links: nil)]
 
-    let profilePictureImageView = UIImageView()
-    let nameLabel = UILabel()
+    // TODO: connect to database
+    var player: User = User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
+
+    var profilePictureImageView = UIImageView()
+    var nameLabel = UILabel()
     let pracStatsLabel = UILabel()
     let attTable = UITableView()
 
@@ -27,27 +30,16 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
 
         display()
-        attTable.register(AttendancePlayerTVCell.self, forCellReuseIdentifier: "attCell")
+        attTable.register(AttendancePlayerTableViewCell.self, forCellReuseIdentifier: "attCell")
     }
     
     func display() {
         self.view.backgroundColor = UIColor(named: "TSTeal")
 
-        profilePictureImageView.contentMode = .scaleAspectFill
-        profilePictureImageView.clipsToBounds = true
-        profilePictureImageView.image = UIImage(named: "BZN-Square-Logo")
-        profilePictureImageView.roundCorners()
-        //profilePictureImageView.layer.cornerRadius = 15.0
-        //profilePictureImageView.setContentCompressionResistancePriority(UILayoutPriority(750), for: .horizontal)
+        profilePictureImageView = createProfilePictureImageView(imageName: player.imageURL)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
-        nameLabel.numberOfLines = 3
-        nameLabel.textColor = .white
-        nameLabel.textAlignment = .left
-        nameLabel.text = "Jake Peralta"
-        nameLabel.minimumScaleFactor = 0.8
-        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel = createDefaultHeader1Label(text: player.getFullName(), numLines: 3)
         self.view.addSubview(nameLabel)
 
         pracStatsLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
@@ -61,10 +53,10 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         attTable.dataSource = self
         self.view.addSubview(attTable)
 
-        configureConstraints()
+        setupAutoLayout()
     }
 
-    func configureConstraints() {
+    func setupAutoLayout() {
         // TODO: clean up
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
@@ -100,7 +92,7 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "attCell", for: indexPath) as? AttendancePlayerTVCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "attCell", for: indexPath) as? AttendancePlayerTableViewCell {
             let event = events[indexPath.row]
             cell.nameLabel.text = event.name
             cell.dateLabel.text = event.date?.description

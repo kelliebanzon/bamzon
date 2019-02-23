@@ -30,29 +30,19 @@ class AttendancePlayerTableViewCell: UITableViewCell, DisplayableProtocol {
     }
 
     func display() {
-        nameLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 12)
-        nameLabel.textColor = .black
-        nameLabel.numberOfLines = 3
-        nameLabel.minimumScaleFactor = 0.8
-        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel = createTableLabel()
         addSubview(nameLabel)
 
-        dateLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 12)
-        dateLabel.numberOfLines = 3
-        dateLabel.minimumScaleFactor = 0.8
-        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel = createTableLabel()
         addSubview(dateLabel)
 
-        locationLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 12)
-        locationLabel.numberOfLines = 3
-        locationLabel.minimumScaleFactor = 0.8
-        locationLabel.adjustsFontSizeToFitWidth = true
+        locationLabel = createTableLabel()
         addSubview(locationLabel)
 
-        configureConstraints()
+        setupAutoLayout()
     }
 
-    func configureConstraints() {
+    func setupAutoLayout() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         let nameLabelVert = nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         let nameLabelLeading = nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)

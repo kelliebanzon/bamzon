@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
+let header1Font = UIFont(name: "HelveticaNeue-Bold", size: 30)
+let header2Font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+let header3Font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+let bodyFont = UIFont(name: "HelveticaNeue-Medium", size: 12)
+
 extension UIViewController {
-    
+
     func mockSegue(toIdentifier: String) {
         let nextVC = self.storyboard!.instantiateViewController(withIdentifier: toIdentifier)
         self.present(nextVC, animated: true, completion: nil)
@@ -19,7 +24,8 @@ extension UIViewController {
     func mockSegue(toVC: UIViewController) {
         self.present(toVC, animated: true, completion: nil)
     }
-    
+
+    @available(*, deprecated, message: "VCs will be named in the Nav Controller")
     func pageLabel(withText: String, withFrame: CGRect?, withCenter: CGPoint?) -> UILabel {
         let pageLabel: UILabel
         if let frame = withFrame {
@@ -73,6 +79,22 @@ extension UIViewController {
         button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
         return button
     }
+
+    func createDefaultLabel(text: String, fontSize: CGFloat = 15, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: fontSize)
+        label.numberOfLines = numLines
+        label.textColor = fontColor
+        label.textAlignment = fontAlignment
+        label.text = text
+        label.minimumScaleFactor = 0.8
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }
+
+    func createDefaultHeader1Label(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        return createDefaultLabel(text: text, fontSize: 30, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+    }
     
     func createDefaultTextField(withText: String, withFrame: CGRect?, withCenter: CGPoint?, withPadding: CGRect?) -> UITextField {
         let textField: UITextField
@@ -109,7 +131,7 @@ extension UIViewController {
         return textField
     }
     
-    func defaultTextButton(withText: String, withAction: Selector?, withFrame: CGRect?, withCenter: CGPoint?, withNumLines: Int?) -> UIButton {
+    func createDefaultTextButton(withText: String, withAction: Selector?, withFrame: CGRect?, withCenter: CGPoint?, withNumLines: Int?) -> UIButton {
         let textButton: UIButton
         
         if let frame = withFrame {
@@ -143,6 +165,15 @@ extension UIViewController {
         textButton.setAttributedTitle(attributedString, for: .normal)
         
         return textButton
+    }
+
+    func createProfilePictureImageView(imageName: String?) -> UIImageView {
+        let profilePictureImageView = UIImageView()
+        profilePictureImageView.contentMode = .scaleAspectFill
+        profilePictureImageView.clipsToBounds = true
+        profilePictureImageView.image = UIImage(named: imageName ?? "default-profile-picture")
+        //profilePictureImageView.roundCorners()
+        return profilePictureImageView
     }
     
     func createTextFieldBar(withRect: CGRect) -> CAShapeLayer {

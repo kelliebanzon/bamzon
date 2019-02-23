@@ -89,7 +89,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         scrollView.addSubview(button)
         
         // Existing Account Button
-        let existingAccount = defaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
+        let existingAccount = createDefaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
         scrollView.addSubview(existingAccount)
     }
     

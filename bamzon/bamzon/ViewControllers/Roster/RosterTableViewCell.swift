@@ -25,7 +25,7 @@ class RosterTableViewCell: UITableViewCell {
             let pic = UIImageView()
             pic.contentMode = .scaleAspectFill
             pic.clipsToBounds = true
-            pic.image = UIImage(named: "BZN-Square-Logo")
+            pic.image = UIImage(named: "default-profile-picture")
             pic.layer.cornerRadius = 35
             pic.translatesAutoresizingMaskIntoConstraints = false
             return pic

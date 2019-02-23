@@ -21,7 +21,7 @@ struct User: FirebaseCompatable {
     var imageURL: String? // TODO: should this be a URL?
     var teamIDs: [ID]?
     
-    init(userID: ID, firstName: String, lastName: String, nickname: String, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teamIDs: [ID]?) {
+    init(userID: ID, firstName: String, lastName: String, nickname: String?, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teamIDs: [ID]?) {
         self.userID = userID
         self.firstName = firstName
         self.lastName = lastName
@@ -68,6 +68,10 @@ struct User: FirebaseCompatable {
     
     func getChildPath() -> String {
         return userID.asString()
+    }
+
+    func getFullName() -> String {
+        return (nickname ?? firstName) + " " + lastName
     }
     
 }
