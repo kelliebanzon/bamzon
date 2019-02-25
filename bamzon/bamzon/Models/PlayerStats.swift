@@ -20,9 +20,8 @@ struct PlayerStats: FirebaseCompatable {
         self.teamID = teamID
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        userID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        userID = IDUtility.generateIDFromString(idString: key)
         teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
         fields = payload["fields"] as? [String: Any] ?? [:]
     }

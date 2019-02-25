@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct PlayerPerms: FirebaseCompatable {
+struct PlayerPerms: FirebaseCompatable, Equatable {
     var teamID: ID
     var userID: ID
     var permissions: [Permissions]
@@ -20,9 +20,8 @@ struct PlayerPerms: FirebaseCompatable {
         self.permissions = permissions
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        teamID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        teamID = IDUtility.generateIDFromString(idString: key)
         userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
         permissions = stringsToPerms(strs: payload["permissions"] as? [String] ?? [])
     }

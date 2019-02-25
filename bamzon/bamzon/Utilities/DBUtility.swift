@@ -50,7 +50,7 @@ class DBUtility {
     *       User: user ID
     */
  
-    static func readFromDB(table: FirTable, keys: ID..., completion: @escaping (DataSnapshot) -> Void) {
+    static func readFromDB(table: FirTable, keys: ID..., completion: @escaping (String, [String: AnyObject]) -> Void) {
         var keyArr = [String]()
         for key in keys {
             keyArr.append(key.asString())
@@ -61,7 +61,8 @@ class DBUtility {
         print("reading from \(table)/\(path)")
         fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
-                completion(snapshot)
+                let payload = snapshot.value as? [String: AnyObject] ?? [:]
+                completion(snapshot.key as String, payload)
             } else {
                 print("Firebase Query Failed! No result found for key(s): \(path) in table: \(table.rawValue)")
             }

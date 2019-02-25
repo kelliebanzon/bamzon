@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Organization: FirebaseCompatable {
+struct Organization: FirebaseCompatable, Equatable {
     var orgID: ID
     var name: String
     var location: Location?
@@ -22,9 +22,8 @@ struct Organization: FirebaseCompatable {
         self.teamIDs = teamIDs
     }
     
-    init (snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        orgID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init (key: String, payload: [String: AnyObject]) {
+        orgID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         location = nil
         teamIDs = IDUtility.stringsToIds(strs: payload["teams"] as? [String] ?? [])
@@ -36,8 +35,8 @@ struct Organization: FirebaseCompatable {
             var thisOrg = self
             print("fetching location of id: \(locIDString)")
             let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
-                thisOrg.location = Location(snapshot: locSnap)
+            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                thisOrg.location = Location(key: key, payload: payload)
                 print("org location worked. org: \(thisOrg)")
             })
         } else {

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Location: FirebaseCompatable {
+struct Location: FirebaseCompatable, Equatable {
     var name: String
     var number: String
     var street: String
@@ -44,9 +44,8 @@ struct Location: FirebaseCompatable {
         self.country = country
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        locID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        locID = IDUtility.generateIDFromString(idString: key)
         number = payload["number"] as? String ?? "N/A"
         name = payload["name"] as? String ?? "N/A"
         street = payload["street"] as? String ?? "N/A"

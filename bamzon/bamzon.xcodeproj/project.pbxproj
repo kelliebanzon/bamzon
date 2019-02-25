@@ -96,8 +96,10 @@
 		ABF67C43220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C42220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift */; };
 		ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */; };
 		ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */; };
+		C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7157E472224870E00246EA0 /* bamzonModelTests.swift */; };
 		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
 		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
+		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,11 +117,19 @@
 			remoteGlobalIDString = ABEFC0FD219E51B400F23E42;
 			remoteInfo = bamzon;
 		};
+		C7157E4A2224870E00246EA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABEFC0F6219E51B400F23E42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABEFC0FD219E51B400F23E42;
+			remoteInfo = bamzon;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.release.xcconfig"; sourceTree = "<group>"; };
 		21331CC28C02F1D861EB4BF6 /* Pods-bamzonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		41EA1648125FE29C92D37266 /* Pods-bamzonModelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonModelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonModelTests/Pods-bamzonModelTests.release.xcconfig"; sourceTree = "<group>"; };
 		42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCompatable.swift; sourceTree = "<group>"; };
@@ -129,6 +139,8 @@
 		6E6222DF221F7AD3000A2B94 /* CellUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUtility.swift; sourceTree = "<group>"; };
 		6E6222E1221F7E36000A2B94 /* RosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTableViewCell.swift; sourceTree = "<group>"; };
 		6E6222E3221F85F0000A2B94 /* SelectTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamTableViewCell.swift; sourceTree = "<group>"; };
+		73EA12AD69A2B2A259DF53B1 /* Pods-bamzonModelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonModelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonModelTests/Pods-bamzonModelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A81439D221B71E57000E287A /* JoinTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinTeamVM.swift; sourceTree = "<group>"; };
 		A81439D321B71E57000E287A /* CreateTeamVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTeamVM.swift; sourceTree = "<group>"; };
 		A81439D421B71E57000E287A /* LoginVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
@@ -214,6 +226,9 @@
 		ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildPromptCodeVC.swift; sourceTree = "<group>"; };
 		ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildSuccessVC.swift; sourceTree = "<group>"; };
 		B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7157E452224870E00246EA0 /* bamzonModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7157E472224870E00246EA0 /* bamzonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonModelTests.swift; sourceTree = "<group>"; };
+		C7157E492224870E00246EA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
 		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +258,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7157E422224870E00246EA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -253,6 +276,8 @@
 				1504975D98B0F21DA375714B /* Pods-bamzon.release.xcconfig */,
 				21331CC28C02F1D861EB4BF6 /* Pods-bamzonTests.debug.xcconfig */,
 				42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */,
+				73EA12AD69A2B2A259DF53B1 /* Pods-bamzonModelTests.debug.xcconfig */,
+				41EA1648125FE29C92D37266 /* Pods-bamzonModelTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -280,6 +305,7 @@
 			children = (
 				B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */,
 				5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */,
+				92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -461,6 +487,7 @@
 				ABEFC100219E51B400F23E42 /* bamzon */,
 				ABEF640021FBBDE800716ACB /* bamzonUITests */,
 				ABEF640E21FBBF9700716ACB /* bamzonTests */,
+				C7157E462224870E00246EA0 /* bamzonModelTests */,
 				ABEFC0FF219E51B400F23E42 /* Products */,
 				4DEC61E063A958D2A72A0A0C /* Pods */,
 				8A48D3C6EA427E763D8240E7 /* Frameworks */,
@@ -473,6 +500,7 @@
 				ABEFC0FE219E51B400F23E42 /* bamzon.app */,
 				ABEF63FF21FBBDE800716ACB /* bamzonUITests.xctest */,
 				ABEF640D21FBBF9700716ACB /* bamzonTests.xctest */,
+				C7157E452224870E00246EA0 /* bamzonModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -493,6 +521,15 @@
 				ABEFC10D219E51B900F23E42 /* Info.plist */,
 			);
 			path = bamzon;
+			sourceTree = "<group>";
+		};
+		C7157E462224870E00246EA0 /* bamzonModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				C7157E472224870E00246EA0 /* bamzonModelTests.swift */,
+				C7157E492224870E00246EA0 /* Info.plist */,
+			);
+			path = bamzonModelTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +593,26 @@
 			productReference = ABEFC0FE219E51B400F23E42 /* bamzon.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C7157E442224870E00246EA0 /* bamzonModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7157E4E2224870E00246EA0 /* Build configuration list for PBXNativeTarget "bamzonModelTests" */;
+			buildPhases = (
+				31471A3F01168E649B50145C /* [CP] Check Pods Manifest.lock */,
+				C7157E412224870E00246EA0 /* Sources */,
+				C7157E422224870E00246EA0 /* Frameworks */,
+				C7157E432224870E00246EA0 /* Resources */,
+				B494DC02FEE92CB472E58CF9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7157E4B2224870E00246EA0 /* PBXTargetDependency */,
+			);
+			name = bamzonModelTests;
+			productName = bamzonModelTests;
+			productReference = C7157E452224870E00246EA0 /* bamzonModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -581,6 +638,11 @@
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
+					C7157E442224870E00246EA0 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = ABEFC0FD219E51B400F23E42;
+					};
 				};
 			};
 			buildConfigurationList = ABEFC0F9219E51B400F23E42 /* Build configuration list for PBXProject "bamzon" */;
@@ -599,6 +661,7 @@
 				ABEFC0FD219E51B400F23E42 /* bamzon */,
 				ABEF63FE21FBBDE800716ACB /* bamzonUITests */,
 				ABEF640C21FBBF9700716ACB /* bamzonTests */,
+				C7157E442224870E00246EA0 /* bamzonModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -631,23 +694,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		93232F18CCEDD488D3C1E72F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
+		C7157E432224870E00246EA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31471A3F01168E649B50145C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bamzonModelTests-checkManifestLockResult.txt",
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93232F18CCEDD488D3C1E72F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-bamzonTests-checkManifestLockResult.txt",
 			);
@@ -679,25 +763,39 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 			);
 			name = "Run Script: SwiftLint";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		EF570DF12A42DF5454262CCD /* [CP] Embed Pods Frameworks */ = {
+		B494DC02FEE92CB472E58CF9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-bamzonModelTests/Pods-bamzonModelTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-bamzonModelTests/Pods-bamzonModelTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF570DF12A42DF5454262CCD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests-frameworks.sh",
@@ -705,8 +803,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -852,6 +948,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7157E412224870E00246EA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -864,6 +968,11 @@
 			isa = PBXTargetDependency;
 			target = ABEFC0FD219E51B400F23E42 /* bamzon */;
 			targetProxy = ABEF641221FBBF9700716ACB /* PBXContainerItemProxy */;
+		};
+		C7157E4B2224870E00246EA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABEFC0FD219E51B400F23E42 /* bamzon */;
+			targetProxy = C7157E4A2224870E00246EA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1108,6 +1217,43 @@
 			};
 			name = Release;
 		};
+		C7157E4C2224870E00246EA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73EA12AD69A2B2A259DF53B1 /* Pods-bamzonModelTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = bamzonModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = bamzon.bamzonModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bamzon.app/bamzon";
+			};
+			name = Debug;
+		};
+		C7157E4D2224870E00246EA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41EA1648125FE29C92D37266 /* Pods-bamzonModelTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = bamzonModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = bamzon.bamzonModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bamzon.app/bamzon";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1143,6 +1289,15 @@
 			buildConfigurations = (
 				ABEFC111219E51B900F23E42 /* Debug */,
 				ABEFC112219E51B900F23E42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7157E4E2224870E00246EA0 /* Build configuration list for PBXNativeTarget "bamzonModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7157E4C2224870E00246EA0 /* Debug */,
+				C7157E4D2224870E00246EA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

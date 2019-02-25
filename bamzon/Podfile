@@ -18,5 +18,10 @@ target 'bamzon' do
       inherit! :search_paths
       pod 'Firebase'
   end
+  
+  target 'bamzonModelTests' do
+      inherit! :search_paths
+      pod 'Firebase'
+  end
 
 end

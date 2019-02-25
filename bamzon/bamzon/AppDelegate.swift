@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //setViewsNav()
         self.window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
+        
+                let expected = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: nil, rsvps: nil, tags: ["test"], media: nil, links: nil)
+        DBUtility.writeToDB(objToWrite: expected)
+        DBUtility.readFromDB(table: FirTable.event, keys: ID(type: "e", num: 999), completion: {(key: String, payload: [String: AnyObject]) -> Void in print(payload)})
 
         return true
     }

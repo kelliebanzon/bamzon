@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct TeamStats: FirebaseCompatable {
+struct TeamStats: FirebaseCompatable, Equatable {
     var teamID: ID
     var memberCount: Int
     var wins: Int
@@ -26,9 +26,8 @@ struct TeamStats: FirebaseCompatable {
         self.fields = fields
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: Any] ?? [:]
-        teamID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        teamID = IDUtility.generateIDFromString(idString: key)
         memberCount = payload["memberCount"] as? Int ?? 0
         wins = payload["wins"] as? Int ?? 0
         losses = payload["losses"] as? Int ?? 0
@@ -53,4 +52,12 @@ struct TeamStats: FirebaseCompatable {
         return teamID.asString()
     }
     
+    static func == (lhs: TeamStats, rhs: TeamStats) -> Bool {
+        return
+            (rhs.teamID == lhs.teamID &&
+            rhs.memberCount == lhs.memberCount &&
+            rhs.wins == lhs.wins &&
+            rhs.losses == lhs.losses &&
+            rhs.ties == lhs.ties) // omitted fields equal for sprint, will come back
+    }
 }

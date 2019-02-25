@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Team: FirebaseCompatable {
+struct Team: FirebaseCompatable, Equatable {
     
     var teamID: ID
     var orgID: ID
@@ -34,9 +34,8 @@ struct Team: FirebaseCompatable {
     }
     
     //keys: teamId: ID
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        teamID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        teamID = IDUtility.generateIDFromString(idString: key)
         orgID = IDUtility.generateIDFromString(idString: payload["orgId"] as? String ?? "N/A")
         userIDs = IDUtility.stringsToIds(strs: payload["userIds"] as? [String] ?? [])
         teamName = payload["teamName"] as? String ?? "N/A"
@@ -49,11 +48,11 @@ struct Team: FirebaseCompatable {
         var thisTeam = self
        
         if teamID != ID(type: "z", num: 0) {
-            DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(tcSnap: DataSnapshot) -> Void in
-                thisTeam.calendar = TeamCalendar(snapshot: tcSnap)
+            DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                thisTeam.calendar = TeamCalendar(key: key, payload: payload)
             })
-            DBUtility.readFromDB(table: FirTable.teamStats, keys: teamID, completion: {(tsSnap: DataSnapshot) -> Void in
-                thisTeam.stats = TeamStats(snapshot: tsSnap)
+            DBUtility.readFromDB(table: FirTable.teamStats, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                thisTeam.stats = TeamStats(key: key, payload: payload)
             })
         }
     }

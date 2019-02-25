@@ -63,6 +63,16 @@
                ReferencedContainer = "container:bamzon.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7157E442224870E00246EA0"
+               BuildableName = "bamzonModelTests.xctest"
+               BlueprintName = "bamzonModelTests"
+               ReferencedContainer = "container:bamzon.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

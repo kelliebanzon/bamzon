@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct JoinRequest: FirebaseCompatable {
+struct JoinRequest: FirebaseCompatable, Equatable {
     var userID: ID
     var teamID: ID
     var joinReqID: ID
@@ -20,9 +20,8 @@ struct JoinRequest: FirebaseCompatable {
         self.joinReqID = joinReqID
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        joinReqID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        joinReqID = IDUtility.generateIDFromString(idString: key)
         userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
         teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
     }

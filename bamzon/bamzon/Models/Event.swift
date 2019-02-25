@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Event: FirebaseCompatable {
+struct Event: FirebaseCompatable, Equatable {
     var name: String
     var location: Location?
     var contactUserIDs: [ID]?
@@ -57,9 +57,8 @@ struct Event: FirebaseCompatable {
         return "\(eventID.asString())"
     }
     
-    init(snapshot: DataSnapshot?) {
-        eventID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
+    init(key: String, payload: [String: AnyObject]) {
+        eventID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         location = nil
         contactUserIDs = IDUtility.stringsToIds(strs: payload["contactUserIds"] as? [String] ?? [])
@@ -77,8 +76,8 @@ struct Event: FirebaseCompatable {
         
         if locIDString != "" && locIDString != "NoLocFound" {
             let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(locSnap: DataSnapshot) -> Void in
-                thisEvent.location = Location(snapshot: locSnap)
+            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                thisEvent.location = Location(key: key, payload: payload)
                 print("event location fetch succeeded: event is \(thisEvent)")
             })
         } else {
@@ -86,12 +85,28 @@ struct Event: FirebaseCompatable {
         }
         
         if eventID != ID(type: "z", num: 0) {
-            DBUtility.readFromDB(table: FirTable.rsvp, keys: eventID, completion: {(rsvpSnap: DataSnapshot) -> Void in
-                thisEvent.rsvps = RSVP(snapshot: rsvpSnap)
+            DBUtility.readFromDB(table: FirTable.rsvp, keys: eventID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                thisEvent.rsvps = RSVP(key: key, payload: payload)
                 print("event rsvp fetch succeeded: event is \(thisEvent)")
             })
         } else {
             print("no rsvp to fetch for event \(eventID.asString())")
         }
     }
+    
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        return
+            lhs.name == rhs.name &&
+            lhs.location == rhs.location &&
+            lhs.contactUserIDs == rhs.contactUserIDs &&
+            lhs.description == rhs.description &&
+            lhs.date == rhs.date &&
+            lhs.rsvps == rhs.rsvps &&
+            lhs.tags == rhs.tags &&
+            lhs.links == rhs.links &&
+            lhs.eventID == rhs.eventID &&
+            lhs.teamID == rhs.teamID &&
+            lhs.media == rhs.media
+    }
+    
 }

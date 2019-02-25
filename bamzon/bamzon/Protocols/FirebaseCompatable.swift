@@ -11,8 +11,9 @@ import Firebase
 
 protocol FirebaseCompatable {
     // writes object to db reference
-    init (snapshot: DataSnapshot?)
+    init (key: String, payload: [String: AnyObject])
     func formatForDB() -> [String: Any]
     func getTable() -> FirTable
     func getChildPath() -> String
 }
+

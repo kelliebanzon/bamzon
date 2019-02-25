@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct TeamCalendar: FirebaseCompatable {
+struct TeamCalendar: FirebaseCompatable, Equatable {
     var events: [Event]
     var teamID: ID
 
@@ -18,9 +18,8 @@ struct TeamCalendar: FirebaseCompatable {
         self.teamID = teamID
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        teamID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        teamID = IDUtility.generateIDFromString(idString: key)
         let eventIDs = payload["eventIds"] as? [String] ?? []
         events = []
     
@@ -29,8 +28,8 @@ struct TeamCalendar: FirebaseCompatable {
         if eventIDs.isEmpty {
             for eIDString in eventIDs {
                 let eventID = IDUtility.generateIDFromString(idString: eIDString)
-                DBUtility.readFromDB(table: FirTable.location, keys: eventID, completion: {(eventSnap: DataSnapshot) -> Void in
-                thisCalendar.events.append(Event(snapshot: eventSnap))
+                DBUtility.readFromDB(table: FirTable.location, keys: eventID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                    thisCalendar.events.append(Event(key: key, payload: payload))
                 print("event location fetch succeeded: calendar is \(thisCalendar)")
                 })
             }

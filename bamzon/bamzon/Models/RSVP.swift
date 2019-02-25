@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct RSVP: FirebaseCompatable {
+struct RSVP: FirebaseCompatable, Equatable {
     var yesUserIDs: [ID]?
     var noUserIDs: [ID]?
     var pendingUserIDs: [ID]?
@@ -22,9 +22,8 @@ struct RSVP: FirebaseCompatable {
         self.pendingUserIDs = pendingUserIDs
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
-        eventID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+    init(key: String, payload: [String: AnyObject]) {
+        eventID = IDUtility.generateIDFromString(idString: key)
         yesUserIDs = IDUtility.stringsToIds(strs: payload["yesUserIds"] as? [String] ?? [])
         pendingUserIDs = IDUtility.stringsToIds(strs: payload["pendingUserIds"] as? [String] ?? [])
         noUserIDs = IDUtility.stringsToIds(strs: payload["noUserIds"] as? [String] ?? [])

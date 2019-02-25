@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Media: FirebaseCompatable {
+struct Media: FirebaseCompatable, Equatable {
     var url: String // TODO: should this be a URL?
     var mediaID: ID
     
@@ -18,10 +18,9 @@ struct Media: FirebaseCompatable {
         self.mediaID = mediaID
     }
     
-    init(snapshot: DataSnapshot?) {
-        let payload = snapshot?.value as? [String: AnyObject] ?? [:]
+    init(key: String, payload: [String: AnyObject]) {
         url = payload["url"] as? String ?? "N/A"
-        mediaID = IDUtility.generateIDFromString(idString: snapshot?.key ?? "z0")
+        mediaID = IDUtility.generateIDFromString(idString: key ?? "z0")
     }
     
     func formatForDB() -> [String: Any] {

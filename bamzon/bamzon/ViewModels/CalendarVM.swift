@@ -18,11 +18,10 @@ class CalendarVM {
         self.calendar = calendar;
     }
     
-    
     func refresh() {
         DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
             for event in eventSnap {
-                self.calendar.events.append(Event(snapshot: event))}
+                self.calendar.events.append(Event(key: event.key as? String ?? "z0", payload: event.value as? [String: AnyObject] ?? [:]))}
             }
         )
     }

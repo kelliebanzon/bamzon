@@ -37,11 +37,6 @@ open class JTAppleCalendarView: UICollectionView {
     @IBInspectable open var cellSize: CGFloat = 0 {
         didSet {
             if oldValue == cellSize { return }
-            if scrollDirection == .horizontal {
-                calendarViewLayout.cellSize.width = cellSize
-            } else {
-                calendarViewLayout.cellSize.height = cellSize
-            }
             calendarViewLayout.invalidateLayout()
         }
     }
@@ -118,7 +113,7 @@ open class JTAppleCalendarView: UICollectionView {
     var anchorDate: Date?
     
     var requestedContentOffset: CGPoint {
-        var retval: CGPoint = .zero
+        var retval = CGPoint(x: -contentInset.left, y: -contentInset.top)
         guard let date = anchorDate else { return retval }
         
         // reset the initial scroll date once used.
@@ -147,7 +142,7 @@ open class JTAppleCalendarView: UICollectionView {
             switch scrollingMode {
             case .stopAtEach, .stopAtEachSection, .stopAtEachCalendarFrame:
                 if scrollDirection == .horizontal || (scrollDirection == .vertical && !calendarViewLayout.thereAreHeaders) {
-                    retval = self.targetPointForItemAt(indexPath: sectionIndexPath) ?? .zero
+                    retval = self.targetPointForItemAt(indexPath: sectionIndexPath) ?? retval
                 }
             default:
                 break
