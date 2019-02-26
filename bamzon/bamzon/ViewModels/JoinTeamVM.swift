@@ -8,8 +8,8 @@
 
 import Foundation
 
-class JoinTeamVM: ViewModel {
-    func sendJoinRequest(req: JoinRequest) {
+class JoinTeamVM {
+    func sendJoinRequest(org: String, team: String) {
         //TODO: implement sendJoinRequest
     }
 }
