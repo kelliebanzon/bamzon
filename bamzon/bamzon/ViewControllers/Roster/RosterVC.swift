@@ -11,9 +11,8 @@ import UIKit
 
 class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
-    let myArray: NSArray = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh"]
-
-    //let members = [User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)]
+    let members = [User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "916-660-6879", email: "willywonka@gmail.com", schoolYear: Year(rawValue: 2), bio: nil, imageURL: nil, teamIDs: nil)]
+    
     private var myTableView: UITableView!
     private let cellId = "MyCell"
     
@@ -48,19 +47,29 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(myArray[indexPath.row])")
         selectUser()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
+        return members.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RosterTableViewCell
         // swiftlint:enable force_cast
+        let member = members[indexPath.row]
+        cell.userName.text = member.firstName + " " + member.lastName
+        
+        cell.imgUser.image = UIImage(named: member.imageURL ?? ImageUtility().defaultProfilePictureName)
+        
+        cell.userNumber.text = member.phone
+        cell.userEmail.text = member.email
+        if let year = member.schoolYear {
+            cell.userYear.text = "\(year.rawValue)"
+        } else {
+            cell.userYear.text = "-"
+        }
         return cell
     }
     

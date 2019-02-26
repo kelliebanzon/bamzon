@@ -15,7 +15,6 @@ class RosterTableViewCell: UITableViewCell {
     var userNumber = UILabel()
     var userEmail = UILabel()
     var userYear = UILabel()
-    var userRole = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,11 +26,9 @@ class RosterTableViewCell: UITableViewCell {
         
         userNumber = createLabelToConstrain(withText: "420-666-6969", alignment: .left, boldType: "", fontSize: 17, numLines: 0, hasScaleFactor: false)
         
-        userEmail = createLabelToConstrain(withText: "willywonka@chocolate.com", alignment: .left, boldType: "", fontSize: 17, numLines: 1, hasScaleFactor: true)
+        userEmail = createLabelToConstrain(withText: "example@email.com", alignment: .left, boldType: "", fontSize: 17, numLines: 1, hasScaleFactor: true)
         
-        userYear = createLabelToConstrain(withText: "3", alignment: .left, boldType: "-Bold", fontSize: 17, numLines: 1, hasScaleFactor: false)
-        
-        userRole = createLabelToConstrain(withText: "Member", alignment: .left, boldType: "", fontSize: 17, numLines: 1, hasScaleFactor: false)
+        userYear = createLabelToConstrain(withText: "X", alignment: .left, boldType: "-Bold", fontSize: 17, numLines: 1, hasScaleFactor: false)
 
         addSubviews()
         setupAutoLayout()
@@ -47,7 +44,6 @@ class RosterTableViewCell: UITableViewCell {
         contentView.addSubview(userNumber)
         contentView.addSubview(userEmail)
         contentView.addSubview(userYear)
-        contentView.addSubview(userRole)
     }
     
     func setupAutoLayout() {
@@ -79,10 +75,5 @@ class RosterTableViewCell: UITableViewCell {
         let yearRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userYear.trailingAnchor, constant: 15)
         let yearTopConstraint = userYear.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
         self.contentView.addConstraints([yearRightConstraint, yearTopConstraint])
-        
-        //role constraints
-        let roleRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userRole.trailingAnchor, constant: 15)
-        let roleTopConstraint = userRole.topAnchor.constraint(equalTo: userYear.bottomAnchor, constant: 5)
-        self.contentView.addConstraints([roleRightConstraint, roleTopConstraint])
     }
 }

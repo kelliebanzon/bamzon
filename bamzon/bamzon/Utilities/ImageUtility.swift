@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+class ImageUtility {
+    let defaultProfilePictureName = "default-profile-picture"
+}
+
 extension UIImageView {
     
     func roundCorners() {
