@@ -57,7 +57,7 @@ struct User: FirebaseCompatable, Equatable {
              "schoolYear": schoolYear?.rawValue ?? "",
              "bio": bio ?? "",
              "imageURL": imageURL ?? "",
-             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
+             "teamIds": IDUtility.idsToStrings(ids: teamIDs)]
     }
     
     func getTable() -> FirTable {

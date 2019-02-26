@@ -212,5 +212,81 @@ class bamzonModelTests: XCTestCase {
         XCTAssertEqual(test.getChildPath(), "t999")
     }
     
+    func testTeamCalendarDBCreate() {
+        let expected = TeamCalendar(teamID: ID(type: "t", num: 999), events: [])
+        
+        let key = "t999"
+        let payload = ["eventIds": ["e999"]] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, TeamCalendar(key: key, payload: payload))
+    }
+    
+    func testTeamCalendarDBFuncs() {
+        let test = TeamCalendar(teamID: ID(type: "t", num: 999), events: [Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test"], media: [:], links: [:])])
+        
+        XCTAssertEqual(test.getTable(), FirTable.teamCalendar)
+        XCTAssertEqual(test.getChildPath(), "t999")
+    }
+    
+    func testTeamStatsDBFuncs() {
+        let test = TeamStats(teamID: ID(type: "t", num: 999), memberCount: 8, wins: 50, losses: 20, ties: 10, fields: ["Detective": "Jake Peralta"])
+        
+        XCTAssertEqual(test.getTable(), FirTable.teamStats)
+        XCTAssertEqual(test.getChildPath(), "t999")
+    }
+    
+    func testTeamStatsDBCreate() {
+        let expected = TeamStats(teamID: ID(type: "t", num: 999), memberCount: 8, wins: 50, losses: 20, ties: 10, fields: ["Detective": "Jake Peralta"])
+        
+        let key = "t999"
+        let payload = ["memberCount": 8,
+                       "wins": 50,
+                       "losses": 20,
+                       "fields": ["Detective": "Jake Peralta"],
+                       "ties": 10] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, TeamStats(key: key, payload: payload))
+    }
+    
+    func testUserDBFuncs() {
+        let test = User(userID: ID(type: "u", num: 999), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", num: 999)])
+        
+        XCTAssertEqual(test.getTable(), FirTable.user)
+        XCTAssertEqual(test.getChildPath(), "u999")
+    }
+    
+    func testUserDBCreate() {
+        let expected = User(userID: ID(type: "u", num: 999), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: "", teamIDs: [ID(type: "t", num: 999)])
+        
+        let key = "u999"
+        let payload = ["firstName": "Bam",
+                       "lastName": "Zon",
+                       "nickname": "BZN",
+                       "phone": "8675309",
+                       "email": "bzn@bamzon.co.uk",
+                       "schoolYear": 4,
+                       "bio": "309 app",
+                       "imageURL": "",
+                       "teamIds": ["t999"]] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, User(key: key, payload: payload))
+    }
+    
+    func testFirebaseIDDBFuncs() {
+        let test = FirebaseID(userID: ID(type: "u", num: 999), firebaseID: "4F33eBzUWgY03almiHpkLH5q9OY2")
+        
+        XCTAssertEqual(test.getTable(), FirTable.firebaseIDs)
+        XCTAssertEqual(test.getChildPath(), "4F33eBzUWgY03almiHpkLH5q9OY2")
+    }
+    
+    func testFirebaseIDDBCreate() {
+        let expected = FirebaseID(userID: ID(type: "u", num: 999), firebaseID: "4F33eBzUWgY03almiHpkLH5q9OY2")
+        
+        let key = "4F33eBzUWgY03almiHpkLH5q9OY2"
+        let payload = ["userID": "u999", "firebaseID": "4F33eBzUWgY03almiHpkLH5q9OY2"] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, FirebaseID(key: key, payload: payload))
+    }
+
 
 }

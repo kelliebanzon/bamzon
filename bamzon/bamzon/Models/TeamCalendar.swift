@@ -25,16 +25,16 @@ struct TeamCalendar: FirebaseCompatable, Equatable {
     
         var thisCalendar = self
         
-        if eventIDs.isEmpty {
+        if !eventIDs.isEmpty {
             for eIDString in eventIDs {
                 let eventID = IDUtility.generateIDFromString(idString: eIDString)
                 DBUtility.readFromDB(table: FirTable.location, keys: eventID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                     thisCalendar.events.append(Event(key: key, payload: payload))
-                print("event location fetch succeeded: calendar is \(thisCalendar)")
+                print("event event fetch succeeded: calendar is \(thisCalendar)")
                 })
             }
         } else {
-            print("no location to fetch for calendar \(teamID.asString())")
+            print("no event to fetch for calendar \(teamID.asString())")
         }
     }
     
