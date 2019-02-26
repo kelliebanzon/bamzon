@@ -11,6 +11,12 @@ import FirebaseAuth
 
 class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
+    var firstName: UITextField?
+    var lastName: UITextField?
+    var email: UITextField?
+    var user: User?
+    var nextVC: CreateAccountChildPromptCodeVC?
+    
     var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -18,12 +24,6 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         view.backgroundColor = UIColor(named: "TSTeal")
         return view
     }()
-    
-    var firstName: UITextField?
-    var lastName: UITextField?
-    var email: UITextField?
-    var user: User?
-    var nextVC: CreateAccountChildPromptCodeVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,12 +130,17 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         //TODO: place for a password. change variable in create account
         // to view or modify current users go here:
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
-        CreateAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: { alert in if let realAlert = alert { print("display")
-            self.present(realAlert, animated: true, completion: nil)
-            if self.nextVC != nil {
-                self.nextVC!.present(realAlert, animated: true, completion: nil)
-            }
-            }})
+        if let parentVC = self.parent as? CreateAccountParentVC {
+            parentVC.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: {
+                alert in if let realAlert = alert {
+                    print("display")
+                    self.present(realAlert, animated: true, completion: nil)
+                    if self.nextVC != nil {
+                        self.nextVC!.present(realAlert, animated: true, completion: nil)
+                    }
+                }
+            })
+        }
     }
     
     // Email validation function

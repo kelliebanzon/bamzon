@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PlayerStatsVM {
+class PlayerStatsVM: ViewModel {
     func refresh() {
         //TODO: implement refresh
     }

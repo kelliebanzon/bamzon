@@ -12,9 +12,9 @@
 import Foundation
 import Firebase
 
-class CreateAccountVM {
+class CreateAccountVM: ViewModel {
     
-    static func sendVerification(completion: @escaping(UIAlertController?) -> Void) {
+    func sendVerification(completion: @escaping(UIAlertController?) -> Void) {
         //TODO: Customize verification email
         // You can customize the email template that is used in Authentication section of the Firebase console, on the Email Templates page. See Email Templates in Firebase Help Center:
         //https://support.google.com/firebase/answer/7000714
@@ -36,7 +36,7 @@ class CreateAccountVM {
         }
     }
     
-    static func checkUserEmailVerified() -> Bool {
+    func checkUserEmailVerified() -> Bool {
         if let curUser = Auth.auth().currentUser {
             return curUser.isEmailVerified
         } else {
@@ -48,7 +48,7 @@ class CreateAccountVM {
      * add account info to firebase object in initUser()
      * Initialize local User object, and pass up to parent vc
      */
-    static func createAccount(fname: String, lname: String, email: String, password: String, alertCompletion: @escaping(UIAlertController?) -> Void) {
+    func createAccount(fname: String, lname: String, email: String, password: String, alertCompletion: @escaping(UIAlertController?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             if error == nil {
                // self.parentVC.performSegue(withIdentifier: "signupToHome", sender: self.parentVC)
@@ -72,11 +72,11 @@ class CreateAccountVM {
         }
     }
     
-    static func initUser(fname: String, lname: String, email: String) -> User? {
-        if Auth.auth().currentUser != nil{
+    func initUser(fname: String, lname: String, email: String) -> User? {
+        if let user = Auth.auth().currentUser {
             let newUserID = IDUtility.generateUserID();
             let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
-            DBUtility.writeToDB(objToWrite: newUser)
+            //DBUtility.writeToDB(objToWrite: newUser)
             return newUser
         }
         else {

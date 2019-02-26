@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsVM {
+class SettingsVM: ViewModel {
     
     func updateSettings() {
         //TODO: implement update settings

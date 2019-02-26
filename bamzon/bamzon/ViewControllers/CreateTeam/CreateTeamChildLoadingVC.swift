@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         display()

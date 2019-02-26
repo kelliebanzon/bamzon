@@ -12,7 +12,7 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-class LoginVM {
+class LoginVM: ViewModel {
     
     static func checkLogin(email: String, password: String) -> String? {
         var toReturn: String?

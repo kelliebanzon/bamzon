@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SelectTeamVM {
+class SelectTeamVM: ViewModel {
     func refresh() {
         //TODO: implement refresh teams to select
     }

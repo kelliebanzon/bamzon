@@ -11,6 +11,8 @@ import UIKit
 
 class CreateTeamParentVC: UIViewController, DisplayableProtocol {
     
+    var createTeamVM = CreateTeamVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         display()

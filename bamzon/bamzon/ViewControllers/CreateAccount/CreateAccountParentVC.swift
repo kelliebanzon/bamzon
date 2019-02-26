@@ -13,6 +13,7 @@ import Firebase
 class CreateAccountParentVC: UIViewController, DisplayableProtocol {
     
     @IBOutlet weak var containerView: UIView!
+    var createAccountVM = CreateAccountVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()

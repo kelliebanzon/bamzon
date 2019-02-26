@@ -36,7 +36,6 @@ struct User: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         userID = IDUtility.generateIDFromString(idString: key)
-        userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
         firstName = payload["firstName"] as? String ?? "N/A"
         lastName = payload["lastName"] as? String ?? "N/A"
         nickname = payload["nickname"] as? String ?? "N/A"

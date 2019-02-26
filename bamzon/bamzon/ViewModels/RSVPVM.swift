@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RSVPVM {
+class RSVPVM: ViewModel {
     func refresh() {
         //TODO: implement refresh
     }

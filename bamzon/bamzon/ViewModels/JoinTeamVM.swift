@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JoinTeamVM {
+class JoinTeamVM: ViewModel {
     func sendJoinRequest(req: JoinRequest) {
         //TODO: implement sendJoinRequest
     }

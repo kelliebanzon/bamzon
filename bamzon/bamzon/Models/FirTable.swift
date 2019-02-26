@@ -22,4 +22,5 @@ enum FirTable: String {
     case teamCalendar = "teamCalendars"
     case teamStats = "teamStats"
     case user = "users"
+    case firebaseIDs = "firebaseIDs"
 }

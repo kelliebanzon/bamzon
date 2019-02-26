@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Attendace {
+class Attendace: ViewModel {
     func refresh() {
         //TODO: implement refresh
     }

@@ -69,6 +69,25 @@ class DBUtility {
         })
     }
     
+    static func readFromDB(table: FirTable, keys: String..., completion: @escaping (String, [String: AnyObject]) -> Void) {
+        var keyArr = [String]()
+        for key in keys {
+            keyArr.append(key)
+        }
+        
+        let path = keyArr.joined(separator: "/")
+        
+        print("reading from \(table)/\(path)")
+        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                let payload = snapshot.value as? [String: AnyObject] ?? [:]
+                completion(snapshot.key as String, payload)
+            } else {
+                print("Firebase Query Failed! No result found for key(s): \(path) in table: \(table.rawValue)")
+            }
+        })
+    }
+    
     //TODO: this function is identical to above except for one thing.
     // ie. duplicate code, not sure how to fix but it should be
     // snapshot was a problem

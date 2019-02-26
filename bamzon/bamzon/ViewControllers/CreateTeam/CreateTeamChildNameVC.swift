@@ -128,8 +128,10 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         print("Valid Input:")
         print("\t  Org Name: " + (orgName!.text)!)
         print("\t Team Name: " + teamName!.text!)
-        print("\tSport Type: " + sportType!.text!)
-        CreateTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
+        print("\t Sport Type: " + sportType!.text!)
+        if let parentVC = self.parent as? CreateTeamParentVC {
+            parentVC.createTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
+        }
         
         self.mockSegue(toVC: nextVC!)
     }
