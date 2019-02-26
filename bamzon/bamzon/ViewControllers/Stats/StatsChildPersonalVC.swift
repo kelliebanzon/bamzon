@@ -17,8 +17,6 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     var statsTable = UITableView()
 
     // TODO: connect to database
-//    var player: User
-//    var playerStats: PlayerStats
 
     let pID = ID(type: "u", num: 1234)
     let tID = ID(type: "t", num: 5678)
@@ -40,8 +38,7 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     }
     
     func display() {
-        // TODO: implement display
-        view.backgroundColor = UIColor(named: "TSOrange")
+        view.backgroundColor = UIColor(named: "TSTeal")
 
         profilePictureImageView = createProfilePictureImageView(imageName: player.imageURL)
         self.view.addSubview(profilePictureImageView)

@@ -18,7 +18,8 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     }
     
     func display() {
-        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "person"), style: .plain, target: self, action: nil), animated: false)
+        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "person"), style: .plain, target: self, action: #selector(profileTapped)), animated: true)
+
         navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: nil, action: nil), animated: true)
 
         view.backgroundColor = UIColor(named: "TSTeal")
@@ -216,6 +217,10 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         let returnTopConstraint = returnTimeLabel.topAnchor.constraint(equalTo: departTimeLabel.bottomAnchor, constant: 5)
         let returnLeftConstraint = returnTimeLabel.leadingAnchor.constraint(equalTo: nextEvent.leadingAnchor, constant: 10)
         self.view.addConstraints([returnTopConstraint, returnLeftConstraint])
+    }
+
+    @objc func profileTapped(sender: UIBarButtonItem) {
+        mockSegue(toIdentifier: "ProfileVC")
     }
     
     func viewStats() {

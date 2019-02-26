@@ -44,6 +44,7 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
             ])
 
         childVC.didMove(toParentViewController: self)
+        
     }
 
     // TODO: these functions no longer belong in this file

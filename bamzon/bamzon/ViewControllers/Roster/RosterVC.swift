@@ -13,7 +13,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     
     //TODO: should be passed after initialization.
     // not sure if it should be forced on initialization or passed
-    var team : Team?
+    var team: Team?
     var rosterVM = RosterVM()
     var members = [User]()
     
@@ -33,7 +33,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         view.backgroundColor = UIColor(named: "TSTeal")
         
         myTableView = UITableView()
-        //myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(RosterTableViewCell.self, forCellReuseIdentifier: self.cellId)

@@ -23,7 +23,7 @@ class ProfileVM: ViewModel {
     }
     
     func getDefaultUser() -> User {
-        return User(userID: IDUtility.generateIDFromString(idString: "u0"), firstName: "First", lastName: "Last", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
+        return User(userID: IDUtility.generateIDFromString(idString: "u0"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: nil)
     }
     
     func editProfilePic(parentVC: ProfileVC, imagePicker: UIImagePickerController) {

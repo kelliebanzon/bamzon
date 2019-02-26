@@ -16,8 +16,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
     }
 
     func display() {
-        view.backgroundColor = UIColor(named: "TSTeal")
-        
         //tabBar.barStyle = UIBarStyle(rawValue: 1) ?? UIBarStyle(rawValue: 0)!
         tabBar.barStyle = .default
         tabBar.isTranslucent = true
@@ -26,23 +24,18 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
         tabBar.unselectedItemTintColor = UIColor(named: "BZNDarkGray")
         
         let rosterVC = RosterVC()
-//        rosterVC.tabBarItem = UITabBarItem(title: "Roster", image: UIImage(named: "home"), selectedImage: UIImage(named: "home-TSYellow"))
         rosterVC.tabBarItem = UITabBarItem(title: "Roster", image: UIImage(named: "clipboard"), tag: 0)
 
         let attendanceVC = AttendanceParentVC()
-//        attendanceVC.tabBarItem = UITabBarItem(title: "Attendance", image: UIImage(named: "home-TSNavy"), selectedImage: UIImage(named: "home-TSYellow"))
         attendanceVC.tabBarItem = UITabBarItem(title: "Attendance", image: UIImage(named: "checkbox"), tag: 1)
 
         let teamHomeVC = TeamHomeVC()
-//        teamHomeVC.tabBarItem = UITabBarItem(title: "Team Home", image: UIImage(named: "home-TSNavy"), selectedImage: UIImage(named: "home-TSYellow"))
         teamHomeVC.tabBarItem = UITabBarItem(title: "Team Home", image: UIImage(named: "home"), tag: 2)
 
         let calendarVC = CalendarVC()
-//        calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(named: "home-TSNavy"), selectedImage: UIImage(named: "home-TSYellow"))
         calendarVC.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(named: "calendar"), tag: 3)
 
         let statsVC = StatsParentVC()
-//        statsVC.tabBarItem = UITabBarItem(title: "Stats", image: UIImage(named: "home-TSNavy"), selectedImage: UIImage(named: "home-TSYellow"))
         statsVC.tabBarItem = UITabBarItem(title: "Stats", image: UIImage(named: "graph"), tag: 4)
 
         // TODO: change this to be the nav controllers instead of the controllers themselves

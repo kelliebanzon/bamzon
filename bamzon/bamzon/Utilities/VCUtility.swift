@@ -9,15 +9,18 @@
 import Foundation
 import UIKit
 
-let header1Font = UIFont(name: "HelveticaNeue-Bold", size: 30)
-let header2Font = UIFont(name: "HelveticaNeue-Bold", size: 16)
-let header3Font = UIFont(name: "HelveticaNeue-Bold", size: 14)
-let bodyFont = UIFont(name: "HelveticaNeue-Medium", size: 12)
+class VCUtility {
+    let header1Font = UIFont(name: "HelveticaNeue-Bold", size: 30)
+    let header2Font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+    let header3Font = UIFont(name: "HelveticaNeue-Bold", size: 14)
+    let bodyFont = UIFont(name: "HelveticaNeue-Medium", size: 12)
+}
 
 extension UIViewController {
 
     func mockSegue(toIdentifier: String) {
-        let nextVC = self.storyboard!.instantiateViewController(withIdentifier: toIdentifier)
+        //let nextVC = self.storyboard!.instantiateViewController(withIdentifier: toIdentifier)
+        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: toIdentifier)
         self.present(nextVC, animated: true, completion: nil)
     }
     
