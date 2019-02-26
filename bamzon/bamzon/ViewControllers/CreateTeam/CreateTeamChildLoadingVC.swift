@@ -14,6 +14,9 @@ class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.alert(withTitle: "⚠️ WORK IN PROGRESS ⚠️", withMessage: "Load TeamHome VC")
+        }
     }
     
     func display() {
@@ -25,11 +28,11 @@ class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
         // Temp Label
         let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 420))
         tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
+        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 25)
         tempLabel.textAlignment = .center
         tempLabel.numberOfLines = 0
         tempLabel.textColor = .white
-        tempLabel.text = "CreateTeamChildLoadingVC"
+        tempLabel.text = "Setting up your team..."
         self.view.addSubview(tempLabel)
     }
     
