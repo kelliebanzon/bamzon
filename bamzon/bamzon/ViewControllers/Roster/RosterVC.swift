@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
-
-    let members = [User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "916-660-6879", email: "willywonka@gmail.com", schoolYear: Year(rawValue: 2), bio: nil, imageURL: nil, teamIDs: nil)]
+    
+    //TODO: should be passed after initialization.
+    // not sure if it should be forced on initialization or passed
+    var team : Team?
+    var rosterVM = RosterVM()
+    var members = [User]()
     
     private var myTableView: UITableView!
     private let cellId = "MyCell"
@@ -19,6 +23,9 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Roster"
+        if team != nil {
+            rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
+        }
         display()
     }
     
@@ -78,7 +85,9 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func refresh() {
-        // TODO: implement refresh
+        if team != nil {
+            rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
+        }
     }
     
     func selectUser() {

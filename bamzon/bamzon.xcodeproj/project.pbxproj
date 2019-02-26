@@ -100,6 +100,7 @@
 		C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7157E472224870E00246EA0 /* bamzonModelTests.swift */; };
 		D37DA9D1221F84A6000E357E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D0221F84A6000E357E /* ViewModel.swift */; };
 		D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D22224C66B000E357E /* FirebaseID.swift */; };
+		D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */; };
 		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
 		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
 		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
@@ -235,6 +236,7 @@
 		C7157E492224870E00246EA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37DA9D0221F84A6000E357E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D37DA9D22224C66B000E357E /* FirebaseID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseID.swift; sourceTree = "<group>"; };
+		D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsTeamStatsViewCell.swift; sourceTree = "<group>"; };
 		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
 		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		AB6E5D54220F883C00808283 /* Stats */ = {
 			isa = PBXGroup;
 			children = (
+				D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */,
 				A8143A0021B72E05000E287A /* StatsParentVC.swift */,
 				AB7F63F1221B96090080AF25 /* StatsTabVC.swift */,
 				A8143A0A21B73006000E287A /* StatsChildPersonalVC.swift */,
@@ -893,6 +896,7 @@
 				ABC5822121B4AB2500DDC094 /* PlayerPerms.swift in Sources */,
 				A81439E221B71E58000E287A /* RosterVM.swift in Sources */,
 				6E6222E0221F7AD3000A2B94 /* CellUtility.swift in Sources */,
+				D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
 				D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */,
 				AB47757B21B4E8E400A1DCD5 /* Event.swift in Sources */,

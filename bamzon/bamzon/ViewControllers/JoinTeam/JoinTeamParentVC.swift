@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class JoinTeamParentVC: UIViewController, DisplayableProtocol {
+    let joinTeamVM = JoinTeamVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()

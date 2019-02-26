@@ -11,7 +11,6 @@ import UIKit
 
 class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITableViewDelegate, DisplayableProtocol {
     
-    let joinTeamVM = JoinTeamVM()
     let cellId = "cellId"
     var orgName: UITextField?
     var teamName: UITextField?
@@ -129,7 +128,9 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         print("Valid Input:")
         print("\t  Org Name: " + (orgName!.text)!)
         print("\t Team Name: " + teamName!.text!)
-        joinTeamVM.sendJoinRequest(org: orgName!.text!, team: teamName!.text!)
+        if let parentVC = self.parent as? JoinTeamParentVC {
+            parentVC.joinTeamVM.sendJoinRequest(org: orgName!.text!, team: teamName!.text!)
+        }
         
         self.mockSegue(toVC: nextVC!)
     }
