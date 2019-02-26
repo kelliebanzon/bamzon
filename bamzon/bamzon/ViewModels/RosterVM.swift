@@ -8,26 +8,27 @@
 
 import Foundation
 
+var members = [User]()
+
 class RosterVM: ViewModel {
     func refresh(rosterVC: RosterVC, teamID: ID) {
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             let newTeam = Team(key: key, payload: teamSnap)
             if newTeam.userIDs != nil {
                 rosterVC.team = newTeam
-                rosterVC.members = self.getUsers(userIDs: newTeam.userIDs!)
+                self.getUsers(userIDs: newTeam.userIDs!, rosterVC: rosterVC)
             }
-            rosterVC.display()
         })
     }
     
-    func getUsers(userIDs: [ID]) -> [User] {
-        var members = [User]()
+    func getUsers(userIDs: [ID], rosterVC: RosterVC) {
+        rosterVC.members = [User]()
         for id in userIDs {
             DBUtility.readFromDB(table: FirTable.user, keys: id, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                members.append(User(key: key, payload: userSnap))
+                rosterVC.members.append(User(key: key, payload: userSnap))
+                rosterVC.display()
             })
         }
-        return members
     }
     
     func updateRoster(roster: [User]) {

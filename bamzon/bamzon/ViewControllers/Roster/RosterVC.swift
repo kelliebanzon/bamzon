@@ -23,6 +23,10 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Roster"
+        DBUtility.readFromDB(table: FirTable.team, keys: IDUtility.generateIDFromString(idString: "t404"), completion: { (key: String, payload: [String : AnyObject]) in
+            self.team = Team(key: key, payload: payload)
+            self.refresh()
+            })
         if team != nil {
             rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
         }
@@ -67,7 +71,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         let member = members[indexPath.row]
         cell.userName.text = member.firstName + " " + member.lastName
         
-        cell.imgUser.image = UIImage(named: member.imageURL ?? ImageUtility().defaultProfilePictureName)
+        cell.imgUser.image = UIImage(named:/*member.imageURL ??*/ ImageUtility().defaultProfilePictureName)
         
         cell.userNumber.text = member.phone
         cell.userEmail.text = member.email
@@ -84,6 +88,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func refresh() {
+        print("refreshing")
         if team != nil {
             rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
         }
