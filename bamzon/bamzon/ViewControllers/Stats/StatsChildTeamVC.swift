@@ -32,7 +32,7 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func display() {
         // TODO: display
-        view.backgroundColor = UIColor(named: "TSOrange")
+        view.backgroundColor = UIColor(named: "TSTeal")
         
         //Team label
         teamLabel = createDefaultLabel(text: team, fontSize: 30, numLines: 1, fontColor: .white, fontAlignment: .center)
