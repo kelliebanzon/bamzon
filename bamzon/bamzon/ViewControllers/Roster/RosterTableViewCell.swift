@@ -5,7 +5,6 @@
 //  Created by Brandon Ryan on 21.02.19.
 //  Copyright © 2019 bamzon. All rights reserved.
 //
-import Foundation
 import UIKit
 
 class RosterTableViewCell: UITableViewCell {
