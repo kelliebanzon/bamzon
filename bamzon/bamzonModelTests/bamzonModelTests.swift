@@ -51,5 +51,166 @@ class bamzonModelTests: XCTestCase {
         
         XCTAssertEqual(Event(key: key, payload: payload), expected)
     }
+    
+    func testEventDBFuncs() {
+        let evnt = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test"], media: [:], links: [:])
+        
+        XCTAssertEqual(evnt.getTable(), FirTable.event)
+        XCTAssertEqual(evnt.getChildPath(), "e999")
+    }
+    
+    func testPlayerStatsDBCreate() {
+        let expected = PlayerStats(userID: ID(type: "u", num: 999), teamID: ID(type: "t", num: 999), fields: ["best": "test"])
+        
+        let key = "u999"
+        let payload = ["fields": ["best": "test"],
+                       "teamId": "t999"] as [String: AnyObject]
+        
+        XCTAssertEqual(PlayerStats(key: key, payload: payload), expected)
+    }
+    
+    func testPlayerStatsDBFuncs() {
+        let pstat = PlayerStats(userID: ID(type: "u", num: 999), teamID: ID(type: "t", num: 999), fields: ["best": "test"])
+        
+        XCTAssertEqual(pstat.getTable(), FirTable.playerStats)
+        XCTAssertEqual(pstat.getChildPath(), "t999/u999")
+    }
+    
+    func testJoinRequestDBCreate() {
+        let expected = JoinRequest(joinReqID: ID(type: "j", num: 999), userID: ID(type: "u", num: 999), teamID: ID(type: "t", num: 999))
+        
+        let key = "j999"
+        let payload = ["userId": "u999",
+                       "teamId": "t999"] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, JoinRequest(key: key, payload: payload))
+    }
+    
+    func testJoinRequestDBFuncs() {
+        let jReq = JoinRequest(joinReqID: ID(type: "j", num: 999), userID: ID(type: "u", num: 999), teamID: ID(type: "t", num: 999))
+        
+        XCTAssertEqual(jReq.getTable(), FirTable.joinRequest)
+        XCTAssertEqual(jReq.getChildPath(), "j999")
+    }
+    
+    func testLocationDBCreate() {
+        let expected = Location(locID: ID(type: "l", num: 999), name: "test loc", number: "444", street: "test street", street2: "boulevard", city: "Testopia", state: "AK", zip: 99987, country: "United States of Testing")
+        
+        let key = "l999"
+        let payload = ["city": "Testopia",
+                       "name": "test loc",
+                       "country": "United States of Testing",
+                       "street": "test street",
+                       "street2": "boulevard",
+                       "state": "AK",
+                       "zip": 99987,
+                       "number": "444"] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, Location(key: key, payload: payload))
+    }
+    
+    func testLocationDBFuncs() {
+        let test = Location(locID: ID(type: "l", num: 999), name: "test loc", number: "444", street: "test street", street2: "boulevard", city: "Testopia", state: "AK", zip: 99987, country: "United States of Testing")
+        
+        XCTAssertEqual(test.getTable(), FirTable.location)
+        XCTAssertEqual(test.getChildPath(), "l999")
+    }
+    
+    func testLocationDescribe() {
+        let test = Location(locID: ID(type: "l", num: 999), name: "test loc", number: "444", street: "test street", street2: "boulevard", city: "Testopia", state: "AK", zip: 99987, country: "United States of Testing")
+        
+        XCTAssertEqual(test.description, "444 test street\nboulevard\nTestopia, AK 99987\nUnited States of Testing")
+    }
+    
+    func testMediaDBCreate() {
+        let expected = Media(url: "foo/test/url.comnetgov", mediaID: ID(type: "m", num: 999))
+        
+        let key = "m999"
+        let payload = ["url": "foo/test/url.comnetgov"] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, Media(key: key, payload: payload))
+    }
+    
+    func testMediaDBFuncs() {
+        let test = Media(url: "foo/test/url.comnetgov", mediaID: ID(type: "m", num: 999))
+        
+        XCTAssertEqual(test.getTable(), FirTable.media)
+        XCTAssertEqual(test.getChildPath(), "m999")
+    }
+    
+    func testOrganizationDBCreate() {
+        let expected = Organization(orgID: ID(type: "o", num: 999), name: "test org", location: nil, teamIDs: [ID(type: "t", num: 999)])
+        
+        let key = "o999"
+        let payload =  ["name": "test org",
+                        "location": "",
+                        "teamIds": ["t999"]] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, Organization(key: key, payload: payload))
+    }
+    
+    func testOrganizationDBFuncs() {
+        let test = Organization(orgID: ID(type: "o", num: 999), name: "test org", location: nil, teamIDs: [ID(type: "t", num: 999)])
+        
+        XCTAssertEqual(test.getTable(), FirTable.organization)
+        XCTAssertEqual(test.getChildPath(), "o999")
+    }
+    
+    func testPlayerPermsDBCreate() {
+        let expected = PlayerPerms(teamID: ID(type: "t", num: 999), userID: ID(type: "u", num: 999), permissions: [Permissions.editCalendar, Permissions.editStats])
+        
+        let key = "t999"
+        let payload = ["permissions": ["EditAttendance", "EditStats"],
+                       "userId": "u999"] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, PlayerPerms(key: key, payload: payload))
+    }
+    
+    func testPlayerPermsDBFuncs() {
+        let test = PlayerPerms(teamID: ID(type: "t", num: 999), userID: ID(type: "u", num: 999), permissions: [Permissions.editCalendar, Permissions.editStats])
+        
+        XCTAssertEqual(test.getTable(), FirTable.playerPerms)
+        XCTAssertEqual(test.getChildPath(), "u999/t999")
+    }
+    
+    func testRsvpDBCreate() {
+        let expected = RSVP(eventID: ID(type: "e", num: 999), yesUserIDs: [ID(type: "u", num: 999)], noUserIDs: [ID(type: "u", num: 999)], pendingUserIDs: [ID(type: "u", num: 999)])
+        
+        let key = "e999"
+        let payload = ["yesUserIds": ["u999"],
+                       "noUserIds": ["u999"],
+                       "pendingUserIds": ["u999"]] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, RSVP(key: key, payload: payload))
+    }
+    
+    func testRsvpDBFuncs() {
+        let test = RSVP(eventID: ID(type: "e", num: 999), yesUserIDs: [ID(type: "u", num: 999)], noUserIDs: [ID(type: "u", num: 999)], pendingUserIDs: [ID(type: "u", num: 999)])
+        
+        XCTAssertEqual(test.getTable(), FirTable.rsvp)
+        XCTAssertEqual(test.getChildPath(), "e999")
+    }
+    
+    func testTeamDBCreate() {
+        let expected = Team(teamID: ID(type: "t", num: 999), orgID: ID(type: "o", num: 999), userIDs: [ID(type: "u", num: 999)], teamName: "test team", sport: "test sport", stats: nil, calendar: nil, joinReqIDs: [ID(type: "j", num: 999)], blacklistUserIDs: [ID(type: "u", num: 999)])
+        
+        let key = "t999"
+        let payload = ["blacklistUserIds": ["u999"],
+                       "joinRequestIds": ["j999"],
+                       "orgId": "o999",
+                       "sport": "test sport",
+                       "teamName": "test team",
+                       "userIds": ["u999"]] as [String: AnyObject]
+        
+        XCTAssertEqual(expected, Team(key: key, payload: payload))
+    }
+    
+    func testTeamDBFuncs() {
+        let test = Team(teamID: ID(type: "t", num: 999), orgID: ID(type: "o", num: 999), userIDs: [ID(type: "u", num: 999)], teamName: "test team", sport: "test sport", stats: nil, calendar: nil, joinReqIDs: [ID(type: "j", num: 999)], blacklistUserIDs: [ID(type: "u", num: 999)])
+        
+        XCTAssertEqual(test.getTable(), FirTable.team)
+        XCTAssertEqual(test.getChildPath(), "t999")
+    }
+    
 
 }

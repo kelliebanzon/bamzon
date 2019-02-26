@@ -42,8 +42,8 @@ struct Team: FirebaseCompatable, Equatable {
         sport = payload["sport"] as? String
         stats = nil // these three are separate for now
         calendar = nil // todo connect with calendar/stats/joinRequest adapters
-        joinReqIDs = IDUtility.stringsToIds(strs: payload["joinRequestIDs"] as? [String] ?? [])
-        blacklistUserIDs = IDUtility.stringsToIds(strs: payload["blacklistUserIDs"] as? [String] ?? [])
+        joinReqIDs = IDUtility.stringsToIds(strs: payload["joinRequestIds"] as? [String] ?? [])
+        blacklistUserIDs = IDUtility.stringsToIds(strs: payload["blacklistUserIds"] as? [String] ?? [])
         
         var thisTeam = self
        

@@ -41,14 +41,13 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABEF640C21FBBF9700716ACB"
-            BuildableName = "bamzonTests.xctest"
-            BlueprintName = "bamzonTests"
+            BlueprintIdentifier = "C7157E442224870E00246EA0"
+            BuildableName = "bamzonModelTests.xctest"
+            BlueprintName = "bamzonModelTests"
             ReferencedContainer = "container:bamzon.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

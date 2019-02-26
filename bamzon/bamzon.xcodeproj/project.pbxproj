@@ -408,7 +408,6 @@
 		ABC5820E21B4A47B00DDC094 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */,
 				AB47757A21B4E8E400A1DCD5 /* Event.swift */,
 				ABEF642321FBECB200716ACB /* ID.swift */,
 				AB47757421B4E7D100A1DCD5 /* JoinRequest.swift */,
@@ -416,6 +415,7 @@
 				AB47757621B4E82200A1DCD5 /* Media.swift */,
 				ABC5822421B4AF2C00DDC094 /* Organization.swift */,
 				ABC5822021B4AB2500DDC094 /* PlayerPerms.swift */,
+				ABC5821E21B4AA3300DDC094 /* PlayerStats.swift */,
 				AB47757821B4E89900A1DCD5 /* RSVP.swift */,
 				AB47757021B4E2CB00A1DCD5 /* Team.swift */,
 				AB47757C21B4E90700A1DCD5 /* TeamCalendar.swift */,

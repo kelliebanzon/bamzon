@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct PlayerStats: FirebaseCompatable {
+struct PlayerStats: FirebaseCompatable, Equatable {
     var fields: [String: Any]?
     var userID: ID
     var teamID: ID
@@ -38,6 +38,10 @@ struct PlayerStats: FirebaseCompatable {
     
     func getChildPath() -> String {
         return "\(teamID.asString())/\(userID.asString())"
+    }
+    
+    static func == (lhs: PlayerStats, rhs: PlayerStats) -> Bool {
+        return lhs.userID == rhs.userID && lhs.teamID == rhs.teamID
     }
     
 }
