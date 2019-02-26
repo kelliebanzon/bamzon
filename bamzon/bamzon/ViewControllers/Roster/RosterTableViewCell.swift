@@ -21,15 +21,7 @@ class RosterTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(named: "TSTeal")
         
-        imgUser = {
-            let pic = UIImageView()
-            pic.contentMode = .scaleAspectFill
-            pic.clipsToBounds = true
-            pic.image = UIImage(named: "default-profile-picture")
-            pic.layer.cornerRadius = 35
-            pic.translatesAutoresizingMaskIntoConstraints = false
-            return pic
-        }()
+        imgUser = createDefaultPic()
         
         userName = createLabelToConstrain(withText: "Last, First", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
         

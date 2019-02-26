@@ -12,44 +12,18 @@ import UIKit
 class SelectTeamTableViewCell: UITableViewCell {
     
     var imgUser = UIImageView()
-    
-    let teamName: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-        label.numberOfLines = 1
-        label.textColor = .white
-        label.textAlignment = .left
-        label.text = "Team Name"
-        label.minimumScaleFactor = 0.25
-        label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    let teamLocation: UILabel = {
-        let loc = UILabel()
-        loc.font = UIFont(name: "HelveticaNeue", size: 17)
-        loc.numberOfLines = 1
-        loc.textColor = .white
-        loc.textAlignment = .left
-        loc.text = "Team Location"
-        loc.translatesAutoresizingMaskIntoConstraints = false
-        return loc
-    }()
+    var teamName = UILabel()
+    var teamLocation = UILabel()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(named: "TSTeal")
         
-        imgUser = {
-            let pic = UIImageView()
-            pic.contentMode = .scaleAspectFill
-            pic.clipsToBounds = true
-            pic.image = UIImage(named: "BZN-Square-Logo")
-            pic.layer.cornerRadius = 35
-            pic.translatesAutoresizingMaskIntoConstraints = false
-            return pic
-        }()
+        imgUser = createDefaultPic()
+        
+        teamName = createLabelToConstrain(withText: "Team Name", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
+        
+        teamLocation = createLabelToConstrain(withText: "Team Location", alignment: .left, boldType: "", fontSize: 17, numLines: 1, hasScaleFactor: false)
         
         addSubviews()
         setupAutoLayout()

@@ -12,6 +12,8 @@ import UIKit
 class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
     let myArray: NSArray = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh"]
+
+    //let members = [User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)]
     private var myTableView: UITableView!
     private let cellId = "MyCell"
     

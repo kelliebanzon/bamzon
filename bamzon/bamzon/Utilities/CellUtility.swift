@@ -34,4 +34,41 @@ extension UITableViewCell {
         }
         return label
     }
+
+    func createButtonToConstrain(withText: String, size: CGFloat) -> UIButton {
+        let button = UIButton()
+        button.setTitle("\(withText)", for: .normal)
+        button.backgroundColor = UIColor(named: "TSYellow")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        button.layer.masksToBounds = false
+        button.layer.shadowRadius = 1.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: size)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    func createDefaultPic() -> UIImageView {
+        let img: UIImageView = UIImageView()
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
+        img.image = UIImage(named: "BZN-Square-Logo")
+        img.layer.cornerRadius = 35
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }
+    
+    // Highlight the button upon touchDown
+    @objc func highlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellowDark")
+    }
+    
+    // Unhighlight the button upon touchDown
+    @objc func unhighlightButton(sender: UIButton!) {
+        sender.backgroundColor = UIColor(named: "TSYellow")
+    }
 }
