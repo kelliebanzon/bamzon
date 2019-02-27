@@ -53,10 +53,15 @@ class RosterTableViewCell: UITableViewCell {
         let imgHeightConstraint = imgUser.heightAnchor.constraint(equalToConstant: 70)
         self.contentView.addConstraints([imgLeftConstraint, imgVertConstraint, imgWidthConstraint, imgHeightConstraint])
         
+        //year constraints
+        let yearRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userYear.trailingAnchor, constant: 15)
+        let yearTopConstraint = userYear.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
+        self.contentView.addConstraints([yearRightConstraint, yearTopConstraint])
+        
         //name constraints
         let nameLeftConstraint = userName.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
         let nameTopConstraint = userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
-        let nameWidthConstraint = userName.widthAnchor.constraint(equalToConstant: 100)
+        let nameWidthConstraint = userYear.leadingAnchor.constraint(greaterThanOrEqualTo: userName.trailingAnchor, constant: 20)
         self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
         
         //number constraints
@@ -69,10 +74,5 @@ class RosterTableViewCell: UITableViewCell {
         let emailTopConstraint = userEmail.topAnchor.constraint(equalTo: userNumber.bottomAnchor, constant: 5)
         let emailRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userEmail.trailingAnchor, constant: 20)
         self.contentView.addConstraints([emailLeftConstraint, emailTopConstraint, emailRightConstraint])
-        
-        //year constraints
-        let yearRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userYear.trailingAnchor, constant: 15)
-        let yearTopConstraint = userYear.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
-        self.contentView.addConstraints([yearRightConstraint, yearTopConstraint])
     }
 }
