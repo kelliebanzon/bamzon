@@ -13,15 +13,15 @@ import XLPagerTabStrip
 class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
     var profilePictureImageView = UIImageView()
+    var vm = PlayerStatsVM()
     var nameLabel = UILabel()
     var statsTable = UITableView()
-
     // TODO: connect to database
 
-    let pID = ID(type: "u", num: 1234)
-    let tID = ID(type: "t", num: 5678)
-    let player = User(userID: ID(type: "u", num: 1234), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: "jperalt@calpoly.edu", schoolYear: Year.thirdYear, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", num: 5678)])
-    let playerStats = PlayerStats(userID: ID(type: "u", num: 1234), teamID: ID(type: "t", num: 5678), fields: ["50 Free": 23.01, "100 Free": 49.67])
+    //let pID = ID(type: "u", num: 1234)
+    //let tID = ID(type: "t", num: 5678)
+    //let player = User(userID: ID(type: "u", num: 1234), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: "jperalt@calpoly.edu", schoolYear: Year.thirdYear, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", num: 5678)])
+    //playerStats = PlayerStats(userID: ID(type: "u", num: 1234), teamID: ID(type: "t", num: 5678), fields: ["50 Free": 23.01, "100 Free": 49.67])
 
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -35,15 +35,16 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
         statsTable.register(StatsPlayerStatsTableViewCell.self, forCellReuseIdentifier: "statCell")
         statsTable.delegate = self
         statsTable.dataSource = self
+        refresh()
     }
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
-        profilePictureImageView = createProfilePictureImageView(imageName: player.imageURL)
+        profilePictureImageView = createProfilePictureImageView(imageName: vm.user!.imageURL)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel = createDefaultHeader1Label(text: player.getFullName(), numLines: 3)
+        nameLabel = createDefaultHeader1Label(text: vm.user!.getFullName(), numLines: 3)
         self.view.addSubview(nameLabel)
 
         self.view.addSubview(statsTable)
@@ -75,14 +76,14 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playerStats.fields?.count ?? 0
+        return vm.playerStats?.fields?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "statCell", for: indexPath) as? StatsPlayerStatsTableViewCell {
-            let fieldName = playerStats.fields?.keys.sorted()[indexPath.row]
+            let fieldName = vm.playerStats?.fields?.keys.sorted()[indexPath.row]
             cell.eventLabel.text = fieldName
-            if let prVal = playerStats.fields?[fieldName!] {
+            if let prVal = vm.playerStats?.fields?[fieldName!] {
                 cell.prLabel.text = "\(prVal)"
             } else {
                 cell.prLabel.text = "-"
@@ -95,7 +96,7 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     }
     
     func refresh() {
-        // TODO: implement refresh
+        vm.refresh(playerStatsVC: self)
     }
     
     func edit() {

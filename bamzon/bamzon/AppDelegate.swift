@@ -13,10 +13,22 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var curTeam: Team?
+    var curUser: User?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        //Initializer user on login or opening app
+        /*if let user = Auth.auth().currentUser {
+            DBUtility.readFromDB(table: FirTable.firebaseIDs, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
+                self.user = User(key: user.uid, payload: idSnap)
+                associatedVC.viewDidLoad()
+            })
+        }*/
+        //Placeholder for now
+        curUser = User(userID: IDUtility.generateIDFromString(idString: "u0"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: nil)
 
         //setViewsNav()
         self.window?.rootViewController = TabBarController()

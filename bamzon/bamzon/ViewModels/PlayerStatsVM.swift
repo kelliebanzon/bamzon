@@ -7,9 +7,17 @@
 //
 
 import Foundation
+import Firebase
 
 class PlayerStatsVM: ViewModel {
-    func refresh() {
-        //TODO: implement refresh
+    var playerStats: PlayerStats?
+    
+    func refresh(playerStatsVC: DisplayableProtocol) {
+        if self.user != nil {
+            DBUtility.readFromDB(table: FirTable.playerStats, keys: self.user!.userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                self.playerStats = PlayerStats(key: key, payload: payload)
+                playerStatsVC.display()
+            })
+        }
     }
 }

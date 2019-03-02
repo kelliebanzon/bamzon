@@ -11,20 +11,6 @@ import Firebase
 import UIKit
 
 class ProfileVM: ViewModel {
-    var user: User?
-    
-    func initUser(profileVC: ProfileVC) {
-        if let user = Auth.auth().currentUser {
-            DBUtility.readFromDB(table: FirTable.firebaseIDs, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
-                profileVC.user = User(key: user.uid, payload: idSnap)
-                profileVC.viewDidLoad()
-            })
-        }
-    }
-    
-    func getDefaultUser() -> User {
-        return User(userID: IDUtility.generateIDFromString(idString: "u0"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: nil)
-    }
     
     func editProfilePic(parentVC: ProfileVC, imagePicker: UIImagePickerController) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {

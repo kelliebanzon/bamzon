@@ -11,6 +11,8 @@ import UIKit
 
 class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
+    var statsVM = StatsVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Stats"

@@ -131,8 +131,8 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         // to view or modify current users go here:
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
         if let parentVC = self.parent as? CreateAccountParentVC {
-            parentVC.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: {
-                alert in if let realAlert = alert {
+            parentVC.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: { alert in
+                if let realAlert = alert {
                     print("display")
                     self.present(realAlert, animated: true, completion: nil)
                     if self.nextVC != nil {

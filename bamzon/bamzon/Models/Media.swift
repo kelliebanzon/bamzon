@@ -20,7 +20,7 @@ struct Media: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         url = payload["url"] as? String ?? "N/A"
-        mediaID = IDUtility.generateIDFromString(idString: key ?? "z0")
+        mediaID = IDUtility.generateIDFromString(idString: key)
     }
     
     func formatForDB() -> [String: Any] {

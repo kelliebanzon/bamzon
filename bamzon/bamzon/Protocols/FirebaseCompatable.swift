@@ -16,4 +16,3 @@ protocol FirebaseCompatable {
     func getTable() -> FirTable
     func getChildPath() -> String
 }
-

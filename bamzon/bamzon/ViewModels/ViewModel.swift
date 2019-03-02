@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import Firebase
 
 class ViewModel {
     
-    init(){
-        
-    }
+    var user: User?
     
+    init() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.user = appDelegate.curUser
+        }
+    }
 }

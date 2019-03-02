@@ -9,6 +9,7 @@
 import Foundation
 
 class StatsVM: ViewModel {
+    
     func refresh() {
         //TODO: implement refresh
     }

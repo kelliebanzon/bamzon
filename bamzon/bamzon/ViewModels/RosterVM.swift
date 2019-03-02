@@ -23,8 +23,8 @@ class RosterVM: ViewModel {
     
     func getUsers(userIDs: [ID], rosterVC: RosterVC) {
         rosterVC.members = [User]()
-        for id in userIDs {
-            DBUtility.readFromDB(table: FirTable.user, keys: id, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+        for userId in userIDs {
+            DBUtility.readFromDB(table: FirTable.user, keys: userId, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                 rosterVC.members.append(User(key: key, payload: userSnap))
                 rosterVC.display()
             })

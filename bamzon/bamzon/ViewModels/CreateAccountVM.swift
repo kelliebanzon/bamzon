@@ -73,13 +73,12 @@ class CreateAccountVM: ViewModel {
     }
     
     func initUser(fname: String, lname: String, email: String) -> User? {
-        if let user = Auth.auth().currentUser {
-            let newUserID = IDUtility.generateUserID();
+        if Auth.auth().currentUser != nil {
+            let newUserID = IDUtility.generateUserID()
             let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
             //DBUtility.writeToDB(objToWrite: newUser)
             return newUser
-        }
-        else {
+        } else {
             return nil
         }
     }

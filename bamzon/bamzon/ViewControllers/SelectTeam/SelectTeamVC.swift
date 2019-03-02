@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
+    
+    let selectTeamVM = SelectTeamVM()
 
     let fname = "Jake"
     let teamArray: NSArray = ["Cal Poly Swim Club", "Triathlon Team", "Men's Water Polo"]

@@ -89,4 +89,3 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 }
-

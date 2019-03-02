@@ -12,8 +12,6 @@ import UIKit
 class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let profileVM = ProfileVM()
-    var user: User?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
@@ -21,13 +19,11 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
     }
     
     func display() {
+        guard let user = profileVM.user else {return}
         
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: change these to user names
-        if user == nil {
-            user = profileVM.getDefaultUser()
-        }
+        // TODO: change these to user name
         
         //image view
         let profilePictureImageView = UIImageView()
@@ -55,7 +51,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         lNameLabel.numberOfLines = 1
         lNameLabel.textColor = .white
         lNameLabel.textAlignment = .left
-        lNameLabel.text = user?.lastName
+        lNameLabel.text = user.lastName
         lNameLabel.minimumScaleFactor = 0.25
         lNameLabel.adjustsFontSizeToFitWidth = true
         lNameLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
@@ -75,7 +71,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         fNameLabel.numberOfLines = 1
         fNameLabel.textColor = .white
         fNameLabel.textAlignment = .left
-        fNameLabel.text = user?.firstName
+        fNameLabel.text = user.firstName
         fNameLabel.minimumScaleFactor = 0.25
         fNameLabel.adjustsFontSizeToFitWidth = true
         fNameLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
@@ -135,7 +131,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         let bio = UITextView()
         bio.textAlignment = .left
         bio.font = UIFont(name: "HelveticaNeue", size: 17)
-        bio.text = user?.bio
+        bio.text = user.bio
         bio.textColor = .white
         bio.isEditable = false
         bio.backgroundColor = UIColor(named: "TSTeal")
@@ -185,7 +181,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         numberLabel.numberOfLines = 0
         numberLabel.textColor = .white
         numberLabel.textAlignment = .left
-        numberLabel.text = user?.phone
+        numberLabel.text = user.phone
         self.view.addSubview(numberLabel)
         
         //phone Label constraints
@@ -216,7 +212,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         emailTextLabel.numberOfLines = 1
         emailTextLabel.textColor = .white
         emailTextLabel.textAlignment = .left
-        emailTextLabel.text = user?.email
+        emailTextLabel.text = user.email
         emailTextLabel.minimumScaleFactor = 0.8
         emailTextLabel.adjustsFontSizeToFitWidth = true
         emailLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
