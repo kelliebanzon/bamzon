@@ -8,6 +8,8 @@
 
 import Foundation
 
+//List of teams for user
+
 class SelectTeamVM: ViewModel {
     func refresh() {
         //TODO: implement refresh teams to select

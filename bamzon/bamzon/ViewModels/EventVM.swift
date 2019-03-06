@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//event object
 
 class EventVM: ViewModel {
     func refresh() {

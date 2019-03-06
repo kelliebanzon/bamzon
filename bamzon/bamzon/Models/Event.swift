@@ -19,6 +19,8 @@ struct Event: FirebaseCompatable, Equatable {
     var tags: [String]?
     var media: [String: Media]?
     var links: [String: String]? // TODO: should this be a url or a string?
+    var isPractice: Bool?
+    var hasRSVP: Bool?
     var eventID: ID
     var teamID: ID
     
