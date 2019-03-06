@@ -23,7 +23,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Roster"
-        DBUtility.readFromDB(table: FirTable.team, keys: IDUtility.generateIDFromString(idString: "t404"), completion: { (key: String, payload: [String: AnyObject]) in
+        DBUtility.readFromDB(table:FirTable.team, keys: IDUtility.generateIDFromString(idString: "t404"), completion: { (key: String, payload: [String : AnyObject]) in
             self.team = Team(key: key, payload: payload)
             self.refresh()
             })
