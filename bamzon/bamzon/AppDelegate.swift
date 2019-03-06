@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 associatedVC.viewDidLoad()
             })
         }*/
-        //Placeholder for now
-        curUser = User(userID: IDUtility.generateIDFromString(idString: "u0"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: nil)
 
         //setViewsNav()
         self.window?.rootViewController = TabBarController()
