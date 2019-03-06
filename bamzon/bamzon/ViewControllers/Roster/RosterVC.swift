@@ -23,7 +23,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Roster"
-        
         if team != nil {
             rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
         }

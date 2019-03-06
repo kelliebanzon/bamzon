@@ -179,6 +179,23 @@ extension UIViewController {
         return profilePictureImageView
     }
     
+    func createButtonToConstrain(withText: String, size: CGFloat) -> UIButton {
+        let button = UIButton()
+        button.setTitle("\(withText)", for: .normal)
+        button.backgroundColor = UIColor(named: "TSYellow")
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        button.layer.masksToBounds = false
+        button.layer.shadowRadius = 1.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size: size)
+        button.addTarget(self, action: #selector(highlightButton), for: .touchDown)
+        button.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
     func createTextFieldBar(withRect: CGRect) -> CAShapeLayer {
         let bar = CAShapeLayer()
         bar.path = UIBezierPath(roundedRect: withRect, cornerRadius: 8).cgPath
