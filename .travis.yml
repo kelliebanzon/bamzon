@@ -4,6 +4,9 @@ xcode_workspace: bamzon/bamzon.xcworkspace
 xcode_scheme: bamzon
 xcode_sdk: iphonesimulator12.1
 xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+
+dist: trusty
+
 podfile: bamzon/Podfile
 notifications:
   slack:
