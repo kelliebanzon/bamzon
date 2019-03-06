@@ -16,7 +16,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     var sportType: UITextField?
     
     var orgTableView: UITableView = UITableView()
-    var orgList: [String] = ["University of Alabama", "University of California, Berkely", "Cal Poly, SLO", "Stanford University"]
+    var orgList: [String] = ["University of Alabama", "University of California, Berkeley", "Cal Poly, SLO", "Stanford University"]
     
     var sportTableView: UITableView = UITableView()
     var sportList: [String] = ["Basketball", "Cross Country", "Golf", "Ice Hockey", "Lacrosse", "Swim", "Triathlon", "Water Polo"]
@@ -61,6 +61,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         self.view.addSubview(button)
     }
     
+    // Select Organization
     @objc func selectOrg(textField: UITextField) {
         orgTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         orgTableView.dataSource = self

@@ -187,4 +187,8 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         
         self.view.addConstraints([horizMemberButtonConstraint, vertMemberButtonConstraint, leftMemberButtonConstraint, rightMemberButtonConstraint])
     }
+        
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

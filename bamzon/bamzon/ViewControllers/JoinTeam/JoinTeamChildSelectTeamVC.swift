@@ -16,7 +16,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     var teamName: UITextField?
     
     var orgTableView: UITableView = UITableView()
-    var orgList: [String] = ["University of Alabama", "University of California, Berkely", "Cal Poly, SLO", "Stanford University"]
+    var orgList: [String] = ["University of Alabama", "University of California, Berkeley", "Cal Poly, SLO", "Stanford University"]
     
     // teamList needs to be populated - determined by which org is selected.
     // all teamList references must be generalized using the orgName (some sort of struct
