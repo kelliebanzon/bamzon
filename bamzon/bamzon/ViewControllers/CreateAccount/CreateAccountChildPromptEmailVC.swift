@@ -93,6 +93,10 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         scrollView.addSubview(existingAccount)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // Send user to login page if they have an existing account
     @objc func loginPage() {
         self.mockSegue(toIdentifier: "LoginVC")

@@ -9,9 +9,7 @@
 import Foundation
 
 class CreateTeamVM: ViewModel {
-    
-    var team: Team?
-    
+        
     func createTeam(teamName: String, orgName: String, sport: String) {
         let teamID = IDUtility.generateTeamID()
         //TODO: Check if the org name exists already. not sure where we wanna do this but it should be done somewhere and someow.

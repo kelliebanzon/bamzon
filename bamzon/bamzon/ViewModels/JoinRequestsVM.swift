@@ -8,6 +8,8 @@
 
 import Foundation
 
+//List of users
+
 class JoinRequestsVM: ViewModel {
     func approve() {
         //TODO: implement approve join request

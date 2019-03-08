@@ -12,10 +12,15 @@ import Firebase
 class ViewModel {
     
     var user: User?
+    var team: Team?
     
     init() {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             self.user = appDelegate.curUser
+        }
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.team = appDelegate.curTeam
         }
     }
 }

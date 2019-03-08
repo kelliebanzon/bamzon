@@ -8,6 +8,8 @@
 
 import Foundation
 
+//log out
+
 class SettingsVM: ViewModel {
     
     func updateSettings() {

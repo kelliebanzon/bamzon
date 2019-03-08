@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FirebaseID: FirebaseCompatable, Equatable{
+struct FirebaseID: FirebaseCompatable, Equatable {
     var userID: ID
     var firebaseID: String
     
@@ -17,12 +17,12 @@ struct FirebaseID: FirebaseCompatable, Equatable{
         self.firebaseID = firebaseID
     }
     
-    init(key: String, payload: [String: AnyObject]) {
+    init(key: String, payload: [String:AnyObject]) {
         userID = IDUtility.generateIDFromString(idString: payload["userID"] as? String ?? "")
         firebaseID = key
     }
-    
-    func formatForDB() -> [String: Any] {
+
+    func formatForDB() -> [String:Any] {
         return ["userID": userID, "firebaseID": firebaseID]
     }
     
@@ -33,4 +33,5 @@ struct FirebaseID: FirebaseCompatable, Equatable{
     func getChildPath() -> String {
         return firebaseID
     }
+    
 }

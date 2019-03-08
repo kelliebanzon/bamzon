@@ -8,6 +8,9 @@
 
 import Foundation
 
+//List of orgnizations
+//Pull selected organization's list of teams
+
 class JoinTeamVM {
     func sendJoinRequest(org: String, team: String) {
         //TODO: implement sendJoinRequest

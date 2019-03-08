@@ -8,6 +8,8 @@
 
 import Foundation
 
+//Players, list of practices.
+
 class Attendace: ViewModel {
     func refresh() {
         //TODO: implement refresh
