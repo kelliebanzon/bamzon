@@ -8,7 +8,7 @@
 
 import Foundation
 
-//Players, list of practices.
+//Players, list of practices (tagged events).
 
 class Attendace: ViewModel {
     func refresh() {

@@ -26,8 +26,8 @@ class CalendarVM: ViewModel {
         )
     }
 
-    //Uhhhhhh
     func updateEvents(events: [Event]) {
-        //TODO: implement update Events
+        calendar.events = events
+        DBUtility.writeToDB(objToWrite: calendar)
     }
 }

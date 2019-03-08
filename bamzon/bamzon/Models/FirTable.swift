@@ -8,7 +8,7 @@
 
 import Foundation
 
-// index by model class name
+// index by model class name, but plural
 enum FirTable: String {
     case playerStats = "playerStats"
     case event = "events"
