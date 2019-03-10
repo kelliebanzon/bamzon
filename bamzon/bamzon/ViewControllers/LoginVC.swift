@@ -88,13 +88,16 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     }
     
     // General function to validate fields
-    @objc func checkFields() {
+    @objc func checkFields() -> Bool{
         if email?.text == "" || password?.text == "" {
             throwMissingFieldsError()
-        } else if validEmail(email: (email?.text)!) {
-            // TODO: Use credentials to validate with firebase
-            checkLogin()
-            // TODO: check how this changes when embedded in a nav controller
+            return false
+        }
+        
+        if validEmail(email: (email?.text)!) {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -122,15 +125,11 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     }
 
     @objc func checkLogin() {
-        if let validLogin = loginVM.checkLogin(email: email?.text ?? "", password: password?.text ?? "") {
-                let alert = UIAlertController(title: "Invalid Login", message: validLogin, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "retry", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+        print("checking login")
+        if checkFields() && loginVM.checkLogin(parent: self, email: email?.text, password: password?.text) {
+            self.mockSegue(toIdentifier: "ProfileVC")
         } else {
-            // swiftlint:disable force_cast
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            // swiftlint:enable force_cast
-            appDelegate.showTabController()
+            return
         }
     }
     
