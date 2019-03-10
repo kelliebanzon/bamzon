@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Initializer user on login or opening app
         if let user = Auth.auth().currentUser {
-            DBUtility.readFromDB(table: FirTable.firebaseIDs, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
+            DBUtility.readFromDB(table: FirTable.firebaseID, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
                 
                 if let userID = idSnap["userID"] as? String {
                     DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
