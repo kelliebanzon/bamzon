@@ -23,11 +23,11 @@ struct FirebaseID: FirebaseCompatable, Equatable {
     }
 
     func formatForDB() -> [String:Any] {
-        return ["userID": userID, "firebaseID": firebaseID]
+        return ["userID": userID.asString()]
     }
     
     func getTable() -> FirTable {
-        return FirTable.firebaseIDs
+        return FirTable.firebaseID
     }
     
     func getChildPath() -> String {

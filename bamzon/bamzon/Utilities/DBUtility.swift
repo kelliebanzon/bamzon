@@ -26,7 +26,8 @@ class DBUtility {
     *       Indexed by class name, eg. FirTable.joinRequest
     *   keys: the ID or IDs of the item you're looking for.
     *       All classes require a single ID, except for playerStats and playerPerms
-    *   completion: a closure that takes a DataSnapshot and returns void. Usually used
+    *   completion: a closure that takes a DataSnapshot's value as [String: AnyObject] and returns void.
+    *       Usually used
     *       to assign an item to a variable. Returns when the asynchronous fetch is done.
     *
     *   Example:

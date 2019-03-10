@@ -105,6 +105,8 @@
 		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
 		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
 		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
+		F19FB6912235C02800ABC7E3 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FB6902235C02800ABC7E3 /* Practice.swift */; };
+		F19FB6932235C7B800ABC7E3 /* PlayerAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +243,8 @@
 		D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsTeamStatsViewCell.swift; sourceTree = "<group>"; };
 		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
+		F19FB6902235C02800ABC7E3 /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
+		F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAttendance.swift; sourceTree = "<group>"; };
 		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -433,6 +437,8 @@
 				AB47757221B4E3DE00A1DCD5 /* User.swift */,
 				655E8050221D381800BDA6A2 /* FirTable.swift */,
 				D37DA9D22224C66B000E357E /* FirebaseID.swift */,
+				F19FB6902235C02800ABC7E3 /* Practice.swift */,
+				F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -900,6 +906,7 @@
 				ABC5822121B4AB2500DDC094 /* PlayerPerms.swift in Sources */,
 				A81439E221B71E58000E287A /* RosterVM.swift in Sources */,
 				6E6222E0221F7AD3000A2B94 /* CellUtility.swift in Sources */,
+				F19FB6932235C7B800ABC7E3 /* PlayerAttendance.swift in Sources */,
 				D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
 				D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */,
@@ -939,6 +946,7 @@
 				A8143A0321B72E3B000E287A /* RosterVC.swift in Sources */,
 				A8143A1321B730A3000E287A /* JoinRequestsVC.swift in Sources */,
 				A81439F521B72A74000E287A /* CreateAccountParentVC.swift in Sources */,
+				F19FB6912235C02800ABC7E3 /* Practice.swift in Sources */,
 				A81439E721B71E58000E287A /* CalendarVM.swift in Sources */,
 				65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */,
 				ABEF642621FE6E0700716ACB /* AttendancePlayerVC.swift in Sources */,

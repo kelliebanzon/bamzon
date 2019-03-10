@@ -275,7 +275,7 @@ class bamzonModelTests: XCTestCase {
     func testFirebaseIDDBFuncs() {
         let test = FirebaseID(userID: ID(type: "u", num: 999), firebaseID: "4F33eBzUWgY03almiHpkLH5q9OY2")
         
-        XCTAssertEqual(test.getTable(), FirTable.firebaseIDs)
+        XCTAssertEqual(test.getTable(), FirTable.firebaseID)
         XCTAssertEqual(test.getChildPath(), "4F33eBzUWgY03almiHpkLH5q9OY2")
     }
     
@@ -283,7 +283,7 @@ class bamzonModelTests: XCTestCase {
         let expected = FirebaseID(userID: ID(type: "u", num: 999), firebaseID: "4F33eBzUWgY03almiHpkLH5q9OY2")
         
         let key = "4F33eBzUWgY03almiHpkLH5q9OY2"
-        let payload = ["userID": "u999", "firebaseID": "4F33eBzUWgY03almiHpkLH5q9OY2"] as [String: AnyObject]
+        let payload = ["userID": "u999"] as [String: AnyObject]
         
         XCTAssertEqual(expected, FirebaseID(key: key, payload: payload))
     }
