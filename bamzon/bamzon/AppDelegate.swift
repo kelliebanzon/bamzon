@@ -28,23 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }*/
 
-        //setViewsNav()
-        self.window?.rootViewController = TabBarController()
+//        showTabController()
         window?.makeKeyAndVisible()
-
         return true
     }
 
-//    // TODO: do these functions belong in this file?
-    func setWizardNav() {
-        let nav = WizardNC()
-        self.window?.rootViewController = nav
+    func showTabController() {
+        self.window?.rootViewController = TabBarController()
+        self.window?.rootViewController?.viewDidLoad()
     }
-//
-    func setViewsNav() {
-        let nav = ViewNC()
-        nav.viewControllers = [TabBarController()]
-        self.window?.rootViewController = nav
+
+    func hideTabController() {
+        self.window?.rootViewController = nil
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

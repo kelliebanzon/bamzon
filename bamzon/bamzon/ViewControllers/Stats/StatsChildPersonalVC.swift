@@ -53,10 +53,11 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     }
 
     func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
-            view.topAnchor, constant: offsets["horizEdges"]!)
-        let picLeftConstraint = profilePictureImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: offsets["horizEdges"]!)
+            margins.topAnchor, constant: offsets["horizEdges"]!)
+        let picLeftConstraint = profilePictureImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: offsets["horizEdges"]!)
         let picAspectConstraint = profilePictureImageView.widthAnchor.constraint(equalTo: profilePictureImageView.heightAnchor)
         let picHeightConstraint = profilePictureImageView.heightAnchor.constraint(equalToConstant: 125)
         self.view.addConstraints([picTopConstraint, picLeftConstraint, picAspectConstraint, picHeightConstraint])
@@ -64,14 +65,14 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         let nameVerticalConstraint = nameLabel.centerYAnchor.constraint(equalTo: profilePictureImageView.centerYAnchor)
         let nameLeadingConstraint = nameLabel.leadingAnchor.constraint(equalTo: profilePictureImageView.trailingAnchor, constant: offsets["horizEdges"]!)
-        let nameTrailingConstraint = view.trailingAnchor.constraint(greaterThanOrEqualTo: nameLabel.trailingAnchor, constant: offsets["horizEdges"]!)
+        let nameTrailingConstraint = margins.trailingAnchor.constraint(greaterThanOrEqualTo: nameLabel.trailingAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([nameVerticalConstraint, nameLeadingConstraint, nameTrailingConstraint])
 
         statsTable.translatesAutoresizingMaskIntoConstraints = false
         let tableTopConstraint = statsTable.topAnchor.constraint(equalTo: profilePictureImageView.bottomAnchor, constant: offsets["horizEdges"]!)
         let tableLeadingConstraint = statsTable.leadingAnchor.constraint(equalTo: profilePictureImageView.leadingAnchor)
-        let tableTrailingConstraint = view.trailingAnchor.constraint(equalTo: statsTable.trailingAnchor, constant: offsets["horizEdges"]!)
-        let tableBottomConstraint = view.bottomAnchor.constraint(equalTo: statsTable.bottomAnchor, constant: offsets["horizEdges"]!)
+        let tableTrailingConstraint = margins.trailingAnchor.constraint(equalTo: statsTable.trailingAnchor, constant: offsets["horizEdges"]!)
+        let tableBottomConstraint = margins.bottomAnchor.constraint(equalTo: statsTable.bottomAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([tableTopConstraint, tableLeadingConstraint, tableTrailingConstraint, tableBottomConstraint])
     }
 
@@ -109,11 +110,4 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
         return IndicatorInfo(title: "My Stats")
     }
 
-    /*
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

@@ -94,7 +94,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         } else if validEmail(email: (email?.text)!) {
             // TODO: Use credentials to validate with firebase
             checkLogin()
-            //print("present CreateAccountChildPromptCodeVC")
             // TODO: check how this changes when embedded in a nav controller
         }
     }
@@ -128,7 +127,10 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
                 alert.addAction(UIAlertAction(title: "retry", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
         } else {
-            self.mockSegue(toIdentifier: "ProfileVC")
+            // swiftlint:disable force_cast
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            // swiftlint:enable force_cast
+            appDelegate.showTabController()
         }
     }
     

@@ -11,6 +11,8 @@ import UIKit
 import XLPagerTabStrip
 
 class AttendanceChildPlayersVC: UIViewController, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
+
+    var tempLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +23,22 @@ class AttendanceChildPlayersVC: UIViewController, IndicatorInfoProvider, Display
         // TODO: implement display
         view.backgroundColor = UIColor(named: "TSOrange")
 
-        // TODO: temporary identifier code. delete this once you write the real display func
-        // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 120))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        tempLabel = createDefaultLabel(text: description, numLines: 0)
         tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 1
-        tempLabel.textColor = .white
-        tempLabel.text = "AttendanceChildPlayersVC"
+        tempLabel.lineBreakMode = .byWordWrapping
         self.view.addSubview(tempLabel)
+
+        setupAutoLayout()
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        tempLabel.translatesAutoresizingMaskIntoConstraints = false
+        let tempLabelVertConstraint = tempLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        let tempLabelLeadingConstraint = tempLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let tempLabelTrailingConstraint = margins.trailingAnchor.constraint(equalTo: tempLabel.trailingAnchor, constant: 20)
+        self.view.addConstraints([tempLabelVertConstraint, tempLabelLeadingConstraint, tempLabelTrailingConstraint])
     }
     
     func refresh() {

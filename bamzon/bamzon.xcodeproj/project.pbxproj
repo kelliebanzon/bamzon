@@ -1217,7 +1217,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JS53AFMF5H;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = bamzon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1234,7 +1234,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JS53AFMF5H;
+				DEVELOPMENT_TEAM = 9T639RZ32V;
 				IBSC_WARNINGS = NO;
 				INFOPLIST_FILE = bamzon/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
