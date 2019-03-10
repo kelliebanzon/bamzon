@@ -12,7 +12,6 @@ import UIKit
 class TeamHomeVC: UIViewController, DisplayableProtocol {
 
     var teamPictureImageView = UIImageView()
-    var memberCountLabel = UILabel()
     var teamNameLabel = UILabel()
     var nextLabel = UILabel()
     var descLabel = UILabel()
@@ -37,7 +36,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         view.backgroundColor = UIColor(named: "TSTeal")
         
         let tName = "Cal Poly Swim Club"
-        let memberCount = 78
         let nextPracticeDesc = "Dryland - Doerr Field"
         let nextPracticeTime = "6:30 - 7:30 pm"
         let nextEventDesc = "UCLA Invite"
@@ -51,11 +49,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         teamPictureImageView.image = UIImage(named: "BZN-Square-Logo")
         teamPictureImageView.layer.cornerRadius = 15.0
         self.view.addSubview(teamPictureImageView)
-        
-        //member count label
-        memberCountLabel = createDefaultLabel(text: "Member count: \(memberCount)")
-        self.view.addSubview(memberCountLabel)
-        
+
         //team name
         teamNameLabel = createDefaultHeader1Label(text: tName, numLines: 3)
         teamNameLabel.lineBreakMode = .byWordWrapping
@@ -110,13 +104,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         let picWidthConstraint = teamPictureImageView.widthAnchor.constraint(equalToConstant: 125)
         let picDimensionConstraint = teamPictureImageView.heightAnchor.constraint(equalTo: teamPictureImageView.widthAnchor)
         self.view.addConstraints([picTopConstraint, picLeftConstraint, picWidthConstraint, picDimensionConstraint])
-
-        //member count label constraints
-        memberCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        let memberBottomConstraint = memberCountLabel.bottomAnchor.constraint(equalTo: teamPictureImageView.bottomAnchor)
-        let memberLeftConstraint = memberCountLabel.leadingAnchor.constraint(equalTo: teamPictureImageView.trailingAnchor, constant: 20)
-        let memberRightConstraint = margins.trailingAnchor.constraint(equalTo: memberCountLabel.trailingAnchor, constant: 20)
-        self.view.addConstraints([memberBottomConstraint, memberLeftConstraint, memberRightConstraint])
 
         //team name constraints
         teamNameLabel.translatesAutoresizingMaskIntoConstraints = false
