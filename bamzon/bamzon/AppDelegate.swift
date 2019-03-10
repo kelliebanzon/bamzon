@@ -20,13 +20,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        curUser = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", num: 404)])
+        
         //Initializer user on login or opening app
-        /*if let user = Auth.auth().currentUser {
+        if let user = Auth.auth().currentUser {
             DBUtility.readFromDB(table: FirTable.firebaseIDs, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
-                self.user = User(key: user.uid, payload: idSnap)
-                associatedVC.viewDidLoad()
+                
+                if let userID = idSnap["userID"] as? String {
+                    DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
+                        self.curUser = User(key: user.uid, payload: idSnap)
+                    })
+                }
+                
             })
-        }*/
+        }
+        
+        curTeam = Team(teamID: ID(type: "t", num: 404), orgID: ID(type: "o", num: 404), userIDs: [ID(type: "u", num: 404)], teamName: "Test Team", sport: "Cricket", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
 
 //        showTabController()
         window?.makeKeyAndVisible()

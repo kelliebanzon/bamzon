@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
 
     var email: String?
     var name: String?
     var code: UITextField?
+    var backPressed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     
     // Function call to VM to verify code
     @objc func verifyCode() {
-        if code?.text == "123456" {
+        if waitForVerification() {
             if let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC") as? CreateAccountChildSuccessVC {
                 nextVC.name = name!
                 present(nextVC, animated: true, completion: nil)
@@ -55,6 +57,18 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         } else {
             alert(withTitle: "Uh oh!", withMessage: "That code doesn't look right 😰\rPlease try again.")
         }
+    }
+    
+    func waitForVerification() -> Bool {
+        while backPressed {
+            Auth.auth().currentUser!.reload()
+            if Auth.auth().currentUser!.isEmailVerified {
+                mockSegue(toIdentifier: "CreateAccountChildSuccessVC")
+                return true
+            }
+            sleep(500)
+        }
+        return false
     }
     
 //    @ kyle: when you're ready to transition to the account success creation page,
