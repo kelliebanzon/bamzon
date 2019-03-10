@@ -13,7 +13,6 @@ import Foundation
 //team stats
 
 class StatsVM: ViewModel {
-    var otherPlayers: User
     
     func refresh() {
         //TODO: implement refresh

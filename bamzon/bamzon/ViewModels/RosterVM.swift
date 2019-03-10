@@ -32,6 +32,20 @@ class RosterVM: ViewModel {
     }
     
     func updateRoster(roster: [User]) {
-        //TODO: implement update roster
+//        userIDs = rosterToIDList(roster: roster)
+//            
+//            
+//            for usr in roster {
+//                usr.teamIDs?.append()
+//            }
+        }
+    
+    
+    func rosterToIDList(roster: [User]) -> [ID] {
+        var rosterIDs = [ID]()
+        for usr in roster {
+            rosterIDs.append(usr.userID)
+        }
+        return rosterIDs
     }
 }
