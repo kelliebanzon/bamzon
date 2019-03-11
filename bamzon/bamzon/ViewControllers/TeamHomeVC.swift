@@ -11,6 +11,12 @@ import UIKit
 
 class TeamHomeVC: UIViewController, DisplayableProtocol {
 
+////    swiftlint:disable force_cast
+//    var curTeam: Team = (UIApplication.shared.delegate as! AppDelegate).curTeam!
+    var curTeam = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
+
+//    //swiftlint:enable force_cast
+    
     var teamPictureImageView = UIImageView()
     var teamNameLabel = UILabel()
     var nextLabel = UILabel()
@@ -21,7 +27,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     var eventDateLabel = UILabel()
     var departTimeLabel = UILabel()
     var returnTimeLabel = UILabel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Team Home"
@@ -46,12 +52,13 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         //image view
         teamPictureImageView.contentMode = .scaleAspectFill
         teamPictureImageView.clipsToBounds = true
+        // TODO: update to be a team-specific photo
         teamPictureImageView.image = UIImage(named: "BZN-Square-Logo")
         teamPictureImageView.layer.cornerRadius = 15.0
         self.view.addSubview(teamPictureImageView)
 
         //team name
-        teamNameLabel = createDefaultHeader1Label(text: tName, numLines: 3)
+        teamNameLabel = createDefaultHeader1Label(text: curTeam.teamName, numLines: 3)
         teamNameLabel.lineBreakMode = .byWordWrapping
         self.view.addSubview(teamNameLabel)
         
