@@ -89,6 +89,18 @@ class DBUtility {
         })
     }
     
+    static func readBaseFromDB(table: FirTable, completion: @escaping ([DataSnapshot]) -> Void) {
+        
+        print("reading from \(table)")
+        fbDatabase.child(table.rawValue).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
+                completion(snapshot.children.allObjects as? [DataSnapshot] ?? [snapshot])
+            } else {
+                print("Firebase Query Failed! No result found in table: \(table.rawValue)")
+            }
+        })
+    }
+    
     //TODO: this function is identical to above except for one thing.
     // ie. duplicate code, not sure how to fix but it should be
     // snapshot was a problem
