@@ -478,7 +478,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFi-S7-TL6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1913" y="1602"/>
+            <point key="canvasLocation" x="2844" y="1602"/>
         </scene>
         <!--Select TeamVC-->
         <scene sceneID="qTX-3Y-fR8">
@@ -493,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tcT-p5-k3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3585" y="1602"/>
+            <point key="canvasLocation" x="1356" y="1602"/>
         </scene>
         <!--Select Team Nav Controller-->
         <scene sceneID="6O7-V2-1Vu">
@@ -506,7 +506,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6O-RQ-UHe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2743" y="1602"/>
+            <point key="canvasLocation" x="3673" y="1602"/>
         </scene>
         <!--Join Team ParentVC-->
         <scene sceneID="Kjp-nB-Ufz">

@@ -41,7 +41,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        let tName = "Cal Poly Swim Club"
         let nextPracticeDesc = "Dryland - Doerr Field"
         let nextPracticeTime = "6:30 - 7:30 pm"
         let nextEventDesc = "UCLA Invite"
