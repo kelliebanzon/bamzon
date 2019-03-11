@@ -23,7 +23,9 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Select Team"
-        selectTeamVM.loadTeams(parent: self)
+        print("selectTeam")
+        self.showSpinner(onView: self.view)
+        selectTeamVM.loadTableValues(parent: self)
         display()
     }
     

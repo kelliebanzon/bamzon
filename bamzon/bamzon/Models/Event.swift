@@ -16,7 +16,7 @@ struct Event: FirebaseCompatable, Equatable {
     var description: String?
     var date: String?
     var rsvps: RSVP?
-    var tags: [String]?
+    var tags: [String: String]?
     var media: [String: Media]?
     var links: [String: String]? // TODO: should this be a url or a string?
     var isPractice: Bool?
@@ -24,7 +24,7 @@ struct Event: FirebaseCompatable, Equatable {
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: RSVP?, tags: [String]?, media: [String: Media]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: RSVP?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
         self.name = name
         self.location = location
         self.contactUserIDs = contactUserIDs
@@ -46,7 +46,7 @@ struct Event: FirebaseCompatable, Equatable {
              "contactUserIds": IDUtility.idsToStrings(ids: contactUserIDs),
              "description": description ?? "",
              "date": date ?? "",
-             "tags": tags ?? [],
+             "tags": tags ?? [:],
              "media": media ?? [:],
              "links": links ?? [:]]
     }
@@ -67,7 +67,7 @@ struct Event: FirebaseCompatable, Equatable {
         description = payload["description"] as? String ?? "N/A"
         date = payload["date"] as? String ?? "N/A"
         rsvps = nil
-        tags = payload["tags"] as? [String] ?? []
+        tags = payload["tags"] as? [String: String] ?? [:]
         media = payload["media"] as? [String: Media] ?? [:]
         links = payload["links"] as? [String: String] ?? [:]
         teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")

@@ -21,6 +21,7 @@ class RosterVM: LoggedInViewModel {
         })
     }
     
+    //TODO: move userID to the VM and access from VC
     func getUsers(userIDs: [ID], rosterVC: RosterVC) {
         rosterVC.members = [User]()
         for userId in userIDs {

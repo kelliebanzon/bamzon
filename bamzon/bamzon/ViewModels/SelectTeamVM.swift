@@ -14,30 +14,49 @@ import UIKit
 class SelectTeamVM: LoggedInViewModel {
     
     var teams: [Team] = []
+    var organizations: [Organization] = [] //correspond to matching index in teams array
 
-    func loadTeams(parent: DisplayableProtocol) {
-        if(self.user.teamIDs != nil && self.user.teamIDs!.count != 0) {
-            for teamID in self.user.teamIDs! {
-                DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
-                    self.teams.append(Team(key: key, payload: teamSnap))
-                    parent.display()
-                })
-            }
-        }
+    var waitForTeam = true
+    var waitForOrg = true
+    
+    func refresh(parent: UIViewController) {
+        loadTableValues(parent: parent)
     }
     
-    func refresh(parent: DisplayableProtocol) {
-        loadTeams(parent: parent)
+    func loadTableValues(parent: UIViewController) {
+        if self.user.teamIDs != nil && self.user.teamIDs!.count != 0 {
+            for teamID in self.user.teamIDs! {
+                print("team1")
+                let team = getTeam(teamID: teamID, parent: parent)
+                teams.append(team)
+                organizations.append(getOrg(orgID: team.orgID))
+            }
+            
+        }
     }
 
-    func getTeamsForCurUser() -> [Team] {
-        // TODO: get the list of teams associated with the current user. all of the code below are hard-coded values which should be deleted
-        return [Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)]
+    func getTeam(teamID: ID, parent: UIViewController) -> Team {
+        var team: Team?
+        DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
+            parent.removeSpinner()
+            team = Team(key: key, payload: teamSnap)
+            //self.waitForTeam = false
+        })
+        while waitForTeam {print("\(self.teams.count)")}
+        return team!
     }
 
     func getOrg(orgID: ID) -> Organization {
         // TODO: return the organization object with a given orgID. code below is temporary for testing purposes
-        return Organization(orgID: IDUtility.generateOrgID(), name: "Cal Poly", location: nil, teamIDs: [team.teamID])
+        var org: Organization?
+        DBUtility.readFromDB(table: FirTable.organization, keys: orgID, completion: { (key: String, orgSnap: [String: AnyObject]) -> Void in
+            org = Organization(key: key, payload: orgSnap)
+            self.waitForOrg = false
+        })
+        
+        while self.waitForOrg {print("waiting2")}
+        return org!
+
     }
     
     func selectTeam(team: Team) {
