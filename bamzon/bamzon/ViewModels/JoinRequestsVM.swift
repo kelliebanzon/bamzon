@@ -10,7 +10,7 @@ import Foundation
 
 //List of users
 
-class JoinRequestsVM: ViewModel {
+class JoinRequestsVM: LoggedInViewModel {
     func approve() {
         //TODO: implement approve join request
     }

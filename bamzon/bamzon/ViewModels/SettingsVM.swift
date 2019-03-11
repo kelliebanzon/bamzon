@@ -10,7 +10,7 @@ import Foundation
 
 //log out
 
-class SettingsVM: ViewModel {
+class SettingsVM: LoggedInViewModel {
     
     func updateSettings() {
         //TODO: implement update settings

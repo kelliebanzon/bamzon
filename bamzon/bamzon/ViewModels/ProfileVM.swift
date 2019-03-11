@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import UIKit
 
-class ProfileVM: ViewModel {
+class ProfileVM: LoggedInViewModel {
     
     func editProfilePic(parentVC: ProfileVC, imagePicker: UIImagePickerController) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {

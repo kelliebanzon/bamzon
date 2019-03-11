@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class CalendarVM: ViewModel {
+class CalendarVM: LoggedInViewModel {
     let teamID: ID
     var calendar: TeamCalendar
     

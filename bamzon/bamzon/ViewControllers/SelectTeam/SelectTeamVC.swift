@@ -11,19 +11,19 @@ import UIKit
 
 class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
-    let vm = SelectTeamVM()
-    var teams: [Team] = []
+    let selectTeamVM = SelectTeamVM()
 
-    let fname = "Jake"
+    /*let fname = "Jake"
     let teamArray: NSArray = ["Cal Poly Swim Club", "Triathlon Team", "Men's Water Polo"]
     let locationArray: NSArray = ["Cal Poly, SLO", "Bishop Peak Tri", "Morro Bay HS"]
+ */
     private var myTableView: UITableView!
     private let cellId = "MyTeamCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Select Team"
-        teams = vm.getTeamsForCurUser()
+        selectTeamVM.loadTeams(parent: self)
         display()
     }
     
@@ -74,7 +74,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         greetLabel.numberOfLines = 0
         greetLabel.textColor = .white
         greetLabel.textAlignment = .center
-        greetLabel.text = "Hey \(vm.user?.firstName ?? "there"), lookin' good today! Select a team to view more info"
+        greetLabel.text = "Hey \(selectTeamVM.user.firstName), lookin' good today! Select a team to view more info"
         self.view.addSubview(greetLabel)
         
         //greet label constraints
@@ -115,8 +115,8 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // TODO: implement join team
     }
     
-    func viewTeam(teamID: ID) {
-        vm.selectTeam(selectedTeamID: teamID)
+    func viewTeam(team: Team) {
+        selectTeamVM.selectTeam(team: team)
     }
     
     func logout() {
@@ -129,7 +129,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
-        print("Value: \(teams[indexPath.row])")
+        print("Value: \(selectTeamVM.teams[indexPath.row])")
         //viewTeam()
         //TODO: Find a way to access cell elements here? So we can set each cell label to be what's in the array by using indexpath
         //            // swiftlint:disable force_cast
@@ -139,13 +139,13 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teams.count
+        return selectTeamVM.teams.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SelectTeamTableViewCell
-        let team = teams[indexPath.row]
+        let team = selectTeamVM.teams[indexPath.row]
         // swiftlint:enable force_cast
         cell.teamName.text = team.teamName
 //        cell.teamLocation.text = team.

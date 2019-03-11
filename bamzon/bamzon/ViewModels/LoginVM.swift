@@ -12,25 +12,21 @@ import Foundation
 import FirebaseAuth
 import Firebase
 
-class LoginVM: ViewModel {
+class LoginVM {
     
-    func checkLogin(parent: UIViewController, email: String?, password: String?) -> Bool {
-        var validLogin = false
+    func checkLogin(parent: UIViewController, email: String?, password: String?) -> String? {
         var waitingForLogin = true
+        var errorMessage: String?
         
         guard let email = email, let password = password else {
-            parent.alert(withTitle: "Invalid Input", withMessage: "Please enter a valid input.")
-            return false
+            return "Please enter a valid input."
         }
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            print("starting auth")
             if error != nil {
-                parent.alert(withTitle: "Error", withMessage: error?.localizedDescription ?? "Error signing in.")
-                validLogin = false
+                errorMessage = error?.localizedDescription ?? "Error signing in."
             } else {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    print("entered")
                     DBUtility.readFromDB(table: FirTable.firebaseID, keys: user!.user.uid, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                         appDelegate.curUser = User(key: key, payload: payload)
                     })
@@ -45,6 +41,9 @@ class LoginVM: ViewModel {
         if let user = Auth.auth().currentUser {
             user.reload(completion: nil)
             if !user.isEmailVerified {
+                return "Sorry. The email address \(String(describing: user.email)) has not yet been verified."
+                //TODO actionable resend verification email
+                /*
                 let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(String(describing: user.email)).", preferredStyle: .alert)
                 let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
                     (_) in
@@ -54,15 +53,9 @@ class LoginVM: ViewModel {
 
                 alertVC.addAction(alertActionOkay)
                 alertVC.addAction(alertActionCancel)
-                parent.present(alertVC, animated: true, completion: nil)
-            } else {
-                if self.user != nil {
-                    validLogin = true
-                } else {
-                    print("User is nil in AppDelegate")
-                }
+                parent.present(alertVC, animated: true, completion: nil)*/
             }
         }
-        return validLogin
+        return errorMessage
     }
 }

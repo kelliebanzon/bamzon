@@ -10,7 +10,7 @@ import Foundation
 
 var members = [User]()
 
-class RosterVM: ViewModel {
+class RosterVM: LoggedInViewModel {
     func refresh(rosterVC: RosterVC, teamID: ID) {
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             let newTeam = Team(key: key, payload: teamSnap)

@@ -11,9 +11,23 @@ import UIKit
 
 // List of teams for user
 
-class SelectTeamVM: ViewModel {
-    func refresh() {
-        //TODO: implement refresh teams to select
+class SelectTeamVM: LoggedInViewModel {
+    
+    var teams: [Team] = []
+
+    func loadTeams(parent: DisplayableProtocol) {
+        if(self.user.teamIDs != nil && self.user.teamIDs!.count != 0) {
+            for teamID in self.user.teamIDs! {
+                DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
+                    self.teams.append(Team(key: key, payload: teamSnap))
+                    parent.display()
+                })
+            }
+        }
+    }
+    
+    func refresh(parent: DisplayableProtocol) {
+        loadTeams(parent: parent)
     }
 
     func getTeamsForCurUser() -> [Team] {
@@ -23,13 +37,12 @@ class SelectTeamVM: ViewModel {
 
     func getOrg(orgID: ID) -> Organization {
         // TODO: return the organization object with a given orgID. code below is temporary for testing purposes
-        return Organization(orgID: IDUtility.generateOrgID(), name: "Cal Poly", location: nil, teamIDs: [team?.teamID ?? IDUtility.generateIDFromString(idString: "t404")])
+        return Organization(orgID: IDUtility.generateOrgID(), name: "Cal Poly", location: nil, teamIDs: [team.teamID])
     }
     
-    func selectTeam(selectedTeamID: ID) {
-        // @ kevin: connect this to the database so it pulls the appropriate team down
+    func selectTeam(team: Team) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            //appDelegate.curTeam = selectedTeam
+            appDelegate.curTeam = team
         }
     }
     

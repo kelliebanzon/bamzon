@@ -10,7 +10,7 @@ import Foundation
 
 //Players, list of practices (tagged events).
 
-class Attendace: ViewModel {
+class Attendace: LoggedInViewModel {
     func refresh() {
         //TODO: implement refresh
     }

@@ -12,7 +12,7 @@ import Foundation
 //list of all players on current team (roster)
 //team stats
 
-class StatsVM: ViewModel {
+class StatsVM: LoggedInViewModel {
     
     func refresh() {
         //TODO: implement refresh

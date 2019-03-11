@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CreateTeamVM: ViewModel {
+class CreateTeamVM {
         
     func createTeam(teamName: String, orgName: String, sport: String) {
         let teamID = IDUtility.generateTeamID()
@@ -16,7 +16,8 @@ class CreateTeamVM: ViewModel {
         //TODO: comment out write to database
         let orgID = IDUtility.generateOrgID()
         
-        self.team = Team.init(teamID: teamID, orgID: orgID, userIDs: nil, teamName: teamName, sport: sport, stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
-        //DBUtility.writeToDB(objToWrite: team)
+        let team = Team.init(teamID: teamID, orgID: orgID, userIDs: nil, teamName: teamName, sport: sport, stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
+        
+        DBUtility.writeToDB(objToWrite: team)
     }
 }

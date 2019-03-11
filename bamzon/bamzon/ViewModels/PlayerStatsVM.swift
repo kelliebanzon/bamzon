@@ -9,15 +9,14 @@
 import Foundation
 import Firebase
 
-class PlayerStatsVM: ViewModel {
+class PlayerStatsVM: LoggedInViewModel {
     var playerStats: PlayerStats?
     
     func refresh(playerStatsVC: DisplayableProtocol) {
-        if self.user != nil {
-            DBUtility.readFromDB(table: FirTable.playerStats, keys: self.user!.userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                self.playerStats = PlayerStats(key: key, payload: payload)
-                playerStatsVC.display()
-            })
-        }
+        DBUtility.readFromDB(table: FirTable.playerStats, keys: self.user.userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            self.playerStats = PlayerStats(key: key, payload: payload)
+            playerStatsVC.display()
+        })
+        
     }
 }

@@ -99,7 +99,7 @@
 		ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */; };
 		ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */; };
 		C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7157E472224870E00246EA0 /* bamzonModelTests.swift */; };
-		D37DA9D1221F84A6000E357E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D0221F84A6000E357E /* ViewModel.swift */; };
+		D37DA9D1221F84A6000E357E /* LoggedInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */; };
 		D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D22224C66B000E357E /* FirebaseID.swift */; };
 		D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */; };
 		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
@@ -238,7 +238,7 @@
 		C7157E452224870E00246EA0 /* bamzonModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7157E472224870E00246EA0 /* bamzonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonModelTests.swift; sourceTree = "<group>"; };
 		C7157E492224870E00246EA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D37DA9D0221F84A6000E357E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewModel.swift; sourceTree = "<group>"; };
 		D37DA9D22224C66B000E357E /* FirebaseID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseID.swift; sourceTree = "<group>"; };
 		D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsTeamStatsViewCell.swift; sourceTree = "<group>"; };
 		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				A81439D721B71E58000E287A /* AttendanceVM.swift */,
-				D37DA9D0221F84A6000E357E /* ViewModel.swift */,
+				D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */,
 				A81439DB21B71E58000E287A /* CalendarVM.swift */,
 				A81439DC21B71E58000E287A /* CreateAccountVM.swift */,
 				A81439D321B71E57000E287A /* CreateTeamVM.swift */,
@@ -929,7 +929,7 @@
 				ABF67C43220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift in Sources */,
 				A8143A0721B72F94000E287A /* AttendanceParentVC.swift in Sources */,
 				A81439EB21B72419000E287A /* EventVM.swift in Sources */,
-				D37DA9D1221F84A6000E357E /* ViewModel.swift in Sources */,
+				D37DA9D1221F84A6000E357E /* LoggedInViewModel.swift in Sources */,
 				ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */,
 				ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */,
 				AB0EB621221D35A700C4917E /* AttendanceChildPlayersVC.swift in Sources */,

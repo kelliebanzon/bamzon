@@ -24,7 +24,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         super.viewDidLoad()
         self.title = "Roster"
         if rosterVM.team != nil {
-            rosterVM.refresh(rosterVC: self, teamID: rosterVM.team!.teamID)
+            rosterVM.refresh(rosterVC: self, teamID: rosterVM.team.teamID)
         }
         display()
     }

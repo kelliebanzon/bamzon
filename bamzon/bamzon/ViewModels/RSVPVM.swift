@@ -8,7 +8,7 @@
 //
 //import Foundation
 //
-//class RSVPVM: ViewModel {
+//class RSVPVM: LoggedInViewModel {
 //    func refresh() {
 //        //TODO: implement refresh
 //    }

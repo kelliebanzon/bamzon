@@ -9,7 +9,7 @@
 import Foundation
 //event object
 
-class EventVM: ViewModel {
+class EventVM: LoggedInViewModel {
     func refresh() {
         //TODO: implement refresh
     }

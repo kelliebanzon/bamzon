@@ -12,7 +12,7 @@
 import Foundation
 import Firebase
 
-class CreateAccountVM: ViewModel {
+class CreateAccountVM {
     
     func sendVerification(completion: @escaping(UIAlertController?) -> Void) {
         //TODO: Customize verification email
