@@ -138,16 +138,15 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     }
     
     func setupAutoLayout() {
-        //Top label constraints
+        let margins = view.safeAreaLayoutGuide
+
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         let horizLabelConstraint = topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let vertLabelConstraint = topLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
         let leftLabelConstraint = topLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        //Why is this one switched? view first instead of topLabel?
         let rightLabelConstraint = view.trailingAnchor.constraint(equalTo: topLabel.trailingAnchor, constant: 20)
         self.view.addConstraints([horizLabelConstraint, vertLabelConstraint, leftLabelConstraint, rightLabelConstraint])
         
-        //Email Text Field constraints
         email?.translatesAutoresizingMaskIntoConstraints = false
         let horizEmailConstraint = email?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let vertEmailConstraint = email?.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 50)
@@ -155,7 +154,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         let rightEmailConstraint = view.trailingAnchor.constraint(equalTo: (email?.trailingAnchor)!, constant: 20)
         self.view.addConstraints([horizEmailConstraint!, vertEmailConstraint!, leftEmailConstraint!, rightEmailConstraint])
         
-        //Email Text Field constraints
         password?.translatesAutoresizingMaskIntoConstraints = false
         let horizPassConstraint = password?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let vertPassConstraint = password?.topAnchor.constraint(equalTo: email!.bottomAnchor, constant: 60)
