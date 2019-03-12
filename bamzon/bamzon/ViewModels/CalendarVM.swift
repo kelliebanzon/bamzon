@@ -25,7 +25,17 @@ class CalendarVM: LoggedInViewModel {
             }
         )
     }
-
+    
+    func addEvent(event: Event) {
+        DBUtility.writeToDB(objToWrite: event)
+        if event.tags != nil {
+            if event.tags!["practice"] != nil {
+                let practice = Practice(teamID: event.teamID, eventID: event.eventID, users: [])
+                DBUtility.writeToDB(objToWrite: practice)
+            }
+        }
+    }
+    
     func updateEvents(events: [Event]) {
         calendar.events = events
         DBUtility.writeToDB(objToWrite: calendar)
