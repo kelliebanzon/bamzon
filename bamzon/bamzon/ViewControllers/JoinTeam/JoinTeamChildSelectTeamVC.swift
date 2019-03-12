@@ -12,6 +12,7 @@ import UIKit
 class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITableViewDelegate, DisplayableProtocol {
     
     let cellId = "cellId"
+    var backButton = UIButton()
     var orgName: UITextField?
     var selectedOrg: Organization?
     var teamName: UITextField?
@@ -40,7 +41,14 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     func display() {
         // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
-        
+
+//        backButton = createBackButtonArrow()
+        backButton.tintColor = .white
+        print("backButton:")
+        print(backButton.tintColor)
+        backButton.addTarget(backButton, action: #selector(segueBack), for: .touchUpInside)
+//        self.view.addSubview(backButton)
+
         // Top Label
         let topLabel = pageLabel(withText: "Join a Team", withFrame: nil, withCenter: nil)
         self.view.addSubview(topLabel)
@@ -66,6 +74,21 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         // Next Button
         let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
         self.view.addSubview(button)
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+        
+//        backButton.translatesAutoresizingMaskIntoConstraints = false
+//        let backTopConstraint = backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
+//        let backLeadingConstraint = backButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+//        let backHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 24)
+//        let backAspectConstraint = backButton.widthAnchor.constraint(equalTo: backButton.heightAnchor)
+//        self.view.addConstraints([backTopConstraint, backLeadingConstraint, backHeightConstraint, backAspectConstraint])
+    }
+
+    @objc func segueBack() {
+        print("segueBack in JoinTeamChildSelectTeamVC")
     }
     
     @objc func selectOrg(textField: UITextField) {

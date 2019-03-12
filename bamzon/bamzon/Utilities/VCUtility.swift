@@ -83,6 +83,16 @@ extension UIViewController {
         return button
     }
 
+    func createBackButtonArrow(button: UIButton) -> UIButton {
+        button.setImage(UIImage(named: "arrow-left"), for: .normal)
+        button.tintColor = .white
+        button.showsTouchWhenHighlighted = true
+//        if let action = action {
+//            button.addTarget(self, action: #selector(action), for: .touchUpInside)
+//        }
+        return button
+    }
+
     func createDefaultLabel(text: String, fontSize: CGFloat = 15, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
         label.font = UIFont(name: "HelveticaNeue-Bold", size: fontSize)
