@@ -14,6 +14,7 @@
 		656EBA752208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		65DC5BF9221F8C7000783830 /* AttendancePlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */; };
 		65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821421B4A59F00DDC094 /* DBUtility.swift */; };
+		6E611088222F5E8E00A7DA17 /* EventTableViewCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */; };
 		6E6222E0221F7AD3000A2B94 /* CellUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6222DF221F7AD3000A2B94 /* CellUtility.swift */; };
 		6E6222E2221F7E36000A2B94 /* RosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6222E1221F7E36000A2B94 /* RosterTableViewCell.swift */; };
 		6E6222E4221F85F0000A2B94 /* SelectTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6222E3221F85F0000A2B94 /* SelectTeamTableViewCell.swift */; };
@@ -143,6 +144,7 @@
 		655E8050221D381800BDA6A2 /* FirTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirTable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendancePlayerTableViewCell.swift; sourceTree = "<group>"; };
+		6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCellVC.swift; sourceTree = "<group>"; };
 		6E6222DF221F7AD3000A2B94 /* CellUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUtility.swift; sourceTree = "<group>"; };
 		6E6222E1221F7E36000A2B94 /* RosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTableViewCell.swift; sourceTree = "<group>"; };
 		6E6222E3221F85F0000A2B94 /* SelectTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamTableViewCell.swift; sourceTree = "<group>"; };
@@ -296,6 +298,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E611086222F5E7800A7DA17 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				A8143A0E21B73048000E287A /* EventVC.swift */,
+				6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
 		6E6222E5221F86E3000A2B94 /* Roster */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,7 +358,7 @@
 				6E6222E5221F86E3000A2B94 /* Roster */,
 				A8143A0C21B73026000E287A /* ProfileVC.swift */,
 				A8143A0421B72E72000E287A /* CalendarVC.swift */,
-				A8143A0E21B73048000E287A /* EventVC.swift */,
+				6E611086222F5E7800A7DA17 /* Event */,
 				A8143A1021B73078000E287A /* RSVPVC.swift */,
 				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
 				6E9683C82222513100BB05EC /* JoinRequests */,
@@ -400,9 +411,9 @@
 				AB7F63F1221B96090080AF25 /* StatsTabVC.swift */,
 				A8143A0A21B73006000E287A /* StatsChildPersonalVC.swift */,
 				AB0EB62B22212A8400C4917E /* StatsPlayerStatsTableViewCell.swift */,
-				D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */,
 				AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */,
 				AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */,
+				D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */,
 				AB26667E22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift */,
 			);
 			path = Stats;
@@ -940,6 +951,7 @@
 				A81439DE21B71E58000E287A /* JoinTeamVM.swift in Sources */,
 				AB7F63F2221B96090080AF25 /* StatsTabVC.swift in Sources */,
 				AB3CE1AD220E15990086478C /* TabBarController.swift in Sources */,
+				6E611088222F5E8E00A7DA17 /* EventTableViewCellVC.swift in Sources */,
 				A8143A1121B73078000E287A /* RSVPVC.swift in Sources */,
 				6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */,
 				ABC5821F21B4AA3300DDC094 /* PlayerStats.swift in Sources */,
