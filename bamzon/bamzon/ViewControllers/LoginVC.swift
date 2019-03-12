@@ -14,7 +14,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     var topLabel = UILabel()
     var loginButton = UIButton()
     var forgotButton = UIButton()
-    var memberButton = UIButton()
+    var noAccountButton = UIButton()
     
     var email: UITextField?
     var password: UITextField?
@@ -55,40 +55,23 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         self.view.addSubview(loginButton)
         
         //forgot button
-        forgotButton = UIButton()
-        let attributedString = NSAttributedString(
-            string: NSLocalizedString("Forgot password?", comment: ""),
-            attributes: [
-                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.underlineStyle: 1.0
-            ])
-        forgotButton.titleLabel?.numberOfLines = 1
-        forgotButton.titleLabel?.textAlignment = .center
-        forgotButton.setAttributedTitle(attributedString, for: .normal)
+        forgotButton = createDefaultTextButton(withText: "Forgot password?", withAction: #selector(forgotPassword), withFrame: nil, withCenter: nil, withNumLines: 1)
         self.view.addSubview(forgotButton)
         
-        //forgotButton functions
-        
-        //memberButton (don't have an account yet button)
-        memberButton = UIButton()
-        let attributedStringAcc = NSAttributedString(
-            string: NSLocalizedString("Don't have an account yet?", comment: ""),
-            attributes: [
-                NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!,
-                NSAttributedStringKey.foregroundColor: UIColor.white,
-                NSAttributedStringKey.underlineStyle: 1.0
-            ])
-        memberButton.titleLabel?.numberOfLines = 0
-        memberButton.titleLabel?.textAlignment = .center
-        memberButton.setAttributedTitle(attributedStringAcc, for: .normal)
-        self.view.addSubview(memberButton)
+        // No account button
+        noAccountButton = UIButton()
+        noAccountButton = createDefaultTextButton(withText: "Don't have an account yet?", withAction: #selector(goToCreateAccount), withFrame: nil, withCenter: nil, withNumLines: 1)
+        self.view.addSubview(noAccountButton)
         
         //memberButton functions
     }
     
+    @objc func goToCreateAccount() {
+        self.setRootView(toVC: "CreateAccountParentVC")
+    }
+    
     // General function to validate fields
-    @objc func checkFields() -> Bool{
+    @objc func checkFields() -> Bool {
         if email?.text == "" || password?.text == "" {
             throwMissingFieldsError()
             return false
@@ -137,6 +120,10 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         }
     }
     
+    @objc func forgotPassword() {
+        alert(withTitle: "Uh oh!", withMessage: "This hasn't been implemented yet 😰")
+    }
+    
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
 
@@ -181,12 +168,12 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         let heightForgotButtonConstraint = forgotButton.heightAnchor.constraint(equalToConstant: 50)
         self.view.addConstraints([horizForgotButtonConstraint, vertForgotButtonConstraint, widthForgotButtonConstraint, heightForgotButtonConstraint])
         
-        //memberButton constraints
-        memberButton.translatesAutoresizingMaskIntoConstraints = false
-        let horizMemberButtonConstraint = memberButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let vertMemberButtonConstraint = memberButton.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 10)
-        let leftMemberButtonConstraint = memberButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        let rightMemberButtonConstraint = view.trailingAnchor.constraint(equalTo: memberButton.trailingAnchor, constant: 20)
+        // No Account Button Constraints
+        noAccountButton.translatesAutoresizingMaskIntoConstraints = false
+        let horizMemberButtonConstraint = noAccountButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let vertMemberButtonConstraint = noAccountButton.topAnchor.constraint(equalTo: forgotButton.bottomAnchor, constant: 10)
+        let leftMemberButtonConstraint = noAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        let rightMemberButtonConstraint = view.trailingAnchor.constraint(equalTo: noAccountButton.trailingAnchor, constant: 20)
         
         self.view.addConstraints([horizMemberButtonConstraint, vertMemberButtonConstraint, leftMemberButtonConstraint, rightMemberButtonConstraint])
     }

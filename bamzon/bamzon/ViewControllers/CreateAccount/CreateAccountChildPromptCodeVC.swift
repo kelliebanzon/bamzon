@@ -14,6 +14,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     var email: String?
     var name: String?
     var code: UITextField?
+    var topLabel = UILabel()
     var backPressed = false
     
     override func viewDidLoad() {
@@ -25,10 +26,15 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: temporary identifier code. delete this once you write the real display func
-        // Temp Label
-        let tempLabel = pageLabel(withText: "Please enter the \rsecurity code emailed \rto " + email!, withFrame: CGRect(x: 0, y: 30, width: 400, height: 120), withCenter: nil)
-        self.view.addSubview(tempLabel)
+        // Create X***@X***.XXX string
+        var shortEmail = String(email![email!.startIndex]) + "***@" + String(email![email!.index(after: email!.lastIndex(of: "@")!)])
+        shortEmail += "***" + String(email!.suffix(from: email!.lastIndex(of: ".")!))
+        
+        // Top Label
+        topLabel = createDefaultHeader1Label(text: "Please enter the \rsecurity code emailed \rto " + shortEmail, numLines: 0)
+        topLabel.textAlignment = .center
+        
+        self.view.addSubview(topLabel)
         
         // Security Code
         code = createDefaultTextField(withText: "Security Code", withFrame: nil, withCenter: CGPoint(x: view.frame.midX, y: view.frame.midY - 35), withPadding: nil)
@@ -39,6 +45,19 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         //verify.addTarget(self, action: #selector(highlightverify), for: .touchDown)
         //verify.addTarget(self, action: #selector(unhighlightverify), for: [.touchUpOutside, .touchUpInside])
         self.view.addSubview(verify)
+        
+        setupAutoLayout()
+    }
+    
+    func setupAutoLayout() {
+        let margins = view.layoutMarginsGuide
+        
+        // Top Label constraints
+        topLabel.translatesAutoresizingMaskIntoConstraints = false
+        let topLabelTopConstraint = topLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
+        let topLabelLeftConstraint = topLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let topLabelRightConstraint = margins.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 20)
+        self.view.addConstraints([topLabelTopConstraint, topLabelLeftConstraint, topLabelRightConstraint])
     }
     
     @objc func unwindToPrevious() {
@@ -69,6 +88,11 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
             sleep(500)
         }
         return false
+    }
+    
+    // Hide keyboard when pressed out of text box
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 //    @ kyle: when you're ready to transition to the account success creation page,

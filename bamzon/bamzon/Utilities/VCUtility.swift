@@ -17,6 +17,16 @@ class VCUtility {
 }
 
 extension UIViewController {
+    
+    func setRootView(toVC: String) {
+        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: toVC)
+        // swiftlint:disable force_cast
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        // swiftlint:enable force_cast
+        appDelegate.hideTabController()
+        appDelegate.window?.rootViewController = nextVC
+        UIView.transition(with: appDelegate.window!, duration: 0.75, options: UIViewAnimationOptions.transitionFlipFromRight, animations: { appDelegate.window?.rootViewController = nextVC}, completion: nil)
+    }
 
     func mockSegue(toIdentifier: String) {
         //let nextVC = self.storyboard!.instantiateViewController(withIdentifier: toIdentifier)

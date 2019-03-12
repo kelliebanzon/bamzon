@@ -90,6 +90,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         
         // Existing Account Button
         let existingAccount = createDefaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
+        // @Kellie - sizing is being a bitch. It's smaller than "Don't have an account?"
         scrollView.addSubview(existingAccount)
     }
     
@@ -99,7 +100,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     // Send user to login page if they have an existing account
     @objc func loginPage() {
-        self.mockSegue(toIdentifier: "LoginVC")
+        self.setRootView(toVC: "LoginVC")
     }
     
     // General function to validate fields

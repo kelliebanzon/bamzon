@@ -960,6 +960,7 @@
 				65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */,
 				ABEF642621FE6E0700716ACB /* AttendancePlayerVC.swift in Sources */,
 				65DC5BF9221F8C7000783830 /* AttendancePlayerTableViewCell.swift in Sources */,
+				65DC5BF9221F8C7000783830 /* AttendancePlayerTableViewCell.swift in Sources */,
 				AB0EB623221D36AD00C4917E /* AttendanceChildPracticesVC.swift in Sources */,
 				A81439E021B71E58000E287A /* LoginVM.swift in Sources */,
 				A81439DF21B71E58000E287A /* CreateTeamVM.swift in Sources */,
