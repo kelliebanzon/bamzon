@@ -95,7 +95,7 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         contactHeader = createDefaultLabel(text: "Contact: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         contactLabel = createDefaultLabel(text: "event_contact", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
         contactLabel.font = UIFont(name: "HelveticaNeue", size: 18)
-        tagsLabel = createDefaultLabel(text: "Tags: ", fontSize: 17, numLines: 0, fontColor: .white, fontAlignment: .left)
+        tagsLabel = createDefaultLabel(text: "Tags: ", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
         detailsLabel = createDefaultLabel(text: "Details", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         detailsTextBox.textAlignment = .left
         detailsTextBox.font = UIFont(name: "HelveticaNeue", size: 17)
@@ -162,8 +162,8 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         scrollView.addConstraints([contactLeftConstraint, contactBottomConstraint])
         
         tagsLabel.translatesAutoresizingMaskIntoConstraints = false
-        let tagsLeftConstraint = tagsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 35)
-        let tagsTopConstraint = tagsLabel.topAnchor.constraint(equalTo: contactHeader.bottomAnchor, constant: 15)
+        let tagsLeftConstraint = tagsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
+        let tagsTopConstraint = tagsLabel.topAnchor.constraint(equalTo: contactHeader.bottomAnchor, constant: 10)
         scrollView.addConstraints([tagsTopConstraint, tagsLeftConstraint])
         
         detailsLabel.translatesAutoresizingMaskIntoConstraints = false
