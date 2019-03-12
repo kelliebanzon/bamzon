@@ -32,12 +32,12 @@ class Attendace: LoggedInViewModel {
     }
     
     func updatePractices(parent: DisplayableProtocol) {
-        var tempEvent: Event? = nil
+        var tempEvent: Event?
         if let userIDs = self.team.userIDs {
             for userId in userIDs {
                 DBUtility.readFromDB(table: FirTable.user, keys: userId, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     tempEvent = Event(key: key, payload: userSnap)
-                    if(tempEvent!.tags?["practice"] != nil) {
+                    if tempEvent!.tags?["practice"] != nil {
                         self.practies.append(Event(key: key, payload: userSnap))
                     }
                     parent.display()

@@ -14,11 +14,36 @@ import Foundation
 
 class StatsVM: LoggedInViewModel {
     
-    func refresh() {
-        //TODO: implement refresh
+    var members: [User] = []
+    var teamStats: TeamStats?
+    
+    func loadMembers(parent: DisplayableProtocol) {
+        let group = DispatchGroup()
+        if self.team.userIDs != nil {
+            for userID in self.team.userIDs! {
+                group.enter()
+                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                    self.members.append(User(key: key, payload: payload))
+                    group.leave()
+                })
+            }
+            group.notify(queue: .main) {
+                parent.display()
+            }
+        }
     }
     
-    func updateStats() {
-        //TODO: implement update stats
+    func loadTeamStats(parent: DisplayableProtocol) {
+        let group = DispatchGroup()
+        if self.team.joinReqIDs != nil {
+            group.enter()
+            DBUtility.readFromDB(table: FirTable.teamStats, keys: self.team.teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                self.teamStats = TeamStats(key: key, payload: payload)
+                group.leave()
+            })
+        }
+        group.notify(queue: .main) {
+            parent.display()
+        }
     }
 }
