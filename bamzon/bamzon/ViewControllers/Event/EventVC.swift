@@ -10,7 +10,15 @@ import Foundation
 import UIKit
 import XLPagerTabStrip
 
-class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {//, UIPickerViewDelegate, UIPickerViewDataSource {
+class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+    
+    @IBOutlet weak var rsvpBox: UITextField!
+    
+    let rsvpPickerTypes = ["Yes",
+                "No",
+                "Maybe",
+                "Pending"]
+    var selectedType: String?
     
     var eventName = UILabel()
     var dateHeader = UILabel()
@@ -25,7 +33,6 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
     var detailsLabel = UILabel()
     var detailsTextBox = UITextView()
     var rsvpHeader = UILabel()
-    var rsvpBox = UITextField()
     //TODO: Register on event page button
     
     let rsvpTypes = ["Yes:", "No:", "Maybe:", "Pending:"]
@@ -59,6 +66,8 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
         display()
         self.view.addSubview(scrollView)
         setupScrollView()
+        createRsvpPicker()
+        createToolbar()
         setupAutoLayout()
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -75,9 +84,17 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
         
         eventName = createDefaultLabel(text: "This is the Event Name", fontSize: 30, numLines: 0, fontColor: .white, fontAlignment: .center)
         dateHeader = createDefaultLabel(text: "Date: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        dateLabel = createDefaultLabel(text: "event_date", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
+        dateLabel.font = UIFont(name: "HelveticaNeue", size: 18)
         timeHeader = createDefaultLabel(text: "Time: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        timeLabel = createDefaultLabel(text: "event_time", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
+        timeLabel.font = UIFont(name: "HelveticaNeue", size: 18)
         locationHeader = createDefaultLabel(text: "Location: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        locationLabel = createDefaultLabel(text: "event_location", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
+        locationLabel.font = UIFont(name: "HelveticaNeue", size: 18)
         contactHeader = createDefaultLabel(text: "Contact: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        contactLabel = createDefaultLabel(text: "event_contact", fontSize: 18, numLines: 0, fontColor: .white, fontAlignment: .left)
+        contactLabel.font = UIFont(name: "HelveticaNeue", size: 18)
         tagsLabel = createDefaultLabel(text: "Tags: ", fontSize: 17, numLines: 0, fontColor: .white, fontAlignment: .left)
         detailsLabel = createDefaultLabel(text: "Details", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         detailsTextBox.textAlignment = .left
@@ -88,53 +105,61 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
         detailsTextBox.backgroundColor = UIColor(named: "TSTeal")
         adjustUITextViewHeight(arg: detailsTextBox)
         rsvpHeader = createDefaultLabel(text: "RSVP", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
-        rsvpBox.leftViewMode = .always
+        /*rsvpBox.leftViewMode = .always
         rsvpBox.attributedPlaceholder = NSAttributedString(string: "Going?", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSWhite75")!])
         rsvpBox.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         rsvpBox.textColor = .white
-        
-        //pickerview
-        /*myUIPicker = UIPickerView()
-         myUIPicker.delegate = self
-         myUIPicker.dataSource = self
-         myUIPicker.backgroundColor = .white
-         
-         rsvpBox.inputView = myUIPicker*/
-        
+        */
         addSubviews()
     }    
     
     func setupAutoLayout() {
         eventName.translatesAutoresizingMaskIntoConstraints = false
         let nameHorizConstraint = eventName.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
-        let nameTopConstraint = eventName.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80)
+        let nameTopConstraint = eventName.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 70)
         let nameLeftConstraint = eventName.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
         let nameRightConstraint = scrollView.trailingAnchor.constraint(equalTo: eventName.trailingAnchor, constant: 30)
         scrollView.addConstraints([nameTopConstraint, nameHorizConstraint, nameLeftConstraint, nameRightConstraint])
         
         dateHeader.translatesAutoresizingMaskIntoConstraints = false
         let dateHeaderLeftConstraint = dateHeader.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
-        let dateHeaderRightConstraint = scrollView.trailingAnchor.constraint(equalTo: dateHeader.trailingAnchor, constant: 30)
         let dateHeaderTopConstraint = dateHeader.topAnchor.constraint(equalTo: eventName.bottomAnchor, constant: 40)
-        scrollView.addConstraints([dateHeaderTopConstraint, dateHeaderLeftConstraint, dateHeaderRightConstraint])
+        scrollView.addConstraints([dateHeaderTopConstraint, dateHeaderLeftConstraint])
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        let dateleftConstraint = dateLabel.leadingAnchor.constraint(equalTo: dateHeader.trailingAnchor, constant: 10)
+        let dateBottomConstraint = dateLabel.bottomAnchor.constraint(equalTo: dateHeader.bottomAnchor)
+        scrollView.addConstraints([dateleftConstraint, dateBottomConstraint])
         
         timeHeader.translatesAutoresizingMaskIntoConstraints = false
         let timeHeaderLeftConstraint = timeHeader.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
-        let timeHeaderRightConstraint = scrollView.trailingAnchor.constraint(equalTo: timeHeader.trailingAnchor, constant: 30)
         let timeHeaderTopConstraint = timeHeader.topAnchor.constraint(equalTo: dateHeader.bottomAnchor, constant: 10)
-        scrollView.addConstraints([timeHeaderLeftConstraint, timeHeaderTopConstraint, timeHeaderRightConstraint])
+        scrollView.addConstraints([timeHeaderLeftConstraint, timeHeaderTopConstraint])
+        
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        let timeleftConstraint = timeLabel.leadingAnchor.constraint(equalTo: timeHeader.trailingAnchor, constant: 10)
+        let timeBottomConstraint = timeLabel.bottomAnchor.constraint(equalTo: timeHeader.bottomAnchor)
+        scrollView.addConstraints([timeleftConstraint, timeBottomConstraint])
         
         locationHeader.translatesAutoresizingMaskIntoConstraints = false
         let locHeaderLeftConstraint = locationHeader.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
-        let locHeaderRightConstraint = scrollView.trailingAnchor.constraint(equalTo: locationHeader.trailingAnchor, constant: 30)
         let locHeaderTopConstraint = locationHeader.topAnchor.constraint(equalTo: timeHeader.bottomAnchor, constant: 10)
-        scrollView.addConstraints([locHeaderLeftConstraint, locHeaderTopConstraint, locHeaderRightConstraint])
+        scrollView.addConstraints([locHeaderLeftConstraint, locHeaderTopConstraint])
+        
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        let locationleftConstraint = locationLabel.leadingAnchor.constraint(equalTo: locationHeader.trailingAnchor, constant: 10)
+        let locationBottomConstraint = locationLabel.bottomAnchor.constraint(equalTo: locationHeader.bottomAnchor)
+        scrollView.addConstraints([locationleftConstraint, locationBottomConstraint])
         
         contactHeader.translatesAutoresizingMaskIntoConstraints = false
         let contactHeaderLeftConstraint = contactHeader.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 30)
-        let contactHeaderRightConstraint = scrollView.trailingAnchor.constraint(equalTo: contactHeader.trailingAnchor, constant: 30)
         let contactHeaderTopConstraint = contactHeader.topAnchor.constraint(equalTo: locationHeader.bottomAnchor, constant: 10)
-        scrollView.addConstraints([contactHeaderLeftConstraint, contactHeaderTopConstraint, contactHeaderRightConstraint])
+        scrollView.addConstraints([contactHeaderLeftConstraint, contactHeaderTopConstraint])
+        
+        contactLabel.translatesAutoresizingMaskIntoConstraints = false
+        let contactLeftConstraint = contactLabel.leadingAnchor.constraint(equalTo: contactHeader.trailingAnchor, constant: 10)
+        let contactBottomConstraint = contactLabel.bottomAnchor.constraint(equalTo: contactHeader.bottomAnchor)
+        scrollView.addConstraints([contactLeftConstraint, contactBottomConstraint])
         
         tagsLabel.translatesAutoresizingMaskIntoConstraints = false
         let tagsLeftConstraint = tagsLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 35)
@@ -180,9 +205,13 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
     func addSubviews() {
         scrollView.addSubview(eventName)
         scrollView.addSubview(dateHeader)
+        scrollView.addSubview(dateLabel)
         scrollView.addSubview(timeHeader)
+        scrollView.addSubview(timeLabel)
         scrollView.addSubview(locationHeader)
+        scrollView.addSubview(locationLabel)
         scrollView.addSubview(contactHeader)
+        scrollView.addSubview(contactLabel)
         scrollView.addSubview(tagsLabel)
         scrollView.addSubview(detailsLabel)
         scrollView.addSubview(detailsTextBox)
@@ -244,28 +273,73 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Dis
         // TODO: implement view RSVPs
     }
     
-    /*// data method to return the number of column shown in the picker.
+    func createRsvpPicker() {
+        
+        let rsvpPicker = UIPickerView()
+        rsvpPicker.delegate = self
+        rsvpPicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        rsvpBox.inputView = rsvpPicker
+        
+        //Customizations
+        rsvpPicker.backgroundColor = .white
+    }
+    
+    func createToolbar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        //Customizations
+        toolBar.barTintColor = .black
+        toolBar.tintColor = .white
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(EventVC.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        rsvpBox.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
+        return 1
     }
-    // data method to return the number of row shown in the picker.
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return rsvpChoices.count
+        return rsvpPickerTypes.count
     }
     
-    // delegate method to return the value shown in the picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return rsvpChoices[row] as? String
+        return rsvpPickerTypes[row]
     }
     
-    // delegate method called when the row was selected.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        rsvpBox.text = "\(rsvpChoices[row])"
-        print("row: \(row)")
-        print("value: \(rsvpChoices[row])")
+        selectedType = rsvpPickerTypes[row]
+        rsvpBox.text = selectedType
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }*/
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var label: UILabel
+        
+        if let view = view as? UILabel {
+            label = view
+        } else {
+            label = UILabel()
+        }
+        
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont(name: "HelveticaNeue", size: 17)
+        
+        label.text = rsvpPickerTypes[row]
+        
+        return label
+    }
+    
 }
