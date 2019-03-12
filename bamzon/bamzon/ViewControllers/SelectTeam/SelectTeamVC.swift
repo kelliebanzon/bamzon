@@ -25,7 +25,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.title = "Select Team"
         print("selectTeam")
         self.showSpinner(onView: self.view)
-        selectTeamVM.loadTableValues(parent: self)
+        selectTeamVM.loadTableValues(parent: self, teamVC: self)
         display()
     }
     

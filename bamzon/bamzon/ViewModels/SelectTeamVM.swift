@@ -19,44 +19,43 @@ class SelectTeamVM: LoggedInViewModel {
     var waitForTeam = true
     var waitForOrg = true
     
-    func refresh(parent: UIViewController) {
-        loadTableValues(parent: parent)
+    func refresh(parent: UIViewController, teamVC: SelectTeamVC) {
+        loadTableValues(parent: parent, teamVC: teamVC)
     }
     
-    func loadTableValues(parent: UIViewController) {
+    func loadTableValues(parent: UIViewController, teamVC: SelectTeamVC) {
         if self.user.teamIDs != nil && self.user.teamIDs!.count != 0 {
             for teamID in self.user.teamIDs! {
-                print("team1")
-                let team = getTeam(teamID: teamID, parent: parent)
-                teams.append(team)
-                organizations.append(getOrg(orgID: team.orgID))
+                getTeam(teamID: teamID, parent: parent, teamVC: teamVC)
             }
             
         }
     }
 
-    func getTeam(teamID: ID, parent: UIViewController) -> Team {
-        var team: Team?
+    func getTeam(teamID: ID, parent: UIViewController, teamVC: SelectTeamVC){
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             parent.removeSpinner()
-            team = Team(key: key, payload: teamSnap)
-            //self.waitForTeam = false
+            let team = Team(key: key, payload: teamSnap)
+            self.teams.append(team)
+            var orgLoaded = false
+            for teamOrg in self.organizations {
+                if teamOrg.orgID == team.orgID {
+                    orgLoaded = true
+                }
+            }
+            if !orgLoaded {
+                self.getOrg(orgID: team.orgID, teamVC: teamVC)
+            }
+            teamVC.display()
         })
-        while waitForTeam {print("\(self.teams.count)")}
-        return team!
     }
 
-    func getOrg(orgID: ID) -> Organization {
-        // TODO: return the organization object with a given orgID. code below is temporary for testing purposes
-        var org: Organization?
+    func getOrg(orgID: ID, teamVC: SelectTeamVC) {
         DBUtility.readFromDB(table: FirTable.organization, keys: orgID, completion: { (key: String, orgSnap: [String: AnyObject]) -> Void in
-            org = Organization(key: key, payload: orgSnap)
-            self.waitForOrg = false
+            let org = Organization(key: key, payload: orgSnap)
+            self.organizations.append(org)
+            teamVC.display()
         })
-        
-        while self.waitForOrg {print("waiting2")}
-        return org!
-
     }
     
     func selectTeam(team: Team) {
