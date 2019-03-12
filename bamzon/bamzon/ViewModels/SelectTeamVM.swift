@@ -28,11 +28,10 @@ class SelectTeamVM: LoggedInViewModel {
             for teamID in self.user.teamIDs! {
                 getTeam(teamID: teamID, parent: parent, teamVC: teamVC)
             }
-            
         }
     }
 
-    func getTeam(teamID: ID, parent: UIViewController, teamVC: SelectTeamVC){
+    func getTeam(teamID: ID, parent: UIViewController, teamVC: SelectTeamVC) {
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             parent.removeSpinner()
             let team = Team(key: key, payload: teamSnap)
@@ -46,7 +45,6 @@ class SelectTeamVM: LoggedInViewModel {
             if !orgLoaded {
                 self.getOrg(orgID: team.orgID, teamVC: teamVC)
             }
-            teamVC.display()
         })
     }
 
@@ -54,6 +52,7 @@ class SelectTeamVM: LoggedInViewModel {
         DBUtility.readFromDB(table: FirTable.organization, keys: orgID, completion: { (key: String, orgSnap: [String: AnyObject]) -> Void in
             let org = Organization(key: key, payload: orgSnap)
             self.organizations.append(org)
+            // ideally, this line should be at the end of getTeam, but that doesn't work with the async database queries
             teamVC.display()
         })
     }

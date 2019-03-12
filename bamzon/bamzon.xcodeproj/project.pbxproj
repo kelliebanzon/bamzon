@@ -61,7 +61,6 @@
 		AB1BF02C22164E8900F2B79F /* ViewNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF02B22164E8900F2B79F /* ViewNC.swift */; };
 		AB26667F22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26667E22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift */; };
 		AB277835220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */; };
-		AB2BB74E220E3B1200243F77 /* SelectTeamNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */; };
 		AB33BECB220CFBAC00432884 /* StatsChildTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */; };
 		AB3CE1AD220E15990086478C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3CE1AC220E15990086478C /* TabBarController.swift */; };
 		AB47757121B4E2CB00A1DCD5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB47757021B4E2CB00A1DCD5 /* Team.swift */; };
@@ -191,7 +190,6 @@
 		AB1BF02B22164E8900F2B79F /* ViewNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNC.swift; sourceTree = "<group>"; };
 		AB26667E22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOtherPlayerNamesTableViewCell.swift; sourceTree = "<group>"; };
 		AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsChildOtherPlayerVC.swift; sourceTree = "<group>"; };
-		AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamNavController.swift; sourceTree = "<group>"; };
 		AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsChildTeamVC.swift; sourceTree = "<group>"; };
 		AB3CE1AC220E15990086478C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AB47757021B4E2CB00A1DCD5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
 				6E9683C82222513100BB05EC /* JoinRequests */,
 				AB3CE1AC220E15990086478C /* TabBarController.swift */,
-				AB2BB74D220E3B1200243F77 /* SelectTeamNavController.swift */,
 				AB4A952F2215E72800AEA954 /* WizardNC.swift */,
 				AB1BF02B22164E8900F2B79F /* ViewNC.swift */,
 			);
@@ -970,7 +967,6 @@
 				A81439FF21B72DC2000E287A /* TeamHomeVC.swift in Sources */,
 				A81439E421B71E58000E287A /* ProfileVM.swift in Sources */,
 				ABEFC102219E51B400F23E42 /* AppDelegate.swift in Sources */,
-				AB2BB74E220E3B1200243F77 /* SelectTeamNavController.swift in Sources */,
 				655E8051221D381800BDA6A2 /* FirTable.swift in Sources */,
 				A8143A0521B72E72000E287A /* CalendarVC.swift in Sources */,
 				ABC5822521B4AF2C00DDC094 /* Organization.swift in Sources */,
