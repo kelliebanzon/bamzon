@@ -36,28 +36,27 @@ class JoinTeamVM: LoggedInViewModel {
         })
     }
     
-    func loadTeamsWithOrg(dispatch: DispatchGroup, orgID: ID) {
+    func loadOrg(dispatch: DispatchGroup, orgID: ID) {
         dispatch.enter()
         var org: Organization?
         DBUtility.readFromDB(table: FirTable.organization, keys: orgID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-            print("leave1")
             org = Organization(key: key, payload: payload)
             dispatch.leave()
         })
-        print("wait1")
-        dispatch.wait()
         
-        for teamID in org!.teamIDs {
-            print("enter")
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.loadTeamsWithOrg(dispatch: dispatch, org: org!)
+        }
+    }
+    
+    func loadTeamsWithOrg(dispatch: DispatchGroup, org: Organization) {
+        for teamID in org.teamIDs {
             dispatch.enter()
-            DBUtility.readFromDB(table: FirTable.organization, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 self.teams.append(Team(key: key, payload: payload))
-                print("leave")
                 dispatch.leave()
             })
         }
-        print("wait2")
-        dispatch.wait()
     }
     
     func joinTeam(teamIndex: Int) {

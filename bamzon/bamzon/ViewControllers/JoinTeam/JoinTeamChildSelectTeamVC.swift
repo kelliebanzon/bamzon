@@ -13,10 +13,10 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     
     let cellId = "cellId"
     var orgName: UITextField?
-    var org: Organization?
+    var selectedOrg: Organization?
     var teamName: UITextField?
-    var team: Team?
-    var selectedRow: Int?
+    var selectedTeam: Team?
+    var selectedTeamIndex: Int?
     var joinTeamVM = JoinTeamVM()
     let dispatch = DispatchGroup()
     
@@ -83,7 +83,6 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
             teamTableView.dataSource = self
             teamTableView.delegate = self
             teamTableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            joinTeamVM.loadTeamsWithOrg(dispatch: dispatch, orgID: org!.orgID)
             self.view.addSubview(teamTableView)
         } else {
             alert(withTitle: "⚠️ No Org. Selected ⚠️", withMessage: "Please select an organization before selecting a team.")
@@ -106,8 +105,8 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         if tableView == orgTableView {
-            self.org = self.joinTeamVM.allOrgs[indexPath.row]
-            cell.textLabel?.text = self.org!.name
+            self.selectedOrg = self.joinTeamVM.allOrgs[indexPath.row]
+            cell.textLabel?.text = self.selectedOrg!.name
         } else if tableView == teamTableView {
             cell.textLabel?.text = joinTeamVM.teams[indexPath.row].teamName
         }
@@ -115,15 +114,16 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedRow = indexPath.row
         if tableView == orgTableView {
-            let org = self.joinTeamVM.allOrgs[indexPath.row].name
-            orgName!.text? = org
+            let org = self.joinTeamVM.allOrgs[indexPath.row]
+            orgName!.text? = self.joinTeamVM.allOrgs[indexPath.row].name
+            self.joinTeamVM.loadTeamsWithOrg(dispatch: dispatch, org: org)
             orgTableView.removeFromSuperview()
         } else if tableView == teamTableView {
             let team = joinTeamVM.teams[indexPath.row].teamName
             teamName!.text? = team
             teamTableView.removeFromSuperview()
+            self.selectedTeamIndex = indexPath.row
         }
     }
     
@@ -138,16 +138,11 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         print("Valid Input:")
         print("\t  Org Name: " + (orgName!.text)!)
         print("\t Team Name: " + teamName!.text!)
-        if let parentVC = self.parent as? JoinTeamParentVC {
-            if let selectedRow = selectedRow {
-                parentVC.joinTeamVM.sendJoinRequest(teamIndex: selectedRow)
-            } else {
-                return
-            }
+        if let selectedTeamIndex = selectedTeamIndex {
+            self.joinTeamVM.sendJoinRequest(teamIndex: selectedTeamIndex)
         } else {
             return
         }
-        
         self.mockSegue(toVC: nextVC!)
     }
     

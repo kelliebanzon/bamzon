@@ -36,6 +36,10 @@ class CalendarVM: LoggedInViewModel {
         }
     }
     
+    func parseTags(tags: String) -> [String] {
+        return tags.components(separatedBy: [" ", ","])
+    }
+    
     func updateEvents(events: [Event]) {
         calendar.events = events
         DBUtility.writeToDB(objToWrite: calendar)
