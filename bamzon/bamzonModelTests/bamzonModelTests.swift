@@ -38,13 +38,13 @@ class bamzonModelTests: XCTestCase {
     // getChildPath
     
     func testEventDBCreate() {
-        let expected = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test"], media: [:], links: [:])
+        let expected = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
         
         let key = "e999"
         let payload = ["contactUserIds": ["u999"],
                        "date": "2019",
                        "name": "test event",
-                       "tags": ["test"],
+                       "tags": ["test": "test"],
                        "location": nil,
                        "teamId": "t999",
                        "description": "test event description"] as [String : AnyObject]
@@ -53,7 +53,7 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testEventDBFuncs() {
-        let evnt = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test"], media: [:], links: [:])
+        let evnt = Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
         
         XCTAssertEqual(evnt.getTable(), FirTable.event)
         XCTAssertEqual(evnt.getChildPath(), "e999")
@@ -222,7 +222,7 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testTeamCalendarDBFuncs() {
-        let test = TeamCalendar(teamID: ID(type: "t", num: 999), events: [Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test"], media: [:], links: [:])])
+        let test = TeamCalendar(teamID: ID(type: "t", num: 999), events: [Event(eventID: ID(type: "e", num: 999), teamID: ID(type: "t", num: 999), name: "test event", location: nil, contactUserIDs: [ID(type: "u", num: 999)], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])])
         
         XCTAssertEqual(test.getTable(), FirTable.teamCalendar)
         XCTAssertEqual(test.getChildPath(), "t999")
