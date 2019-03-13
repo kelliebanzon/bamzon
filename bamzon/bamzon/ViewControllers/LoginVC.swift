@@ -116,19 +116,25 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
             
             loginVM.errorMessage = nil
             loginVM.checkLogin(dispatch: dispatch, email: email?.text, password: password?.text)
-            let emailVerified = loginVM.isEmailVerified()
             
             dispatch.notify(queue: DispatchQueue.main) {
                 self.removeSpinner()
                 if let errorMessage = self.loginVM.errorMessage {
-                    if !emailVerified {
-                        self.sendEmailAlert()
-                    } else {
-                        self.alert(withTitle: "Error", withMessage: errorMessage)
-                    }
+                    self.alert(withTitle: "Error", withMessage: errorMessage)
+                    
                 } else {
-                    let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
-                    self.present(selectTeamVC, animated: true, completion: nil)
+                    self.showSpinner(onView: self.view)
+                    self.loginVM.loadEmailVerified(dispatch: dispatch)
+                    
+                    dispatch.notify(queue: DispatchQueue.main) {
+                        self.removeSpinner()
+                        if self.loginVM.isEmailVerified {
+                            self.sendEmailAlert()
+                        }
+
+                        let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
+                        self.present(selectTeamVC, animated: true, completion: nil)
+                    }
                 }
     //            // swiftlint:disable force_cast
     //            let appDelegate = UIApplication.shared.delegate as! AppDelegate

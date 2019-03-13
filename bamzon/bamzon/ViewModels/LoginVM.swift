@@ -15,6 +15,7 @@ import Firebase
 class LoginVM {
     
     var errorMessage: String?
+    var isEmailVerified = false
     
     func checkLogin(dispatch: DispatchGroup, email: String?, password: String?) {
         print("checking login")
@@ -48,30 +49,14 @@ class LoginVM {
         }
     }
     
-    func isEmailVerified() -> Bool {
+    func loadEmailVerified(dispatch: DispatchGroup) {
         //citing sources: https://stackoverflow.com/questions/38061203/how-to-verify-a-users-email-address-on-ios-with-firebase/38406024
         if let user = Auth.auth().currentUser {
-            
-            user.reload(completion: nil)
-            print(user.isEmailVerified)
-            if !user.isEmailVerified {
-                self.errorMessage = "Sorry. The email address \(user.email!) has not yet been verified."
-                return false
-                //TODO actionable resend verification email
-                /*
-                 let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(String(describing: user.email)).", preferredStyle: .alert)
-                 let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
-                 (_) in
-                 user.sendEmailVerification(completion: nil)
-                 }
-                 let alertActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-                 
-                 alertVC.addAction(alertActionOkay)
-                 alertVC.addAction(alertActionCancel)
-                 parent.present(alertVC, animated: true, completion: nil)*/
+            dispatch.enter()
+            user.reload { (_) in
+                self.isEmailVerified = user.isEmailVerified
+                dispatch.leave()
             }
-            return true
         }
-        return false
     }
 }
