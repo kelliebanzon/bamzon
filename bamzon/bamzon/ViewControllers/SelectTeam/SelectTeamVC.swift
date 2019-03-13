@@ -85,13 +85,15 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func showCreateTeam() {
-        let createTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamParentVC")
-        self.present(createTeamVC, animated: true, completion: nil)
+        let createTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamChildNameVC")
+        let createTeamNav = createDefaultNavigationController(rootViewController: createTeamVC)
+        self.present(createTeamNav, animated: true, completion: nil)
     }
     
     @objc func showJoinTeam() {
-        let joinTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinTeamParentVC")
-        self.present(joinTeamVC, animated: true, completion: nil)
+        let joinTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinTeamChildSelectTeamVC")
+        let joinTeamNav = createDefaultNavigationController(rootViewController: joinTeamVC)
+        self.present(joinTeamNav, animated: true, completion: nil)
     }
     
     func viewTeam(team: Team) {

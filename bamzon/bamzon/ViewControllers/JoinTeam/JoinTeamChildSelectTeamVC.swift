@@ -22,16 +22,11 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     let dispatch = DispatchGroup()
     
     var orgTableView: UITableView = UITableView()
-    //var orgList: [String] = ["University of Alabama", "University of California, Berkeley", "Cal Poly, SLO", "Stanford University"]
-    
-    // teamList needs to be populated - determined by which org is selected.
-    // all teamList references must be generalized using the orgName (some sort of struct
-    // that holds a shorthand org name that can be used to append to a lookup string that
-    // will be used for selectTeam func.
     var teamTableView: UITableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Join a Team"
         joinTeamVM.loadOrgs(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.display()
@@ -39,19 +34,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     }
     
     func display() {
-        // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
-
-//        backButton = createBackButtonArrow()
-        backButton.tintColor = .white
-        print("backButton:")
-        print(backButton.tintColor)
-        backButton.addTarget(backButton, action: #selector(segueBack), for: .touchUpInside)
-//        self.view.addSubview(backButton)
-
-        // Top Label
-        let topLabel = pageLabel(withText: "Join a Team", withFrame: nil, withCenter: nil)
-        self.view.addSubview(topLabel)
         
         // Organization Label
         orgName = createDefaultTextField(withText: "Organization", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
@@ -79,18 +62,8 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
         
-//        backButton.translatesAutoresizingMaskIntoConstraints = false
-//        let backTopConstraint = backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
-//        let backLeadingConstraint = backButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
-//        let backHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 24)
-//        let backAspectConstraint = backButton.widthAnchor.constraint(equalTo: backButton.heightAnchor)
-//        self.view.addConstraints([backTopConstraint, backLeadingConstraint, backHeightConstraint, backAspectConstraint])
     }
 
-    @objc func segueBack() {
-        print("segueBack in JoinTeamChildSelectTeamVC")
-    }
-    
     @objc func selectOrg(textField: UITextField) {
         teamName?.text = ""
         orgTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
@@ -156,26 +129,17 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     
     // General function to validate fields
     @objc func checkFields() {
-        let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "JoinTeamChildRequestSentVC") as? JoinTeamChildRequestSentVC
+        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinTeamChildRequestSentVC")
         
         print("Valid Input:")
         print("\t  Org Name: " + (orgName!.text)!)
         print("\t Team Name: " + teamName!.text!)
         if let selectedTeamIndex = selectedTeamIndex {
             self.joinTeamVM.sendJoinRequest(teamIndex: selectedTeamIndex)
+            self.navigationController!.pushViewController(nextVC, animated: true)
         } else {
             return
         }
-        self.mockSegue(toVC: nextVC!)
+
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

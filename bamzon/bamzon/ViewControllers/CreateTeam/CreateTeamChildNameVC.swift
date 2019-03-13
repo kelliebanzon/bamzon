@@ -132,6 +132,6 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         if let parentVC = self.parent as? CreateTeamParentVC {
             parentVC.createTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
         }
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        self.navigationController!.pushViewController(nextVC, animated: true)
     }
 }

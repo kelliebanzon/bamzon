@@ -10,39 +10,39 @@ import Foundation
 import UIKit
 
 class JoinTeamChildRequestSentVC: UIViewController, DisplayableProtocol {
+
+    var reqSentLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-            self.alert(withTitle: "⚠️ WORK IN PROGRESS ⚠️", withMessage: "Load TeamHome VC")
-        }
     }
     
     func display() {
-        // TODO: display
         view.backgroundColor = UIColor(named: "TSTeal")
-        
-        // TODO: temporary identifier code. delete this once you write the real display func
-        
-        // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 420))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 25)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 0
-        tempLabel.textColor = .white
-        tempLabel.text = "A join request has been sent!\r\rAn admin will approve\ror deny your request."
-        self.view.addSubview(tempLabel)
+
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeJoinTeamVC)), animated: true)
+                
+        reqSentLabel = createDefaultHeader2Label(text: "A join request has been sent! An admin will approve or deny your request.", numLines: 0)
+        reqSentLabel.textAlignment = .center
+        reqSentLabel.lineBreakMode = .byWordWrapping
+        reqSentLabel.adjustsFontSizeToFitWidth = false
+        self.view.addSubview(reqSentLabel)
+
+        setupAutoLayout()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        reqSentLabel.translatesAutoresizingMaskIntoConstraints = false
+        let reqSentVert = reqSentLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        let reqSentLeading = reqSentLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let reqSentTrailing = margins.trailingAnchor.constraint(equalTo: reqSentLabel.trailingAnchor, constant: 20)
+        self.view.addConstraints([reqSentVert, reqSentLeading, reqSentTrailing])
+    }
+
+    @objc func closeJoinTeamVC() {
+        self.navigationController!.dismiss(animated: true, completion: nil)
+    }
 }

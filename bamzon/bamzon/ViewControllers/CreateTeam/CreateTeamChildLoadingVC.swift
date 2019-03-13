@@ -55,6 +55,6 @@ class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
     }
 
     @objc func closeCreateTeamVC() {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        self.navigationController!.dismiss(animated: true, completion: nil)
     }
 }
