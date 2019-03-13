@@ -10,23 +10,23 @@ import Foundation
 
 class ID: Codable, Hashable {
     var type: String
-    var num: UInt
+    var uuid: String
     
     var hashValue: Int {
-        return type.hashValue * num.hashValue
+        return type.hashValue * uuid.hashValue
     }
     
-    init(type: String, num: UInt) {
+    init(type: String, uuid: String) {
         self.type = type
-        self.num = num
+        self.uuid = uuid
     }
     
     func asString() -> String {
-        return "\(type)\(num)"
+        return "\(type)\(uuid)"
     }
 
 }
 
 func == (lhs: ID, rhs: ID) -> Bool {
-    return lhs.type == rhs.type && lhs.num == rhs.num
+    return lhs.type == rhs.type && lhs.uuid == rhs.uuid
 }

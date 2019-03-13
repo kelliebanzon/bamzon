@@ -86,7 +86,7 @@ struct Event: FirebaseCompatable, Equatable {
             print("no location to fetch for event \(eventID.asString())")
         }
         
-        if eventID != ID(type: "z", num: 0) {
+        if eventID != ID(type: "z", uuid: "0") {
             DBUtility.readFromDB(table: FirTable.rsvp, keys: eventID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 thisEvent.rsvps = RSVP(key: key, payload: payload)
                 print("event rsvp fetch succeeded: event is \(thisEvent)")

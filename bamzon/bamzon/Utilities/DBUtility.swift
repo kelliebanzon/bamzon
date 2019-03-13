@@ -32,7 +32,7 @@ class DBUtility {
     *
     *   Example:
     *
-    *   readFromDB(FirTable.team, ID(type: IDType.team, num: 404), completion  {(snap:
+    *   readFromDB(FirTable.team, ID(type: IDType.team, uuid: "404"), completion  {(snap:
     *       DataSnapshot) -> Void in
     *       var team = Team(snapshot: snap)})
     *

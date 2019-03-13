@@ -47,7 +47,7 @@ struct Team: FirebaseCompatable, Equatable {
         
         var thisTeam = self
        
-        if teamID != ID(type: "z", num: 0) {
+        if teamID != ID(type: "z", uuid: "0") {
             DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 thisTeam.calendar = TeamCalendar(key: key, payload: payload)
             })
