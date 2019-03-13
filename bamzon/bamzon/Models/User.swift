@@ -44,7 +44,7 @@ struct User: FirebaseCompatable, Equatable {
         schoolYear = Year(rawValue: payload["schoolYear"] as? Int ?? 0)
         bio = payload["bio"] as? String ?? "N/A"
         imageURL = payload["imageURL"] as? String ?? "N/A"
-        teamIDs = IDUtility.stringsToIds(strs: payload["teamIds"] as? [String] ?? [])
+        teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
     }
     
     func formatForDB() -> [String: Any] {
@@ -57,7 +57,7 @@ struct User: FirebaseCompatable, Equatable {
              "schoolYear": schoolYear?.rawValue ?? "",
              "bio": bio ?? "",
              "imageURL": imageURL ?? "",
-             "teamIds": IDUtility.idsToStrings(ids: teamIDs)]
+             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
     }
     
     func getTable() -> FirTable {
