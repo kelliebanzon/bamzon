@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ED466B52238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */; };
 		6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */; };
 		655E8051221D381800BDA6A2 /* FirTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655E8050221D381800BDA6A2 /* FirTable.swift */; };
 		656EBA732208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
@@ -142,6 +143,7 @@
 		41EA1648125FE29C92D37266 /* Pods-bamzonModelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonModelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonModelTests/Pods-bamzonModelTests.release.xcconfig"; sourceTree = "<group>"; };
 		42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersAttendanceTableViewCell.swift; sourceTree = "<group>"; };
 		6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCompatable.swift; sourceTree = "<group>"; };
 		655E8050221D381800BDA6A2 /* FirTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirTable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -392,8 +394,9 @@
 				A8143A0621B72F94000E287A /* AttendanceParentVC.swift */,
 				AB0EB61E221D30D400C4917E /* AttendanceTabVC.swift */,
 				ABEF642521FE6E0700716ACB /* AttendancePlayerVC.swift */,
-				AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */,
 				AB0EB622221D36AD00C4917E /* AttendanceChildPracticesVC.swift */,
+				AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */,
+				5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */,
 			);
 			path = Attendance;
 			sourceTree = "<group>";
@@ -940,6 +943,7 @@
 				A81439E621B71E58000E287A /* SelectTeamVM.swift in Sources */,
 				D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */,
 				AB277835220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift in Sources */,
+				5ED466B52238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift in Sources */,
 				ABC5821D21B4A8FF00DDC094 /* TeamStats.swift in Sources */,
 				A81439FB21B72CB3000E287A /* CreateTeamParentVC.swift in Sources */,
 				AB6E5D57220F900E00808283 /* CreateTeamChildNameVC.swift in Sources */,

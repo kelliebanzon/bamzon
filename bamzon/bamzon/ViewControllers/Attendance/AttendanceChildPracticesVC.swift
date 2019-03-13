@@ -52,7 +52,7 @@ class AttendanceChildPracticesVC: UIViewController, IndicatorInfoProvider, Displ
     // MARK: - Navigation
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Practices")
+        return IndicatorInfo(title: "Past Practices")
     }
 
     /*
