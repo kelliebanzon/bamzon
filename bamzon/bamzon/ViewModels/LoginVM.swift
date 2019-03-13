@@ -17,6 +17,10 @@ class LoginVM {
     var errorMessage: String?
     var isEmailVerified = false
     
+    // swiftlint:disable force_cast
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
+    // swiftlint:enable force_cast
+
     func checkLogin(dispatch: DispatchGroup, email: String?, password: String?) {
         print("checking login")
         
@@ -25,6 +29,7 @@ class LoginVM {
             return
         }
         dispatch.enter()
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print("error")

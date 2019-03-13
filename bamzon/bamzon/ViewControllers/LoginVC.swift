@@ -24,8 +24,14 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        display()
-        setupAutoLayout()
+        loginVM.appDelegate.dispatch.notify(queue: DispatchQueue.main) {
+            if self.loginVM.appDelegate.curUser != nil {
+                self.goToSelectTeam()
+            } else {
+                self.display()
+                self.setupAutoLayout()
+            }
+        }
     }
     
     func display() {
@@ -128,8 +134,7 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
                     dispatch.notify(queue: DispatchQueue.main) {
                         self.removeSpinner()
                         if self.loginVM.isEmailVerified {
-                            let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
-                            self.present(selectTeamVC, animated: true, completion: nil)
+                            self.goToSelectTeam()
                         } else {
                             self.sendEmailAlert()
                         }
@@ -141,6 +146,11 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     //            appDelegate.showTabController()
             }
         }
+    }
+    
+    func goToSelectTeam() {
+        let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
+        self.present(selectTeamVC, animated: true, completion: nil)
     }
     
     func sendEmailAlert() {

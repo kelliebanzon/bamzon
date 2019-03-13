@@ -21,13 +21,8 @@ class SelectTeamVM: LoggedInViewModel {
     }
     
     func loadTeams(dispatch: DispatchGroup) {
-        print("not even close to loading teams")
-        if self.user.teamIDs != nil {
-            print("boutta load teams")
-            print(self.user.teamIDs!)
-            print(self.user)
+        if self.user.teamIDs != nil && self.user.teamIDs!.count != 0 {
             for teamID in self.user.teamIDs! {
-                print("loading team")
                 loadTeam(teamID: teamID, dispatch: dispatch)
             }
         }
