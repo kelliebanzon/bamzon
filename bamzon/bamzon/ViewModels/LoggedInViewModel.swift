@@ -13,11 +13,11 @@ class LoggedInViewModel {
     
     var user: User
     var team: Team
+    // swiftlint:disable force_cast
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    // swiftlint:enable force_cast
     
     init() {
-        // swiftlint:disable force_cast
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // swiftlint:enable force_cast
         if appDelegate.curUser == nil {
             self.user = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", uuid: "404")])
         } else {

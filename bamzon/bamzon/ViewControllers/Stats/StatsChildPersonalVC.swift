@@ -16,12 +16,6 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     var vm = PlayerStatsVM()
     var nameLabel = UILabel()
     var statsTable = UITableView()
-    // TODO: connect to database
-
-    //let pID = ID(type: "u", num: 1234)
-    //let tID = ID(type: "t", num: 5678)
-    //let player = User(userID: ID(type: "u", num: 1234), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: "jperalt@calpoly.edu", schoolYear: Year.thirdYear, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", num: 5678)])
-    //playerStats = PlayerStats(userID: ID(type: "u", num: 1234), teamID: ID(type: "t", num: 5678), fields: ["50 Free": 23.01, "100 Free": 49.67])
 
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,

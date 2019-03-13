@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol {
-    
+
+    let settingsVM = SettingsVM()
     let cellId = "cellId"
     
     var settingsTableView: UITableView = UITableView()
@@ -102,7 +104,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         } else if indexPath.section == 1 {
             let alert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
             // Sets root view controller back to LoginVC
-            alert.addAction(UIAlertAction(title: "Log Out", style: .default, handler: {(_: UIAlertAction!) in self.setRootView(toVC: "LoginVC")
+            alert.addAction(UIAlertAction(title: "Log Out", style: .default, handler: {(_: UIAlertAction!) in
+                self.settingsVM.logout()
+                self.setRootView(toVC: "LoginVC")
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {(_: UIAlertAction!) in print("Do cancel logic here")
             }))
