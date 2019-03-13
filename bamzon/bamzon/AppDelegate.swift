@@ -38,14 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                }
 //                dispatch.wait()
 //                dispatch.leave()
-//
-//            })
-//            dispatch.wait()
 //        }
         
         curTeam = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
 
-//        showTabController()
         window?.makeKeyAndVisible()
         return true
     }
