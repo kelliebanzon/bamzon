@@ -11,13 +11,20 @@ import UIKit
 
 class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
-    let requestArray: NSArray = ["Request1", "Request2", "Request3", "Request4", "Request5", "Request6", "Request7", "Request8", "Request9"]
+    //let requestArray: NSArray = ["Request1", "Request2", "Request3", "Request4", "Request5", "Request6", "Request7", "Request8", "Request9"]
+    let joinRequestsVM = JoinRequestsVM()
     private var myTableView: UITableView!
     private let cellId = "requestCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        display()
+        let dispatch = DispatchGroup()
+        showSpinner(onView: self.view)
+        joinRequestsVM.loadRequests(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -74,12 +81,12 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Num: \(indexPath.row)")
-        print("Value: \(requestArray[indexPath.row])")
+        print("Value: \(joinRequestsVM.requestedUsers[indexPath.row].getFullName())")
         //TODO: Find a way to access cell elements here? So we can set each cell label to be what's in the array by using indexpath
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return requestArray.count
+        return joinRequestsVM.requestedUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

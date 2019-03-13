@@ -26,24 +26,20 @@ class JoinRequestsVM: LoggedInViewModel {
         DBUtility.writeToDB(objToWrite: self.team)
     }
     
-    func reject(requestIndex: Int, parent: DisplayableProtocol) {
+    func reject(requestIndex: Int, dispatch: DispatchGroup) {
         self.team.joinReqIDs!.remove(at: requestIndex)
         requestedUsers.remove(at: requestIndex)
         DBUtility.writeToDB(objToWrite: self.team)
     }
     
-    func loadRequests(parent: DisplayableProtocol) {
-        let group = DispatchGroup()
+    func loadRequests(dispatch: DispatchGroup) {
         if self.team.joinReqIDs != nil {
             for userID in self.team.joinReqIDs! {
-                group.enter()
+                dispatch.enter()
                 DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                     self.requestedUsers.append(User(key: key, payload: payload))
-                    group.leave()
+                    dispatch.leave()
                 })
-            }
-            group.notify(queue: .main) {
-                parent.display()
             }
         }
         
