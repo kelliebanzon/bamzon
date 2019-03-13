@@ -9,12 +9,12 @@
 import Foundation
 import Firebase
 
-struct Event: FirebaseCompatable, Equatable {
+struct Event: FirebaseCompatable, Equatable, Comparable {
     var name: String
     var location: Location?
     var contactUserIDs: [ID]?
     var description: String?
-    var date: String?
+    var date: Date
     var rsvps: RSVP?
     var tags: [String: String]?
     var media: [String: Media]?
@@ -24,12 +24,12 @@ struct Event: FirebaseCompatable, Equatable {
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: String?, rsvps: RSVP?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: Date?, rsvps: RSVP?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
         self.name = name
         self.location = location
         self.contactUserIDs = contactUserIDs
         self.description = description
-        self.date = date
+        self.date = date ?? Date.init(timeIntervalSince1970: 0) // default date is 1970
         self.rsvps = rsvps
         self.tags = tags
         self.media = media
@@ -45,7 +45,7 @@ struct Event: FirebaseCompatable, Equatable {
              "location": location?.locID.asString() ?? "",
              "contactUserIDs": IDUtility.idsToStrings(ids: contactUserIDs),
              "description": description ?? "",
-             "date": date ?? "",
+             "date": date.toString(),
              "tags": tags ?? [:],
              "media": media ?? [:],
              "links": links ?? [:]]
@@ -65,7 +65,7 @@ struct Event: FirebaseCompatable, Equatable {
         location = nil
         contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
         description = payload["description"] as? String ?? "N/A"
-        date = payload["date"] as? String ?? "N/A"
+        date = Date.fromString(from: payload["date"] as? String ?? "1970-01-01 00:00:00")
         rsvps = nil
         tags = payload["tags"] as? [String: String] ?? [:]
         media = payload["media"] as? [String: Media] ?? [:]
@@ -94,6 +94,16 @@ struct Event: FirebaseCompatable, Equatable {
         } else {
             print("no rsvp to fetch for event \(eventID.asString())")
         }
+    }
+    
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        if lhs.date == Date.init(timeIntervalSince1970: 0) {
+            return false
+        }
+        if rhs.date == Date.init(timeIntervalSince1970: 0) {
+            return true
+        }
+        return lhs.date < rhs.date
     }
     
     static func == (lhs: Event, rhs: Event) -> Bool {

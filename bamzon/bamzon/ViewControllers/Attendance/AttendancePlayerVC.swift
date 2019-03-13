@@ -10,7 +10,7 @@ import UIKit
 
 class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
-    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), name: "Heyer Pool", number: "1", street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93405, country: "United States"), contactUserIDs: nil, description: "Dry land", date: "Tomorrow", rsvps: nil, tags: nil, media: nil, links: nil)]
+    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), name: "Heyer Pool", number: "1", street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93405, country: "United States"), contactUserIDs: nil, description: "Dry land", date: Date(timeIntervalSinceNow: 0), rsvps: nil, tags: nil, media: nil, links: nil)]
 
     // TODO: connect to database
     var player: User = User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
@@ -95,7 +95,7 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         if let cell = tableView.dequeueReusableCell(withIdentifier: "attCell", for: indexPath) as? AttendancePlayerTableViewCell {
             let event = events[indexPath.row]
             cell.nameLabel.text = event.name
-            cell.dateLabel.text = event.date?.description
+            cell.dateLabel.text = event.date.description
             cell.locationLabel.text = event.location?.street
             return cell
         } else {

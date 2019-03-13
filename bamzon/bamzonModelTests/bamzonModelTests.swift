@@ -10,39 +10,13 @@ import XCTest
 @testable import bamzon
 
 class bamzonModelTests: XCTestCase {
-
-//    override func setUp() {
-//        // Put setup code here. This method is called before the invocation of each test method in the class.
-//    }
-//
-//    override func tearDown() {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//    }
-//
-//    func testExample() {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
-//
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-    
-    // TEST
-    // init
-    // formatForDB
-    // getTable
-    // getChildPath
     
     func testEventDBCreate() {
-        let expected = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let expected = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date.init(timeIntervalSince1970: 3600), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
         
         let key = "e999"
         let payload = ["contactUserIDs": ["u999"],
-                       "date": "2019",
+                       "date": "1970-01-01 01:00 -0000",
                        "name": "test event",
                        "tags": ["test": "test"],
                        "location": nil,
@@ -53,7 +27,7 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testEventDBFuncs() {
-        let evnt = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let evnt = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date.init(timeIntervalSince1970: 10), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
         
         XCTAssertEqual(evnt.getTable(), FirTable.event)
         XCTAssertEqual(evnt.getChildPath(), "e999")
@@ -222,7 +196,7 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testTeamCalendarDBFuncs() {
-        let test = TeamCalendar(teamID: ID(type: "t", uuid: "999"), events: [Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: "2019", rsvps: nil, tags: ["test": "test"], media: [:], links: [:])])
+        let test = TeamCalendar(teamID: ID(type: "t", uuid: "999"), events: [Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date.init(timeIntervalSince1970: 0), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])])
         
         XCTAssertEqual(test.getTable(), FirTable.teamCalendar)
         XCTAssertEqual(test.getChildPath(), "t999")
@@ -288,5 +262,66 @@ class bamzonModelTests: XCTestCase {
         XCTAssertEqual(expected, FirebaseID(key: key, payload: payload))
     }
 
-
+    func testDateToString() {
+        let cal = Calendar.current;
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 1999
+        dateComponents.month = 1
+        dateComponents.day = 30
+        dateComponents.hour = 11
+        dateComponents.minute = 45
+        let date = cal.date(from: dateComponents)
+        
+        XCTAssertEqual(date?.toString() ?? "nope", "1999-01-30 11:45 -0800")
+    }
+    
+    func testStringToDate() {
+        let string = "1999-01-30 11:45 -0800"
+        let cal = Calendar.current
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 1999
+        dateComponents.month = 1
+        dateComponents.day = 30
+        dateComponents.hour = 11
+        dateComponents.minute = 45
+        dateComponents.timeZone = TimeZone(abbreviation: "PST")
+        
+        XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
+    }
+    
+    func testUserGetFullName() {
+        let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
+        
+        XCTAssertEqual("BZN Zon", test.getFullName())
+        
+        let test2 = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: nil, phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
+        
+        XCTAssertEqual("Bam Zon", test2.getFullName())
+    }
+    
+    func testCompareEvents() {
+        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 1000), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 100), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let soonest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 0), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        
+        let list = [latest, middle, soonest]
+        let sorted = list.sorted()
+        let expected = [soonest, middle, latest]
+        
+        XCTAssertEqual(sorted, expected)
+    }
+    
+    func testCompareEventsWithNil() {
+        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 1000), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 100), rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        let nilEvent = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", location: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: nil, rsvps: nil, tags: ["test": "test"], media: [:], links: [:])
+        
+        let list = [nilEvent, latest, middle]
+        let sorted = list.sorted()
+        let expected = [middle, latest, nilEvent]
+        
+        XCTAssertEqual(sorted, expected)
+    }
 }
