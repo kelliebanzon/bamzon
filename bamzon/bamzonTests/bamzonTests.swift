@@ -32,19 +32,19 @@ class BamzonTests: XCTestCase {
     
     func testCreateIDFromString() {
         let testIDString = "u100" //fixme changed from IDType.user to string for demo
-        let expected = ID(type: "u", num: 100)
+        let expected = ID(type: "u", uuid: "100")
         let testOut = IDUtility.generateIDFromString(idString: testIDString)
-        print(testOut.num)
+        print(testOut.uuid)
         print(testOut.type)
         
         XCTAssertTrue(expected.type == testOut.type)
-        XCTAssertTrue(expected.num == testOut.num)
+        XCTAssertTrue(expected.uuid == testOut.uuid)
         
     }
     
     func testIDToString() {
         let expected = "u100"
-        let testID = ID(type: "u", num: 100)
+        let testID = ID(type: "u", uuid: "100")
         let testOut = testID.asString()
         
         XCTAssertTrue(expected.elementsEqual(testOut))
@@ -53,7 +53,7 @@ class BamzonTests: XCTestCase {
     
     func testIDsToStrings() {
         let expected  = ["u100", "t200"]
-        let testIDs = [ID(type: "u", num: 100), ID(type: "t", num: 200)]
+        let testIDs = [ID(type: "u", uuid: "100"), ID(type: "t", uuid: "200")]
         let testOut = IDUtility.idsToStrings(ids: testIDs)
         
         XCTAssertEqual(expected, testOut)
@@ -61,8 +61,8 @@ class BamzonTests: XCTestCase {
     
     func testStringsToIDs() {
         let testStrings  = ["u100", "t200"]
-        let expected = [ID(type: "u", num: 100), ID(type: "t", num: 200)]
-        let testOut = IDUtility.stringsToIds(strs: testStrings)
+        let expected = [ID(type: "u", uuid: "100"), ID(type: "t", uuid: "200")]
+        let testOut = IDUtility.stringsToIDs(strs: testStrings)
         
         XCTAssertEqual(expected, testOut)
     }
