@@ -11,11 +11,16 @@ import UIKit
 
 class TeamHomeVC: UIViewController, DisplayableProtocol {
 
-////    swiftlint:disable force_cast
-//    var curTeam: Team = (UIApplication.shared.delegate as! AppDelegate).curTeam!
-    var curTeam = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
+//    var curTeam: Team = (UIApplication.shared.delegate as! AppDelegate).curTeam
+//    var curTeam = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
 
-//    //swiftlint:enable force_cast
+    let viewModel = LoggedInViewModel()
+
+    let offsets: [String: CGFloat] = [
+        "vertEdges": 40,
+        "horizEdges": 20,
+        "inTableSpacing": 12
+    ]
     
     var teamPictureImageView = UIImageView()
     var teamNameLabel = UILabel()
@@ -57,7 +62,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         self.view.addSubview(teamPictureImageView)
 
         //team name
-        teamNameLabel = createDefaultHeader1Label(text: curTeam.teamName, numLines: 3)
+        teamNameLabel = createDefaultHeader1Label(text: viewModel.team.teamName, numLines: 3)
         teamNameLabel.lineBreakMode = .byWordWrapping
         self.view.addSubview(teamNameLabel)
         
@@ -105,8 +110,8 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         //image view constraints
         teamPictureImageView.translatesAutoresizingMaskIntoConstraints = false
-        let picTopConstraint = teamPictureImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
-        let picLeftConstraint = teamPictureImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let picTopConstraint = teamPictureImageView.topAnchor.constraint(equalTo: margins.topAnchor, constant: offsets["horizEdges"]!)
+        let picLeftConstraint = teamPictureImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: offsets["horizEdges"]!)
         let picWidthConstraint = teamPictureImageView.widthAnchor.constraint(equalToConstant: 125)
         let picDimensionConstraint = teamPictureImageView.heightAnchor.constraint(equalTo: teamPictureImageView.widthAnchor)
         self.view.addConstraints([picTopConstraint, picLeftConstraint, picWidthConstraint, picDimensionConstraint])
@@ -115,13 +120,13 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         teamNameLabel.translatesAutoresizingMaskIntoConstraints = false
         let tNameVertConstraint = teamNameLabel.centerYAnchor.constraint(equalTo: teamPictureImageView.centerYAnchor)
         let tNameHeightConstraint = teamNameLabel.heightAnchor.constraint(equalTo: teamPictureImageView.heightAnchor)
-        let tNameLeadingConstraint = teamNameLabel.leadingAnchor.constraint(equalTo: teamPictureImageView.trailingAnchor, constant: 20)
-        let tNameTrailingConstraint = teamNameLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 20)
+        let tNameLeadingConstraint = teamNameLabel.leadingAnchor.constraint(equalTo: teamPictureImageView.trailingAnchor, constant: offsets["horizEdges"]!)
+        let tNameTrailingConstraint = teamNameLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([tNameVertConstraint, tNameHeightConstraint, tNameLeadingConstraint, tNameTrailingConstraint])
 
         //next practice label constraints
         nextLabel.translatesAutoresizingMaskIntoConstraints = false
-        let nextLabelLeftConstraint = nextLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let nextLabelLeftConstraint = nextLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: offsets["horizEdges"]!)
         let nextLabelTopConstraint = nextLabel.topAnchor.constraint(equalTo: teamPictureImageView.bottomAnchor, constant: 30)
         self.view.addConstraints([nextLabelLeftConstraint, nextLabelTopConstraint])
 
@@ -129,7 +134,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         descLabel.translatesAutoresizingMaskIntoConstraints = false
         let descTopConstraint = descLabel.topAnchor.constraint(equalTo: nextLabel.bottomAnchor, constant: 10)
         let descLeftConstraint = descLabel.leadingAnchor.constraint(equalTo: nextLabel.leadingAnchor, constant: 10)
-        let descRightConstraint = margins.trailingAnchor.constraint(equalTo: descLabel.trailingAnchor, constant: 20)
+        let descRightConstraint = margins.trailingAnchor.constraint(equalTo: descLabel.trailingAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([descTopConstraint, descLeftConstraint, descRightConstraint])
 
         //time label constraints
@@ -140,15 +145,15 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         //next event label constraints
         nextEvent.translatesAutoresizingMaskIntoConstraints = false
-        let nextEventLeftConstraint = nextEvent.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
-        let nextEventTopConstraint = nextEvent.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 20)
+        let nextEventLeftConstraint = nextEvent.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: offsets["horizEdges"]!)
+        let nextEventTopConstraint = nextEvent.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([nextEventLeftConstraint, nextEventTopConstraint])
 
         //description constraints
         eventDescLabel.translatesAutoresizingMaskIntoConstraints = false
         let eventDescTopConstraint = eventDescLabel.topAnchor.constraint(equalTo: nextEvent.bottomAnchor, constant: 10)
         let eventDescLeftConstraint = eventDescLabel.leadingAnchor.constraint(equalTo: nextEvent.leadingAnchor, constant: 10)
-        let eventDescRightConstraint = margins.trailingAnchor.constraint(equalTo: eventDescLabel.trailingAnchor, constant: 20)
+        let eventDescRightConstraint = margins.trailingAnchor.constraint(equalTo: eventDescLabel.trailingAnchor, constant: offsets["horizEdges"]!)
         self.view.addConstraints([eventDescTopConstraint, eventDescLeftConstraint, eventDescRightConstraint])
 
         //event date label constraints
