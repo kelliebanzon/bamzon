@@ -45,7 +45,6 @@
 		A81439F721B72BB8000E287A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439F621B72BB8000E287A /* LoginVC.swift */; };
 		A81439F921B72C09000E287A /* SelectTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439F821B72C09000E287A /* SelectTeamVC.swift */; };
 		A81439FB21B72CB3000E287A /* CreateTeamParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439FA21B72CB3000E287A /* CreateTeamParentVC.swift */; };
-		A81439FD21B72D51000E287A /* JoinTeamParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439FC21B72D51000E287A /* JoinTeamParentVC.swift */; };
 		A81439FF21B72DC2000E287A /* TeamHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81439FE21B72DC2000E287A /* TeamHomeVC.swift */; };
 		A8143A0121B72E05000E287A /* StatsParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A0021B72E05000E287A /* StatsParentVC.swift */; };
 		A8143A0321B72E3B000E287A /* RosterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A0221B72E3B000E287A /* RosterVC.swift */; };
@@ -178,7 +177,6 @@
 		A81439F621B72BB8000E287A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A81439F821B72C09000E287A /* SelectTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTeamVC.swift; sourceTree = "<group>"; };
 		A81439FA21B72CB3000E287A /* CreateTeamParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamParentVC.swift; sourceTree = "<group>"; };
-		A81439FC21B72D51000E287A /* JoinTeamParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamParentVC.swift; sourceTree = "<group>"; };
 		A81439FE21B72DC2000E287A /* TeamHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHomeVC.swift; sourceTree = "<group>"; };
 		A8143A0021B72E05000E287A /* StatsParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsParentVC.swift; sourceTree = "<group>"; };
 		A8143A0221B72E3B000E287A /* RosterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterVC.swift; sourceTree = "<group>"; };
@@ -404,7 +402,6 @@
 		AB0EB626221FA91A00C4917E /* JoinTeam */ = {
 			isa = PBXGroup;
 			children = (
-				A81439FC21B72D51000E287A /* JoinTeamParentVC.swift */,
 				AB0EB627221FA9D500C4917E /* JoinTeamChildSelectTeamVC.swift */,
 				AB0EB629221FA9F400C4917E /* JoinTeamChildRequestSentVC.swift */,
 			);
@@ -999,7 +996,6 @@
 				ABEF641E21FBE90D00716ACB /* RefreshableProtocol.swift in Sources */,
 				A8143A0121B72E05000E287A /* StatsParentVC.swift in Sources */,
 				A81439E921B71E58000E287A /* StatsVM.swift in Sources */,
-				A81439FD21B72D51000E287A /* JoinTeamParentVC.swift in Sources */,
 				AB4A95302215E72800AEA954 /* WizardNC.swift in Sources */,
 				ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */,
 				6E9683CA2222517300BB05EC /* JoinRequestTableViewCell.swift in Sources */,

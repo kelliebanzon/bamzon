@@ -33,11 +33,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.view.backgroundColor=Style.bgColor
         
         view.addSubview(calenderView)
-        calenderView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive=true
-        calenderView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive=true
-        calenderView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive=true
-        calenderView.heightAnchor.constraint(equalToConstant: 365).isActive=true
-        
+
         let rightBarBtn = UIBarButtonItem(title: "Light", style: .plain, target: self, action: #selector(rightBarBtnAction))
         self.navigationItem.rightBarButtonItem = rightBarBtn
         
@@ -51,13 +47,25 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         myTableView.register(CalendarVCTableViewCell.self, forCellReuseIdentifier: self.cellId)
         myTableView.backgroundColor = UIColor(named: "TSTeal")
         self.view.addSubview(myTableView)
+
+        setupAutoLayout()
         
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        calenderView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 60).isActive=true
+        calenderView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -12).isActive=true
+        calenderView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 12).isActive=true
+        calenderView.heightAnchor.constraint(equalToConstant: 365).isActive=true
+
         //tableview constraints
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         let tableHeightConstraint = myTableView.heightAnchor.constraint(equalToConstant: 280)
         let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: calenderView.bottomAnchor, constant: 30)
         let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
+        let tableRightConstraint = margins.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
     

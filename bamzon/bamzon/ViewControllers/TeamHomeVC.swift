@@ -53,7 +53,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         let departTime = "December 1 @ 8 AM"
         let returnTime = "December 1 @ 10 PM"
         
-        //image view
         teamPictureImageView.contentMode = .scaleAspectFill
         teamPictureImageView.clipsToBounds = true
         // TODO: update to be a team-specific photo
@@ -61,7 +60,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         teamPictureImageView.layer.cornerRadius = 15.0
         self.view.addSubview(teamPictureImageView)
 
-        //team name
         teamNameLabel = createDefaultHeader1Label(text: viewModel.team.teamName, numLines: 3)
         teamNameLabel.lineBreakMode = .byWordWrapping
         self.view.addSubview(teamNameLabel)
@@ -70,31 +68,24 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         nextLabel = createDefaultLabel(text: "Next Practice", fontSize: 25, numLines: 0)
         self.view.addSubview(nextLabel)
 
-        //description label
         descLabel = createDefaultLabel(text: nextPracticeDesc)
         self.view.addSubview(descLabel)
 
-        //time label
         timeLabel = createDefaultLabel(text: nextPracticeTime, numLines: 0)
         self.view.addSubview(timeLabel)
 
-        //Label for Next Event
         nextEvent = createDefaultLabel(text: "Next Event", fontSize: 25, numLines: 0)
         self.view.addSubview(nextEvent)
 
-        //description label
         eventDescLabel = createDefaultLabel(text: nextEventDesc)
         self.view.addSubview(eventDescLabel)
 
-        //event date label
         eventDateLabel = createDefaultLabel(text: nextEventDate, numLines: 0)
         self.view.addSubview(eventDateLabel)
 
-        //depart time label
         departTimeLabel = createDefaultLabel(text: "Leaving \(departTime)", numLines: 0)
         self.view.addSubview(departTimeLabel)
 
-        //return time label
         returnTimeLabel = createDefaultLabel(text: "Returning \(returnTime)", numLines: 0)
         self.view.addSubview(returnTimeLabel)
 

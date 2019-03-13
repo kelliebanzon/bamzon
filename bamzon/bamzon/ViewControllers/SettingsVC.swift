@@ -128,16 +128,17 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let margins = view.safeAreaLayoutGuide
 
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        let closeTop = closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
-        let closeTrailing = closeButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
+        let closeTop = closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: offsets["horizEdges"]!)
+        let closeTrailing = closeButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -30)
         let closeHeight = closeButton.heightAnchor.constraint(equalToConstant: 24)
         let closeAspect = closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
         self.view.addConstraints([closeTop, closeTrailing, closeHeight, closeAspect])
         
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         let topLabelHorizontalConstraint = topLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor)
-        let topLabelTopConstraint = topLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: offsets["horizEdges"]!)
-        self.view.addConstraints([topLabelTopConstraint, topLabelHorizontalConstraint])
+        let topLabelVerticalConstraint = topLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor)
+//        let topLabelTopConstraint = topLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: offsets["horizEdges"]!)
+        self.view.addConstraints([topLabelVerticalConstraint, topLabelHorizontalConstraint])
         
         settingsTableView.translatesAutoresizingMaskIntoConstraints = false
         let tableTop = settingsTableView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 20)

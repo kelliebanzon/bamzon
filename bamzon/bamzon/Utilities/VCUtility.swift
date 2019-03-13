@@ -33,7 +33,7 @@ extension UIViewController {
         navController.navigationBar.barStyle = .black
         navController.navigationBar.barTintColor = UIColor(named: "TSNavy")
         navController.navigationBar.isTranslucent = true
-        navController.navigationBar.tintColor = .white
+        navController.navigationBar.tintColor = UIColor(named: "TSLightGray")
         let backButton = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "arrow-left")))
         self.navigationItem.backBarButtonItem = backButton
         return navController
@@ -107,7 +107,7 @@ extension UIViewController {
     func createCloseButton(action: Selector) -> UIButton {
         let closeButton = UIButton(type: .system)
         closeButton.setImage(UIImage(named: "x"), for: .normal)
-        closeButton.tintColor = .white
+        closeButton.tintColor = UIColor(named: "TSLightGray")
         closeButton.addTarget(self, action: action, for: .touchUpInside)
         return closeButton
     }
