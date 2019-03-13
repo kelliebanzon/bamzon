@@ -33,17 +33,17 @@ struct Team: FirebaseCompatable, Equatable {
         self.blacklistUserIDs = blacklistUserIDs
     }
     
-    //keys: teamId: ID
+    //keys: teamID: ID
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
-        orgID = IDUtility.generateIDFromString(idString: payload["orgId"] as? String ?? "N/A")
-        userIDs = IDUtility.stringsToIds(strs: payload["userIds"] as? [String] ?? [])
+        orgID = IDUtility.generateIDFromString(idString: payload["orgID"] as? String ?? "N/A")
+        userIDs = IDUtility.stringsToIDs(strs: payload["userIDs"] as? [String] ?? [])
         teamName = payload["teamName"] as? String ?? "N/A"
         sport = payload["sport"] as? String
         stats = nil // these three are separate for now
         calendar = nil // todo connect with calendar/stats/joinRequest adapters
-        joinReqIDs = IDUtility.stringsToIds(strs: payload["joinRequestIds"] as? [String] ?? [])
-        blacklistUserIDs = IDUtility.stringsToIds(strs: payload["blacklistUserIds"] as? [String] ?? [])
+        joinReqIDs = IDUtility.stringsToIDs(strs: payload["joinRequestIDs"] as? [String] ?? [])
+        blacklistUserIDs = IDUtility.stringsToIDs(strs: payload["blacklistUserIDs"] as? [String] ?? [])
         
         var thisTeam = self
        
@@ -59,12 +59,12 @@ struct Team: FirebaseCompatable, Equatable {
 
     func formatForDB() -> [String: Any] {
         return
-            ["blacklistUserIds": IDUtility.idsToStrings(ids: blacklistUserIDs),
-             "joinRequestIds": IDUtility.idsToStrings(ids: joinReqIDs),
-             "orgId": orgID.asString(),
+            ["blacklistUserIDs": IDUtility.idsToStrings(ids: blacklistUserIDs),
+             "joinRequestIDs": IDUtility.idsToStrings(ids: joinReqIDs),
+             "orgID": orgID.asString(),
              "sport": sport ?? "",
              "teamName": teamName,
-             "userIds": IDUtility.idsToStrings(ids: userIDs)]
+             "userIDs": IDUtility.idsToStrings(ids: userIDs)]
     }
     
     func getTable() -> FirTable {

@@ -24,16 +24,16 @@ struct RSVP: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         eventID = IDUtility.generateIDFromString(idString: key)
-        yesUserIDs = IDUtility.stringsToIds(strs: payload["yesUserIds"] as? [String] ?? [])
-        pendingUserIDs = IDUtility.stringsToIds(strs: payload["pendingUserIds"] as? [String] ?? [])
-        noUserIDs = IDUtility.stringsToIds(strs: payload["noUserIds"] as? [String] ?? [])
+        yesUserIDs = IDUtility.stringsToIDs(strs: payload["yesUserIDs"] as? [String] ?? [])
+        pendingUserIDs = IDUtility.stringsToIDs(strs: payload["pendingUserIDs"] as? [String] ?? [])
+        noUserIDs = IDUtility.stringsToIDs(strs: payload["noUserIDs"] as? [String] ?? [])
     }
     
     func formatForDB() -> [String: Any] {
         return
-            ["yesUserIds": IDUtility.idsToStrings(ids: yesUserIDs ?? []),
-             "noUserIds": IDUtility.idsToStrings(ids: noUserIDs ?? []),
-             "pendingUserIds": IDUtility.idsToStrings(ids: pendingUserIDs ?? [])]
+            ["yesUserIDs": IDUtility.idsToStrings(ids: yesUserIDs ?? []),
+             "noUserIDs": IDUtility.idsToStrings(ids: noUserIDs ?? []),
+             "pendingUserIDs": IDUtility.idsToStrings(ids: pendingUserIDs ?? [])]
     }
     
     func getTable() -> FirTable {

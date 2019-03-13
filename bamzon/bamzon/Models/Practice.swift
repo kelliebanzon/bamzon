@@ -22,13 +22,13 @@ struct Practice: FirebaseCompatable {
     
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
-        attendingUsers = IDUtility.stringsToIds(strs: payload["attendingUsers"] as? [String] ?? [])
-        eventID = IDUtility.generateIDFromString(idString: payload["eventId"] as? String ?? "z0")
+        attendingUsers = IDUtility.stringsToIDs(strs: payload["attendingUsers"] as? [String] ?? [])
+        eventID = IDUtility.generateIDFromString(idString: payload["eventID"] as? String ?? "z0")
     }
     
     func formatForDB() -> [String: Any] {
         return
-            ["eventId": eventID.asString(),
+            ["eventID": eventID.asString(),
              "attendingUsers": IDUtility.idsToStrings(ids: attendingUsers)]
     }
     

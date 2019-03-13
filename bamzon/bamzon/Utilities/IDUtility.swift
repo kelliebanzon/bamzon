@@ -18,38 +18,38 @@ class IDUtility {
     
     static func generateUserID() -> ID {
         // TODO: implement generateUserID
-        return ID(type: IdType.user.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.user.rawValue, uuid: UUID().uuidString)
     }
     
     static func generateTeamID() -> ID {
         // TODO: implement generateTeamID
-        return ID(type: IdType.team.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.team.rawValue, uuid: UUID().uuidString)
     }
     
     static func generateOrgID() -> ID {
         // TODO: implement generateOrgID
-        return ID(type: IdType.org.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.org.rawValue, uuid: UUID().uuidString)
     }
 
     static func generateEventID() -> ID {
         // TODO: implement generateEventID
-        return ID(type: IdType.event.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.event.rawValue, uuid: UUID().uuidString)
     }
 
     static func generateLocationID() -> ID {
         // TODO: implement generateLocationID
-        return ID(type: IdType.location.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.location.rawValue, uuid: UUID().uuidString)
     }
     
     static func generateGenericID() -> ID {
-        return ID(type: IdType.org.rawValue, uuid: UUID().uuidString)
+        return ID(type: IDType.org.rawValue, uuid: UUID().uuidString)
     }
     
     static func generateIDFromString(idString: String) -> ID {
-        let type = IdType.init(rawValue: String(idString.prefix(1)))
+        let type = IDType.init(rawValue: String(idString.prefix(1)))
         let uuid = String(idString.suffix(idString.count-1))
         
-        return ID(type: type?.rawValue ?? IdType.other.rawValue, uuid: uuid)
+        return ID(type: type?.rawValue ?? IDType.other.rawValue, uuid: uuid)
     }
     
     // these two might be better elsewhere
@@ -61,7 +61,7 @@ class IDUtility {
         return stringArr
     }
     
-    static func stringsToIds(strs: [String]) -> [ID] {
+    static func stringsToIDs(strs: [String]) -> [ID] {
         var idArr = [ID]()
         strs.forEach { str in
             idArr.append(generateIDFromString(idString: str))
@@ -71,7 +71,7 @@ class IDUtility {
     
 }
 
-enum IdType: String, Codable {
+enum IDType: String, Codable {
     case regTeam = "r"
     case user = "u"
     case team = "t"

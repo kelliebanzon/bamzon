@@ -22,13 +22,13 @@ struct JoinRequest: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         joinReqID = IDUtility.generateIDFromString(idString: key)
-        userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
-        teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
+        userID = IDUtility.generateIDFromString(idString: payload["userID"] as? String ?? "z0")
+        teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
     }
     
     func formatForDB() -> [String: Any] {
-        return ["userId": userID.asString(),
-                "teamId": teamID.asString()]
+        return ["userID": userID.asString(),
+                "teamID": teamID.asString()]
     }
     
     func getTable() -> FirTable {

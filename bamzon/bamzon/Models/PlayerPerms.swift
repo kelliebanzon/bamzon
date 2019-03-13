@@ -22,14 +22,14 @@ struct PlayerPerms: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
-        userID = IDUtility.generateIDFromString(idString: payload["userId"] as? String ?? "z0")
+        userID = IDUtility.generateIDFromString(idString: payload["userID"] as? String ?? "z0")
         permissions = stringsToPerms(strs: payload["permissions"] as? [String] ?? [])
     }
     
     func formatForDB() -> [String: Any] {
         return
             ["permissions": permsToStrings(perms: permissions),
-             "userId": userID.asString()]
+             "userID": userID.asString()]
     }
     
     func getTable() -> FirTable {

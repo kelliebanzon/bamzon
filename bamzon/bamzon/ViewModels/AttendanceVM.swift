@@ -15,15 +15,14 @@ class Attendace: LoggedInViewModel {
     var members: [User] = []
     var practies: [Event] = [] //list of practices
     
-    
     func refresh() {
         //TODO: implement refresh
     }
     
     func updatePlayers(parent: DisplayableProtocol) {
         if let userIDs = self.team.userIDs {
-            for userId in userIDs {
-                DBUtility.readFromDB(table: FirTable.user, keys: userId, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+            for userID in userIDs {
+                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     self.members.append(User(key: key, payload: userSnap))
                     parent.display()
                 })
@@ -34,8 +33,8 @@ class Attendace: LoggedInViewModel {
     func updatePractices(parent: DisplayableProtocol) {
         var tempEvent: Event?
         if let userIDs = self.team.userIDs {
-            for userId in userIDs {
-                DBUtility.readFromDB(table: FirTable.user, keys: userId, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+            for userID in userIDs {
+                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     tempEvent = Event(key: key, payload: userSnap)
                     if tempEvent!.tags?["practice"] != nil {
                         self.practies.append(Event(key: key, payload: userSnap))

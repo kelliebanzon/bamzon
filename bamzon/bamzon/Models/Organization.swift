@@ -26,7 +26,7 @@ struct Organization: FirebaseCompatable, Equatable {
         orgID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         location = nil
-        teamIDs = IDUtility.stringsToIds(strs: payload["teamIds"] as? [String] ?? [])
+        teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
 
         let locIDString = payload["location"] as? String ?? "NoLocFound"
         print("(\(orgID.asString())) loc id string is \(locIDString)")
@@ -48,7 +48,7 @@ struct Organization: FirebaseCompatable, Equatable {
         return
             ["name": name,
              "location": location?.locID.asString() ?? "",
-             "teamIds": IDUtility.idsToStrings(ids: teamIDs)]
+             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
     }
 
     func getTable() -> FirTable {

@@ -20,7 +20,7 @@ struct TeamCalendar: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
-        let eventIDs = payload["eventIds"] as? [String] ?? []
+        let eventIDs = payload["eventIDs"] as? [String] ?? []
         events = []
     
         var thisCalendar = self

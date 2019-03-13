@@ -41,9 +41,9 @@ struct Event: FirebaseCompatable, Equatable {
     func formatForDB() -> [String: Any] {
         return
             ["name": name,
-             "teamId": teamID.asString(),
+             "teamID": teamID.asString(),
              "location": location?.locID.asString() ?? "",
-             "contactUserIds": IDUtility.idsToStrings(ids: contactUserIDs),
+             "contactUserIDs": IDUtility.idsToStrings(ids: contactUserIDs),
              "description": description ?? "",
              "date": date ?? "",
              "tags": tags ?? [:],
@@ -63,14 +63,14 @@ struct Event: FirebaseCompatable, Equatable {
         eventID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         location = nil
-        contactUserIDs = IDUtility.stringsToIds(strs: payload["contactUserIds"] as? [String] ?? [])
+        contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
         description = payload["description"] as? String ?? "N/A"
         date = payload["date"] as? String ?? "N/A"
         rsvps = nil
         tags = payload["tags"] as? [String: String] ?? [:]
         media = payload["media"] as? [String: Media] ?? [:]
         links = payload["links"] as? [String: String] ?? [:]
-        teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
+        teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
 
         let locIDString = payload["location"] as? String ?? "NoLocFound"
         var thisEvent = self

@@ -24,8 +24,8 @@ class RosterVM: LoggedInViewModel {
     //TODO: move userID to the VM and access from VC
     func getUsers(userIDs: [ID], rosterVC: RosterVC) {
         rosterVC.members = [User]()
-        for userId in userIDs {
-            DBUtility.readFromDB(table: FirTable.user, keys: userId, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+        for userID in userIDs {
+            DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                 rosterVC.members.append(User(key: key, payload: userSnap))
                 rosterVC.display()
             })

@@ -22,7 +22,7 @@ struct PlayerStats: FirebaseCompatable, Equatable {
     
     init(key: String, payload: [String: AnyObject]) {
         userID = IDUtility.generateIDFromString(idString: key)
-        teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
+        teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
         fields = payload["fields"] as? [String: Any] ?? [:]
     }
     

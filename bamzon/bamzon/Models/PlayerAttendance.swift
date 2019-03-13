@@ -21,8 +21,8 @@ struct PlayerAttendance: FirebaseCompatable {
     
     init(key: String, payload: [String: AnyObject]) {
         userID = IDUtility.generateIDFromString(idString: key)
-        presentPractices = IDUtility.stringsToIds(strs: payload["presentPractices"] as? [String] ?? [])
-        teamID = IDUtility.generateIDFromString(idString: payload["teamId"] as? String ?? "z0")
+        presentPractices = IDUtility.stringsToIDs(strs: payload["presentPractices"] as? [String] ?? [])
+        teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
     }
     
     func formatForDB() -> [String: Any] {
