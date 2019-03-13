@@ -10,37 +10,42 @@ import Foundation
 import UIKit
 
 class CreateTeamParentVC: UIViewController, DisplayableProtocol {
-    
-    var createTeamVM = CreateTeamVM()
 
+    var createTeamVM = CreateTeamVM()
     var containerView = UIView()
-    var childVC = UIViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.title = "Create a Team"
         display()
     }
 
-    // TODO: @KELLIE TURN THIS INTO A NAV CONTROLLER
     func display() {
-        view.backgroundColor = UIColor(named: "TSOrange")
-//        navigationItem.setHidesBackButton(false, animated: false)
-//        self.navigationController?.navigationBar.barStyle = .black
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .plain, target: self, action: nil), animated: true)
-//        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "x"), style: .plain, target: self, action: nil), animated: true)
-//        print(navigationItem)
-//        print(self.navigationController?.isNavigationBarHidden)
+        view.backgroundColor = UIColor(named: "TSTeal")
 
-        view.addSubview(containerView)
+        let backButton = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "arrow-left")))
+        self.navigationItem.backBarButtonItem = backButton
 
-        let childVC = storyboard!.instantiateViewController(withIdentifier: "CreateTeamChildNameVC")
-//        self.addChildViewController(childVC)
-        containerView.addSubview(childVC.view)
+        let firstChildVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamChildNameVC")
+        let navController = createDefaultNavigationController(rootViewController: firstChildVC)
+        self.present(navController, animated: false, completion: nil)
 
-//        childVC.didMove(toParentViewController: self)
+//        view.addSubview(containerView)
 
+        // add child view controller view to container
+//        addChildViewController(firstChildVC)
+//        firstChildVC.view.translatesAutoresizingMaskIntoConstraints = false
+//        containerView.addSubview(firstChildVC.view)
+//
+//        NSLayoutConstraint.activate([
+//            firstChildVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+//            firstChildVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+//            firstChildVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+//            firstChildVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+//            ])
+//
+//        firstChildVC.didMove(toParentViewController: self)
+
+//        setupAutoLayout()
     }
 
     func setupAutoLayout() {
@@ -49,18 +54,10 @@ class CreateTeamParentVC: UIViewController, DisplayableProtocol {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            margins.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            containerView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20),
-            margins.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            containerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: margins.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
             ])
-
-//        childVC.view.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            childVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-//            containerView.trailingAnchor.constraint(equalTo: childVC.view.trailingAnchor),
-//            childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
-//            containerView.bottomAnchor.constraint(equalTo: childVC.view.bottomAnchor)
-//            ])
 
     }
 }

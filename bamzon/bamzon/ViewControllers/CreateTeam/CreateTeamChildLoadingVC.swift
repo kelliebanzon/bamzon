@@ -10,39 +10,51 @@ import Foundation
 import UIKit
 
 class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
+
+    var loadingLabel = UILabel()
+    var loadingLabelText = "Setting up your team"
         
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.alert(withTitle: "⚠️ WORK IN PROGRESS ⚠️", withMessage: "Load TeamHome VC")
-        }
+        animatePeriods()
     }
     
     func display() {
-        // TODO: display
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        // TODO: temporary identifier code. delete this once you write the real display func
-        
-        // Temp Label
-        let tempLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 420))
-        tempLabel.center = CGPoint(x: view.frame.midX, y: view.frame.midY)
-        tempLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 25)
-        tempLabel.textAlignment = .center
-        tempLabel.numberOfLines = 0
-        tempLabel.textColor = .white
-        tempLabel.text = "Setting up your team..."
-        self.view.addSubview(tempLabel)
+        loadingLabel = createDefaultHeader2Label(text: loadingLabelText, numLines: 0)
+        loadingLabel.textAlignment = .center
+        self.view.addSubview(loadingLabel)
+
+        setupAutoLayout()
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
+    func animatePeriods() {
+        let maxDelay = 3
+        for delaySeconds in 0...maxDelay {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(delaySeconds)) {
+                self.loadingLabelText += "."
+                self.display()
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(maxDelay)) {
+            self.loadingLabelText += "\nDone"
+            self.display()
+            self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.closeCreateTeamVC)), animated: true)
+        }
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        let loadingVert = loadingLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 45)
+        let loadingHoriz = loadingLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 160)
+        self.view.addConstraints([loadingVert, loadingHoriz])
+    }
+
+    @objc func closeCreateTeamVC() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
 }

@@ -14,8 +14,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     var orgName: UITextField?
     var teamName: UITextField?
     var sportType: UITextField?
-    var backButton = UIButton(type: .system)
-    
+
     var orgTableView: UITableView = UITableView()
     var orgList: [String] = ["University of Alabama", "University of California, Berkeley", "Cal Poly, SLO", "Stanford University"]
     
@@ -24,24 +23,13 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Create a Team"
         display()
     }
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
-//        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .plain, target: self, action: #selector(escapeWizard)), animated: true)
-//        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "x"), style: .plain, target: self, action: nil), animated: true)
-
-//        backButton = createBackButtonArrow()
-//        backButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControlEvents#>)
-        backButton.addTarget(self, action: #selector(segueBack), for: .allTouchEvents)
-        self.view.addSubview(backButton)
-
-        // Top Label
-        let topLabel = pageLabel(withText: "Create a Team", withFrame: nil, withCenter: nil)
-        self.view.addSubview(topLabel)
-        
         // Organization Label
         orgName = createDefaultTextField(withText: "Organization", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
         self.view.addSubview(orgName!)
@@ -68,29 +56,11 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
         self.view.addSubview(button)
 
-        setupAutoLayout()
     }
 
     func setupAutoLayout() {
         // TODO: refactor display into this function
         let margins = view.safeAreaLayoutGuide
-
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20),
-            backButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20),
-            backButton.heightAnchor.constraint(equalToConstant: 24),
-            backButton.heightAnchor.constraint(equalTo: backButton.widthAnchor)
-            ])
-    }
-
-    @objc func segueBack(_ sender: UIButton!) {
-        print("segueBack")
-        let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
-        print(self.navigationController)
-        print(self.navigationController?.topViewController)
-        print(self.navigationController?.viewControllers)
-        self.present(selectTeamVC, animated: true, completion: nil)
     }
     
     // Select Organization
@@ -150,14 +120,10 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-
-    func promptTeamName() {
-        // TODO: implement prompt team name
-    }
     
     // General function to validate fields
     @objc func checkFields() {
-        let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateTeamChildSettingsVC") as? CreateTeamChildSettingsVC
+        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamChildLoadingVC")
         
         print("Valid Input:")
         print("\t  Org Name: " + (orgName!.text)!)
@@ -166,17 +132,6 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         if let parentVC = self.parent as? CreateTeamParentVC {
             parentVC.createTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
         }
-        
-        self.mockSegue(toVC: nextVC!)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

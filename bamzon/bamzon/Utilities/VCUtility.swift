@@ -28,6 +28,17 @@ extension UIViewController {
         UIView.transition(with: appDelegate.window!, duration: 0.75, options: UIViewAnimationOptions.transitionFlipFromRight, animations: { appDelegate.window?.rootViewController = nextVC}, completion: nil)
     }
 
+    func createDefaultNavigationController(rootViewController: UIViewController) -> UINavigationController {
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.navigationBar.barStyle = .black
+        navController.navigationBar.barTintColor = UIColor(named: "TSNavy")
+        navController.navigationBar.isTranslucent = true
+        navController.navigationBar.tintColor = .white
+        let backButton = UIBarButtonItem(customView: UIImageView(image: UIImage(named: "arrow-left")))
+        self.navigationItem.backBarButtonItem = backButton
+        return navController
+    }
+
     func mockSegue(toIdentifier: String) {
         //let nextVC = self.storyboard!.instantiateViewController(withIdentifier: toIdentifier)
         let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: toIdentifier)
@@ -117,6 +128,10 @@ extension UIViewController {
 
     func createDefaultHeader1Label(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
         return createDefaultLabel(text: text, fontSize: 30, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+    }
+
+    func createDefaultHeader2Label(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        return createDefaultLabel(text: text, fontSize: 25, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
     }
     
     func createDefaultTextField(withText: String, withFrame: CGRect?, withCenter: CGPoint?, withPadding: CGRect?) -> UITextField {

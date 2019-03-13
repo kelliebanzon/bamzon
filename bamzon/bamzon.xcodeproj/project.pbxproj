@@ -106,7 +106,6 @@
 		D37DA9D1221F84A6000E357E /* LoggedInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */; };
 		D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D22224C66B000E357E /* FirebaseID.swift */; };
 		D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */; };
-		D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */; };
 		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
 		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
 		F19FB6912235C02800ABC7E3 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FB6902235C02800ABC7E3 /* Practice.swift */; };
@@ -249,7 +248,6 @@
 		D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewModel.swift; sourceTree = "<group>"; };
 		D37DA9D22224C66B000E357E /* FirebaseID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseID.swift; sourceTree = "<group>"; };
 		D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsTeamStatsViewCell.swift; sourceTree = "<group>"; };
-		D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
 		F19FB6902235C02800ABC7E3 /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
 		F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAttendance.swift; sourceTree = "<group>"; };
@@ -504,7 +502,6 @@
 				ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */,
 				D3B4CBAE22111CF700CD42BC /* VCUtility.swift */,
 				6E6222DF221F7AD3000A2B94 /* CellUtility.swift */,
-				D3B4CBAC2210EA2900CD42BC /* FormatUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -938,7 +935,6 @@
 				F19FB6932235C7B800ABC7E3 /* PlayerAttendance.swift in Sources */,
 				D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */,
 				AB47757721B4E82200A1DCD5 /* Media.swift in Sources */,
-				D3B4CBAD2210EA2900CD42BC /* FormatUtility.swift in Sources */,
 				AB47757B21B4E8E400A1DCD5 /* Event.swift in Sources */,
 				AB0EB62C22212A8500C4917E /* StatsPlayerStatsTableViewCell.swift in Sources */,
 				A81439E621B71E58000E287A /* SelectTeamVM.swift in Sources */,
