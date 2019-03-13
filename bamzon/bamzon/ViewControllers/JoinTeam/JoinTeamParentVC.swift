@@ -12,8 +12,6 @@ import UIKit
 class JoinTeamParentVC: UIViewController, DisplayableProtocol {
     let joinTeamVM = JoinTeamVM()
 
-    var leftNavButton = UIButton()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
@@ -45,21 +43,11 @@ class JoinTeamParentVC: UIViewController, DisplayableProtocol {
 //            ])
 
         firstChildVC.didMove(toParentViewController: self)
-
-        leftNavButton = createBackButtonArrow(button: leftNavButton)
-        self.view.addSubview(leftNavButton)
-
         setupAutoLayout()
     }
 
     func setupAutoLayout() {
         let margins = self.view.safeAreaLayoutGuide
-
-        let leftNavTop = leftNavButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
-        let leftNavLeading = leftNavButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
-        let leftNavWidth = leftNavButton.widthAnchor.constraint(equalToConstant: 24)
-        let leftNavAspect = leftNavButton.heightAnchor.constraint(equalTo: leftNavButton.widthAnchor)
-        self.view.addConstraints([leftNavTop, leftNavLeading, leftNavWidth, leftNavAspect])
     }
     
     func selectOrganization(org: Organization) {

@@ -42,7 +42,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     func display() {
         navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "person"), style: .plain, target: self, action: #selector(profileTapped)), animated: true)
 
-        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: nil, action: nil), animated: true)
+        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(showSettings)), animated: true)
 
         view.backgroundColor = UIColor(named: "TSTeal")
         
@@ -102,7 +102,13 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     }
 
     @objc func profileTapped(sender: UIBarButtonItem) {
-        mockSegue(toIdentifier: "ProfileVC")
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC")
+        self.navigationController!.present(profileVC, animated: true, completion: nil)
+    }
+
+    @objc func showSettings(sender: UIBarButtonItem) {
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsVC")
+        self.navigationController!.present(settingsVC, animated: true, completion: nil)
     }
 
     func setupAutoLayout() {

@@ -18,6 +18,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var logOut: [String] = ["Log Out"]
     var sections: [String] = ["Settings", "Log Out"]
     var topLabel = UILabel()
+
+    var closeButton = UIButton()
     
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -36,6 +38,9 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
+
+        closeButton = createCloseButton(action: #selector(closeSettings))
+        self.view.addSubview(closeButton)
         
         topLabel = createDefaultHeader1Label(text: "Settings", numLines: 1)
         self.view.addSubview(topLabel)
@@ -45,6 +50,10 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.view.addSubview(settingsTableView)
         
         setupAutoLayout()
+    }
+
+    @objc func closeSettings(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Setting number of sections
@@ -117,6 +126,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
+
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        let closeTop = closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
+        let closeTrailing = closeButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
+        let closeHeight = closeButton.heightAnchor.constraint(equalToConstant: 24)
+        let closeAspect = closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
+        self.view.addConstraints([closeTop, closeTrailing, closeHeight, closeAspect])
         
         topLabel.translatesAutoresizingMaskIntoConstraints = false
         let topLabelHorizontalConstraint = topLabel.centerXAnchor.constraint(equalTo: margins.centerXAnchor)

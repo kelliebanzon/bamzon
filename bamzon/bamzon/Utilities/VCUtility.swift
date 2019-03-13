@@ -104,14 +104,12 @@ extension UIViewController {
         return button
     }
 
-    func createBackButtonArrow(button: UIButton) -> UIButton {
-        button.setImage(UIImage(named: "arrow-left"), for: .normal)
-        button.tintColor = .white
-        button.showsTouchWhenHighlighted = true
-//        if let action = action {
-//            button.addTarget(self, action: #selector(action), for: .touchUpInside)
-//        }
-        return button
+    func createCloseButton(action: Selector) -> UIButton {
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(named: "x"), for: .normal)
+        closeButton.tintColor = .white
+        closeButton.addTarget(self, action: action, for: .touchUpInside)
+        return closeButton
     }
 
     func createDefaultLabel(text: String, fontSize: CGFloat = 15, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {

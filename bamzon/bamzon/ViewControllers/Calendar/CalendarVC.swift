@@ -30,7 +30,6 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Calendar"
-        self.navigationController?.navigationBar.isTranslucent=false
         self.view.backgroundColor=Style.bgColor
         
         view.addSubview(calenderView)

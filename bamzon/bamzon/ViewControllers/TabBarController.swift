@@ -16,8 +16,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
     }
 
     func display() {
-        //tabBar.barStyle = UIBarStyle(rawValue: 1) ?? UIBarStyle(rawValue: 0)!
-        tabBar.barStyle = .default
+        tabBar.barStyle = .black
         tabBar.isTranslucent = true
         tabBar.barTintColor = UIColor(named: "TSNavy")
         tabBar.tintColor = UIColor(named: "TSYellow")
@@ -40,7 +39,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
 
         // TODO: change this to be the nav controllers instead of the controllers themselves
         let vcs = [rosterVC, attendanceVC, teamHomeVC, calendarVC, statsVC]
-        viewControllers = vcs.map {UINavigationController(rootViewController: $0)}
+        viewControllers = vcs.map {
+//            UINavigationController(rootViewController: $0)
+            createDefaultNavigationController(rootViewController: $0)
+        }
     }
     
     /*
