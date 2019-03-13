@@ -15,45 +15,41 @@ class SelectTeamVM: LoggedInViewModel {
     
     var teams: [Team] = []
     var organizations: [Organization] = [] //correspond to matching index in teams array
-
-    var waitForTeam = true
-    var waitForOrg = true
     
-    func refresh(parent: UIViewController, teamVC: SelectTeamVC) {
-        loadTableValues(parent: parent, teamVC: teamVC)
+    func refresh(dispatch: DispatchGroup) {
+        loadTeams(dispatch: dispatch)
     }
     
-    func loadTableValues(parent: UIViewController, teamVC: SelectTeamVC) {
-        if self.user.teamIDs != nil && self.user.teamIDs!.count != 0 {
+    func loadTeams(dispatch: DispatchGroup) {
+        print("not even close to loading teams")
+        if self.user.teamIDs != nil {
+            print("boutta load teams")
+            print(self.user.teamIDs!)
+            print(self.user)
             for teamID in self.user.teamIDs! {
-                getTeam(teamID: teamID, parent: parent, teamVC: teamVC)
+                print("loading team")
+                loadTeam(teamID: teamID, dispatch: dispatch)
             }
         }
     }
 
-    func getTeam(teamID: ID, parent: UIViewController, teamVC: SelectTeamVC) {
+    func loadTeam(teamID: ID, dispatch: DispatchGroup) {
+        dispatch.enter()
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
-            parent.removeSpinner()
             let team = Team(key: key, payload: teamSnap)
+            print(teamSnap)
             self.teams.append(team)
-            var orgLoaded = false
-            for teamOrg in self.organizations {
-                if teamOrg.orgID == team.orgID {
-                    orgLoaded = true
-                }
-            }
-            if !orgLoaded {
-                self.getOrg(orgID: team.orgID, teamVC: teamVC)
-            }
+            self.loadOrg(orgID: team.orgID, dispatch: dispatch)
+            dispatch.leave()
         })
     }
 
-    func getOrg(orgID: ID, teamVC: SelectTeamVC) {
+    func loadOrg(orgID: ID, dispatch: DispatchGroup) {
+        dispatch.enter()
         DBUtility.readFromDB(table: FirTable.organization, keys: orgID, completion: { (key: String, orgSnap: [String: AnyObject]) -> Void in
             let org = Organization(key: key, payload: orgSnap)
             self.organizations.append(org)
-            // ideally, this line should be at the end of getTeam, but that doesn't work with the async database queries
-            teamVC.display()
+            dispatch.leave()
         })
     }
     

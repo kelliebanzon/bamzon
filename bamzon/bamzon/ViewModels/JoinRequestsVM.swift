@@ -14,8 +14,7 @@ class JoinRequestsVM: LoggedInViewModel {
     
     var requestedUsers: [User] = []
     
-    //TODO: There is a small chance the `loadRequests()` function did not load them
-    //in the same order as in the list, so these indices may remove the wrong request.
+    //TODO: Check for duplicates within join requests. Spam join request shouldn't be allowed
     func approve(requestIndex: Int) {
         self.team.joinReqIDs!.remove(at: requestIndex)
         if self.team.userIDs != nil {

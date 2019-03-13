@@ -23,9 +23,13 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Select Team"
+        let dispatch = DispatchGroup()
         self.showSpinner(onView: self.view)
-        selectTeamVM.loadTableValues(parent: self, teamVC: self)
-        display()
+        selectTeamVM.loadTeams(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+        }
     }
     
     func display() {

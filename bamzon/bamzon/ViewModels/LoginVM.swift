@@ -32,33 +32,46 @@ class LoginVM {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     dispatch.enter()
                     DBUtility.readFromDB(table: FirTable.firebaseID, keys: user!.user.uid, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                        print("setAppDelegateUser")
-                        appDelegate.curUser = User(key: key, payload: payload)
+                        
+                        let userID = payload["userID"] as? String ?? ""
+                        
+                        dispatch.enter()
+                        DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                            appDelegate.curUser = User(key: key, payload: payload)
+                            dispatch.leave()
+                        })
                         dispatch.leave()
                     })
                 }
             }
             dispatch.leave()
         }
-
+    }
+    
+    func isEmailVerified() -> Bool {
         //citing sources: https://stackoverflow.com/questions/38061203/how-to-verify-a-users-email-address-on-ios-with-firebase/38406024
         if let user = Auth.auth().currentUser {
+            
             user.reload(completion: nil)
+            print(user.isEmailVerified)
             if !user.isEmailVerified {
-                self.errorMessage = "Sorry. The email address \(String(describing: user.email)) has not yet been verified."
+                self.errorMessage = "Sorry. The email address \(user.email!) has not yet been verified."
+                return false
                 //TODO actionable resend verification email
                 /*
-                let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(String(describing: user.email)).", preferredStyle: .alert)
-                let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
-                    (_) in
-                    user.sendEmailVerification(completion: nil)
-                }
-                let alertActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-
-                alertVC.addAction(alertActionOkay)
-                alertVC.addAction(alertActionCancel)
-                parent.present(alertVC, animated: true, completion: nil)*/
+                 let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(String(describing: user.email)).", preferredStyle: .alert)
+                 let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+                 (_) in
+                 user.sendEmailVerification(completion: nil)
+                 }
+                 let alertActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                 
+                 alertVC.addAction(alertActionOkay)
+                 alertVC.addAction(alertActionCancel)
+                 parent.present(alertVC, animated: true, completion: nil)*/
             }
+            return true
         }
+        return false
     }
 }

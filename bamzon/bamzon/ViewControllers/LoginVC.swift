@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
@@ -111,10 +112,20 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
         let dispatch = DispatchGroup()
         
         if checkFields() {
+            self.showSpinner(onView: self.view)
+            
+            loginVM.errorMessage = nil
             loginVM.checkLogin(dispatch: dispatch, email: email?.text, password: password?.text)
-             dispatch.notify(queue: DispatchQueue.main) {
+            let emailVerified = loginVM.isEmailVerified()
+            
+            dispatch.notify(queue: DispatchQueue.main) {
+                self.removeSpinner()
                 if let errorMessage = self.loginVM.errorMessage {
-                    self.alert(withTitle: "Error", withMessage: errorMessage)
+                    if !emailVerified {
+                        self.sendEmailAlert()
+                    } else {
+                        self.alert(withTitle: "Error", withMessage: errorMessage)
+                    }
                 } else {
                     let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
                     self.present(selectTeamVC, animated: true, completion: nil)
@@ -125,6 +136,19 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     //            appDelegate.showTabController()
             }
         }
+    }
+    
+    func sendEmailAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(email!.text!).", preferredStyle: .alert)
+        let alertActionOkay = UIAlertAction(title: "Okay", style: .default) {
+            (_) in
+            Auth.auth().currentUser!.sendEmailVerification(completion: nil)
+        }
+        let alertActionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        alertVC.addAction(alertActionOkay)
+        alertVC.addAction(alertActionCancel)
+        present(alertVC, animated: true, completion: nil)
     }
     
     @objc func forgotPassword() {
