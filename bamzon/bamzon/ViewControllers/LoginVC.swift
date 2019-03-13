@@ -108,15 +108,22 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     }
 
     @objc func checkLogin() {
-        print("checking login")
-        if let errorMessage = loginVM.checkLogin(parent: self, email: email?.text, password: password?.text) {            self.alert(withTitle: "Error", withMessage: errorMessage)
-        } else {
-            let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
-            present(selectTeamVC, animated: true, completion: nil)
-//            // swiftlint:disable force_cast
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            // swiftlint:enable force_cast
-//            appDelegate.showTabController()
+        let dispatch = DispatchGroup()
+        
+        if checkFields() {
+            loginVM.checkLogin(dispatch: dispatch, email: email?.text, password: password?.text)
+             dispatch.notify(queue: DispatchQueue.main) {
+                if let errorMessage = self.loginVM.errorMessage {
+                    self.alert(withTitle: "Error", withMessage: errorMessage)
+                } else {
+                    let selectTeamVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SelectTeamVC")
+                    self.present(selectTeamVC, animated: true, completion: nil)
+                }
+    //            // swiftlint:disable force_cast
+    //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    //            // swiftlint:enable force_cast
+    //            appDelegate.showTabController()
+            }
         }
     }
     

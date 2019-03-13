@@ -68,26 +68,31 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     
     // Function call to VM to verify code
     @objc func verifyCode() {
-        if waitForVerification() {
-            if let nextVC = storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC") as? CreateAccountChildSuccessVC {
-                nextVC.name = name!
-                present(nextVC, animated: true, completion: nil)
+        let dispatch = DispatchGroup()
+        waitForVerification()
+        dispatch.notify(queue: DispatchQueue.main) {
+            if let nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC") as? CreateAccountChildSuccessVC {
+                nextVC.name = self.name!
+                self.present(nextVC, animated: true, completion: nil)
+            } else {
+                self.alert(withTitle: "Error", withMessage: "Something went wrong. Please refresh your app and try again.")
             }
-        } else {
-            alert(withTitle: "Uh oh!", withMessage: "That code doesn't look right 😰\rPlease try again.")
         }
     }
     
-    func waitForVerification() -> Bool {
-        while backPressed {
-            Auth.auth().currentUser!.reload()
-            if Auth.auth().currentUser!.isEmailVerified {
-                mockSegue(toIdentifier: "CreateAccountChildSuccessVC")
-                return true
+    func waitForVerification() {
+        if let user = Auth.auth().currentUser {
+            while !user.isEmailVerified {
+                print("reload")
+                user.reload()
+                if user.isEmailVerified {
+                    return
+                }
+                sleep(200)
             }
-            sleep(500)
+        } else {
+            self.alert(withTitle: "Error", withMessage: "User has not been initialized.")
         }
-        return false
     }
     
     // Hide keyboard when pressed out of text box

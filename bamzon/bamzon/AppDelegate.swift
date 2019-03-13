@@ -23,25 +23,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         curUser = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", num: 404)])
         
         //Initializer user on login or opening app
-        let dispatch = DispatchGroup()
-        if let user = Auth.auth().currentUser {
-            dispatch.enter()
-            DBUtility.readFromDB(table: FirTable.firebaseID, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
-                dispatch.enter()
-                if let userID = idSnap["userID"] as? String {
-                    DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
-                        self.curUser = User(key: user.uid, payload: idSnap)
-                        dispatch.leave()
-                    })
-                } else {
-                    dispatch.leave()
-                }
-                dispatch.wait()
-                dispatch.leave()
-                
-            })
-            dispatch.wait()
-        }
+//        let dispatch = DispatchGroup()
+//        if let user = Auth.auth().currentUser {
+//            dispatch.enter()
+//            DBUtility.readFromDB(table: FirTable.firebaseID, keys: user.uid, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
+//                dispatch.enter()
+//                if let userID = idSnap["userID"] as? String {
+//                    DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, idSnap: [String: AnyObject]) -> Void in
+//                        self.curUser = User(key: user.uid, payload: idSnap)
+//                        dispatch.leave()
+//                    })
+//                } else {
+//                    dispatch.leave()
+//                }
+//                dispatch.wait()
+//                dispatch.leave()
+//
+//            })
+//            dispatch.wait()
+//        }
         
         curTeam = Team(teamID: ID(type: "t", num: 404), orgID: ID(type: "o", num: 404), userIDs: [ID(type: "u", num: 404)], teamName: "Test Team", sport: "Cricket", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
 

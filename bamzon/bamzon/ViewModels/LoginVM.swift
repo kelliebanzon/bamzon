@@ -14,34 +14,38 @@ import Firebase
 
 class LoginVM {
     
-    func checkLogin(parent: UIViewController, email: String?, password: String?) -> String? {
-        var waitingForLogin = true
-        var errorMessage: String?
+    var errorMessage: String?
+    
+    func checkLogin(dispatch: DispatchGroup, email: String?, password: String?) {
+        print("checking login")
         
         guard let email = email, let password = password else {
-            return "Please enter a valid input."
+            self.errorMessage = "Please enter a valid input."
+            return
         }
-        
+        dispatch.enter()
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
-                errorMessage = error?.localizedDescription ?? "Error signing in."
+                print("error")
+                self.errorMessage = error?.localizedDescription ?? "Error signing in."
             } else {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    dispatch.enter()
                     DBUtility.readFromDB(table: FirTable.firebaseID, keys: user!.user.uid, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                        print("setAppDelegateUser")
                         appDelegate.curUser = User(key: key, payload: payload)
+                        dispatch.leave()
                     })
                 }
             }
-            waitingForLogin = false
+            dispatch.leave()
         }
-        
-        while !waitingForLogin {}
 
         //citing sources: https://stackoverflow.com/questions/38061203/how-to-verify-a-users-email-address-on-ios-with-firebase/38406024
         if let user = Auth.auth().currentUser {
             user.reload(completion: nil)
             if !user.isEmailVerified {
-                return "Sorry. The email address \(String(describing: user.email)) has not yet been verified."
+                self.errorMessage = "Sorry. The email address \(String(describing: user.email)) has not yet been verified."
                 //TODO actionable resend verification email
                 /*
                 let alertVC = UIAlertController(title: "Error", message: "Sorry. Your email address has not yet been verified. Do you want us to send another verification email to \(String(describing: user.email)).", preferredStyle: .alert)
@@ -56,6 +60,5 @@ class LoginVM {
                 parent.present(alertVC, animated: true, completion: nil)*/
             }
         }
-        return errorMessage
     }
 }

@@ -39,7 +39,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        checkFields()
+        //validFields()
         return true
     }
     
@@ -85,7 +85,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         scrollView.addSubview(email!)
         
         // Next Button
-        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
+        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(tryCreateAccount), withCenter: CGPoint(x: view.center.x, y: 450))
         scrollView.addSubview(button)
         
         // Existing Account Button
@@ -103,48 +103,55 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         self.setRootView(toVC: "LoginVC")
     }
     
-    // General function to validate fields
-    @objc func checkFields() {
-        if firstName?.text == "" || lastName?.text == "" || email?.text == "" {
-            throwMissingFieldsError()
-        } else if validEmail(email: (email?.text)!) {
-            // Initial account creation in the backend should go here
-            initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
-            if Auth.auth().currentUser != nil {
-                // TODO: check how this changes when embedded in a nav controller
-                self.nextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC
-                if nextVC != nil {
-                    if firstName != nil && lastName != nil && email != nil {
-                        self.nextVC!.name = (firstName?.text)! + " " + (lastName?.text)!
-                        self.nextVC!.email = (email?.text)!
-                        self.mockSegue(toVC: nextVC!)
-                    }
-                }
+    @objc func tryCreateAccount() {
+        if checkValidFields() {
+            if validEmail(email: (email?.text)!) {
+                initialAccountCreation(fName: (firstName?.text)!, lName: (lastName?.text)!, email: (email?.text)!)
             } else {
-                return
+                invalidEmailAlert()
             }
+        } else {
+            missingFieldsAlert()
         }
     }
     
+    @objc func invalidEmailAlert() {
+        let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+        
+    // General function to validate fields
+    @objc func checkValidFields() -> Bool {
+        return !(firstName?.text?.isEmpty)! || !(lastName?.text?.isEmpty)!  || !(email?.text?.isEmpty)!
+    }
+    
     func initialAccountCreation(fName: String, lName: String, email: String) {
-        print("Valid Input:")
-        print("\tFirst Name: " + fName)
-        print("\t Last Name: " + lName)
-        print("\t     Email: " + email)
-
         //TODO: place for a password. change variable in create account
         // to view or modify current users go here:
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
-        if let parentVC = self.parent as? CreateAccountParentVC {
-            parentVC.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", alertCompletion: { alert in
-                if let realAlert = alert {
-                    print("display")
-                    self.present(realAlert, animated: true, completion: nil)
-                    if self.nextVC != nil {
-                        self.nextVC!.present(realAlert, animated: true, completion: nil)
-                    }
+        if let parent = self.parent as? CreateAccountParentVC {
+            let dispatch = DispatchGroup()
+            parent.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", dispatch: dispatch)
+            
+            dispatch.notify(queue: DispatchQueue.main) {
+                if let errorMessage = parent.createAccountVM.creationErrorMessage {
+                    self.alert(withTitle: "Error", withMessage: errorMessage)
+                } else {
+                    let createAccountChild = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC
+                    createAccountChild!.name = fName + " " + lName
+                    createAccountChild!.email = email
+                    self.present(createAccountChild!, animated: true, completion: nil)
                 }
-            })
+                //            // swiftlint:disable force_cast
+                //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //            // swiftlint:enable force_cast
+                //            appDelegate.showTabController()
+            }
+            
+        } else {
+            self.alert(withTitle: "Error", withMessage: "An unexpected error has occured, please restart your app and try again")
+            print("parentVC is not CreateAccountParent")
         }
     }
     
@@ -154,18 +161,12 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     //     - Firebase already does this.
     // - Move this to VM
     func validEmail(email: String) -> Bool {
-        if !email.contains("@") || !email.contains(".") {
-            let alert = UIAlertController(title: "Invalid Email", message: "An email must contain '@' and end with a valid domain.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return false
-        }
-        return true
+       return email.contains("@") && email.contains(".")
     }
     
     // Error message presented if there are missing fields
     //TODO: make error color less harsh
-    func throwMissingFieldsError() {
+    func missingFieldsAlert() {
         let alert = UIAlertController(title: "Missing Fields", message: "First name, last name, and a valid email are requried.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
