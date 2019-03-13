@@ -22,8 +22,11 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Select Team"
+        self.title = "Select a Team"
         let dispatch = DispatchGroup()
+        teamsTableView.dataSource = self
+        teamsTableView.delegate = self
+        teamsTableView.register(SelectTeamTableViewCell.self, forCellReuseIdentifier: cellID)
         self.showSpinner(onView: self.view)
         selectTeamVM.loadTeams(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
@@ -44,11 +47,8 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         teamsyncLabel = createDefaultHeader1Label(text: "TeamSync")
         teamsyncLabel.textAlignment = .center
         self.view.addSubview(teamsyncLabel)
-        
-        teamsTableView.dataSource = self
-        teamsTableView.delegate = self
-        teamsTableView.register(SelectTeamTableViewCell.self, forCellReuseIdentifier: cellID)
-        teamsTableView.backgroundColor = UIColor(named: "TSTeal")
+
+        teamsTableView.backgroundColor = .clear
         teamsTableView.reloadData()
         self.view.addSubview(teamsTableView)
         
