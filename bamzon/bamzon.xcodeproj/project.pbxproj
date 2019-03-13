@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5ED466B52238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */; };
+		5EFBE9D52239C442003D22E3 /* AttendancePracticesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9D42239C442003D22E3 /* AttendancePracticesTableViewCell.swift */; };
 		6531D2BA220D0DA5009C6773 /* FirebaseCompatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */; };
 		655E8051221D381800BDA6A2 /* FirTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655E8050221D381800BDA6A2 /* FirTable.swift */; };
 		656EBA732208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
@@ -143,6 +144,7 @@
 		42BF1F86C4BD8CA6F21CEB93 /* Pods-bamzonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-bamzonTests/Pods-bamzonTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E35756A1E55F48FAD080F70 /* Pods_bamzonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersAttendanceTableViewCell.swift; sourceTree = "<group>"; };
+		5EFBE9D42239C442003D22E3 /* AttendancePracticesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendancePracticesTableViewCell.swift; sourceTree = "<group>"; };
 		6531D2B9220D0DA5009C6773 /* FirebaseCompatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCompatable.swift; sourceTree = "<group>"; };
 		655E8050221D381800BDA6A2 /* FirTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirTable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -388,11 +390,12 @@
 		AB0EB61D221D1B0500C4917E /* Attendance */ = {
 			isa = PBXGroup;
 			children = (
-				65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */,
 				A8143A0621B72F94000E287A /* AttendanceParentVC.swift */,
 				AB0EB61E221D30D400C4917E /* AttendanceTabVC.swift */,
 				ABEF642521FE6E0700716ACB /* AttendancePlayerVC.swift */,
+				65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */,
 				AB0EB622221D36AD00C4917E /* AttendanceChildPracticesVC.swift */,
+				5EFBE9D42239C442003D22E3 /* AttendancePracticesTableViewCell.swift */,
 				AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */,
 				5ED466B42238CDED00DF1AF3 /* PlayersAttendanceTableViewCell.swift */,
 			);
@@ -920,6 +923,7 @@
 				AB47757321B4E3DE00A1DCD5 /* User.swift in Sources */,
 				AB33BECB220CFBAC00432884 /* StatsChildTeamVC.swift in Sources */,
 				A81439F921B72C09000E287A /* SelectTeamVC.swift in Sources */,
+				5EFBE9D52239C442003D22E3 /* AttendancePracticesTableViewCell.swift in Sources */,
 				AB1BF02C22164E8900F2B79F /* ViewNC.swift in Sources */,
 				AB26667F22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift in Sources */,
 				AB47757921B4E89900A1DCD5 /* RSVP.swift in Sources */,
