@@ -12,45 +12,34 @@ import UIKit
 class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
 
     var loadingLabel = UILabel()
-    var loadingLabelText = "Setting up your team"
+    var loadingLabelText = "Your team has been created."
         
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
-        animatePeriods()
     }
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
+
+        navigationItem.hidesBackButton = true
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeCreateTeamVC)), animated: true)
         
         loadingLabel = createDefaultHeader2Label(text: loadingLabelText, numLines: 0, fontAlignment: .center)
+        loadingLabel.lineBreakMode = .byWordWrapping
         self.view.addSubview(loadingLabel)
 
         setupAutoLayout()
-    }
-
-    func animatePeriods() {
-        let maxDelay = 3
-        for delaySeconds in 0...maxDelay {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(delaySeconds)) {
-                self.loadingLabelText += "."
-                self.display()
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(maxDelay)) {
-            self.loadingLabelText += "\nDone"
-            self.display()
-            self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.closeCreateTeamVC)), animated: true)
-        }
     }
 
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
 
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
-        let loadingVert = loadingLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 45)
-        let loadingHoriz = loadingLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 160)
-        self.view.addConstraints([loadingVert, loadingHoriz])
+        let loadingLeading = loadingLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let loadingTrailing = loadingLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
+        let loadingVert = loadingLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        self.view.addConstraints([loadingLeading, loadingTrailing, loadingVert])
     }
 
     @objc func closeCreateTeamVC() {

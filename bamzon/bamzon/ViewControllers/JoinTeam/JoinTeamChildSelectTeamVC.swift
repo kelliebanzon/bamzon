@@ -35,6 +35,8 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
+
+        navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeJoinTeam)), animated: true)
         
         // Organization Label
         orgName = createDefaultTextField(withText: "Organization", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
@@ -62,6 +64,10 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
         
+    }
+
+    @objc func closeJoinTeam(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     @objc func selectOrg(textField: UITextField) {

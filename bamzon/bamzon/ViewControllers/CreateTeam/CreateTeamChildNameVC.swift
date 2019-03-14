@@ -35,6 +35,8 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
+        navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closeCreateTeam)), animated: true)
+
         // Organization Label
         orgName = createDefaultTextField(withText: "Organization", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
         self.view.addSubview(orgName!)
@@ -66,6 +68,10 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     func setupAutoLayout() {
         // TODO: refactor display into this function
         let margins = view.safeAreaLayoutGuide
+    }
+
+    @objc func closeCreateTeam(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Select Organization
