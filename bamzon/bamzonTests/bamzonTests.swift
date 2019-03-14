@@ -67,16 +67,22 @@ class BamzonTests: XCTestCase {
         XCTAssertEqual(expected, testOut)
     }
     
-//    func testIntegration() {
-//        let login = LoginVC()
-//        var emailField = UITextField()
-//        emailField.setValue(["test@email.com"])
-//        var pwField = UITextField()
-//        pwField.setValue(["test@email.com"])
-//
-//        login.email = emailField
-//        login.password = pwField
-//
-//        login.checkLogin()
-//    }
+    func testIntegrationLogin() {
+        let login = LoginVC()
+        let emailField = UITextField()
+        emailField.text = "test@gmail.com"
+        let pwField = UITextField()
+        pwField.text = "password"
+
+        login.email = emailField
+        login.password = pwField
+
+        let dispatch = DispatchGroup()
+        dispatch.enter()
+        login.loginVM.loadEmailVerified(dispatch: dispatch)
+        
+        dispatch.notify(queue: DispatchQueue.main) {
+            XCTAssertTrue(login.loginVM.isEmailVerified)
+        }
+    }
 }
