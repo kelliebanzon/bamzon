@@ -16,7 +16,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     let cellId = "cellId"
     
     var settingsTableView: UITableView = UITableView()
-    var settingsList: [String] = ["Team Settings", "Join Requests"]
+    var settingsList: [String] = ["Switch Teams", "Team Settings", "Join Requests"]
     var logOut: [String] = ["Log Out"]
     var sections: [String] = ["Settings", "Log Out"]
     var topLabel = UILabel()
@@ -94,12 +94,14 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            if settingsList[indexPath.row] == "Team Settings" {
+            if settingsList[indexPath.row] == "Switch Teams" {
+                setRootView(toVC: "SelectTeamVC")
+            } else if settingsList[indexPath.row] == "Team Settings" {
                 alert(withTitle: "Do something here", withMessage: "Something is supposed to happen")
             } else if settingsList[indexPath.row] == "Join Requests" {
                 alert(withTitle: "⚠️ Go to JoinRequestVC ⚠️", withMessage: "Make shit happen here")
             } else {
-                alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen!")
+                alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen! Section 0")
             }
         } else if indexPath.section == 1 {
             let alert = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .alert)
@@ -112,7 +114,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }))
             self.present(alert, animated: true, completion: nil)
         } else {
-            alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen!")
+            alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen! Section 1")
         }
         print("YEET BABY! We've got a selection for " + settingsList[indexPath.row])
     }
