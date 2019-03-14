@@ -11,9 +11,13 @@ import FirebaseAuth
 
 class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
     
+    var topLabel: UILabel?
     var firstName: UITextField?
     var lastName: UITextField?
     var email: UITextField?
+    var password: UITextField?
+    var continueButton: UIButton?
+    var existingAccount: UIButton?
     var user: User?
     var nextVC: CreateAccountChildPromptCodeVC?
     
@@ -35,6 +39,39 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
+        password?.isSecureTextEntry = true
+        
+        // Top Label
+        topLabel = createDefaultHeader1Label(text: "First, tell us a little \rbit about yourself!", numLines: 2)
+        topLabel!.textAlignment = .center
+        self.view.addSubview(topLabel!)
+        
+        // First Name
+        firstName = createDefaultTextField(withText: "First Name", withFrame: nil, withCenter: nil, withPadding: nil)
+        scrollView.addSubview(firstName!)
+        
+        // Last Name
+        lastName = createDefaultTextField(withText: "Last Name", withFrame: nil, withCenter: nil, withPadding: nil)
+        scrollView.addSubview(lastName!)
+        
+        // Email
+        email = createDefaultTextField(withText: "Email", withFrame: nil, withCenter: nil, withPadding: nil)
+        email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
+        email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email?.delegate = self
+        scrollView.addSubview(email!)
+        
+        // Password
+        password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: nil)
+        scrollView.addSubview(password!)
+        
+        // Continue Button
+        continueButton = createDefaultButton(withText: "Continue", withFrame: nil, withAction: #selector(tryCreateAccount), withCenter: CGPoint(x: view.center.x, y: 450))
+        scrollView.addSubview(continueButton!)
+        
+        // Existing Account Button
+        existingAccount = createDefaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
+        scrollView.addSubview(existingAccount!)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -45,53 +82,67 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
     
     func setupScrollView() {
         // Use "nav.navigationBar.bottomAnchor" after navigation bar is placed
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 190).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         
-        // Top Label
-        let topLabel = pageLabel(withText: "First, tell us a little \rbit about yourself!", withFrame: nil, withCenter: nil)
-        scrollView.addSubview(topLabel)
+        // Top label constraints
+        topLabel!.translatesAutoresizingMaskIntoConstraints = false
+        let horizLabelConstraint = topLabel!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let vertLabelConstraint = topLabel!.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
+        let leftLabelConstraint = topLabel!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        let rightLabelConstraint = view.trailingAnchor.constraint(equalTo: topLabel!.trailingAnchor, constant: 20)
+        self.view.addConstraints([horizLabelConstraint, vertLabelConstraint, leftLabelConstraint, rightLabelConstraint])
         
-        /*topLabel.translatesAutoresizingMaskIntoConstraints = false
-        let horizLabelConstraint = topLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let vertLabelConstraint = topLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20)
-        let leftLabelConstraint = topLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
-        //Why is this one switched? view first instead of topLabel?
-        let rightLabelConstraint = self.view.trailingAnchor.constraint(equalTo: topLabel.trailingAnchor, constant: 20)
-        scrollView.addConstraints([horizLabelConstraint, vertLabelConstraint, leftLabelConstraint, rightLabelConstraint])*/
+        // First name constraints
+        firstName?.translatesAutoresizingMaskIntoConstraints = false
+        let horizFNameConstraint = firstName?.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertFNameConstraint = firstName?.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10)
+        let leftFNameConstraint = firstName?.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20)
+        let rightFNameConstraint = scrollView.trailingAnchor.constraint(equalTo: (firstName?.trailingAnchor)!, constant: 20)
+        scrollView.addConstraints([horizFNameConstraint!, vertFNameConstraint!, leftFNameConstraint!, rightFNameConstraint])
         
-        // First Name
-        firstName = createDefaultTextField(withText: "First Name", withFrame: CGRect(x: 20, y: 240, width: 340, height: 35), withCenter: nil, withPadding: nil)
-        scrollView.addSubview(firstName!)
+        // Last name constraints
+        lastName?.translatesAutoresizingMaskIntoConstraints = false
+        let horizLNameConstraint = lastName?.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertLNameConstraint = lastName?.topAnchor.constraint(equalTo: (firstName?.bottomAnchor)!, constant: 30)
+        let leftLNameConstraint = lastName?.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20)
+        let rightLNameConstraint = scrollView.trailingAnchor.constraint(equalTo: (lastName?.trailingAnchor)!, constant: 20)
+        scrollView.addConstraints([horizLNameConstraint!, vertLNameConstraint!, leftLNameConstraint!, rightLNameConstraint])
         
-        /*firstName?.translatesAutoresizingMaskIntoConstraints = false
-        let horizFNameConstraint = firstName?.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let vertFNameConstraint = firstName?.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 90)
-        let leftFNameConstraint = firstName?.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        let rightFNameConstraint = view.trailingAnchor.constraint(equalTo: (firstName?.trailingAnchor)!, constant: 20)
-        scrollView.addConstraints([horizFNameConstraint!, vertFNameConstraint!, leftFNameConstraint!, rightFNameConstraint])*/
+        // Email constraints
+        email?.translatesAutoresizingMaskIntoConstraints = false
+        let horizEmailConstraint = email?.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertEmailConstraint = email?.topAnchor.constraint(equalTo: (lastName?.bottomAnchor)!, constant: 30)
+        let leftEmailConstraint = email?.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20)
+        let rightEmailConstraint = scrollView.trailingAnchor.constraint(equalTo: (email?.trailingAnchor)!, constant: 20)
+        scrollView.addConstraints([horizEmailConstraint!, vertEmailConstraint!, leftEmailConstraint!, rightEmailConstraint])
         
-        // Last Name
-        lastName = createDefaultTextField(withText: "Last Name", withFrame: CGRect(x: 20, y: 300, width: 340, height: 35), withCenter: nil, withPadding: nil)
-        scrollView.addSubview(lastName!)
+        // Password constraints
+        password?.translatesAutoresizingMaskIntoConstraints = false
+        let horizPasswordConstraint = password?.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertPasswordConstraint = password?.topAnchor.constraint(equalTo: (email?.bottomAnchor)!, constant: 30)
+        let leftPasswordConstraint = password?.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20)
+        let rightPasswordConstraint = scrollView.trailingAnchor.constraint(equalTo: (password?.trailingAnchor)!, constant: 20)
+        scrollView.addConstraints([horizPasswordConstraint!, vertPasswordConstraint!, leftPasswordConstraint!, rightPasswordConstraint])
         
-        // Email
-        email = createDefaultTextField(withText: "Email", withFrame: CGRect(x: 20, y: 360, width: 355, height: 35), withCenter: nil, withPadding: nil)
-        email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
-        email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
-        email?.delegate = self
-        scrollView.addSubview(email!)
+        // Continue button constraints
+        continueButton!.translatesAutoresizingMaskIntoConstraints = false
+        let horizContinueConstraint = continueButton!.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertContinueConstraint = continueButton!.topAnchor.constraint(equalTo: (password?.bottomAnchor)!, constant: 30)
+        let bottomContinueConstraint = continueButton!.bottomAnchor.constraint(equalTo: continueButton!.topAnchor, constant: 50)
+        let leftContinueConstraint = continueButton!.leadingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: -70)
+        let rightContinueConstraint = continueButton!.trailingAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 70)
+        scrollView.addConstraints([horizContinueConstraint, vertContinueConstraint, bottomContinueConstraint, leftContinueConstraint, rightContinueConstraint])
         
-        // Next Button
-        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(tryCreateAccount), withCenter: CGPoint(x: view.center.x, y: 450))
-        scrollView.addSubview(button)
-        
-        // Existing Account Button
-        let existingAccount = createDefaultTextButton(withText: "Already have an account?", withAction: #selector(loginPage), withFrame: nil, withCenter: CGPoint(x: view.center.x, y: 515), withNumLines: nil)
-        // @Kellie - sizing is being a bitch. It's smaller than "Don't have an account?"
-        scrollView.addSubview(existingAccount)
+        // Existing account constraints
+        existingAccount!.translatesAutoresizingMaskIntoConstraints = false
+        let horizExistingConstraint = existingAccount!.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        let vertExistingConstraint = existingAccount!.topAnchor.constraint(equalTo: continueButton!.bottomAnchor, constant: 20)
+        let leftExistingConstraint = existingAccount!.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20)
+        let rightExistingConstraint = scrollView.trailingAnchor.constraint(equalTo: existingAccount!.trailingAnchor, constant: 20)
+        scrollView.addConstraints([horizExistingConstraint, vertExistingConstraint, leftExistingConstraint, rightExistingConstraint])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
