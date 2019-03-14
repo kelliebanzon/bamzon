@@ -174,6 +174,8 @@ class bamzonModelTests: XCTestCase {
                        "orgID": "o999",
                        "sport": "test sport",
                        "teamName": "test team",
+                       "nextPractice": "z0",
+                       "nextEvent": "z0",
                        "userIDs": ["u999"]] as [String: AnyObject]
         
         XCTAssertEqual(expected, Team(key: key, payload: payload))

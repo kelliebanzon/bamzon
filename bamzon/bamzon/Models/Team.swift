@@ -33,8 +33,8 @@ struct Team: FirebaseCompatable, Equatable {
         self.calendar = calendar
         self.joinReqIDs = joinReqIDs
         self.blacklistUserIDs = blacklistUserIDs
-        self.nextEvent = nil
-        self.nextPractice = nil
+        self.nextEvent = IDUtility.generateIDFromString(idString: "z0")
+        self.nextPractice = IDUtility.generateIDFromString(idString: "z0")
     }
     
     //keys: teamID: ID
