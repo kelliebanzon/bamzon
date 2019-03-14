@@ -16,10 +16,10 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     let team = "Cal Poly Swim Club"
 
-    let statTypes = ["Total Meets:", "Combined Score First Places:", "Women's Team First Places:", "Men's Team First Places:"]
+    //let statTypes = ["Total Meets:", "Combined Score First Places:", "Women's Team First Places:", "Men's Team First Places:"]
     
-    let stats = [603, 370, 220, 150]
-
+    let statTypes = ["Wins:", "Losses:", "Ties:"]
+    
     let statsVM = StatsVM()
 
     private var statsTableView = UITableView()
@@ -42,7 +42,6 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.view.addSubview(statsTableView)
 
         setupAutoLayout()
-        print(statsVM.teamStats)
     }
 
     func setupAutoLayout() {
@@ -71,12 +70,15 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! StatsTeamStatsViewCell
+    
         // swiftlint:enable force_cast
         let statType = statTypes[indexPath.row]
+        let teamStats = statsVM.teamStats
+        let stats = [teamStats?.wins, teamStats?.losses, teamStats?.ties]
         let stat = stats[indexPath.row]
         
         cell.statsDescLabel.text = statType
-        cell.statsLabel.text = "\(stat)"
+        cell.statsLabel.text = "\(stat ?? 0)"
         
         return cell
     }
