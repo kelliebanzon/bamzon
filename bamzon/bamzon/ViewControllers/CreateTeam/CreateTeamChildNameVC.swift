@@ -14,17 +14,22 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     var orgName: UITextField?
     var teamName: UITextField?
     var sportType: UITextField?
+    var selectedOrg: Organization?
+    var createTeamVM = CreateTeamVM()
 
     var orgTableView: UITableView = UITableView()
-    var orgList: [String] = ["University of Alabama", "University of California, Berkeley", "Cal Poly, SLO", "Stanford University"]
     
     var sportTableView: UITableView = UITableView()
-    var sportList: [String] = ["Basketball", "Cross Country", "Golf", "Ice Hockey", "Lacrosse", "Swim", "Triathlon", "Water Polo"]
+    var sportList: [String] = ["Basketball", "Cross Country", "Golf", "Ice Hockey", "Lacrosse", "Swim", "Triathlon", "Water Polo", "Distance Running"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Create a Team"
-        display()
+        let dispatch = DispatchGroup()
+        createTeamVM.loadOrgs(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
+        }
     }
     
     func display() {
@@ -53,7 +58,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         sportType!.tintColor = UIColor.clear
         
         // Next Button
-        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(checkFields), withCenter: CGPoint(x: view.center.x, y: 450))
+        let button = createDefaultButton(withText: "Continue", withFrame: CGRect(x: 0, y: 0, width: 150, height: 50), withAction: #selector(tryCreateTeam), withCenter: CGPoint(x: view.center.x, y: 450))
         self.view.addSubview(button)
 
     }
@@ -88,7 +93,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orgTableView {
-            return orgList.count
+            return self.createTeamVM.allOrgs.count
         } else if tableView == sportTableView {
             return sportList.count
         }
@@ -98,7 +103,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         if tableView == orgTableView {
-            cell.textLabel?.text = orgList[indexPath.row]
+            cell.textLabel?.text = createTeamVM.allOrgs[indexPath.row].name
         } else if tableView == sportTableView {
             cell.textLabel?.text = sportList[indexPath.row]
         }
@@ -107,8 +112,8 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == orgTableView {
-            let org = orgList[indexPath.row]
-            orgName!.text? = org
+            selectedOrg = createTeamVM.allOrgs[indexPath.row]
+            orgName!.text? = selectedOrg!.name
             orgTableView.removeFromSuperview()
         } else if tableView == sportTableView {
             let sport = sportList[indexPath.row]
@@ -121,17 +126,30 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         self.view.endEditing(true)
     }
     
-    // General function to validate fields
-    @objc func checkFields() {
-        let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamChildLoadingVC")
-        
-        print("Valid Input:")
-        print("\t  Org Name: " + (orgName!.text)!)
-        print("\t Team Name: " + teamName!.text!)
-        print("\t Sport Type: " + sportType!.text!)
-        if let parentVC = self.parent as? CreateTeamParentVC {
-            parentVC.createTeamVM.createTeam(teamName: teamName!.text!, orgName: orgName!.text!, sport: sportType!.text!)
+    @objc func tryCreateTeam() {
+        if checkValidFields() {
+            let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateTeamChildLoadingVC")
+            self.createTeamVM.createTeam(teamName: teamName!.text!, org: selectedOrg!, sport: sportType!.text!)
+            self.navigationController!.pushViewController(nextVC, animated: true)
+        } else {
+            missingFieldsAlert()
         }
-        self.navigationController!.pushViewController(nextVC, animated: true)
+    }
+    
+    func missingFieldsAlert() {
+        let alert = UIAlertController(title: "Missing Fields", message: "Team name, organization, and sport are requried.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        let fillTeamName = teamName?.text ?? "Team Name"
+        let fillOrg = orgName?.text ?? "Organization"
+        let fillSport = sportType?.text ?? "Sport Type"
+
+        teamName?.attributedPlaceholder = NSAttributedString(string: fillTeamName , attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+        orgName?.attributedPlaceholder = NSAttributedString(string: fillOrg, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+        sportType?.attributedPlaceholder = NSAttributedString(string: fillSport, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+    }
+    
+    func checkValidFields() -> Bool {
+        return !(orgName?.text?.isEmpty)! || !(teamName?.text?.isEmpty)!  || !(sportType?.text?.isEmpty)!
     }
 }
