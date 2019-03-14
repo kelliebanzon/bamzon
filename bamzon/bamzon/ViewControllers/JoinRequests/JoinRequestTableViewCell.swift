@@ -11,6 +11,7 @@ import UIKit
 
 class RequestTableViewCell: UITableViewCell {
     
+    let joinRequestsVM = JoinRequestsVM()
     var userName = UILabel()
     var teamName = UILabel()
     var acceptButton = UIButton()
@@ -26,6 +27,7 @@ class RequestTableViewCell: UITableViewCell {
         teamName = createLabelToConstrain(withText: "Team Location", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
         
         acceptButton = createButtonToConstrain(withText: "Accept", size: 12)
+        acceptButton.addTarget(self, action: #selector(joinRequestsVM.approve), for: .touchUpInside)
         
         rejectButton = createButtonToConstrain(withText: "Reject", size: 12)
         

@@ -15,7 +15,7 @@ class JoinRequestsVM: LoggedInViewModel {
     var requestedUsers: [User] = []
     
     //TODO: Check for duplicates within join requests. Spam join request shouldn't be allowed
-    func approve(requestIndex: Int) {
+    @objc func approve(requestIndex: Int) {
         self.team.joinReqIDs!.remove(at: requestIndex)
         if self.team.userIDs != nil {
             self.team.userIDs!.append(requestedUsers[requestIndex].userID)

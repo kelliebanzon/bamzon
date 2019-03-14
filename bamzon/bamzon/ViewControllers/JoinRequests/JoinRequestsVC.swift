@@ -70,10 +70,6 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         // TODO: implement refresh
     }
     
-    func approve() {
-        // TODO: implement approve
-    }
-    
     func reject(request: JoinRequest) {
         // TODO: implement reject join request
     }
