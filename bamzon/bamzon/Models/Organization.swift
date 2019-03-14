@@ -37,7 +37,6 @@ struct Organization: FirebaseCompatable, Equatable {
             let locationID = IDUtility.generateIDFromString(idString: locIDString)
             DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 thisOrg.location = Location(key: key, payload: payload)
-                print("org location worked. org: \(thisOrg)")
             })
         } else {
             print("no location to fetch for org \(orgID.asString())")

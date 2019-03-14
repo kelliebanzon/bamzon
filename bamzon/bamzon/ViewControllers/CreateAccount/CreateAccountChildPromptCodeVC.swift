@@ -82,7 +82,6 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     func waitForVerification() {
         if let user = Auth.auth().currentUser {
             while !user.isEmailVerified {
-                print("reload")
                 user.reload()
                 if user.isEmailVerified {
                     return

@@ -81,7 +81,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func refresh() {
-        print("refreshing")
         if team != nil {
             rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
         }

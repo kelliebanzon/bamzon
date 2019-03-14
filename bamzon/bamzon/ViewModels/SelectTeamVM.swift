@@ -32,7 +32,6 @@ class SelectTeamVM: LoggedInViewModel {
         dispatch.enter()
         DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             let team = Team(key: key, payload: teamSnap)
-            print(teamSnap)
             self.teams.append(team)
             self.loadOrg(orgID: team.orgID, dispatch: dispatch)
             dispatch.leave()

@@ -22,7 +22,6 @@ class LoginVM {
     // swiftlint:enable force_cast
 
     func checkLogin(dispatch: DispatchGroup, email: String?, password: String?) {
-        print("checking login")
         
         guard let email = email, let password = password else {
             self.errorMessage = "Please enter a valid input."
@@ -32,7 +31,6 @@ class LoginVM {
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
-                print("error")
                 self.errorMessage = error?.localizedDescription ?? "Error signing in."
             } else {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

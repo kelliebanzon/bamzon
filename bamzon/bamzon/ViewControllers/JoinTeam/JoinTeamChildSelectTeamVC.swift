@@ -130,10 +130,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     // General function to validate fields
     @objc func checkFields() {
         let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinTeamChildRequestSentVC")
-        
-        print("Valid Input:")
-        print("\t  Org Name: " + (orgName!.text)!)
-        print("\t Team Name: " + teamName!.text!)
+
         if let selectedTeamIndex = selectedTeamIndex {
             self.joinTeamVM.sendJoinRequest(teamIndex: selectedTeamIndex)
             self.navigationController!.pushViewController(nextVC, animated: true)

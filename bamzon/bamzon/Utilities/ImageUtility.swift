@@ -33,12 +33,10 @@ class ImageUtility {
     func createProfilePictureImageView(imageName: String?, style: ImageViewStyle) -> UIImageView {
         let img: String
         if let nonNilImageName = imageName, nonNilImageName.count != 0 {
-            print("first")
             // swiftlint: disable force_cast
             img = imageName!
             // swiftlint: enable force_cast
         } else {
-            print("else")
             img = defaultProfilePictureName
         }
         switch style {

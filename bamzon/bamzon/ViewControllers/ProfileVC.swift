@@ -44,8 +44,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: user?.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
-        print(profileVM.user.getFullName())
-        print(profileVM.user)
         nameLabel = createDefaultHeader1Label(text: profileVM.user.firstName + " " + profileVM.user.lastName, numLines: 0)
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.minimumScaleFactor = 0.8
