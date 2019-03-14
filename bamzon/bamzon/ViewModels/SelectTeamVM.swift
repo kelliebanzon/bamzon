@@ -21,11 +21,14 @@ class SelectTeamVM: LoggedInViewModel {
     }
     
     func loadTeams(dispatch: DispatchGroup) {
+        teams.removeAll()
+        organizations.removeAll()
         if self.user.teamIDs != nil && self.user.teamIDs!.count != 0 {
             for teamID in self.user.teamIDs! {
                 loadTeam(teamID: teamID, dispatch: dispatch)
             }
         }
+        
     }
 
     func loadTeam(teamID: ID, dispatch: DispatchGroup) {
