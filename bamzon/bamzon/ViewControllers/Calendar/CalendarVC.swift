@@ -16,7 +16,8 @@ enum MyTheme {
 class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     var theme = MyTheme.dark
-    var events = ["event1", "event2", "event3", "event4"]
+    var events = ["event1", "event2", "event3", "event4"] // need this to be from firebase based on date
+    //there is a getDate function that you could call when you click on a square, right now it just prints(date.ToString)
     var eventLabel = UILabel()
     var dateLabel = UILabel()
     var locLabel = UILabel()
@@ -56,6 +57,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         eventLabel = createDefaultLabel(text: "Event", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         dateLabel = createDefaultLabel(text: "Date", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         locLabel = createDefaultLabel(text: "Location", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        
     }
     
     func addSubviews() {
@@ -136,6 +138,11 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CalendarVCTableViewCell
         // swiftlint:enable force_cast
         
+        //let event = .....events[indexPath.row]
+        
+        //cell.eventLabel.text = event.name
+        //cell.dateLabel.text = event.date
+        //cell.locLabel.text = event.location
         
         return cell
     }

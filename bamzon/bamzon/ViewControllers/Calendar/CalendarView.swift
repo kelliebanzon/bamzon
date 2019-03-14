@@ -45,6 +45,7 @@ struct Style {
 
 class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate {
     
+    var date = Date()
     var numOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     var currentMonthIndex: Int = 0
     var currentYear: Int = 0
@@ -140,7 +141,16 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
             lbl.textColor=UIColor.white
         }
         
-        // MARK: where to get selection info
+        let currentDay = indexPath.row-firstWeekDayOfMonth+2
+        
+        let queryString = "\(currentYear)-\(currentMonthIndex)-\(currentDay) 00:00 -0000"
+        date = Date.fromString(from: queryString)
+        print(date.toString())
+        
+    }
+    
+    func getDate() -> Date{
+        return date
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
