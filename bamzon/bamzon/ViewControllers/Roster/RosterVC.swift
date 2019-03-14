@@ -69,12 +69,12 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedUser = rosterVM.members[indexPath.row]
         rosterVM.selectUser(user: selectedUser)
-        setRootView(toVC: "ProfileVC")
         // swiftlint:disable force_cast
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
         // swiftlint:enable force_cast
-        appDelegate.showTabController()
-
+        profileVC.user = selectedUser
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
