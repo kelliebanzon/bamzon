@@ -257,17 +257,13 @@ extension UIViewController {
         ai.startAnimating()
         ai.center = spinnerView.center
         
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
+        spinnerView.addSubview(ai)
+        onView.addSubview(spinnerView)
         vSpinner = spinnerView
     }
     
     func removeSpinner() {
-        DispatchQueue.main.async {
             vSpinner?.removeFromSuperview()
             vSpinner = nil
-        }
     }
 }
