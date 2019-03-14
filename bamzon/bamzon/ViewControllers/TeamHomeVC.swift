@@ -48,7 +48,6 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        print(";lsadkfja;sdlfkjas;dlfkjasd;lkfj")
         print(teamHomeVM.nextNonPractice)
     
         let nextPracticeDesc = teamHomeVM.nextPractice?.description ?? "--"

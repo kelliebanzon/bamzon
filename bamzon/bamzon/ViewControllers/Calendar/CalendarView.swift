@@ -143,7 +143,7 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         
         let currentDay = indexPath.row-firstWeekDayOfMonth+2
         
-        let queryString = "\(currentYear)-\(currentMonthIndex)-\(currentDay) 00:00 -0000"
+        let queryString = "\(currentYear)-\(currentMonthIndex)-\(currentDay)"
         date = Date.fromString(from: queryString)
         print(date.toString())
         

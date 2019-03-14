@@ -10,30 +10,25 @@ import Foundation
 import Firebase
 
 class CalendarVM: LoggedInViewModel {
-    let teamID: ID
-    var calendar: TeamCalendar
-    var eventDict: [String: [Event]]
-    
-    init(teamID: ID, calendar: TeamCalendar) {
-        self.teamID = teamID
-        self.calendar = calendar
-        self.eventDict = [:]
-    }
+    var eventDict: [String: [Event]] = [:]
     
     func refresh() {
-        DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
+        DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: team.teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
                 for event in eventSnap {
                     let event = Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:])
-                    let dateString = "string"
+                    let dateString = event.date.toString()
                     var oldVal = self.eventDict[dateString]
-//                    if oldVal == nil {
-//                        self.eventDict.updateValue([event], forKey: dateString)
-//                    } else {
-//                        eventDict.updateValue(oldVal?.append(event) ?? [] as [Event], forKey: dateString)
-//                    }
+                    oldVal?.append(event)
+                    self.eventDict.updateValue(oldVal ?? [event], forKey: dateString)
                 }
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(self.eventDict)
             }
         )
+    }
+    
+    func getEventsFor(dateStr: String) -> [Event] { //vc can access dates for a square by indexing with a string with format "yyyy-mm-dd"
+        return eventDict[dateStr] ?? []
     }
     
     func addEvent(event: Event) {
@@ -51,7 +46,7 @@ class CalendarVM: LoggedInViewModel {
     }
     
     func updateEvents(events: [Event]) {
-        calendar.setEvents(events: events)
-        DBUtility.writeToDB(objToWrite: calendar)
+        team.calendar?.setEvents(events: events)
+        DBUtility.writeToDB(objToWrite: team.calendar ?? TeamCalendar(teamID: team.teamID, events: events))
     }
 }
