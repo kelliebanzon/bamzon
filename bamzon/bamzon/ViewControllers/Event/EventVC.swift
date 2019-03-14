@@ -232,6 +232,8 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
         
     }
     

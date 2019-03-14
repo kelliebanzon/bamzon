@@ -111,6 +111,8 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
         if tableView == orgTableView {
             selectedOrg = createTeamVM.allOrgs[indexPath.row]
             orgName!.text? = selectedOrg!.name

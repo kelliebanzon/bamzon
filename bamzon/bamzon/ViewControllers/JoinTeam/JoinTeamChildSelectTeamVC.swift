@@ -110,6 +110,8 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
         if tableView == orgTableView {
             let org = self.joinTeamVM.allOrgs[indexPath.row]
             orgName!.text? = self.joinTeamVM.allOrgs[indexPath.row].name

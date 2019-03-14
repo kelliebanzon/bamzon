@@ -118,7 +118,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let selectedTeam = selectTeamVM.teams[indexPath.row]
         selectTeamVM.selectTeam(team: selectedTeam)
         // TODO: kyle's utility function to reset root view controller
-        let teamHomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TeamHomeVC")
+        setRootView(toVC: "TeamHomeVC")
         // swiftlint:disable force_cast
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // swiftlint:enable force_cast
