@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RosterVM: LoggedInViewModel {
     
@@ -38,12 +39,17 @@ class RosterVM: LoggedInViewModel {
         }
     }
     
-    
     func rosterToIDList(roster: [User]) -> [ID] {
         var rosterIDs = [ID]()
         for usr in roster {
             rosterIDs.append(usr.userID)
         }
         return rosterIDs
+    }
+    
+    func selectUser(user: User) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.curUser = user
+        }
     }
 }

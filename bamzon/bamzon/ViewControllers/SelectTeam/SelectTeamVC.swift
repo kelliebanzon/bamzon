@@ -12,7 +12,8 @@ import UIKit
 class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
     let selectTeamVM = SelectTeamVM()
-
+    private let refreshControl = UIRefreshControl()
+    
     var createButton = UIButton()
     var joinButton = UIButton()
     var teamsyncLabel = UILabel()
@@ -27,6 +28,14 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         teamsTableView.dataSource = self
         teamsTableView.delegate = self
         teamsTableView.register(SelectTeamTableViewCell.self, forCellReuseIdentifier: cellID)
+        if #available(iOS 10.0, *) {
+            teamsTableView.refreshControl = refreshControl
+        } else {
+            teamsTableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
         self.showSpinner(onView: self.view)
         selectTeamVM.loadTeams(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
@@ -84,7 +93,17 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func refresh() {
-        // TODO: implement refresh
+        let dispatch = DispatchGroup()
+        selectTeamVM.loadTeams(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+        }
+    }
+    
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
     }
     
     @objc func showCreateTeam() {

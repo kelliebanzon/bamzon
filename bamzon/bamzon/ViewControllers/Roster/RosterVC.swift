@@ -11,6 +11,8 @@ import UIKit
 
 class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
+    private let refreshControl = UIRefreshControl()
+    
     //TODO: should be passed after initialization.
     // not sure if it should be forced on initialization or passed
     var rosterVM = RosterVM()
@@ -24,6 +26,15 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(RosterTableViewCell.self, forCellReuseIdentifier: self.cellId)
+        if #available(iOS 10.0, *) {
+            myTableView.refreshControl = refreshControl
+        } else {
+            myTableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
+        
         let dispatch = DispatchGroup()
         rosterVM.refresh(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
@@ -58,8 +69,15 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath)
         selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+        
+        let selectedUser = rosterVM.members[indexPath.row]
+        rosterVM.selectUser(user: selectedUser)
+        setRootView(toVC: "ProfileVC")
+        // swiftlint:disable force_cast
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        // swiftlint:enable force_cast
+        appDelegate.showTabController()
 
-        selectUser()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +112,11 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
             self.display()
         }
         
+    }
+    
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
     }
     
     func selectUser() {
