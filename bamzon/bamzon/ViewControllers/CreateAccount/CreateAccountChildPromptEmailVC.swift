@@ -191,30 +191,27 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
                 if let errorMessage = parent.createAccountVM.creationErrorMessage {
                     self.alert(withTitle: "Error", withMessage: errorMessage)
                 } else {
-                    let createAccountChild = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildPromptCodeVC") as? CreateAccountChildPromptCodeVC
-                    createAccountChild!.name = fName + " " + lName
-                    createAccountChild!.email = email
-                    self.present(createAccountChild!, animated: true, completion: nil)
+                    // swiftlint:disable force_cast
+                    let createAccountNextVC = self.storyboard!.instantiateViewController(withIdentifier: "CreateAccountChildSuccessVC") as! CreateAccountChildSuccessVC
+                    // swiftlint:enable force_cast
+                    self.present(createAccountNextVC, animated: true, completion: nil)
                 }
             }
             
         } else {
-            self.alert(withTitle: "Error", withMessage: "An unexpected error has occured, please restart your app and try again")
+            self.alert(withTitle: "Error", withMessage: "An unexpected error has occured. Please restart your app and try again.")
             print("parentVC is not CreateAccountParent")
         }
     }
     
     // Email validation function
     // TODO:
-    // - Add validation to check to see if that email has already been registered or not
-    //     - Firebase already does this.
     // - Move this to VM
     func validEmail(email: String) -> Bool {
        return email.contains("@") && email.contains(".")
     }
     
     // Error message presented if there are missing fields
-    //TODO: make error color less harsh
     func missingFieldsAlert() {
         let alert = UIAlertController(title: "Missing Fields", message: "First name, last name, and a valid email are requried.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -222,16 +219,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         firstName?.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         lastName?.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+        password?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -11,29 +11,42 @@ import UIKit
 class CreateAccountChildSuccessVC: UIViewController, DisplayableProtocol {
 
     var name: String?
-    
+    var successLabel = UILabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         display()
     }
     
     func display() {
-        // TODO: display
         view.backgroundColor = UIColor(named: "TSTeal")
-        // TODO: temporary identifier code. delete this once you write the real display func
-        // Temp Label
-        let tempLabel = pageLabel(withText: name! + " \rwhat a great name!\rLet's get started.", withFrame: CGRect(x: 0, y: 0, width: 300, height: 420), withCenter: CGPoint(x: view.frame.midX, y: view.frame.midY))
-        self.view.addSubview(tempLabel)
+
+        successLabel = createDefaultHeader2Label(text: createGreetingMessage(name: name), numLines: 0)
+        successLabel.lineBreakMode = .byWordWrapping
+        self.view.addSubview(successLabel)
+
+        setupAutoLayout()
     }
 
-    /*
-    // MARK: - Navigation
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        successLabel.translatesAutoresizingMaskIntoConstraints = false
+        let successVert = successLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        let successLeading = successLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
+        let successTrailing = successLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
+        self.view.addConstraints([successVert, successLeading, successTrailing])
+
     }
-    */
+
+    func createGreetingMessage(name: String?) -> String {
+        let beginning = "Welcome to TeamSync"
+        let end = "! Let's get started."
+        var final = beginning
+        if let name = name {
+            final += ", " + name
+        }
+        return final + end
+    }
 
 }
