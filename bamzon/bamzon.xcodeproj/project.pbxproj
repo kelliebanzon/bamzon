@@ -383,7 +383,6 @@
 				6E611086222F5E7800A7DA17 /* Event */,
 				A8143A1021B73078000E287A /* RSVPVC.swift */,
 				A8143A0821B72FD5000E287A /* SettingsVC.swift */,
-				A81439DB21B71E58000E287A /* CalendarVM.swift */,
 				6E9683C82222513100BB05EC /* JoinRequests */,
 				AB3CE1AC220E15990086478C /* TabBarController.swift */,
 				AB4A952F2215E72800AEA954 /* WizardNC.swift */,
@@ -482,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				A81439D721B71E58000E287A /* AttendanceVM.swift */,
+				A81439DB21B71E58000E287A /* CalendarVM.swift */,
 				D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */,
 				A81439DC21B71E58000E287A /* CreateAccountVM.swift */,
 				A81439D321B71E57000E287A /* CreateTeamVM.swift */,
