@@ -58,6 +58,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "otherPlayerCell", for: indexPath) as? StatsOtherPlayerNamesTableViewCell {
+            cell.highlightYellowOnSelection()
             let player = players[indexPath.row]
             cell.nameLabel.text = player.getFullName()
             return cell

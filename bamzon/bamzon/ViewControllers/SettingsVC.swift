@@ -77,7 +77,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     // Populate value at selected row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        
+        cell.backgroundColor = UIColor(named: "TSTeal")
         if indexPath.section == 0 {
             cell.textLabel?.text = settingsList[indexPath.row]
             cell.textLabel?.textColor = .white
@@ -87,7 +87,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
             cell.textLabel?.textAlignment = .center
         }
-        cell.backgroundColor = UIColor(named: "TSTeal")
         return cell
     }
     
@@ -119,7 +118,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         } else {
             alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen! Section 1")
         }
-        print("YEET BABY! We've got a selection for " + settingsList[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Set the height of each row

@@ -39,6 +39,7 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         view.backgroundColor = UIColor(named: "TSTeal")
 
         statsTableView.backgroundColor = UIColor(named: "TSTeal")
+        statsTableView.allowsSelection = false
         self.view.addSubview(statsTableView)
 
         setupAutoLayout()
@@ -57,12 +58,7 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statTypes.count
     }
@@ -70,8 +66,8 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! StatsTeamStatsViewCell
-    
         // swiftlint:enable force_cast
+        cell.highlightYellowOnSelection()
         let statType = statTypes[indexPath.row]
         let teamStats = statsVM.teamStats
         let stats = [teamStats?.wins, teamStats?.losses, teamStats?.ties]

@@ -74,14 +74,13 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         cell.practiceDate.text = attendanceVM.practices[indexPath.row].name
         cell.practiceDate.textColor = .white
         cell.backgroundColor = UIColor(named: "TSTeal")
+        cell.highlightYellowOnSelection()
         return cell
     }
     
     // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.practices[indexPath.row].name + "'s attendance")
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
     }
 
     func refresh() {

@@ -127,21 +127,13 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 75
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-
         let selectedTeam = selectTeamVM.teams[indexPath.row]
         selectTeamVM.selectTeam(team: selectedTeam)
-        // TODO: kyle's utility function to reset root view controller
-        setRootView(toVC: "TeamHomeVC")
-        // swiftlint:disable force_cast
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        // swiftlint:enable force_cast
-        appDelegate.showTabController()
+        setRootView(toVC: "TabBarController")
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,6 +148,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! SelectTeamTableViewCell
         // swiftlint:enable force_cast
+        cell.highlightYellowOnSelection()
         let team = selectTeamVM.teams[indexPath.row]
         let teamOrg = selectTeamVM.organizations[indexPath.row]
 //        cell.imgUserName = team.

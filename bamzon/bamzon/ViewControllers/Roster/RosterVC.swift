@@ -67,9 +67,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-        
         let selectedUser = rosterVM.members[indexPath.row]
         rosterVM.selectUser(user: selectedUser)
         setRootView(toVC: "ProfileVC")
@@ -88,6 +85,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RosterTableViewCell
         // swiftlint:enable force_cast
+        cell.highlightYellowOnSelection()
         let member = rosterVM.members[indexPath.row]
         cell.userName.text = member.firstName + " " + member.lastName
         cell.imgUserName = member.imageURL

@@ -106,6 +106,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        cell.highlightYellowOnSelection()
         if tableView == orgTableView {
             self.selectedOrg = self.joinTeamVM.allOrgs[indexPath.row]
             cell.textLabel?.text = self.selectedOrg!.name
@@ -116,8 +117,6 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
         if tableView == orgTableView {
             let org = self.joinTeamVM.allOrgs[indexPath.row]
             orgName!.text? = self.joinTeamVM.allOrgs[indexPath.row].name

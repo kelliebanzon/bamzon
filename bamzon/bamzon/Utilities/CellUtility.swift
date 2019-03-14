@@ -46,6 +46,12 @@ extension UITableViewCell {
         return label
     }
 
+    func highlightYellowOnSelection() {
+        let cellBackgroundView = UIView()
+        cellBackgroundView.backgroundColor = UIColor(named: "TSYellow")
+        self.selectedBackgroundView = cellBackgroundView
+    }
+
     func createButtonToConstrain(withText: String, size: CGFloat) -> UIButton {
         let button = UIButton()
         button.setTitle("\(withText)", for: .normal)

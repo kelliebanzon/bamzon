@@ -43,9 +43,9 @@ class SelectTeamTableViewCell: UITableViewCell {
     func setupAutoLayout() {
         let margins = contentView.safeAreaLayoutGuide
 
-        let nameLeadingConstraint = teamName.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10)
+        let nameLeadingConstraint = teamName.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
         let nameTopConstraint = teamName.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10)
-        let nameTrailingConstraint = margins.trailingAnchor.constraint(equalTo: teamName.trailingAnchor, constant: 10)
+        let nameTrailingConstraint = teamName.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
         self.contentView.addConstraints([nameLeadingConstraint, nameTopConstraint, nameTrailingConstraint])
 
         let orgLeadingConstraint = teamOrg.leadingAnchor.constraint(equalTo: teamName.leadingAnchor)

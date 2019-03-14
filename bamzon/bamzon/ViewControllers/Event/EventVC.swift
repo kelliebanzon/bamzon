@@ -230,13 +230,7 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-        
-    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rsvpTypes.count
     }
@@ -245,6 +239,7 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! EventTableViewCellVC
         // swiftlint:enable force_cast
+        cell.highlightYellowOnSelection()
         let rsvpType = rsvpTypes[indexPath.row]
         let rsvp = rsvps[indexPath.row]
         
