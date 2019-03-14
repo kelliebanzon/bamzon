@@ -21,7 +21,7 @@ class CalendarVM: LoggedInViewModel {
     func refresh() {
         DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
             for event in eventSnap {
-                self.calendar.events.append(Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:]))}
+                self.calendar.addEvent(event: Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:]))}
             }
         )
     }
@@ -41,7 +41,7 @@ class CalendarVM: LoggedInViewModel {
     }
     
     func updateEvents(events: [Event]) {
-        calendar.events = events
+        calendar.setEvents(events: events)
         DBUtility.writeToDB(objToWrite: calendar)
     }
 }

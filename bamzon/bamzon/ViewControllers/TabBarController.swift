@@ -14,7 +14,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
         super.viewDidLoad()
         display()
     }
-
+    
     func display() {
         tabBar.barStyle = .black
         tabBar.isTranslucent = true

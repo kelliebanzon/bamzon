@@ -15,6 +15,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 //    var curTeam = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
 
     let viewModel = LoggedInViewModel()
+    let teamHomeVM = TeamHomeVM()
 
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -36,6 +37,7 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Team Home"
+        teamHomeVM.refresh()
         display()
     }
     
@@ -46,10 +48,13 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        let nextPracticeDesc = "Dryland - Doerr Field"
-        let nextPracticeTime = "6:30 - 7:30 pm"
-        let nextEventDesc = "UCLA Invite"
-        let nextEventDate = "December 1, 2018"
+        print(";lsadkfja;sdlfkjas;dlfkjasd;lkfj")
+        print(teamHomeVM.nextNonPractice)
+    
+        let nextPracticeDesc = teamHomeVM.nextPractice?.description ?? "--"
+        let nextPracticeTime = teamHomeVM.nextPractice?.date.toString() ?? "--"
+        let nextEventDesc = teamHomeVM.nextNonPractice?.description ?? "--"
+        let nextEventDate = teamHomeVM.nextNonPractice?.date.toString() ?? "--"
         let departTime = "December 1 @ 8 AM"
         let returnTime = "December 1 @ 10 PM"
         
