@@ -45,10 +45,10 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
 
         // Players Table View Constraints
         playersTableView.translatesAutoresizingMaskIntoConstraints = false
-        let tableTop = playersTableView.topAnchor.constraint(equalTo: view.topAnchor)
+        let tableTop = playersTableView.topAnchor.constraint(equalTo: margins.topAnchor)
         let tableLeading = playersTableView.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
         let tableTrailing = margins.trailingAnchor.constraint(equalTo: playersTableView.trailingAnchor)
-        let tableBottom = margins.bottomAnchor.constraint(equalTo: playersTableView.bottomAnchor, constant: 85)
+        let tableBottom = margins.bottomAnchor.constraint(equalTo: playersTableView.bottomAnchor)
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
     }
     

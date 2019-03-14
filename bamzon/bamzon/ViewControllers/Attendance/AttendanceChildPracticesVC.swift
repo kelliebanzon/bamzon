@@ -42,10 +42,10 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
         datesTableView.translatesAutoresizingMaskIntoConstraints = false
-        let tableTop = datesTableView.topAnchor.constraint(equalTo: view.topAnchor)
+        let tableTop = datesTableView.topAnchor.constraint(equalTo: margins.topAnchor)
         let tableLeading = datesTableView.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
         let tableTrailing = margins.trailingAnchor.constraint(equalTo: datesTableView.trailingAnchor)
-        let tableBottom = margins.bottomAnchor.constraint(equalTo: datesTableView.bottomAnchor, constant: 85)
+        let tableBottom = margins.bottomAnchor.constraint(equalTo: datesTableView.bottomAnchor)
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
     }
     
