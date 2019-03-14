@@ -14,6 +14,8 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
 
     var statsTable = UITableView()
 
+    let statsVM = StatsVM()
+
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
         "horizEdges": 20,
@@ -36,17 +38,21 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
+        statsTable.backgroundColor = UIColor(named: "TSTeal")
         self.view.addSubview(statsTable)
 
         setupAutoLayout()
+
     }
 
     func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
         statsTable.translatesAutoresizingMaskIntoConstraints = false
-        let tableTopConstraint = statsTable.topAnchor.constraint(equalTo: view.topAnchor, constant: offsets["horizEdges"]!)
-        let tableLeadingConstraint = statsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: offsets["horizEdges"]!)
-        let tableTrailingConstraint = view.trailingAnchor.constraint(equalTo: statsTable.trailingAnchor, constant: offsets["horizEdges"]!)
-        let tableBottomConstraint = view.bottomAnchor.constraint(equalTo: statsTable.bottomAnchor, constant: offsets["horizEdges"]!)
+        let tableTopConstraint = statsTable.topAnchor.constraint(equalTo: margins.topAnchor)
+        let tableLeadingConstraint = statsTable.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
+        let tableTrailingConstraint = margins.trailingAnchor.constraint(equalTo: statsTable.trailingAnchor)
+        let tableBottomConstraint = margins.bottomAnchor.constraint(equalTo: statsTable.bottomAnchor)
         self.view.addConstraints([tableTopConstraint, tableLeadingConstraint, tableTrailingConstraint, tableBottomConstraint])
     }
 
@@ -68,18 +74,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
         }
     }
 
-    // MARK: - Navigation
-
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        // TODO: reconsider this tab's name
         return IndicatorInfo(title: "Others' Stats")
     }
-
-    /*
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

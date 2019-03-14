@@ -22,8 +22,11 @@ class StatsOtherPlayerNamesTableViewCell: UITableViewCell, DisplayableProtocol {
     }
 
     func display() {
-        nameLabel = createTableLabel(numLines: 1)
+        contentView.backgroundColor = UIColor(named: "TSTeal")
+
+        nameLabel = createDefaultBoldLabel(text: "")
         addSubview(nameLabel)
+        
         setupAutoLayout()
     }
 
@@ -42,8 +45,6 @@ class StatsOtherPlayerNamesTableViewCell: UITableViewCell, DisplayableProtocol {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

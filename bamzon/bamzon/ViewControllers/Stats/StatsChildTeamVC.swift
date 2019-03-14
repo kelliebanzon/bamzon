@@ -60,6 +60,7 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return statsVM.teamStats?.fields!.count ?? 0
         return statTypes.count
     }
     

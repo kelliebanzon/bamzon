@@ -430,9 +430,9 @@
 				A8143A0A21B73006000E287A /* StatsChildPersonalVC.swift */,
 				AB0EB62B22212A8400C4917E /* StatsPlayerStatsTableViewCell.swift */,
 				AB277834220CFAA1000B57B9 /* StatsChildOtherPlayerVC.swift */,
+				AB26667E22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift */,
 				AB33BECA220CFBAC00432884 /* StatsChildTeamVC.swift */,
 				D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */,
-				AB26667E22252DC1009A45B4 /* StatsOtherPlayerNamesTableViewCell.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
