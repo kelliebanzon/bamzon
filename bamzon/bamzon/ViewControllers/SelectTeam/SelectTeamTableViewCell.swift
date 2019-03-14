@@ -18,6 +18,7 @@ class SelectTeamTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = UIColor(named: "TSTeal")
 
 //        imgUser = createProfilePictureImageView(imageName: imgUserName)
 
