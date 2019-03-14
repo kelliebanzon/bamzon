@@ -97,7 +97,10 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     }
 
     @objc func profileTapped(sender: UIBarButtonItem) {
-        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC")
+        // swiftlint:disable force_cast
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+        // swiftlint:enable force_cast
+        profileVC.showClose = true
         let profileNav = createDefaultNavigationController(rootViewController: profileVC)
         profileNav.navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: profileVC, action: #selector(closeProfile)), animated: true)
         self.navigationController!.present(profileNav, animated: true, completion: nil)

@@ -24,8 +24,8 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
     var emailLabel = UILabel()
     var emailTextLabel = UILabel()
 
-    var closeButton = UIButton()
-    
+    var showClose: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
@@ -36,9 +36,10 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         
         view.backgroundColor = UIColor(named: "TSTeal")
 
-        closeButton = createCloseButton(action: #selector(closeProfile))
-        self.view.addSubview(closeButton)
-        
+        if self.showClose {
+            showCloseButton()
+        }
+
         // TODO: change these to user name
         
         profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: user?.imageURL, style: .squircle)
@@ -82,6 +83,10 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         setupAutoLayout()
     }
 
+    func showCloseButton() {
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeProfile)), animated: true)
+    }
+
     @objc func closeProfile(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -102,13 +107,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
 
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
-
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        let closeTop = closeButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20)
-        let closeTrailing = closeButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20)
-        let closeHeight = closeButton.heightAnchor.constraint(equalToConstant: 24)
-        let closeAspect = closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
-        self.view.addConstraints([closeTop, closeTrailing, closeHeight, closeAspect])
 
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
