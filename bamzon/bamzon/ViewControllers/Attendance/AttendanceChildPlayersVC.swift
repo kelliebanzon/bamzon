@@ -32,11 +32,8 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func display() {
-        // TODO: implement display
-        
         view.backgroundColor = UIColor(named: "TSTeal")
-        playersTableView.backgroundColor = UIColor(named: "TSTeal")
-        playersTableView.tableFooterView = UIView(frame: .zero)
+        playersTableView.backgroundColor = .clear
         self.view.addSubview(playersTableView)
         setupAutoLayout()
     }
@@ -53,32 +50,27 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
     }
     
-    // Setting number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // Number of rows to present
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playersList.count
     }
     
-    // Populate value at selected row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersAttendanceTableViewCell
         // swiftlint:enable force_cast
         cell.userName.text = playersList[indexPath.row]
         cell.userName.textColor = .white
-        cell.backgroundColor = UIColor(named: "TSTeal")
         return cell
     }
     
-    // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        alert(withTitle: "Player Selected", withMessage: "Show " + playersList[indexPath.row] + "'s personal attendance")
         let selectedCell = tableView.cellForRow(at: indexPath)
         selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+        alert(withTitle: "Player Selected", withMessage: "Show " + playersList[indexPath.row] + "'s personal attendance")
     }
     
     func refresh() {

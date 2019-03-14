@@ -93,13 +93,16 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+
         if indexPath.section == 0 {
             if settingsList[indexPath.row] == "Switch Teams" {
                 setRootView(toVC: "SelectTeamVC")
             } else if settingsList[indexPath.row] == "Team Settings" {
                 alert(withTitle: "Do something here", withMessage: "Something is supposed to happen")
             } else if settingsList[indexPath.row] == "Join Requests" {
-                alert(withTitle: "⚠️ Go to JoinRequestVC ⚠️", withMessage: "Make shit happen here")
+                showJoinRequests()
             } else {
                 alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen! Section 0")
             }
@@ -152,6 +155,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let tableTrailing = settingsTableView.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
         let tableBottom = settingsTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
+    }
+
+    func showJoinRequests() {
+        let joinRequestsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinRequestsVC")
+        let joinRequestsNav = createDefaultNavigationController(rootViewController: joinRequestsVC)
+        self.present(joinRequestsNav, animated: true, completion: nil)
     }
     
     func selectUser() {

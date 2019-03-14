@@ -11,8 +11,8 @@ import UIKit
 
 class SelectTeamTableViewCell: UITableViewCell {
     
-    var imgUser = UIImageView()
-    var imgUserName: String? = nil
+//    var imgUser = UIImageView()
+    var imgUserName: String?
     var teamName = UILabel()
     var teamOrg = UILabel()
     
@@ -26,7 +26,7 @@ class SelectTeamTableViewCell: UITableViewCell {
         
         teamOrg = createLabelToConstrain(withText: "Team Location", alignment: .left, boldType: "", fontSize: 17, numLines: 1, hasScaleFactor: false)
         
-        addSubviews(views: [imgUser, teamName, teamOrg])
+        addSubviews(views: [/*imgUser */teamName, teamOrg])
         setupAutoLayout()
     }
     
@@ -41,20 +41,18 @@ class SelectTeamTableViewCell: UITableViewCell {
     }
     
     func setupAutoLayout() {
-        let imgLeftConstraint = imgUser.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
-        let imgVertConstraint = imgUser.topAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -35)
-        let imgWidthConstraint = imgUser.widthAnchor.constraint(equalToConstant: 70)
-        let imgHeightConstraint = imgUser.heightAnchor.constraint(equalToConstant: 70)
-        self.contentView.addConstraints([imgLeftConstraint, imgVertConstraint, imgWidthConstraint, imgHeightConstraint])
-        
-        let nameLeftConstraint = teamName.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
-        let nameTopConstraint = teamName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
-        let nameWidthConstraint = teamName.widthAnchor.constraint(equalToConstant: 100)
-        self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
-        
-        let numLeftConstraint = teamOrg.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
-        let numTopConstraint = teamOrg.topAnchor.constraint(equalTo: teamName.bottomAnchor, constant: 5)
-        self.contentView.addConstraints([numLeftConstraint, numTopConstraint])
-        
+        let margins = contentView.safeAreaLayoutGuide
+
+        let nameLeadingConstraint = teamName.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10)
+        let nameTopConstraint = teamName.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10)
+        let nameTrailingConstraint = margins.trailingAnchor.constraint(equalTo: teamName.trailingAnchor, constant: 10)
+        self.contentView.addConstraints([nameLeadingConstraint, nameTopConstraint, nameTrailingConstraint])
+
+        let orgLeadingConstraint = teamOrg.leadingAnchor.constraint(equalTo: teamName.leadingAnchor)
+        let orgTrailingConstraint = teamName.trailingAnchor.constraint(equalTo: teamOrg.trailingAnchor)
+        let orgBottomConstraint = margins.bottomAnchor.constraint(greaterThanOrEqualTo: teamOrg.bottomAnchor, constant: 10)
+        let orgTopConstraint = teamOrg.topAnchor.constraint(equalTo: teamName.bottomAnchor, constant: 5)
+        self.contentView.addConstraints([orgLeadingConstraint, orgTrailingConstraint, orgBottomConstraint, orgTopConstraint])
+
     }
 }

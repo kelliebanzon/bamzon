@@ -17,12 +17,15 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     var rosterVM = RosterVM()
     var members = [User]()
     
-    private var myTableView: UITableView!
+    private var myTableView = UITableView()
     private let cellId = "MyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Roster"
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.register(RosterTableViewCell.self, forCellReuseIdentifier: self.cellId)
         if rosterVM.team != nil {
             rosterVM.refresh(rosterVC: self, teamID: rosterVM.team.teamID)
         }
@@ -32,18 +35,20 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        myTableView = UITableView()
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        myTableView.register(RosterTableViewCell.self, forCellReuseIdentifier: self.cellId)
-        myTableView.backgroundColor = UIColor(named: "TSTeal")
+        myTableView.backgroundColor = .clear
         self.view.addSubview(myTableView)
         
+        setupAutoLayout()
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
         myTableView.translatesAutoresizingMaskIntoConstraints = false
-        let tableHeightConstraint = myTableView.heightAnchor.constraint(equalTo: view.heightAnchor)
-        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: self.view.topAnchor)
-        let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
+        let tableHeightConstraint = myTableView.heightAnchor.constraint(equalTo: margins.heightAnchor)
+        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: margins.topAnchor)
+        let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
+        let tableRightConstraint = margins.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
     
@@ -52,6 +57,9 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+
         selectUser()
     }
     

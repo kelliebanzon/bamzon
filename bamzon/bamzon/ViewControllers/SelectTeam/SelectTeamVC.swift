@@ -112,6 +112,9 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+
         let selectedTeam = selectTeamVM.teams[indexPath.row]
         selectTeamVM.selectTeam(team: selectedTeam)
         // TODO: kyle's utility function to reset root view controller

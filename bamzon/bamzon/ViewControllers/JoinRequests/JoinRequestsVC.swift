@@ -11,13 +11,20 @@ import UIKit
 
 class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
-    //let requestArray: NSArray = ["Request1", "Request2", "Request3", "Request4", "Request5", "Request6", "Request7", "Request8", "Request9"]
     let joinRequestsVM = JoinRequestsVM()
-    private var myTableView: UITableView!
-    private let cellId = "requestCell"
+
+    var myTableView = UITableView()
+    let cellId = "requestCell"
+
+    var requestsLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Join Requests"
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.register(RequestTableViewCell.self, forCellReuseIdentifier: self.cellId)
+
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
         joinRequestsVM.loadRequests(dispatch: dispatch)
@@ -25,33 +32,23 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.removeSpinner()
             self.display()
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
-        //requests label
-        let requestsLabel = UILabel()
+
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeJoinRequests)), animated: true)
+
         requestsLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
         requestsLabel.numberOfLines = 0
         requestsLabel.textColor = .white
         requestsLabel.textAlignment = .left
         requestsLabel.text = "Requests"
         self.view.addSubview(requestsLabel)
-        
-        //request label constraints
-        requestsLabel.translatesAutoresizingMaskIntoConstraints = false
-        let teamLeftConstraint = requestsLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30)
-        let teamTopConstraint = requestsLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50)
-        self.view.addConstraints([teamLeftConstraint, teamTopConstraint])
-        
+
         //select team table view
         myTableView = UITableView()
-        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "requestCell")
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        myTableView.register(RequestTableViewCell.self, forCellReuseIdentifier: self.cellId)
-        myTableView.backgroundColor = UIColor(named: "TSTeal")
+        myTableView.backgroundColor = .clear
         self.view.addSubview(myTableView)
         
         //tableview constraints
@@ -62,7 +59,21 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
-    
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        requestsLabel.translatesAutoresizingMaskIntoConstraints = false
+        let teamLeftConstraint = requestsLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
+        let teamTopConstraint = requestsLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 50)
+        self.view.addConstraints([teamLeftConstraint, teamTopConstraint])
+
+    }
+
+    @objc func closeJoinRequests(sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     func refresh() {
         // TODO: implement refresh
     }
@@ -80,6 +91,9 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
+
         print("Num: \(indexPath.row)")
         print("Value: \(joinRequestsVM.requestedUsers[indexPath.row].getFullName())")
         //TODO: Find a way to access cell elements here? So we can set each cell label to be what's in the array by using indexpath

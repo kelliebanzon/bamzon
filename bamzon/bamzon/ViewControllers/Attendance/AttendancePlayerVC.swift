@@ -28,9 +28,10 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        display()
+        attTable.delegate = self
+        attTable.dataSource = self
         attTable.register(AttendancePlayerTableViewCell.self, forCellReuseIdentifier: "attCell")
+        display()
     }
     
     func display() {
@@ -49,15 +50,12 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         self.view.addSubview(pracStatsLabel)
 
         attTable.allowsSelection = false
-        attTable.delegate = self
-        attTable.dataSource = self
         self.view.addSubview(attTable)
 
         setupAutoLayout()
     }
 
     func setupAutoLayout() {
-        // TODO: clean up
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
             view.topAnchor, constant: offsets["vertEdges"]!)
@@ -134,15 +132,5 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         // screen, not just the table view
         attTable.reloadData()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
