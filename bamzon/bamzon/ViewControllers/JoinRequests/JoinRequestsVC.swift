@@ -5,18 +5,14 @@
 //  Created by Krein, Kevin on 12/4/18.
 //  Copyright © 2018 bamzon. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
 class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
     let joinRequestsVM = JoinRequestsVM()
-
     var myTableView = UITableView()
     let cellId = "requestCell"
-
-    var requestsLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +20,6 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(RequestTableViewCell.self, forCellReuseIdentifier: self.cellId)
-
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
         joinRequestsVM.loadRequests(dispatch: dispatch)
@@ -36,19 +31,26 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
-
-        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeJoinRequests)), animated: true)
-
+        //requests label
+        let requestsLabel = UILabel()
         requestsLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30)
         requestsLabel.numberOfLines = 0
         requestsLabel.textColor = .white
         requestsLabel.textAlignment = .left
         requestsLabel.text = "Requests"
         self.view.addSubview(requestsLabel)
-
+        
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeJoinRequests)), animated: true)
+        
+        //request label constraints
+        requestsLabel.translatesAutoresizingMaskIntoConstraints = false
+        let teamLeftConstraint = requestsLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30)
+        let teamTopConstraint = requestsLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50)
+        self.view.addConstraints([teamLeftConstraint, teamTopConstraint])
+        
         //select team table view
-        myTableView = UITableView()
-        myTableView.backgroundColor = .clear
+        myTableView.backgroundColor = UIColor(named: "TSTeal")
+        myTableView.allowsSelection = false
         self.view.addSubview(myTableView)
         
         //tableview constraints
@@ -59,21 +61,11 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
-
-    func setupAutoLayout() {
-        let margins = view.safeAreaLayoutGuide
-
-        requestsLabel.translatesAutoresizingMaskIntoConstraints = false
-        let teamLeftConstraint = requestsLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
-        let teamTopConstraint = requestsLabel.topAnchor.constraint(equalTo: margins.topAnchor, constant: 50)
-        self.view.addConstraints([teamLeftConstraint, teamTopConstraint])
-
-    }
-
+    
     @objc func closeJoinRequests(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     func refresh() {
         // TODO: implement refresh
     }
@@ -90,15 +82,6 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 85
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-
-        print("Num: \(indexPath.row)")
-        print("Value: \(joinRequestsVM.requestedUsers[indexPath.row].getFullName())")
-        //TODO: Find a way to access cell elements here? So we can set each cell label to be what's in the array by using indexpath
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return joinRequestsVM.requestedUsers.count
     }
@@ -107,6 +90,7 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RequestTableViewCell
         // swiftlint:enable force_cast
+        cell.teamName.text = joinRequestsVM.requestedUsers[indexPath.row].getFullName()
         return cell
     }
 }
