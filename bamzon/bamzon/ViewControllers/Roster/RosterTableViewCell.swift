@@ -10,7 +10,7 @@ import UIKit
 class RosterTableViewCell: UITableViewCell {
     
     var userName = UILabel()
-    var imgUserName: String? = nil
+    var imgUserName: String?
     var imgUser = UIImageView()
     var userNumber = UILabel()
     var userEmail = UILabel()

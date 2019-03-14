@@ -140,10 +140,6 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
                         }
                     }
                 }
-    //            // swiftlint:disable force_cast
-    //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    //            // swiftlint:enable force_cast
-    //            appDelegate.showTabController()
             }
         }
     }
