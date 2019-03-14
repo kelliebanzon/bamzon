@@ -13,9 +13,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     
     //TODO: should be passed after initialization.
     // not sure if it should be forced on initialization or passed
-    var team: Team?
     var rosterVM = RosterVM()
-    var members = [User]()
     
     private var myTableView = UITableView()
     private let cellId = "MyCell"
@@ -26,10 +24,11 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.register(RosterTableViewCell.self, forCellReuseIdentifier: self.cellId)
-        if rosterVM.team != nil {
-            rosterVM.refresh(rosterVC: self, teamID: rosterVM.team.teamID)
+        let dispatch = DispatchGroup()
+        rosterVM.refresh(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
         }
-        display()
     }
     
     func display() {
@@ -64,14 +63,14 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return members.count
+        return rosterVM.members.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RosterTableViewCell
         // swiftlint:enable force_cast
-        let member = members[indexPath.row]
+        let member = rosterVM.members[indexPath.row]
         cell.userName.text = member.firstName + " " + member.lastName
         cell.imgUserName = member.imageURL
         cell.userNumber.text = member.phone
@@ -89,9 +88,12 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     }
     
     func refresh() {
-        if team != nil {
-            rosterVM.refresh(rosterVC: self, teamID: team!.teamID)
+        let dispatch = DispatchGroup()
+        rosterVM.refresh(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
         }
+        
     }
     
     func selectUser() {

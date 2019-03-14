@@ -8,38 +8,35 @@
 
 import Foundation
 
-var members = [User]()
-
 class RosterVM: LoggedInViewModel {
-    func refresh(rosterVC: RosterVC, teamID: ID) {
-        DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
+    
+    var members = [User]()
+    
+    func refresh(dispatch: DispatchGroup) {
+        loadUsers(dispatch: dispatch)
+    }
+    
+    func loadUsers(dispatch: DispatchGroup) {
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.team, keys: self.team.teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             let newTeam = Team(key: key, payload: teamSnap)
             if newTeam.userIDs != nil {
-                rosterVC.team = newTeam
-                self.getUsers(userIDs: newTeam.userIDs!, rosterVC: rosterVC)
+                self.getUsers(userIDs: newTeam.userIDs!, dispatch: dispatch)
             }
+            dispatch.leave()
         })
     }
     
     //TODO: move userID to the VM and access from VC
-    func getUsers(userIDs: [ID], rosterVC: RosterVC) {
-        rosterVC.members = [User]()
+    func getUsers(userIDs: [ID], dispatch: DispatchGroup) {
         for userID in userIDs {
+            dispatch.enter()
             DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                rosterVC.members.append(User(key: key, payload: userSnap))
-                rosterVC.display()
+                self.members.append(User(key: key, payload: userSnap))
+                dispatch.leave()
             })
         }
     }
-    
-    func updateRoster(roster: [User]) {
-//        userIDs = rosterToIDList(roster: roster)
-//            
-//            
-//            for usr in roster {
-//                usr.teamIDs?.append()
-//            }
-        }
     
     
     func rosterToIDList(roster: [User]) -> [ID] {
