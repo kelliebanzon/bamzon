@@ -12,6 +12,8 @@ import UIKit
 class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
     
     var statsVM = StatsVM()
+    let containerView = UIView()
+    let childVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StatsTabVC")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,31 +24,32 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
+        addChildViewController(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.didMove(toParentViewController: self)
+
+        setupAutoLayout()
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            containerView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: margins.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: margins.bottomAnchor)
             ])
 
-        // add child view controller view to container
-        let childVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StatsTabVC")
-        addChildViewController(childVC)
         childVC.view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(childVC.view)
-
         NSLayoutConstraint.activate([
             childVC.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             childVC.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 100),
+            childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
             childVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             ])
-
-        childVC.didMove(toParentViewController: self)
-        
     }
 
     // TODO: these functions no longer belong in this file

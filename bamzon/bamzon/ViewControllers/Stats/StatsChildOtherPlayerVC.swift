@@ -71,7 +71,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
 
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         // TODO: reconsider this tab's name
-        return IndicatorInfo(title: "Other Player Stats")
+        return IndicatorInfo(title: "Others' Stats")
     }
 
     /*
