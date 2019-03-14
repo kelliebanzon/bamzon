@@ -41,6 +41,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate, Displaya
         viewControllers = vcs.map {
             createDefaultNavigationController(rootViewController: $0)
         }
+
+        selectedIndex = 2
     }
 
 }
