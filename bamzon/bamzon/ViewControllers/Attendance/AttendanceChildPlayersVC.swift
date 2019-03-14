@@ -34,6 +34,8 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         playersTableView.backgroundColor = .clear
+        // For demo purposes - disable selection
+        playersTableView.allowsSelection = false
         self.view.addSubview(playersTableView)
         setupAutoLayout()
     }
@@ -58,13 +60,34 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         return playersList.count
     }
     
+    // Populate each cell in the table
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersAttendanceTableViewCell
         // swiftlint:enable force_cast
         cell.userName.text = playersList[indexPath.row]
         cell.userName.textColor = .white
+        cell.attendanceType.tag = indexPath.row
+        cell.attendanceType.backgroundColor = UIColor(named: "TSOrange")
+        cell.attendanceType.addTarget(self, action: #selector(attendanceTypeClick), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func attendanceTypeClick(sender: UIButton) {
+        if sender.currentTitle! == "Absent" {
+            sender.setTitle("Present", for: .normal)
+            sender.backgroundColor = UIColor(named: "TSGreen")
+        } else if sender.currentTitle == "Present" {
+            sender.setTitle("Excused", for: .normal)
+            sender.backgroundColor = UIColor(named: "TSGray")
+        } else if sender.currentTitle == "Excused" {
+            sender.setTitle("Absent", for: .normal)
+            sender.backgroundColor = UIColor(named: "TSOrange")
+        } else {
+            sender.setTitle("Uh oh! 😰", for: .normal)
+            sender.backgroundColor = UIColor(named: "TSYellow")
+        }
+        print(playersList[sender.tag] + " is " + sender.currentTitle!)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

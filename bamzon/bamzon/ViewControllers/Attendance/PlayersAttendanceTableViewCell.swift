@@ -19,6 +19,8 @@ class PlayersAttendanceTableViewCell: UITableViewCell {
         
         userName = createLabelToConstrain(withText: "Last, First", alignment: .left, boldType: "", fontSize: 20, numLines: 1, hasScaleFactor: true)
         
+        attendanceType = createButtonToConstrain(withText: "Absent", size: 12)
+        
         addSubviews()
         setupAutoLayout()
     }
@@ -29,21 +31,25 @@ class PlayersAttendanceTableViewCell: UITableViewCell {
     
     func addSubviews() {
         contentView.addSubview(userName)
+        contentView.addSubview(attendanceType)
+    }
+    
+    @objc func changeAttendanceType() {
+        print("Do something with this button")
     }
     
     func setupAutoLayout() {
-//        //image constraints
-//        let imgLeftConstraint = imgUser.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
-//        let imgVertConstraint = imgUser.topAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -35)
-//        let imgWidthConstraint = imgUser.widthAnchor.constraint(equalToConstant: 70)
-//        let imgHeightConstraint = imgUser.heightAnchor.constraint(equalToConstant: 70)
-//        self.contentView.addConstraints([imgLeftConstraint, imgVertConstraint, imgWidthConstraint, imgHeightConstraint])
-        
         //name constraints
         let nameLeftConstraint = userName.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
         let nameTopConstraint = userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
         let nameWidthConstraint = userName.leadingAnchor.constraint(lessThanOrEqualTo: self.contentView.centerXAnchor)
         self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
+        
+        // Attendance button constraints
+        let attendanceLeftConstraint = attendanceType.leadingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -80)
+        let attendanceTopConstraint = attendanceType.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        let attendanceWidthConstraint = attendanceType.widthAnchor.constraint(equalToConstant: 50)
+        self.contentView.addConstraints([attendanceLeftConstraint, attendanceTopConstraint, attendanceWidthConstraint])
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
