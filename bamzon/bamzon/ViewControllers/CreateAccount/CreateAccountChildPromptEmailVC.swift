@@ -184,6 +184,7 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         if let parent = self.parent as? CreateAccountParentVC {
             let dispatch = DispatchGroup()
             showSpinner(onView: view)
+            parent.createAccountVM.creationErrorMessage = nil
             parent.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", dispatch: dispatch)
             
             dispatch.notify(queue: DispatchQueue.main) {
