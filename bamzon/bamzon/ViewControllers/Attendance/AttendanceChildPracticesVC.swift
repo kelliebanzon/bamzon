@@ -15,7 +15,8 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     let cellId = "cellId"
     
     var datesTableView: UITableView = UITableView()
-    var datesList: [String] = ["03/01/2019", "03/02/2019", "03/03/2019", "03/04/2019", "03/05/2019", "03/06/2019", "03/07/2019", "03/08/2019", "03/09/2019", "03/10/2019", "03/11/2019", "03/12/2019", "03/13/2019", "03/14/2019 - Pi Day!"]
+    var attendanceVM = AttendanceVM()
+    //var datesList: [String] = ["03/01/2019", "03/02/2019", "03/03/2019", "03/04/2019", "03/05/2019", "03/06/2019", "03/07/2019", "03/08/2019", "03/09/2019", "03/10/2019", "03/11/2019", "03/12/2019", "03/13/2019", "03/14/2019 - Pi Day!"]
     
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -25,7 +26,14 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        display()
+        
+        let dispatch = DispatchGroup()
+        showSpinner(onView: self.view)
+        attendanceVM.loadAttendance(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+        }
     }
 
     func display() {
@@ -55,7 +63,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     // Number of rows to present
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datesList.count
+        return attendanceVM.practices.count
     }
     
     // Populate value at selected row
@@ -63,7 +71,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AttendancePracticesTableViewCell
         // swiftlint:enable force_cast
-        cell.practiceDate.text = datesList[indexPath.row]
+        cell.practiceDate.text = attendanceVM.practices[indexPath.row].name
         cell.practiceDate.textColor = .white
         cell.backgroundColor = UIColor(named: "TSTeal")
         return cell
@@ -71,7 +79,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        alert(withTitle: "Date Selected", withMessage: "Show " + datesList[indexPath.row] + "'s attendance")
+        alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.practices[indexPath.row].name + "'s attendance")
         let selectedCell = tableView.cellForRow(at: indexPath)
         selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
     }

@@ -15,7 +15,8 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
     let cellId = "cellId"
     
     var playersTableView: UITableView = UITableView()
-    var playersList: [String] = ["Chaussabel, Adrien", "Gallahue, Caoimhe", "Guadiamos, Ariela", "Hazell, Jordan", "Hofferth, Elliott", "Imobersteg, Andrew", "Lopez, Samuel", "Robinson, Greg", "Sichel, Ben", "Soo, Tyler", "Trudell, Avery", "Vu, Kyle", "Wasson, Jedd", "Webster, David", "Woods, Ana"]
+    var attendanceVM = AttendanceVM()
+    //var playersList: [String] = ["Chaussabel, Adrien", "Gallahue, Caoimhe", "Guadiamos, Ariela", "Hazell, Jordan", "Hofferth, Elliott", "Imobersteg, Andrew", "Lopez, Samuel", "Robinson, Greg", "Sichel, Ben", "Soo, Tyler", "Trudell, Avery", "Vu, Kyle", "Wasson, Jedd", "Webster, David", "Woods, Ana"]
     
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -28,7 +29,14 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         playersTableView.dataSource = self
         playersTableView.delegate = self
         playersTableView.register(PlayersAttendanceTableViewCell.self, forCellReuseIdentifier: "cellId")
-        display()
+        
+        let dispatch = DispatchGroup()
+        showSpinner(onView: self.view)
+        attendanceVM.loadAttendance(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+        }
     }
     
     func display() {
@@ -57,7 +65,7 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersList.count
+        return attendanceVM.members.count
     }
     
     // Populate each cell in the table
@@ -65,7 +73,7 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersAttendanceTableViewCell
         // swiftlint:enable force_cast
-        cell.userName.text = playersList[indexPath.row]
+        cell.userName.text = attendanceVM.members[indexPath.row].getFullName()
         cell.userName.textColor = .white
         cell.attendanceType.tag = indexPath.row
         cell.attendanceType.backgroundColor = UIColor(named: "TSOrange")
@@ -87,13 +95,13 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
             sender.setTitle("Uh oh! 😰", for: .normal)
             sender.backgroundColor = UIColor(named: "TSYellow")
         }
-        print(playersList[sender.tag] + " is " + sender.currentTitle!)
+        print(attendanceVM.members[sender.tag].getFullName() + " is " + sender.currentTitle!)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath)
         selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
-        alert(withTitle: "Player Selected", withMessage: "Show " + playersList[indexPath.row] + "'s personal attendance")
+        alert(withTitle: "Player Selected", withMessage: "Show " + attendanceVM.members[indexPath.row].getFullName() + "'s personal attendance")
     }
     
     func refresh() {

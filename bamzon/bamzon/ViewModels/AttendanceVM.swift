@@ -10,42 +10,51 @@ import Foundation
 
 //Players, list of practices (tagged events).
 
-class Attendace: LoggedInViewModel {
+class AttendanceVM: LoggedInViewModel {
     
     var members: [User] = []
-    var practies: [Event] = [] //list of practices
+    var practices: [Event] = [] //list of practices
     
-    func refresh() {
-        //TODO: implement refresh
+    func refresh(dispatch: DispatchGroup) {
+        loadPractices(dispatch: dispatch)
     }
     
-    func updatePlayers(parent: DisplayableProtocol) {
+    func loadAttendance(dispatch: DispatchGroup) {
+        loadPlayers(dispatch: dispatch)
+        loadPractices(dispatch: dispatch)
+    }
+    
+    func loadPlayers(dispatch: DispatchGroup) {
         if let userIDs = self.team.userIDs {
             for userID in userIDs {
+                dispatch.enter()
                 DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     self.members.append(User(key: key, payload: userSnap))
-                    parent.display()
+                    dispatch.leave()
                 })
             }
         }
     }
     
-    func updatePractices(parent: DisplayableProtocol) {
+    func loadPractices(dispatch: DispatchGroup) {
         var tempEvent: Event?
-        if let userIDs = self.team.userIDs {
-            for userID in userIDs {
-                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+        if let events = self.team.calendar?.getEvents() {
+            for event in events {
+                dispatch.enter()
+                print("looking at event")
+                DBUtility.readFromDB(table: FirTable.event, keys: event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     tempEvent = Event(key: key, payload: userSnap)
                     if tempEvent!.tags?["practice"] != nil {
-                        self.practies.append(Event(key: key, payload: userSnap))
+                        print("found practice")
+                        self.practices.append(Event(key: key, payload: userSnap))
                     }
-                    parent.display()
+                    dispatch.leave()
                 })
             }
         }
     }
     
-    func updateAttendance(player: User) {
+    func loadAttendance(player: User) {
         //TODO: implement update attendance
     }
 }
