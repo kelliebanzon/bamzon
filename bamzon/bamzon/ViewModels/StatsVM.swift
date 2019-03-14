@@ -33,17 +33,13 @@ class StatsVM: LoggedInViewModel {
         }
     }
     
-    func loadTeamStats(parent: DisplayableProtocol) {
-        let group = DispatchGroup()
+    func loadTeamStats(dispatch: DispatchGroup) {
         if self.team.joinReqIDs != nil {
-            group.enter()
+            dispatch.enter()
             DBUtility.readFromDB(table: FirTable.teamStats, keys: self.team.teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 self.teamStats = TeamStats(key: key, payload: payload)
-                group.leave()
+                dispatch.leave()
             })
-        }
-        group.notify(queue: .main) {
-            parent.display()
         }
     }
 }

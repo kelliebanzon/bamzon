@@ -18,7 +18,8 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     //let statTypes = ["Total Meets:", "Combined Score First Places:", "Women's Team First Places:", "Men's Team First Places:"]
     
-    let statTypes = ["Wins:", "Losses:", "Ties:"]
+    var statTypes = ["Wins:", "Losses:", "Ties:"]
+    var stats: [String] = []
     
     let statsVM = StatsVM()
 
@@ -32,7 +33,16 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         statsTableView.delegate = self
         statsTableView.register(StatsTeamStatsViewCell.self, forCellReuseIdentifier: self.cellId)
 
-        display()
+        self.showSpinner(onView: self.view)
+        let dispatch = DispatchGroup()
+        statsVM.loadTeamStats(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.addAdditionalStats()
+    
+            self.removeSpinner()
+            self.display()
+            self.setupAutoLayout()
+        }
     }
     
     func display() {
@@ -41,8 +51,6 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         statsTableView.backgroundColor = UIColor(named: "TSTeal")
         statsTableView.allowsSelection = false
         self.view.addSubview(statsTableView)
-
-        setupAutoLayout()
     }
 
     func setupAutoLayout() {
@@ -70,18 +78,39 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         // swiftlint:enable force_cast
         cell.highlightYellowOnSelection()
         let statType = statTypes[indexPath.row]
-        let teamStats = statsVM.teamStats
-        let stats = [teamStats?.wins, teamStats?.losses, teamStats?.ties]
+        
         let stat = stats[indexPath.row]
-        
+            
         cell.statsDescLabel.text = statType
-        cell.statsLabel.text = "\(stat ?? 0)"
-        
+        cell.statsLabel.text = "\(stat)"
         return cell
     }
     
      // MARK: - Navigation
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Team Stats")
+    }
+    
+    func addAdditionalStats() {
+        
+        if let teamStats = self.statsVM.teamStats {
+            self.stats.append(contentsOf: [String(teamStats.wins), String(teamStats.losses), String(teamStats.ties)])
+        }
+        
+        if let stats = statsVM.teamStats {
+            if let additionalStats = stats.fields {
+                for stat in additionalStats {
+                    print(stat.key)
+                    print(stat.value)
+                    self.statTypes.append(stat.key)
+                    
+                    if let statAsInt = stat.value as? Int {
+                        self.stats.append(String(statAsInt))
+                    } else if let statAsInt = stat.value as? String {
+                        self.stats.append(String(statAsInt))
+                    }
+                }
+            }
+        }
     }
 }
