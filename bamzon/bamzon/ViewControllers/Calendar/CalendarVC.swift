@@ -22,9 +22,10 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var dateLabel = UILabel()
     var locLabel = UILabel()
     var calendarVM: CalendarVM = CalendarVM()
+    var dateString: String?
     
     var calenderView: CalenderView = {
-        let view = CalenderView(theme: MyTheme.dark)
+        let view = CalenderView(theme: MyTheme.dark, calendarVC: self)
         view.translatesAutoresizingMaskIntoConstraints=false
         return view
     }()
@@ -36,16 +37,19 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.viewDidLoad()
         self.title = "Calendar"
         self.view.backgroundColor=Style.bgColor
-        calendarVM.refresh()
+        let dispatch = DispatchGroup()
+        calendarVM.refresh(dispatch: dispatch)
         
         view.addSubview(calenderView)
 
         let rightBarBtn = UIBarButtonItem(title: "Light", style: .plain, target: self, action: #selector(rightBarBtnAction))
         self.navigationItem.rightBarButtonItem = rightBarBtn
         
-        display()
-        addSubviews()
-        setupAutoLayout()
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
+            self.addSubviews()
+            self.setupAutoLayout()
+        }
     }
     
     func display() {
@@ -136,11 +140,11 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         // swiftlint:enable force_cast
         cell.highlightYellowOnSelection()
         
-        let event = events[indexPath.row]
+        let event = calendarVM.eventDict[dateString ?? "1970-01-01"]?[indexPath.row]
         
-        cell.eventLabel.text = event.name
-        cell.dateLabel.text = event.date.toString()
-        cell.locLabel.text = event.location?.description
+        cell.eventLabel.text = event?.name ?? ""
+        cell.dateLabel.text = event?.date.toString() ?? ""
+        cell.locLabel.text = event?.location?.description ?? ""
         
         return cell
     }

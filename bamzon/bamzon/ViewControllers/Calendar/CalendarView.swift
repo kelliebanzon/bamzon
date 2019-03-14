@@ -53,22 +53,25 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     var presentYear = 0
     var todaysDate = 0
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
+    var calendarVC: CalendarVC?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initializeView()
     }
     
-    convenience init(theme: MyTheme) {
+    convenience init(theme: MyTheme, calendarVC: CalendarVC) {
         self.init()
         
+        self.calendarVC = calendarVC
+
+
         if theme == .dark {
             Style.themeDark()
         } else {
             Style.themeLight()
         }
-        
+
         initializeView()
     }
     
@@ -145,7 +148,7 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
         
         let queryString = "\(currentYear)-\(currentMonthIndex)-\(currentDay)"
         date = Date.fromString(from: queryString)
-        print(date.toString())
+        calendarVC?.dateString = queryString
         
     }
     

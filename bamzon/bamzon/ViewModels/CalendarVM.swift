@@ -12,7 +12,8 @@ import Firebase
 class CalendarVM: LoggedInViewModel {
     var eventDict: [String: [Event]] = [:]
     
-    func refresh() {
+    func refresh(dispatch: DispatchGroup) {
+        dispatch.enter()
         DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: team.teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
                 for event in eventSnap {
                     let event = Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:])
@@ -21,6 +22,7 @@ class CalendarVM: LoggedInViewModel {
                     oldVal?.append(event)
                     self.eventDict.updateValue(oldVal ?? [event], forKey: dateString)
                 }
+            dispatch.leave()
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             print(self.eventDict)
             }
