@@ -47,12 +47,18 @@ class LoginVC: UIViewController, DisplayableProtocol, UITextFieldDelegate {
 
         //Email Text Field
         email = createDefaultTextField(withText: "Email", withFrame: nil, withCenter: nil, withPadding: emailPadding)
+        email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
+        email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         email?.delegate = self
         self.view.addSubview(email!)
         
         //Password Text Field
         password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: passwordPadding)
         password?.isSecureTextEntry = true
+        password?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
+        password?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        password?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         self.view.addSubview(password!)
         
         //Buttons

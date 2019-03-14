@@ -48,21 +48,29 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         
         // First Name
         firstName = createDefaultTextField(withText: "First Name", withFrame: nil, withCenter: nil, withPadding: nil)
+        firstName?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        firstName?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         scrollView.addSubview(firstName!)
         
         // Last Name
         lastName = createDefaultTextField(withText: "Last Name", withFrame: nil, withCenter: nil, withPadding: nil)
+        lastName?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        lastName?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         scrollView.addSubview(lastName!)
         
         // Email
         email = createDefaultTextField(withText: "Email", withFrame: nil, withCenter: nil, withPadding: nil)
         email?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
         email?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        email?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         email?.delegate = self
         scrollView.addSubview(email!)
         
         // Password
         password = createDefaultTextField(withText: "Password", withFrame: nil, withCenter: nil, withPadding: nil)
+        password?.autocapitalizationType = UITextAutocapitalizationType(rawValue: 0)!
+        password?.autocorrectionType = UITextAutocorrectionType(rawValue: 0)!
+        password?.spellCheckingType = UITextSpellCheckingType(rawValue: 0)!
         scrollView.addSubview(password!)
         
         // Continue Button
@@ -221,6 +229,14 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         lastName?.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         email?.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         password?.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "captured" {
+            let isCaptured = UIScreen.main.isCaptured
+            alert(withTitle: "⚠️ WARNING ⚠️", withMessage: "Screen recording detected!")
+            print(isCaptured)
+        }
     }
 
 }

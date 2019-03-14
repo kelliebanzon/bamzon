@@ -18,6 +18,8 @@ class CreateAccountParentVC: UIViewController, DisplayableProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         //view.backgroundColor = UIColor(named: "TSNavy")
+        UIScreen.main.addObserver(self, forKeyPath: "captured", options: .new, context: nil)
+        
         display()
     }
     
