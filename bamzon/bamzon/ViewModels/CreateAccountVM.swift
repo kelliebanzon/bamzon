@@ -15,25 +15,16 @@ import Firebase
 class CreateAccountVM {
     
     var creationErrorMessage: String?
+    var verificationErrorMessage: String?
     
-    func sendVerification(completion: @escaping(UIAlertController?) -> Void) {
+    func sendVerification() {
         //TODO: Customize verification email
         // You can customize the email template that is used in Authentication section of the Firebase console, on the Email Templates page. See Email Templates in Firebase Help Center:
         //https://support.google.com/firebase/answer/7000714
-        if checkUserEmailVerified() {
-            let alertController = UIAlertController(title: "Already Verified", message: "User email already verified", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            completion(alertController)
-        } else {
-            Auth.auth().currentUser?.sendEmailVerification { (error) in
-                if error != nil {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    completion(alertController)
-                }
+
+        Auth.auth().currentUser?.sendEmailVerification { (error) in
+            if error != nil {
+                self.verificationErrorMessage = error?.localizedDescription
             }
         }
     }
@@ -57,6 +48,7 @@ class CreateAccountVM {
                 guard let user = authResult?.user else { return }
                 let newUser = self.initUser(fname: fname, lname: lname, email: email)
                 let firebaseID = FirebaseID(userID: newUser.userID, firebaseID: user.uid)
+                self.sendVerification()
                 DBUtility.writeToDB(objToWrite: firebaseID)
                 DBUtility.writeToDB(objToWrite: newUser)
             } else {
@@ -68,7 +60,7 @@ class CreateAccountVM {
     
     func initUser(fname: String, lname: String, email: String) -> User {
         let newUserID = IDUtility.generateUserID()
-        let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
+        let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: email, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
         return newUser
     }
 }

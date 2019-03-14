@@ -20,14 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
-        //curUser = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", uuid: "404")])
-        //curTeam = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
-//        do {
-//            try Auth.auth().signOut()
-//        } catch {
-//            print("failed to sign out")
-//        }
 
         if let user = Auth.auth().currentUser {
             self.dispatch.enter()

@@ -183,9 +183,11 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
         // https://console.firebase.google.com/u/1/project/bamzon-876ab/authentication/users
         if let parent = self.parent as? CreateAccountParentVC {
             let dispatch = DispatchGroup()
+            showSpinner(onView: view)
             parent.createAccountVM.createAccount(fname: fName, lname: lName, email: email, password: "password", dispatch: dispatch)
             
             dispatch.notify(queue: DispatchQueue.main) {
+                self.removeSpinner()
                 if let errorMessage = parent.createAccountVM.creationErrorMessage {
                     self.alert(withTitle: "Error", withMessage: errorMessage)
                 } else {
@@ -194,10 +196,6 @@ class CreateAccountChildPromptEmailVC: UIViewController, DisplayableProtocol, UI
                     createAccountChild!.email = email
                     self.present(createAccountChild!, animated: true, completion: nil)
                 }
-                //            // swiftlint:disable force_cast
-                //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                //            // swiftlint:enable force_cast
-                //            appDelegate.showTabController()
             }
             
         } else {
