@@ -12,13 +12,7 @@ import XLPagerTabStrip
 
 class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol {
     
-    //this is very hardcoded but I had unexpected project in other class
-    
-    let team = "Cal Poly Swim Club"
-
-    //let statTypes = ["Total Meets:", "Combined Score First Places:", "Women's Team First Places:", "Men's Team First Places:"]
-    
-    var statTypes = ["Wins:", "Losses:", "Ties:"]
+    var statTypes = ["Wins", "Losses", "Ties"]
     var stats: [String] = []
     
     let statsVM = StatsVM()
@@ -68,7 +62,6 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return statsVM.teamStats?.fields!.count ?? 0
         return statTypes.count
     }
     
@@ -85,23 +78,15 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.statsLabel.text = "\(stat)"
         return cell
     }
-    
-     // MARK: - Navigation
-    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        return IndicatorInfo(title: "Team Stats")
-    }
-    
+
     func addAdditionalStats() {
-        
         if let teamStats = self.statsVM.teamStats {
             self.stats.append(contentsOf: [String(teamStats.wins), String(teamStats.losses), String(teamStats.ties)])
         }
-        
+
         if let stats = statsVM.teamStats {
             if let additionalStats = stats.fields {
                 for stat in additionalStats {
-                    print(stat.key)
-                    print(stat.value)
                     self.statTypes.append(stat.key)
                     
                     if let statAsInt = stat.value as? Int {
@@ -113,4 +98,10 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             }
         }
     }
+
+    // MARK: - Navigation
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return IndicatorInfo(title: "Team Stats")
+    }
+
 }
