@@ -78,6 +78,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.backgroundColor = UIColor(named: "TSTeal")
+        cell.highlightYellowOnSelection()
         if indexPath.section == 0 {
             cell.textLabel?.text = settingsList[indexPath.row]
             cell.textLabel?.textColor = .white
@@ -92,8 +93,6 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     // Function to handle what setting to call
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath)
-        selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")
 
         if indexPath.section == 0 {
             if settingsList[indexPath.row] == "Switch Teams" {
