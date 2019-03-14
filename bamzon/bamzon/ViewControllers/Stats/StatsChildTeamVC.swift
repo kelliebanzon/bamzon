@@ -19,33 +19,40 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     let statTypes = ["Total Meets:", "Combined Score First Places:", "Women's Team First Places:", "Men's Team First Places:"]
     
     let stats = [603, 370, 220, 150]
-    
-    var teamLabel = UILabel()
-    
-    private var myTableView: UITableView!
+
+    let statsVM = StatsVM()
+
+    private var statsTableView = UITableView()
     private let cellId = "MyCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        statsTableView.dataSource = self
+        statsTableView.delegate = self
+        statsTableView.register(StatsTeamStatsViewCell.self, forCellReuseIdentifier: self.cellId)
+
         display()
     }
     
     func display() {
-        // TODO: display
         view.backgroundColor = UIColor(named: "TSTeal")
-        
-        //Team label
-        teamLabel = createDefaultLabel(text: team, fontSize: 30, numLines: 1, fontColor: .white, fontAlignment: .center)
-        
-        myTableView = UITableView()
-        //myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        myTableView.register(StatsTeamStatsViewCell.self, forCellReuseIdentifier: self.cellId)
-        myTableView.backgroundColor = UIColor(named: "TSTeal")
-        
-        addSubviews()
+
+        statsTableView.backgroundColor = UIColor(named: "TSTeal")
+        self.view.addSubview(statsTableView)
+
         setupAutoLayout()
+        print(statsVM.teamStats)
+    }
+
+    func setupAutoLayout() {
+        let margins = view.safeAreaLayoutGuide
+
+        statsTableView.translatesAutoresizingMaskIntoConstraints = false
+        statsTableView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        statsTableView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        statsTableView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        statsTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -77,33 +84,5 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
      // MARK: - Navigation
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Team Stats")
-    }
-
-    /*
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    func addSubviews() {
-        self.view.addSubview(teamLabel)
-        self.view.addSubview(myTableView)
-    }
-    
-    func setupAutoLayout() {
-        //team label constraints
-        let nameHorizConstraint = teamLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let nameTopConstraint = teamLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50)
-        self.view.addConstraints([nameHorizConstraint, nameTopConstraint])
-        
-        //tableview constraints
-        myTableView.translatesAutoresizingMaskIntoConstraints = false
-        let tableHeightConstraint = myTableView.heightAnchor.constraint(equalToConstant: 200)
-        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: teamLabel.bottomAnchor, constant: 20)
-        let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let tableRightConstraint = view.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
-        self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
 }

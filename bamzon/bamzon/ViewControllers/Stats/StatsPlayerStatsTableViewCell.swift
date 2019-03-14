@@ -10,8 +10,12 @@ import UIKit
 
 class StatsPlayerStatsTableViewCell: UITableViewCell {
 
+    var eventName: String?
+    var valueText: String?
     var eventLabel = UILabel()
-    var prLabel = UILabel()
+    var valueLabel = UILabel()
+
+    let formatUtil = FormatUtility()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,32 +28,34 @@ class StatsPlayerStatsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         display()
     }
 
     func display() {
-        eventLabel = createTableLabel(numLines: 2)
-        addSubview(eventLabel)
+        contentView.backgroundColor = UIColor(named: "TSTeal")
 
-        prLabel = createTableLabel(numLines: 2)
-        addSubview(prLabel)
+        eventLabel = createDefaultBoldLabel(text: eventName ?? "")
+        contentView.addSubview(eventLabel)
+
+        valueLabel = createDefaultBodyLabel(text: valueText ?? "", fontAlignment: .right)
+        contentView.addSubview(valueLabel)
 
         setupAutoLayout()
     }
 
     func setupAutoLayout() {
+        let margins = contentView.safeAreaLayoutGuide
+
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
-        let eventLabelVert = eventLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        let eventLabelLeading = eventLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12)
-        let eventLabelTrailing = eventLabel.trailingAnchor.constraint(greaterThanOrEqualTo: prLabel.leadingAnchor, constant: 12)
+        let eventLabelVert = eventLabel.centerYAnchor.constraint(equalTo: margins.centerYAnchor)
+        let eventLabelLeading = eventLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10)
+        let eventLabelTrailing = eventLabel.trailingAnchor.constraint(greaterThanOrEqualTo: valueLabel.leadingAnchor, constant: 10)
         addConstraints([eventLabelVert, eventLabelLeading, eventLabelTrailing])
 
-        prLabel.translatesAutoresizingMaskIntoConstraints = false
-        let prLabelVert = prLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        let prLabelLeading = prLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: frame.width / 2 + 12)
-        let prLabelTrailing = trailingAnchor.constraint(equalTo: prLabel.trailingAnchor, constant: 12)
-        addConstraints([prLabelVert, prLabelLeading, prLabelTrailing])
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+        let valueLabelVert = valueLabel.centerYAnchor.constraint(equalTo: eventLabel.centerYAnchor)
+        let valueLabelTrailing = margins.trailingAnchor.constraint(equalTo: valueLabel.trailingAnchor, constant: 10)
+        addConstraints([valueLabelVert, valueLabelTrailing])
     }
 
 }

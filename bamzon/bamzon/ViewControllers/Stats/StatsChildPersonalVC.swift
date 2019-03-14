@@ -13,9 +13,10 @@ import XLPagerTabStrip
 class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
     var profilePictureImageView = UIImageView()
-    var vm = PlayerStatsVM()
     var nameLabel = UILabel()
     var statsTable = UITableView()
+
+    let playerStatsVM = PlayerStatsVM()
 
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -25,22 +26,25 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        display()
         statsTable.register(StatsPlayerStatsTableViewCell.self, forCellReuseIdentifier: "statCell")
         statsTable.delegate = self
         statsTable.dataSource = self
         refresh()
+        display()
     }
     
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
-        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: vm.user.imageURL, style: .squircle)
+        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: playerStatsVM.user.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel = createDefaultHeader1Label(text: vm.user.getFullName(), numLines: 3)
+        nameLabel = createDefaultHeader1Label(text: playerStatsVM.user.getFullName(), numLines: 3)
         self.view.addSubview(nameLabel)
 
+        statsTable.backgroundColor = .clear
+        statsTable.reloadData()
+        statsTable.allowsSelection = false
         self.view.addSubview(statsTable)
 
         setupAutoLayout()
@@ -71,17 +75,17 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.playerStats?.fields?.count ?? 0
+        return playerStatsVM.playerStats?.fields?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "statCell", for: indexPath) as? StatsPlayerStatsTableViewCell {
-            let fieldName = vm.playerStats?.fields?.keys.sorted()[indexPath.row]
+            let fieldName = playerStatsVM.playerStats?.fields?.keys.sorted()[indexPath.row]
             cell.eventLabel.text = fieldName
-            if let prVal = vm.playerStats?.fields?[fieldName!] {
-                cell.prLabel.text = "\(prVal)"
+            if let prVal = playerStatsVM.playerStats?.fields?[fieldName!] {
+                cell.valueLabel.text = "\(prVal)"
             } else {
-                cell.prLabel.text = "-"
+                cell.valueLabel.text = "-"
             }
             return cell
         } else {
@@ -89,9 +93,14 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
             return UITableViewCell(style: .default, reuseIdentifier: nil)
         }
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
     
     func refresh() {
-        vm.refresh(playerStatsVC: self)
+        playerStatsVM.refresh(playerStatsVC: self)
+        display()
     }
     
     func edit() {

@@ -61,7 +61,4 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
         // TODO: implement edit stats
     }
     
-    func viewPlayerStats(playerID: CLong) {
-        // TODO: implement view player stats
-    }
 }

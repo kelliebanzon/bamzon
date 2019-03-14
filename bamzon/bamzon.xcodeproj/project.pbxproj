@@ -103,6 +103,7 @@
 		ABF67C43220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C42220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift */; };
 		ABF67C45220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */; };
 		ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */; };
+		ABFA0765223A226F00C07AAF /* FormatUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA0764223A226F00C07AAF /* FormatUtility.swift */; };
 		C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7157E472224870E00246EA0 /* bamzonModelTests.swift */; };
 		D37DA9D1221F84A6000E357E /* LoggedInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */; };
 		D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D22224C66B000E357E /* FirebaseID.swift */; };
@@ -245,6 +246,7 @@
 		ABF67C42220A6DEC00C25AF9 /* CreateAccountChildPromptEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildPromptEmailVC.swift; sourceTree = "<group>"; };
 		ABF67C44220CAB1300C25AF9 /* CreateAccountChildPromptCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildPromptCodeVC.swift; sourceTree = "<group>"; };
 		ABF67C46220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountChildSuccessVC.swift; sourceTree = "<group>"; };
+		ABFA0764223A226F00C07AAF /* FormatUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatUtility.swift; sourceTree = "<group>"; };
 		B2497258FD1FE84BC3DFE612 /* Pods_bamzon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bamzon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7157E452224870E00246EA0 /* bamzonModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bamzonModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7157E472224870E00246EA0 /* bamzonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonModelTests.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				ABC5821821B4A65500DDC094 /* StringFormatUtility.swift */,
 				D3B4CBAE22111CF700CD42BC /* VCUtility.swift */,
 				6E6222DF221F7AD3000A2B94 /* CellUtility.swift */,
+				ABFA0764223A226F00C07AAF /* FormatUtility.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1014,6 +1017,7 @@
 				ABC5821921B4A65500DDC094 /* StringFormatUtility.swift in Sources */,
 				ABC5821321B4A56600DDC094 /* ImageUtility.swift in Sources */,
 				ABEF642021FBE95300716ACB /* EditableProtocol.swift in Sources */,
+				ABFA0765223A226F00C07AAF /* FormatUtility.swift in Sources */,
 				AB47757521B4E7D100A1DCD5 /* JoinRequest.swift in Sources */,
 				A8143A0B21B73006000E287A /* StatsChildPersonalVC.swift in Sources */,
 				D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */,

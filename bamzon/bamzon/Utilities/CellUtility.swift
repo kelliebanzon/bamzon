@@ -11,6 +11,17 @@ import UIKit
 
 extension UITableViewCell {
 
+    func createDefaultBoldLabel(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = FormatUtility().createDefaultLabel(text: text, fontSize: 16, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+        return label
+    }
+
+    func createDefaultBodyLabel(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = FormatUtility().createDefaultLabel(text: text, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+        label.font = UIFont(name: "HelveticaNeue-Medium", size: 16)
+        return label
+    }
+
     func createTableLabel(numLines: Int = 1) -> UILabel {
         let label = UILabel()
         label.textColor = .black
