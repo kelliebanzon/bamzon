@@ -12,16 +12,26 @@ import Firebase
 class CalendarVM: LoggedInViewModel {
     let teamID: ID
     var calendar: TeamCalendar
+    var eventDict: [String: [Event]]
     
     init(teamID: ID, calendar: TeamCalendar) {
         self.teamID = teamID
         self.calendar = calendar
+        self.eventDict = [:]
     }
     
     func refresh() {
         DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
-            for event in eventSnap {
-                self.calendar.addEvent(event: Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:]))}
+                for event in eventSnap {
+                    let event = Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:])
+                    let dateString = "string"
+                    var oldVal = self.eventDict[dateString]
+//                    if oldVal == nil {
+//                        self.eventDict.updateValue([event], forKey: dateString)
+//                    } else {
+//                        eventDict.updateValue(oldVal?.append(event) ?? [] as [Event], forKey: dateString)
+//                    }
+                }
             }
         )
     }
