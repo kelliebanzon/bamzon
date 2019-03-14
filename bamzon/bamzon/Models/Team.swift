@@ -15,6 +15,8 @@ struct Team: FirebaseCompatable, Equatable {
     var orgID: ID
     var userIDs: [ID]?
     var teamName: String
+    var nextPractice: ID?
+    var nextEvent: ID?
     var sport: String? // TODO: should sport be an optional?
     var stats: TeamStats?
     var calendar: TeamCalendar?
@@ -31,6 +33,8 @@ struct Team: FirebaseCompatable, Equatable {
         self.calendar = calendar
         self.joinReqIDs = joinReqIDs
         self.blacklistUserIDs = blacklistUserIDs
+        self.nextEvent = nil
+        self.nextPractice = nil
     }
     
     //keys: teamID: ID
@@ -44,9 +48,11 @@ struct Team: FirebaseCompatable, Equatable {
         calendar = nil // todo connect with calendar/stats/joinRequest adapters
         joinReqIDs = IDUtility.stringsToIDs(strs: payload["joinRequestIDs"] as? [String] ?? [])
         blacklistUserIDs = IDUtility.stringsToIDs(strs: payload["blacklistUserIDs"] as? [String] ?? [])
+        nextPractice = IDUtility.generateIDFromString(idString: payload["nextPractice"] as? String ?? "z0")
+        nextEvent = IDUtility.generateIDFromString(idString: payload["nextEvent"] as? String ?? "z0")
         
         var thisTeam = self
-       
+        
         if teamID != ID(type: "z", uuid: "0") {
             DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 thisTeam.calendar = TeamCalendar(key: key, payload: payload)
@@ -55,6 +61,7 @@ struct Team: FirebaseCompatable, Equatable {
                 thisTeam.stats = TeamStats(key: key, payload: payload)
             })
         }
+
     }
 
     func formatForDB() -> [String: Any] {

@@ -37,8 +37,12 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Team Home"
-        teamHomeVM.refresh()
-        display()
+        let dispatch = DispatchGroup()
+        teamHomeVM.refresh(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            print("displaying")
+            self.display()
+        }
     }
     
     func display() {
@@ -48,14 +52,12 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
 
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        print(teamHomeVM.nextNonPractice)
-    
-        let nextPracticeDesc = teamHomeVM.nextPractice?.description ?? "--"
+        let nextPracticeDesc = teamHomeVM.nextPractice?.name ?? "--"
         let nextPracticeTime = teamHomeVM.nextPractice?.date.toString() ?? "--"
-        let nextEventDesc = teamHomeVM.nextNonPractice?.description ?? "--"
+        let nextEventDesc = teamHomeVM.nextNonPractice?.name ?? "--"
         let nextEventDate = teamHomeVM.nextNonPractice?.date.toString() ?? "--"
-        let departTime = "December 1 @ 8 AM"
-        let returnTime = "December 1 @ 10 PM"
+        let departTime = ""
+        let returnTime = ""
         
         teamPictureImageView.contentMode = .scaleAspectFill
         teamPictureImageView.clipsToBounds = true
@@ -87,10 +89,10 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         eventDateLabel = createDefaultLabel(text: nextEventDate, numLines: 0)
         self.view.addSubview(eventDateLabel)
 
-        departTimeLabel = createDefaultLabel(text: "Leaving \(departTime)", numLines: 0)
+        departTimeLabel = createDefaultLabel(text: "", numLines: 0)
         self.view.addSubview(departTimeLabel)
 
-        returnTimeLabel = createDefaultLabel(text: "Returning \(returnTime)", numLines: 0)
+        returnTimeLabel = createDefaultLabel(text: "", numLines: 0)
         self.view.addSubview(returnTimeLabel)
 
         setupAutoLayout()

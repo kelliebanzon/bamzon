@@ -14,20 +14,16 @@ class TeamHomeVM: LoggedInViewModel {
     var nextPractice: Event?
     var nextNonPractice: Event?
     
-    func refresh() {
-        print("###########################")
-        print(team)
-        let events = self.team.calendar?.getEvents() ?? []
-        let curDate = Date.init(timeIntervalSinceNow: 0)
-        for event: Event in events {
-            if event.date.compare(curDate).rawValue >= 0 && (nextPractice == nil || nextNonPractice == nil) {
-                if nextPractice == nil && event.tags?["practice"] != nil {
-                    nextPractice = event
-                }
-                if nextNonPractice == nil && event.tags?["practice"] != nil {
-                    nextNonPractice = event
-                }
-            }
-        }
+    func refresh(dispatch: DispatchGroup) {
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.event, keys: self.team.nextPractice ?? ID(type: "x", uuid: "0"), completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            self.nextPractice = Event(key: key, payload: payload)
+                dispatch.leave()
+        })
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.event, keys: self.team.nextEvent ?? ID(type: "x", uuid: "0"), completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            self.nextNonPractice = Event(key: key, payload: payload)
+            dispatch.leave()
+        })
     }
 }
