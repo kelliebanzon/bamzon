@@ -51,17 +51,7 @@ extension UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
-    
-    func createDefaultPic() -> UIImageView {
-        let img: UIImageView = UIImageView()
-        img.contentMode = .scaleAspectFill
-        img.clipsToBounds = true
-        img.image = UIImage(named: "BZN-Square-Logo")
-        img.layer.cornerRadius = 35
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
-    }
-    
+
     // Highlight the button upon touchDown
     @objc func highlightButton(sender: UIButton!) {
         sender.backgroundColor = UIColor(named: "TSYellowDark")

@@ -10,6 +10,7 @@ import UIKit
 class RosterTableViewCell: UITableViewCell {
     
     var userName = UILabel()
+    var imgUserName: String? = nil
     var imgUser = UIImageView()
     var userNumber = UILabel()
     var userEmail = UILabel()
@@ -19,7 +20,7 @@ class RosterTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(named: "TSTeal")
         
-        imgUser = createDefaultPic()
+        imgUser = ImageUtility().createProfilePictureImageView(imageName: imgUserName, style: .squircle)
         
         userName = createLabelToConstrain(withText: "Last, First", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
         
@@ -46,33 +47,35 @@ class RosterTableViewCell: UITableViewCell {
     }
     
     func setupAutoLayout() {
-        //image constraints
-        let imgLeftConstraint = imgUser.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10)
-        let imgVertConstraint = imgUser.topAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -35)
-        let imgWidthConstraint = imgUser.widthAnchor.constraint(equalToConstant: 70)
-        let imgHeightConstraint = imgUser.heightAnchor.constraint(equalToConstant: 70)
-        self.contentView.addConstraints([imgLeftConstraint, imgVertConstraint, imgWidthConstraint, imgHeightConstraint])
+        let margins = contentView.safeAreaLayoutGuide
+
+        imgUser.translatesAutoresizingMaskIntoConstraints = false
+        let imgLeadingConstraint = imgUser.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 10)
+        let imgTopConstraint = imgUser.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10)
+        let imgBottomConstraint = margins.bottomAnchor.constraint(equalTo: imgUser.bottomAnchor, constant: 10)
+        let imgAspectConstraint = imgUser.widthAnchor.constraint(equalTo: imgUser.heightAnchor)
+        self.contentView.addConstraints([imgLeadingConstraint, imgTopConstraint, imgBottomConstraint, imgAspectConstraint])
         
-        //year constraints
-        let yearRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userYear.trailingAnchor, constant: 15)
-        let yearTopConstraint = userYear.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
+        userYear.translatesAutoresizingMaskIntoConstraints = false
+        let yearRightConstraint = margins.trailingAnchor.constraint(equalTo: userYear.trailingAnchor, constant: 15)
+        let yearTopConstraint = userYear.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10)
         self.contentView.addConstraints([yearRightConstraint, yearTopConstraint])
         
-        //name constraints
+        userName.translatesAutoresizingMaskIntoConstraints = false
         let nameLeftConstraint = userName.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
-        let nameTopConstraint = userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10)
+        let nameTopConstraint = userName.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10)
         let nameWidthConstraint = userYear.leadingAnchor.constraint(greaterThanOrEqualTo: userName.trailingAnchor, constant: 20)
         self.contentView.addConstraints([nameLeftConstraint, nameTopConstraint, nameWidthConstraint])
         
-        //number constraints
+        userNumber.translatesAutoresizingMaskIntoConstraints = false
         let numLeftConstraint = userNumber.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
         let numTopConstraint = userNumber.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 5)
         self.contentView.addConstraints([numLeftConstraint, numTopConstraint])
         
-        //email constraints
+        userEmail.translatesAutoresizingMaskIntoConstraints = false
         let emailLeftConstraint = userEmail.leadingAnchor.constraint(equalTo: imgUser.trailingAnchor, constant: 15)
         let emailTopConstraint = userEmail.topAnchor.constraint(equalTo: userNumber.bottomAnchor, constant: 5)
-        let emailRightConstraint = self.contentView.trailingAnchor.constraint(equalTo: userEmail.trailingAnchor, constant: 20)
+        let emailRightConstraint = margins.trailingAnchor.constraint(equalTo: userEmail.trailingAnchor, constant: 20)
         self.contentView.addConstraints([emailLeftConstraint, emailTopConstraint, emailRightConstraint])
     }
 }

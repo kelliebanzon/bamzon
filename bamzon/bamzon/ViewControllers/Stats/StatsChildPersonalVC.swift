@@ -35,7 +35,7 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
 
-        profilePictureImageView = createProfilePictureImageView(imageName: vm.user.imageURL)
+        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: vm.user.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
         nameLabel = createDefaultHeader1Label(text: vm.user.getFullName(), numLines: 3)

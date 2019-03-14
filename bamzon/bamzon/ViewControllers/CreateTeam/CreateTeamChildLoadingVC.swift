@@ -23,8 +23,7 @@ class CreateTeamChildLoadingVC: UIViewController, DisplayableProtocol {
     func display() {
         view.backgroundColor = UIColor(named: "TSTeal")
         
-        loadingLabel = createDefaultHeader2Label(text: loadingLabelText, numLines: 0)
-        loadingLabel.textAlignment = .center
+        loadingLabel = createDefaultHeader2Label(text: loadingLabelText, numLines: 0, fontAlignment: .center)
         self.view.addSubview(loadingLabel)
 
         setupAutoLayout()

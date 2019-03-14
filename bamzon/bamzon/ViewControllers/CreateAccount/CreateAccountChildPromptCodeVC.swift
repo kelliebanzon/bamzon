@@ -31,8 +31,7 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
         shortEmail += "***" + String(email!.suffix(from: email!.lastIndex(of: ".")!))
         
         // Top Label
-        topLabel = createDefaultHeader1Label(text: "Please enter the \rsecurity code emailed \rto " + shortEmail, numLines: 0)
-        topLabel.textAlignment = .center
+        topLabel = createDefaultHeader1Label(text: "Please enter the \rsecurity code emailed \rto " + shortEmail, numLines: 0, fontAlignment: .center)
         
         self.view.addSubview(topLabel)
         
@@ -99,18 +98,5 @@ class CreateAccountChildPromptCodeVC: UIViewController, DisplayableProtocol, UIT
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-//    @ kyle: when you're ready to transition to the account success creation page,
-//    add this line of code to your function:
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

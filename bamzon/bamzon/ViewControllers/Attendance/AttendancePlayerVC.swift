@@ -36,7 +36,7 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
     func display() {
         self.view.backgroundColor = UIColor(named: "TSTeal")
 
-        profilePictureImageView = createProfilePictureImageView(imageName: player.imageURL)
+        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: player.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
         nameLabel = createDefaultHeader1Label(text: player.getFullName(), numLines: 3)

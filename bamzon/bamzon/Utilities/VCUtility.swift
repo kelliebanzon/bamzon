@@ -16,6 +16,8 @@ class VCUtility {
     let bodyFont = UIFont(name: "HelveticaNeue-Medium", size: 12)
 }
 
+var vSpinner: UIView?
+
 extension UIViewController {
     
     func setRootView(toVC: String) {
@@ -131,6 +133,17 @@ extension UIViewController {
     func createDefaultHeader2Label(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
         return createDefaultLabel(text: text, fontSize: 25, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
     }
+
+    func createDefaultBoldLabel(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = createDefaultLabel(text: text, fontSize: 20, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+        return label
+    }
+
+    func createDefaultBodyLabel(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
+        let label = createDefaultLabel(text: text, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
+        label.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
+        return label
+    }
     
     func createDefaultTextField(withText: String, withFrame: CGRect?, withCenter: CGPoint?, withPadding: CGRect?) -> UITextField {
         let textField: UITextField
@@ -202,15 +215,6 @@ extension UIViewController {
         
         return textButton
     }
-
-    func createProfilePictureImageView(imageName: String?) -> UIImageView {
-        let profilePictureImageView = UIImageView()
-        profilePictureImageView.contentMode = .scaleAspectFill
-        profilePictureImageView.clipsToBounds = true
-        profilePictureImageView.image = UIImage(named: imageName ?? "default-profile-picture")
-        //profilePictureImageView.roundCorners()
-        return profilePictureImageView
-    }
     
     func createButtonToConstrain(withText: String, size: CGFloat) -> UIButton {
         let button = UIButton()
@@ -245,12 +249,8 @@ extension UIViewController {
     @objc func unhighlightButton(sender: UIButton!) {
         sender.backgroundColor = UIColor(named: "TSYellow")
     }
-}
 
-var vSpinner : UIView?
-extension UIViewController {
-    
-    func showSpinner(onView : UIView) {
+    func showSpinner(onView: UIView) {
         let spinnerView = UIView.init(frame: onView.bounds)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
         let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)

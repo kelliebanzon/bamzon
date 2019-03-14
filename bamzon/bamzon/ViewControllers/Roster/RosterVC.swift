@@ -39,7 +39,6 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         myTableView.backgroundColor = UIColor(named: "TSTeal")
         self.view.addSubview(myTableView)
         
-        //tableview constraints
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         let tableHeightConstraint = myTableView.heightAnchor.constraint(equalTo: view.heightAnchor)
         let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: self.view.topAnchor)
@@ -66,12 +65,10 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         // swiftlint:enable force_cast
         let member = members[indexPath.row]
         cell.userName.text = member.firstName + " " + member.lastName
-        
-        cell.imgUser.image = UIImage(named:/*member.imageURL ??*/ ImageUtility().defaultProfilePictureName)
-        
+        cell.imgUserName = member.imageURL
         cell.userNumber.text = member.phone
         cell.userEmail.text = member.email
-        if let year = member.schoolYear {
+        if let year = member.schoolYear, year.rawValue != 0 {
             cell.userYear.text = "\(year.rawValue)"
         } else {
             cell.userYear.text = "-"

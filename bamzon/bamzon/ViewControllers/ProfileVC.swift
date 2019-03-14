@@ -15,9 +15,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
     var user: User?
     
     var profilePictureImageView = UIImageView()
-    var lNameLabel = UILabel()
-    var fNameLabel = UILabel()
-    var viewStatsButton = UIButton()
+    var nameLabel = UILabel()
     var bioLabel = UILabel()
     var bio = UITextView()
     var contactLabel = UILabel()
@@ -43,45 +41,22 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         
         // TODO: change these to user name
         
-        //image view
-        profilePictureImageView.contentMode = .scaleAspectFill
-        profilePictureImageView.clipsToBounds = true
-        profilePictureImageView.image = UIImage(named: "default-profile-picture")
-        profilePictureImageView.layer.cornerRadius = 15.0; profilePictureImageView.setContentCompressionResistancePriority(UILayoutPriority(750), for: .horizontal)
+        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: user?.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
-        
-        //last name
-        lNameLabel = createDefaultLabel(text: "", fontSize: 30, numLines: 1, fontColor: .white, fontAlignment: .left)
-        lNameLabel.text = profileVM.user.lastName
-        lNameLabel.minimumScaleFactor = 0.25
-        lNameLabel.adjustsFontSizeToFitWidth = true
-        lNameLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
-        self.view.addSubview(lNameLabel)
-        
-        //first name
-        
-        fNameLabel = createDefaultLabel(text: profileVM.user.firstName, fontSize: 30, numLines: 1, fontColor: .white, fontAlignment: .left)
-        fNameLabel.minimumScaleFactor = 0.25
-        fNameLabel.adjustsFontSizeToFitWidth = true
-        fNameLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
-        self.view.addSubview(fNameLabel)
-        
-        //view stats button
-        viewStatsButton = createButtonToConstrain(withText: "View Player Stats", size: 15)
-        
-        //viewStatsButton functions
-        viewStatsButton.addTarget(self, action: #selector(loadStatsView), for: .touchDown)
-        viewStatsButton.addTarget(self, action: #selector(highlightButton), for: .touchDown)
-        viewStatsButton.addTarget(self, action: #selector(unhighlightButton), for: [.touchUpOutside, .touchUpInside])
-        self.view.addSubview(viewStatsButton)
 
-        //biography label
-        bioLabel = createDefaultLabel(text: "About Me", fontSize: 25, numLines: 0, fontColor: .white, fontAlignment: .left)
+        print(profileVM.user.getFullName())
+        print(profileVM.user)
+        nameLabel = createDefaultHeader1Label(text: profileVM.user.firstName + " " + profileVM.user.lastName, numLines: 0)
+        nameLabel.lineBreakMode = .byWordWrapping
+        nameLabel.minimumScaleFactor = 0.8
+        nameLabel.adjustsFontSizeToFitWidth = false
+        self.view.addSubview(nameLabel)
+        
+        bioLabel = createDefaultHeader2Label(text: "About Me")
         self.view.addSubview(bioLabel)
  
-        //bio text view
         bio.textAlignment = .left
-        bio.font = UIFont(name: "HelveticaNeue", size: 17)
+        bio.font = UIFont(name: "HelveticaNeue", size: 20)
         bio.text = profileVM.user.bio
         bio.textColor = .white
         bio.isEditable = false
@@ -89,32 +64,21 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         adjustUITextViewHeight(arg: bio)
         self.view.addSubview(bio)
         
-        //contact Label
-        contactLabel = createDefaultLabel(text: "Contact Information", fontSize: 25, numLines: 0, fontColor: .white, fontAlignment: .left)
+        contactLabel = createDefaultHeader2Label(text: "Contact Information")
         self.view.addSubview(contactLabel)
         
-        //phone Label
-        phoneLabel = createDefaultLabel(text: "Phone: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
+        phoneLabel = createDefaultBoldLabel(text: "Phone: ")
         self.view.addSubview(phoneLabel)
         
-        //number Label
-        numberLabel = createDefaultLabel(text: "", fontSize: 0, numLines: 0, fontColor: .white, fontAlignment: .left)
-        numberLabel.font = UIFont(name: "HelveticaNeue", size: 17)
-        numberLabel.text = profileVM.user.phone
+        numberLabel = createDefaultBodyLabel(text: profileVM.user.phone ?? "")
         self.view.addSubview(numberLabel)
 
-        //email Label
-        emailLabel = createDefaultLabel(text: "Email: ", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
-        emailLabel.setContentCompressionResistancePriority(UILayoutPriority(750), for: .horizontal)
+        emailLabel = createDefaultBoldLabel(text: "Email: ")
         self.view.addSubview(emailLabel)
         
-        //email text Label
-        emailTextLabel = createDefaultLabel(text: "", fontSize: 0, numLines: 1, fontColor: .white, fontAlignment: .left)
-        emailTextLabel.font = UIFont(name: "HelveticaNeue", size: 17)
-        emailTextLabel.text = profileVM.user.email
+        emailTextLabel = createDefaultBodyLabel(text: profileVM.user.email ?? "")
         emailTextLabel.minimumScaleFactor = 0.8
         emailTextLabel.adjustsFontSizeToFitWidth = true
-        emailLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
         self.view.addSubview(emailTextLabel)
 
         setupAutoLayout()
@@ -137,11 +101,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
     func edit() {
         // TODO: implement edit
     }
-    
-    @objc func loadStatsView() {
-        // TODO: implement switch to stats view
-    }
-    
+
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
 
@@ -152,7 +112,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         let closeAspect = closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
         self.view.addConstraints([closeTop, closeTrailing, closeHeight, closeAspect])
 
-        //image view constraints
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
             margins.topAnchor, constant: 70)
@@ -161,71 +120,47 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         let picHeightConstraint = profilePictureImageView.heightAnchor.constraint(equalToConstant: 125)
         self.view.addConstraints([picTopConstraint, picLeftConstraint, picWidthConstraint, picHeightConstraint])
 
-        //last name constraints
-        lNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        let lNameBottomConstraint = lNameLabel.bottomAnchor.constraint(equalTo: profilePictureImageView.bottomAnchor)
-        let lNameLeftConstraint = lNameLabel.leadingAnchor.constraint(equalTo: profilePictureImageView.trailingAnchor, constant: 20)
-        let lNameRightConstraint = margins.trailingAnchor.constraint(equalTo: lNameLabel.trailingAnchor, constant: 20)
-        self.view.addConstraints([lNameBottomConstraint, lNameLeftConstraint, lNameRightConstraint])
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.leadingAnchor.constraint(equalTo: profilePictureImageView.trailingAnchor, constant: 20).isActive = true
+        nameLabel.centerYAnchor.constraint(equalTo: profilePictureImageView.centerYAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: profilePictureImageView.heightAnchor).isActive = true
+        margins.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 20).isActive = true
 
-        //fname constraints
-        fNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        let fNameBottomConstraint = fNameLabel.bottomAnchor.constraint(equalTo: lNameLabel.topAnchor, constant: -2)
-        let fNameLeftConstraint = fNameLabel.leadingAnchor.constraint(equalTo: profilePictureImageView.trailingAnchor, constant: 20)
-        let fNameRightConstraint = margins.trailingAnchor.constraint(equalTo: fNameLabel.trailingAnchor, constant: 20)
-        self.view.addConstraints([fNameBottomConstraint, fNameLeftConstraint, fNameRightConstraint])
-        
-        //viewStatsButton constraints
-        viewStatsButton.translatesAutoresizingMaskIntoConstraints = false
-        let viewStatsleftConstraint = viewStatsButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
-        let viewStatsRightConstraint = margins.trailingAnchor.constraint(equalTo: viewStatsButton.trailingAnchor, constant: 20)
-        let viewStatsTopConstraint =
-            viewStatsButton.topAnchor.constraint(equalTo: lNameLabel.bottomAnchor, constant: 30)
-        let viewStatsHeightConstraint = viewStatsButton.heightAnchor.constraint(equalToConstant: 30)
-        self.view.addConstraints([viewStatsleftConstraint, viewStatsRightConstraint, viewStatsHeightConstraint, viewStatsTopConstraint])
-        
-        //bio label constraints
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         let bioLabelLeftConstraint = bioLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
-        let bioLabelTopConstraint = bioLabel.topAnchor.constraint(equalTo: viewStatsButton.bottomAnchor, constant: 30)
+        let bioLabelTopConstraint = bioLabel.topAnchor.constraint(equalTo: profilePictureImageView.bottomAnchor, constant: 30)
         self.view.addConstraints([bioLabelLeftConstraint, bioLabelTopConstraint])
 
-        //bio constraints
         bio.translatesAutoresizingMaskIntoConstraints = false
         let bioLeftConstraint = bio.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
         let bioTopConstraint = bio.topAnchor.constraint(equalTo: bioLabel.bottomAnchor, constant: 5)
         let bioRightConstraint = margins.trailingAnchor.constraint(equalTo: bio.trailingAnchor, constant: 30)
         self.view.addConstraints([bioLeftConstraint, bioTopConstraint, bioRightConstraint])
 
-        //contact label constraints
         contactLabel.translatesAutoresizingMaskIntoConstraints = false
         let contactLabelLeftConstraint = contactLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 20)
         let contactLabelTopConstraint = contactLabel.topAnchor.constraint(equalTo: bio.bottomAnchor, constant: 30)
         self.view.addConstraints([contactLabelLeftConstraint, contactLabelTopConstraint])
         
-        //phone Label constraints
         phoneLabel.translatesAutoresizingMaskIntoConstraints = false
         let phoneLabelLeftConstraint = phoneLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
         let phoneLabelTopConstraint = phoneLabel.topAnchor.constraint(equalTo: contactLabel.bottomAnchor, constant: 10)
         self.view.addConstraints([phoneLabelLeftConstraint, phoneLabelTopConstraint])
         
-        //phone Label constraints
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
         let numberLabelLeftConstraint = numberLabel.leadingAnchor.constraint(equalTo: phoneLabel.trailingAnchor, constant: 5)
-        let numberLabelBottomConstraint = numberLabel.bottomAnchor.constraint(equalTo: phoneLabel.bottomAnchor)
-        self.view.addConstraints([numberLabelLeftConstraint, numberLabelBottomConstraint])
+        let numberLabelVertConstraint = numberLabel.centerYAnchor.constraint(equalTo: phoneLabel.centerYAnchor)
+        self.view.addConstraints([numberLabelLeftConstraint, numberLabelVertConstraint])
         
-        //email Label constraints
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
         let emailLabelLeftConstraint = emailLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
         let emailLabelTopConstraint = emailLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5)
         self.view.addConstraints([emailLabelLeftConstraint, emailLabelTopConstraint])
         
-        //email text Label constraints
         emailTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        let emailTextLabelBottomConstraint = emailTextLabel.bottomAnchor.constraint(equalTo: emailLabel.bottomAnchor)
+        let emailTextLabelVertConstraint = emailTextLabel.centerYAnchor.constraint(equalTo: emailLabel.centerYAnchor)
         let emailTextLabelLeftConstraint = emailTextLabel.leadingAnchor.constraint(equalTo: emailLabel.trailingAnchor, constant: 5)
         let emailTextLabelRightConstraint = margins.trailingAnchor.constraint(greaterThanOrEqualTo: emailTextLabel.trailingAnchor, constant: 30)
-        self.view.addConstraints([emailTextLabelLeftConstraint, emailTextLabelBottomConstraint, emailTextLabelRightConstraint])
+        self.view.addConstraints([emailTextLabelLeftConstraint, emailTextLabelVertConstraint, emailTextLabelRightConstraint])
     }
 }

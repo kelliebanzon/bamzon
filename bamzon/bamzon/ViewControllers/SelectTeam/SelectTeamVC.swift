@@ -44,8 +44,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         joinButton = createDefaultButton(withText: "Join a Team", withFrame: nil, withAction: #selector(showJoinTeam), withCenter: nil)
         self.view.addSubview(joinButton)
         
-        teamsyncLabel = createDefaultHeader1Label(text: "TeamSync")
-        teamsyncLabel.textAlignment = .center
+        teamsyncLabel = createDefaultHeader1Label(text: "TeamSync", fontAlignment: .center)
         self.view.addSubview(teamsyncLabel)
 
         teamsTableView.backgroundColor = .clear
@@ -137,6 +136,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // swiftlint:enable force_cast
         let team = selectTeamVM.teams[indexPath.row]
         let teamOrg = selectTeamVM.organizations[indexPath.row]
+//        cell.imgUserName = team.
         cell.teamName.text = team.teamName
         cell.teamOrg.text = teamOrg.name
         return cell

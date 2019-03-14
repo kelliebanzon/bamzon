@@ -23,8 +23,7 @@ class JoinTeamChildRequestSentVC: UIViewController, DisplayableProtocol {
 
         navigationItem.setRightBarButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeJoinTeamVC)), animated: true)
                 
-        reqSentLabel = createDefaultHeader2Label(text: "A join request has been sent! An admin will approve or deny your request.", numLines: 0)
-        reqSentLabel.textAlignment = .center
+        reqSentLabel = createDefaultHeader2Label(text: "A join request has been sent! An admin will approve or deny your request.", numLines: 0, fontAlignment: .center)
         reqSentLabel.lineBreakMode = .byWordWrapping
         reqSentLabel.adjustsFontSizeToFitWidth = false
         self.view.addSubview(reqSentLabel)
