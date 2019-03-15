@@ -141,7 +141,7 @@ extension UIViewController {
 
     func createDefaultBodyLabel(text: String, numLines: Int = 1, fontColor: UIColor = .white, fontAlignment: NSTextAlignment = .left) -> UILabel {
         let label = createDefaultLabel(text: text, numLines: numLines, fontColor: fontColor, fontAlignment: fontAlignment)
-        label.font = UIFont(name: "HelveticaNeue", size: 20)
+        label.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         return label
     }
     

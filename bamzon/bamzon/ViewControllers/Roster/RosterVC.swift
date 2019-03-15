@@ -87,7 +87,7 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         // swiftlint:enable force_cast
         cell.highlightYellowOnSelection()
         let member = rosterVM.members[indexPath.row]
-        cell.userName.text = member.getFullName()
+        cell.userName.text = member.firstName + " " + member.lastName
         cell.imgUserName = member.imageURL
         cell.userNumber.text = member.phone
         cell.userEmail.text = member.email

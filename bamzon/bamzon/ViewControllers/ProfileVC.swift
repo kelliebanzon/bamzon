@@ -40,10 +40,12 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
             showCloseButton()
         }
 
+        // TODO: change these to user name
+        
         profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: user?.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel = createDefaultHeader1Label(text: profileVM.user.getFullName(), numLines: 0)
+        nameLabel = createDefaultHeader1Label(text: profileVM.user.firstName + " " + profileVM.user.lastName, numLines: 0)
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.minimumScaleFactor = 0.8
         nameLabel.adjustsFontSizeToFitWidth = false
@@ -108,7 +110,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
 
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
-            margins.topAnchor, constant: 30)
+            margins.topAnchor, constant: 70)
         let picLeftConstraint = profilePictureImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
         let picWidthConstraint = profilePictureImageView.widthAnchor.constraint(equalToConstant: 125)
         let picHeightConstraint = profilePictureImageView.heightAnchor.constraint(equalToConstant: 125)
