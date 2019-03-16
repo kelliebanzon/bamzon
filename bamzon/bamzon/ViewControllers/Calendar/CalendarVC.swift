@@ -140,7 +140,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         cell.eventLabel.text = event.name
         cell.dateLabel.text = event.date.toString()
-        cell.locLabel.text = event.location?.description
+//        cell.locLabel.text = event.locationID?.description
         
         return cell
     }

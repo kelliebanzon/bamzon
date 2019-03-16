@@ -18,19 +18,15 @@ struct Team: FirebaseCompatable, Equatable {
     var nextPractice: ID?
     var nextEvent: ID?
     var sport: String? // TODO: should sport be an optional?
-    var stats: TeamStats?
-    var calendar: TeamCalendar?
     var joinReqIDs: [ID]?
     var blacklistUserIDs: [ID]?
 
-    init(teamID: ID, orgID: ID, userIDs: [ID]?, teamName: String, sport: String?, stats: TeamStats?, calendar: TeamCalendar?, joinReqIDs: [ID]?, blacklistUserIDs: [ID]?) {
+    init(teamID: ID, orgID: ID, userIDs: [ID]?, teamName: String, sport: String?, joinReqIDs: [ID]?, blacklistUserIDs: [ID]?) {
         self.teamID = teamID
         self.orgID = orgID
         self.userIDs = userIDs
         self.teamName = teamName
         self.sport = sport
-        self.stats = stats
-        self.calendar = calendar
         self.joinReqIDs = joinReqIDs
         self.blacklistUserIDs = blacklistUserIDs
         self.nextEvent = IDUtility.generateIDFromString(idString: "z0")
@@ -44,24 +40,10 @@ struct Team: FirebaseCompatable, Equatable {
         userIDs = IDUtility.stringsToIDs(strs: payload["userIDs"] as? [String] ?? [])
         teamName = payload["teamName"] as? String ?? "N/A"
         sport = payload["sport"] as? String
-        stats = nil // these three are separate for now
-        calendar = nil // todo connect with calendar/stats/joinRequest adapters
         joinReqIDs = IDUtility.stringsToIDs(strs: payload["joinRequestIDs"] as? [String] ?? [])
         blacklistUserIDs = IDUtility.stringsToIDs(strs: payload["blacklistUserIDs"] as? [String] ?? [])
         nextPractice = IDUtility.generateIDFromString(idString: payload["nextPractice"] as? String ?? "z0")
         nextEvent = IDUtility.generateIDFromString(idString: payload["nextEvent"] as? String ?? "z0")
-        
-        var thisTeam = self
-        
-        if teamID != ID(type: "z", uuid: "0") {
-            DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                thisTeam.calendar = TeamCalendar(key: key, payload: payload)
-            })
-            DBUtility.readFromDB(table: FirTable.teamStats, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                thisTeam.stats = TeamStats(key: key, payload: payload)
-            })
-        }
-
     }
 
     func formatForDB() -> [String: Any] {

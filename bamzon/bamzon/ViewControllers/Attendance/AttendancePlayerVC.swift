@@ -10,7 +10,7 @@ import UIKit
 
 class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
-    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", location: Location(locID: IDUtility.generateLocationID(), name: "Heyer Pool", number: "1", street: "Grand Ave", street2: nil, city: "San Luis Obispo", state: "CA", zip: 93405, country: "United States"), contactUserIDs: nil, description: "Dry land", date: Date(timeIntervalSinceNow: 0), rsvps: nil, tags: nil, media: nil, links: nil)]
+    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", locationID: nil, contactUserIDs: nil, description: "Dry land", date: Date(timeIntervalSinceNow: 0), rsvpID: nil, tags: nil, media: nil, links: nil)]
 
     // TODO: connect to database
     var player: User = User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
@@ -94,7 +94,7 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
             let event = events[indexPath.row]
             cell.nameLabel.text = event.name
             cell.dateLabel.text = event.date.description
-            cell.locationLabel.text = event.location?.street
+//            cell.locationLabel.text = event.locationID?.street TODO NEEDS QUERY FOR LOCATION
             return cell
         } else {
             print("Unrecognized cell type in AttendancePlayerVC")

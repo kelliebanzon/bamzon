@@ -12,41 +12,27 @@ import Firebase
 struct Organization: FirebaseCompatable, Equatable {
     var orgID: ID
     var name: String
-    var location: Location?
+    var locationID: ID
     var teamIDs: [ID]
 
-    init(orgID: ID, name: String, location: Location?, teamIDs: [ID]) {
+    init(orgID: ID, name: String, locationID: ID, teamIDs: [ID]) {
         self.orgID = orgID
         self.name = name
-        self.location = location
+        self.locationID = locationID
         self.teamIDs = teamIDs
     }
     
     init (key: String, payload: [String: AnyObject]) {
         orgID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
-        location = nil
+        locationID = IDUtility.generateIDFromString(idString: payload["location"] as? String ?? "z0")
         teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
-
-        let locIDString = payload["location"] as? String ?? "NoLocFound"
-        print("(\(orgID.asString())) loc id string is \(locIDString)")
-        
-        if locIDString != "" && locIDString != "NoLocFound" {
-            var thisOrg = self
-            print("fetching location of id: \(locIDString)")
-            let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                thisOrg.location = Location(key: key, payload: payload)
-            })
-        } else {
-            print("no location to fetch for org \(orgID.asString())")
-        }
     }
 
     func formatForDB() -> [String: Any] {
         return
             ["name": name,
-             "location": location?.locID.asString() ?? "",
+             "locationID": locationID.asString(),
              "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
     }
 

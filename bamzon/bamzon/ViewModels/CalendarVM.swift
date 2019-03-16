@@ -35,7 +35,7 @@ class CalendarVM: LoggedInViewModel {
         DBUtility.writeToDB(objToWrite: event)
         if event.tags != nil {
             if event.tags!["practice"] != nil {
-                let practice = Practice(teamID: event.teamID, event: event, users: [])
+                let practice = Practice(teamID: event.teamID, eventID: event.eventID, users: [])
                 DBUtility.writeToDB(objToWrite: practice)
             }
         }
@@ -46,7 +46,7 @@ class CalendarVM: LoggedInViewModel {
     }
     
     func updateEvents(events: [Event]) {
-        team.calendar?.setEvents(events: events)
-        DBUtility.writeToDB(objToWrite: team.calendar ?? TeamCalendar(teamID: team.teamID, events: events))
+//        team.calendar?.setEvents(events: events)
+//        DBUtility.writeToDB(objToWrite: team.calendar ?? TeamCalendar(teamID: team.teamID, events: events)) TODO NEEDS SEPARATE CALENDAR
     }
 }

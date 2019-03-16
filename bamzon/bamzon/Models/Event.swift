@@ -11,26 +11,24 @@ import Firebase
 
 struct Event: FirebaseCompatable, Equatable, Comparable {
     var name: String
-    var location: Location?
+    var locationID: ID?
     var contactUserIDs: [ID]?
     var description: String?
     var date: Date
-    var rsvps: RSVP?
+    var rsvpID: ID?
     var tags: [String: String]?
     var media: [String: Media]?
     var links: [String: String]? // TODO: should this be a url or a string?
-    var isPractice: Bool?
-    var hasRSVP: Bool?
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, location: Location?, contactUserIDs: [ID]?, description: String?, date: Date?, rsvps: RSVP?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, rsvpID: ID?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
         self.name = name
-        self.location = location
+        self.locationID = locationID
         self.contactUserIDs = contactUserIDs
         self.description = description
         self.date = date ?? Date.init(timeIntervalSince1970: 0) // default date is 1970
-        self.rsvps = rsvps
+        self.rsvpID = rsvpID
         self.tags = tags
         self.media = media
         self.links = links
@@ -42,12 +40,13 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
         return
             ["name": name,
              "teamID": teamID.asString(),
-             "location": location?.locID.asString() ?? "",
+             "location": locationID?.asString() ?? "",
              "contactUserIDs": IDUtility.idsToStrings(ids: contactUserIDs),
              "description": description ?? "",
              "date": date.toString(),
              "tags": tags ?? [:],
              "media": media ?? [:],
+             "rsvp": rsvpID ?? "",
              "links": links ?? [:]]
     }
     
@@ -62,38 +61,15 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     init(key: String, payload: [String: AnyObject]) {
         eventID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
-        location = nil
+        locationID = IDUtility.generateIDFromString(idString: payload["location"] as? String ?? "z0")
         contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
         description = payload["description"] as? String ?? "N/A"
         date = Date.fromString(from: payload["date"] as? String ?? "1970-01-01 00:00:00")
-        rsvps = nil
+        rsvpID = IDUtility.generateIDFromString(idString: payload["rsvp"] as? String ?? "z0")
         tags = payload["tags"] as? [String: String] ?? [:]
         media = payload["media"] as? [String: Media] ?? [:]
         links = payload["links"] as? [String: String] ?? [:]
         teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
-
-        let locIDString = payload["location"] as? String ?? "NoLocFound"
-        var thisEvent = self
-        print("fetching location of id: \(locIDString)")
-        
-        if locIDString != "" && locIDString != "NoLocFound" {
-            let locationID = IDUtility.generateIDFromString(idString: locIDString)
-            DBUtility.readFromDB(table: FirTable.location, keys: locationID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                thisEvent.location = Location(key: key, payload: payload)
-                print("event location fetch succeeded: event is \(thisEvent)")
-            })
-        } else {
-            print("no location to fetch for event \(eventID.asString())")
-        }
-        
-        if eventID != ID(type: "z", uuid: "0") {
-            DBUtility.readFromDB(table: FirTable.rsvp, keys: eventID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                thisEvent.rsvps = RSVP(key: key, payload: payload)
-                print("event rsvp fetch succeeded: event is \(thisEvent)")
-            })
-        } else {
-            print("no rsvp to fetch for event \(eventID.asString())")
-        }
     }
     
     static func < (lhs: Event, rhs: Event) -> Bool {
@@ -109,11 +85,11 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     static func == (lhs: Event, rhs: Event) -> Bool {
         return
             lhs.name == rhs.name &&
-            lhs.location == rhs.location &&
+            lhs.locationID == rhs.locationID &&
             lhs.contactUserIDs == rhs.contactUserIDs &&
             lhs.description == rhs.description &&
             lhs.date == rhs.date &&
-            lhs.rsvps == rhs.rsvps &&
+            lhs.rsvpID == rhs.rsvpID &&
             lhs.tags == rhs.tags &&
             lhs.links == rhs.links &&
             lhs.eventID == rhs.eventID &&

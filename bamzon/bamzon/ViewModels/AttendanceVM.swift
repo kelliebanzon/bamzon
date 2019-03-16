@@ -38,7 +38,9 @@ class AttendanceVM: LoggedInViewModel {
     
     func loadPractices(dispatch: DispatchGroup) {
         var tempEvent: Event?
-        if let events = self.team.calendar?.getEvents() {
+//        if let events = self.team.calendar?.getEvents() { TODO NEEDS EVENT LIST SEPARATE
+        let events = [Event]()
+        if true {
             for event in events {
                 dispatch.enter()
                 print("looking at event")

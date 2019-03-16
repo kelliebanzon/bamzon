@@ -25,7 +25,7 @@ class LoggedInViewModel {
         }
         
         if appDelegate.curTeam == nil {
-            self.team = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
+            self.team = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", joinReqIDs: nil, blacklistUserIDs: nil)
         } else {
             self.team = appDelegate.curTeam!
         }

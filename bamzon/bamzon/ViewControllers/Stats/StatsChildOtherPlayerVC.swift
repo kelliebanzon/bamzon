@@ -23,7 +23,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
     ]
 
     // get the team object from the database
-    let team = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", stats: nil, calendar: nil, joinReqIDs: nil, blacklistUserIDs: nil)
+    let team = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", joinReqIDs: nil, blacklistUserIDs: nil)
     // get the user objects from the database through the userIDs of the team
     let players = [User(userID: IDUtility.generateUserID(), firstName: "Rosa", lastName: "Diaz", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Amy", lastName: "Santiago", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)]
 
