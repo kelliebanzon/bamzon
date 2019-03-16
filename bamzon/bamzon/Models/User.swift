@@ -65,7 +65,7 @@ struct User: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return userID.asString()
+        return userID.toString()
     }
 
     func getFullName() -> String {

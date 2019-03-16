@@ -29,7 +29,7 @@ struct PlayerStats: FirebaseCompatable, Equatable {
     func formatForDB() -> [String: Any] {
         return
             ["fields": fields ?? [:],
-             "teamID": teamID.asString()]
+             "teamID": teamID.toString()]
     }
     
     func getTable() -> FirTable {
@@ -37,7 +37,7 @@ struct PlayerStats: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return "\(teamID.asString())/\(userID.asString())"
+        return "\(teamID.toString())/\(userID.toString())"
     }
     
     static func == (lhs: PlayerStats, rhs: PlayerStats) -> Bool {

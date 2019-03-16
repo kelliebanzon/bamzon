@@ -29,7 +29,7 @@ struct PlayerPerms: FirebaseCompatable, Equatable {
     func formatForDB() -> [String: Any] {
         return
             ["permissions": permsToStrings(perms: permissions),
-             "userID": userID.asString()]
+             "userID": userID.toString()]
     }
     
     func getTable() -> FirTable {
@@ -37,7 +37,7 @@ struct PlayerPerms: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return "\(userID.asString())/\(teamID.asString())"
+        return "\(userID.toString())/\(teamID.toString())"
     }
 }
 

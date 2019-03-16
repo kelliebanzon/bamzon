@@ -45,7 +45,7 @@ class BamzonTests: XCTestCase {
     func testIDToString() {
         let expected = "u100"
         let testID = ID(type: "u", uuid: "100")
-        let testOut = testID.asString()
+        let testOut = testID.toString()
         
         XCTAssertTrue(expected.elementsEqual(testOut))
         

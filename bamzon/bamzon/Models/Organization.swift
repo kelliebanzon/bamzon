@@ -25,14 +25,14 @@ struct Organization: FirebaseCompatable, Equatable {
     init (key: String, payload: [String: AnyObject]) {
         orgID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
-        locationID = IDUtility.generateIDFromString(idString: payload["location"] as? String ?? "z0")
+        locationID = IDUtility.generateIDFromString(idString: payload["locationID"] as? String ?? "z0")
         teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
     }
 
     func formatForDB() -> [String: Any] {
         return
             ["name": name,
-             "locationID": locationID.asString(),
+             "locationID": locationID.toString(),
              "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
     }
 
@@ -40,7 +40,7 @@ struct Organization: FirebaseCompatable, Equatable {
         return FirTable.organization
     }
     func getChildPath() -> String {
-        return orgID.asString()
+        return orgID.toString()
     }
 
 }

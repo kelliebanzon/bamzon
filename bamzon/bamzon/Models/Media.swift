@@ -32,6 +32,6 @@ struct Media: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return mediaID.asString()
+        return mediaID.toString()
     }
 }

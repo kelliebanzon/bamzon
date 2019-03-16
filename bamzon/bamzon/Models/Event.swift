@@ -15,20 +15,18 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     var contactUserIDs: [ID]?
     var description: String?
     var date: Date
-    var rsvpID: ID?
     var tags: [String: String]?
     var media: [String: Media]?
     var links: [String: String]? // TODO: should this be a url or a string?
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, rsvpID: ID?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
         self.name = name
-        self.locationID = locationID
+        self.locationID = locationID ?? IDUtility.generateIDFromString(idString: "z0")
         self.contactUserIDs = contactUserIDs
         self.description = description
         self.date = date ?? Date.init(timeIntervalSince1970: 0) // default date is 1970
-        self.rsvpID = rsvpID
         self.tags = tags
         self.media = media
         self.links = links
@@ -39,14 +37,13 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     func formatForDB() -> [String: Any] {
         return
             ["name": name,
-             "teamID": teamID.asString(),
-             "location": locationID?.asString() ?? "",
+             "teamID": teamID.toString(),
+             "location": locationID?.toString() ?? "",
              "contactUserIDs": IDUtility.idsToStrings(ids: contactUserIDs),
              "description": description ?? "",
              "date": date.toString(),
              "tags": tags ?? [:],
              "media": media ?? [:],
-             "rsvp": rsvpID ?? "",
              "links": links ?? [:]]
     }
     
@@ -55,7 +52,7 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     }
     
     func getChildPath() -> String {
-        return "\(eventID.asString())"
+        return "\(eventID.toString())"
     }
     
     init(key: String, payload: [String: AnyObject]) {
@@ -65,7 +62,6 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
         contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
         description = payload["description"] as? String ?? "N/A"
         date = Date.fromString(from: payload["date"] as? String ?? "1970-01-01 00:00:00")
-        rsvpID = IDUtility.generateIDFromString(idString: payload["rsvp"] as? String ?? "z0")
         tags = payload["tags"] as? [String: String] ?? [:]
         media = payload["media"] as? [String: Media] ?? [:]
         links = payload["links"] as? [String: String] ?? [:]
@@ -89,7 +85,6 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
             lhs.contactUserIDs == rhs.contactUserIDs &&
             lhs.description == rhs.description &&
             lhs.date == rhs.date &&
-            lhs.rsvpID == rhs.rsvpID &&
             lhs.tags == rhs.tags &&
             lhs.links == rhs.links &&
             lhs.eventID == rhs.eventID &&

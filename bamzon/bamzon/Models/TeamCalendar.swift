@@ -32,6 +32,6 @@ struct TeamCalendar: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return teamID.asString()
+        return teamID.toString()
     }
 }

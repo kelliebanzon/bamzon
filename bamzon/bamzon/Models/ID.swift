@@ -21,10 +21,9 @@ class ID: Codable, Hashable {
         self.uuid = uuid
     }
     
-    func asString() -> String {
+    func toString() -> String {
         return "\(type)\(uuid)"
     }
-
 }
 
 func == (lhs: ID, rhs: ID) -> Bool {

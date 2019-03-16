@@ -41,7 +41,7 @@ struct RSVP: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return eventID.asString()
+        return eventID.toString()
     }
     
 }

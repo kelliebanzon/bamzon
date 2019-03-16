@@ -61,7 +61,7 @@ struct Location: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return locID.asString()
+        return locID.toString()
     }
     
     func formatForDB() -> [String: Any] {

@@ -54,7 +54,7 @@ class DBUtility {
     static func readFromDB(table: FirTable, keys: ID..., completion: @escaping (String, [String: AnyObject]) -> Void) {
         var keyArr = [String]()
         for key in keys {
-            keyArr.append(key.asString())
+            keyArr.append(key.toString())
         }
         
         let path = keyArr.joined(separator: "/")
@@ -107,7 +107,7 @@ class DBUtility {
     static func readAllChildrenFromDB(table: FirTable, keys: ID..., completion: @escaping ([DataSnapshot]) -> Void) {
         var keyArr = [String]()
         for key in keys {
-            keyArr.append(key.asString())
+            keyArr.append(key.toString())
         }
         
         let path = keyArr.joined(separator: "/")
@@ -125,7 +125,7 @@ class DBUtility {
     static func deleteFromDB(table: FirTable, keys: ID...) {
         var keyArr = [String]()
         for key in keys {
-            keyArr.append(key.asString())
+            keyArr.append(key.toString())
         }
         
         let path = keyArr.joined(separator: "/")

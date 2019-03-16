@@ -35,7 +35,7 @@ struct PlayerAttendance: FirebaseCompatable {
     }
     
     func getChildPath() -> String {
-        return "\(userID.asString())/\(teamID.asString())"
+        return "\(userID.toString())/\(teamID.toString())"
     }
     
 }

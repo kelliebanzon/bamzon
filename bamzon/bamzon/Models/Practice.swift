@@ -28,7 +28,7 @@ struct Practice: FirebaseCompatable {
     
     func formatForDB() -> [String: Any] {
         return
-            ["eventID": eventID.asString(),
+            ["eventID": eventID.toString(),
              "attendingUsers": IDUtility.idsToStrings(ids: attendingUsers)]
     }
     
@@ -37,7 +37,7 @@ struct Practice: FirebaseCompatable {
     }
     
     func getChildPath() -> String {
-        return teamID.asString()
+        return teamID.toString()
     }
     
 }

@@ -27,8 +27,8 @@ struct JoinRequest: FirebaseCompatable, Equatable {
     }
     
     func formatForDB() -> [String: Any] {
-        return ["userID": userID.asString(),
-                "teamID": teamID.asString()]
+        return ["userID": userID.toString(),
+                "teamID": teamID.toString()]
     }
     
     func getTable() -> FirTable {
@@ -36,6 +36,6 @@ struct JoinRequest: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return joinReqID.asString()
+        return joinReqID.toString()
     }
 }

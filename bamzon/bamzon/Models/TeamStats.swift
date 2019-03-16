@@ -49,7 +49,7 @@ struct TeamStats: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return teamID.asString()
+        return teamID.toString()
     }
     
     static func == (lhs: TeamStats, rhs: TeamStats) -> Bool {

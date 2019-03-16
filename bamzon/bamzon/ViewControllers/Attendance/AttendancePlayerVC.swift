@@ -10,7 +10,7 @@ import UIKit
 
 class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
-    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", locationID: nil, contactUserIDs: nil, description: "Dry land", date: Date(timeIntervalSinceNow: 0), rsvpID: nil, tags: nil, media: nil, links: nil)]
+    let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", locationID: nil, contactUserIDs: nil, description: "Dry land", date: Date(timeIntervalSinceNow: 0), tags: nil, media: nil, links: nil)]
 
     // TODO: connect to database
     var player: User = User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)

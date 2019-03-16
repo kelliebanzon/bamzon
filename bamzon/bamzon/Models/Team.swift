@@ -50,7 +50,7 @@ struct Team: FirebaseCompatable, Equatable {
         return
             ["blacklistUserIDs": IDUtility.idsToStrings(ids: blacklistUserIDs),
              "joinRequestIDs": IDUtility.idsToStrings(ids: joinReqIDs),
-             "orgID": orgID.asString(),
+             "orgID": orgID.toString(),
              "sport": sport ?? "",
              "teamName": teamName,
              "userIDs": IDUtility.idsToStrings(ids: userIDs)]
@@ -61,6 +61,6 @@ struct Team: FirebaseCompatable, Equatable {
     }
     
     func getChildPath() -> String {
-        return teamID.asString()
+        return teamID.toString()
     }
 }

@@ -23,7 +23,7 @@ struct FirebaseID: FirebaseCompatable, Equatable {
     }
 
     func formatForDB() -> [String:Any] {
-        return ["userID": userID.asString()]
+        return ["userID": userID.toString()]
     }
     
     func getTable() -> FirTable {
