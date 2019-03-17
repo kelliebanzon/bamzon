@@ -47,7 +47,8 @@ class JoinTeamVM: LoggedInViewModel {
     }
     
     func loadTeamsWithOrg(dispatch: DispatchGroup, org: Organization) {
-        for teamID in org.teamIDs {
+        for teamID in Array(org.teamIDs.values) {
+            print("loading org for team")
             dispatch.enter()
             DBUtility.readFromDB(table: FirTable.team, keys: teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 self.teams.append(Team(key: key, payload: payload))

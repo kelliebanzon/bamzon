@@ -13,9 +13,9 @@ struct Organization: FirebaseCompatable, Equatable {
     var orgID: ID
     var name: String
     var locationID: ID
-    var teamIDs: [ID]
+    var teamIDs: [ID : ID]
 
-    init(orgID: ID, name: String, locationID: ID, teamIDs: [ID]) {
+    init(orgID: ID, name: String, locationID: ID, teamIDs: [ID: ID]) {
         self.orgID = orgID
         self.name = name
         self.locationID = locationID
@@ -26,14 +26,14 @@ struct Organization: FirebaseCompatable, Equatable {
         orgID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         locationID = IDUtility.generateIDFromString(idString: payload["locationID"] as? String ?? "z0")
-        teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
+        teamIDs = IDUtility.stringsToIDDict(strs: payload["teamIDs"] as? [String : String] ?? [:])
     }
 
     func formatForDB() -> [String: Any] {
         return
             ["name": name,
              "locationID": locationID.toString(),
-             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
+             "teamIDs": IDUtility.idsToDict(ids: teamIDs)]
     }
 
     func getTable() -> FirTable {

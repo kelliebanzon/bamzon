@@ -29,7 +29,7 @@ class CreateTeamVM {
             user.teamIDs = [teamID: teamID]
             
             var newOrg = org
-            newOrg.teamIDs.append(teamID)
+            newOrg.teamIDs[teamID] = teamID
             
             appDelegate.curUser = user
             DBUtility.writeToDB(objToWrite: appDelegate.curUser!)
