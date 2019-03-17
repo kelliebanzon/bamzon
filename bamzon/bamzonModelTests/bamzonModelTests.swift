@@ -10,12 +10,13 @@ import XCTest
 @testable import bamzon
 
 class bamzonModelTests: XCTestCase {
+    let uID999 = ID(type: "u", uuid: "999")
     
     func testEventDBCreate() {
-        let expected = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date.init(timeIntervalSince1970: 3600), tags: ["test": "test"], media: nil, links: [:])
+        let expected = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date.init(timeIntervalSince1970: 3600), tags: ["test": "test"], media: [:], links: [:])
         
         let key = "e999"
-        let payload = ["contactUserIDs": ["u999"],
+        let payload = ["contactUserIDs": ["u999":"u999"],
                        "date": "1970-01-01 01:00 -0000",
                        "name": "test event",
                        "tags": ["test": "test"],
@@ -27,14 +28,14 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testEventDBFuncs() {
-        let evnt = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date.init(timeIntervalSince1970: 10), tags: ["test": "test"], media: [:], links: [:])
+        let evnt = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "test event", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date.init(timeIntervalSince1970: 10), tags: ["test": "test"], media: [:], links: [:])
         
         XCTAssertEqual(evnt.getTable(), FirTable.event)
         XCTAssertEqual(evnt.getChildPath(), "e999")
     }
     
     func testPlayerStatsDBCreate() {
-        let expected = PlayerStats(userID: ID(type: "u", uuid: "999"), teamID: ID(type: "t", uuid: "999"), fields: ["best": "test"])
+        let expected = PlayerStats(userID: uID999, teamID: ID(type: "t", uuid: "999"), fields: ["best": "test"])
         
         let key = "u999"
         let payload = ["fields": ["best": "test"],
@@ -44,14 +45,14 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testPlayerStatsDBFuncs() {
-        let pstat = PlayerStats(userID: ID(type: "u", uuid: "999"), teamID: ID(type: "t", uuid: "999"), fields: ["best": "test"])
+        let pstat = PlayerStats(userID: uID999, teamID: ID(type: "t", uuid: "999"), fields: ["best": "test"])
         
         XCTAssertEqual(pstat.getTable(), FirTable.playerStats)
         XCTAssertEqual(pstat.getChildPath(), "t999/u999")
     }
     
     func testJoinRequestDBCreate() {
-        let expected = JoinRequest(joinReqID: ID(type: "j", uuid: "999"), userID: ID(type: "u", uuid: "999"), teamID: ID(type: "t", uuid: "999"))
+        let expected = JoinRequest(joinReqID: ID(type: "j", uuid: "999"), userID: uID999, teamID: ID(type: "t", uuid: "999"))
         
         let key = "j999"
         let payload = ["userID": "u999",
@@ -61,7 +62,7 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testJoinRequestDBFuncs() {
-        let jReq = JoinRequest(joinReqID: ID(type: "j", uuid: "999"), userID: ID(type: "u", uuid: "999"), teamID: ID(type: "t", uuid: "999"))
+        let jReq = JoinRequest(joinReqID: ID(type: "j", uuid: "999"), userID: uID999, teamID: ID(type: "t", uuid: "999"))
         
         XCTAssertEqual(jReq.getTable(), FirTable.joinRequest)
         XCTAssertEqual(jReq.getChildPath(), "j999")
@@ -166,23 +167,23 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testTeamDBCreate() {
-        let expected = Team(teamID: ID(type: "t", uuid: "999"), orgID: ID(type: "o", uuid: "999"), userIDs: [ID(type: "u", uuid: "999")], teamName: "test team", sport: "test sport", joinReqIDs: [ID(type: "j", uuid: "999")], blacklistUserIDs: [ID(type: "u", uuid: "999")])
+        let expected = Team(teamID: ID(type: "t", uuid: "999"), orgID: ID(type: "o", uuid: "999"), userIDs: [uID999: uID999], teamName: "test team", sport: "test sport", joinReqIDs: [:], blacklistUserIDs: [uID999: uID999])
         
         let key = "t999"
-        let payload = ["blacklistUserIDs": ["u999"],
+        let payload = ["blacklistUserIDs": ["u999":"u999"],
                        "joinRequestIDs": ["j999"],
                        "orgID": "o999",
                        "sport": "test sport",
                        "teamName": "test team",
                        "nextPractice": "z0",
                        "nextEvent": "z0",
-                       "userIDs": ["u999"]] as [String: AnyObject]
+                       "userIDs": ["u999":"u999"]] as [String: AnyObject]
         
         XCTAssertEqual(expected, Team(key: key, payload: payload))
     }
     
     func testTeamDBFuncs() {
-        let test = Team(teamID: ID(type: "t", uuid: "999"), orgID: ID(type: "o", uuid: "999"), userIDs: [ID(type: "u", uuid: "999")], teamName: "test team", sport: "test sport", joinReqIDs: [ID(type: "j", uuid: "999")], blacklistUserIDs: [ID(type: "u", uuid: "999")])
+        let test = Team(teamID: ID(type: "t", uuid: "999"), orgID: ID(type: "o", uuid: "999"), userIDs: [uID999: uID999], teamName: "test team", sport: "test sport", joinReqIDs: [ID(type: "j", uuid: "999"): ID(type: "j", uuid: "999")], blacklistUserIDs: [uID999: uID999])
         
         XCTAssertEqual(test.getTable(), FirTable.team)
         XCTAssertEqual(test.getChildPath(), "t999")
@@ -226,14 +227,14 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testUserDBFuncs() {
-        let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
+        let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999"): ID(type: "t", uuid: "999")])
         
         XCTAssertEqual(test.getTable(), FirTable.user)
         XCTAssertEqual(test.getChildPath(), "u999")
     }
     
     func testUserDBCreate() {
-        let expected = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: "", teamIDs: [ID(type: "t", uuid: "999")])
+        let expected = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: "", teamIDs: [ID(type: "t", uuid: "999"): ID(type: "t", uuid: "999")])
         
         let key = "u999"
         let payload = ["firstName": "Bam",
@@ -244,7 +245,7 @@ class bamzonModelTests: XCTestCase {
                        "schoolYear": 4,
                        "bio": "309 app",
                        "imageURL": "",
-                       "teamIDs": ["t999"]] as [String: AnyObject]
+                       "teamIDs": ["t999":"t999"]] as [String: AnyObject]
         
         XCTAssertEqual(expected, User(key: key, payload: payload))
     }
@@ -310,19 +311,19 @@ class bamzonModelTests: XCTestCase {
 //    }
     
     func testUserGetFullName() {
-        let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
+        let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [uID999: uID999])
         
         XCTAssertEqual("BZN Zon", test.getFullName())
         
-        let test2 = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: nil, phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
+        let test2 = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: nil, phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [uID999: uID999])
         
         XCTAssertEqual("Bam Zon", test2.getFullName())
     }
     
     func testCompareEvents() {
-        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 1000), tags: ["test": "test"], media: [:], links: [:])
-        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 100), tags: ["test": "test"], media: [:], links: [:])
-        let soonest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 0), tags: ["test": "test"], media: [:], links: [:])
+        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date(timeIntervalSinceNow: 1000), tags: ["test": "test"], media: [:], links: [:])
+        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date(timeIntervalSinceNow: 100), tags: ["test": "test"], media: [:], links: [:])
+        let soonest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date(timeIntervalSinceNow: 0), tags: ["test": "test"], media: [:], links: [:])
         
         let list = [latest, middle, soonest]
         let sorted = list.sorted()
@@ -332,9 +333,9 @@ class bamzonModelTests: XCTestCase {
     }
     
     func testCompareEventsWithNil() {
-        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 1000), tags: ["test": "test"], media: [:], links: [:])
-        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: Date(timeIntervalSinceNow: 100), tags: ["test": "test"], media: [:], links: [:])
-        let nilEvent = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", locationID: nil, contactUserIDs: [ID(type: "u", uuid: "999")], description: "test event description", date: nil, tags: ["test": "test"], media: [:], links: [:])
+        let latest = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "latest", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date(timeIntervalSinceNow: 1000), tags: ["test": "test"], media: [:], links: [:])
+        let middle = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "middle", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: Date(timeIntervalSinceNow: 100), tags: ["test": "test"], media: [:], links: [:])
+        let nilEvent = Event(eventID: ID(type: "e", uuid: "999"), teamID: ID(type: "t", uuid: "999"), name: "soonest", locationID: nil, contactUserIDs: [uID999: uID999], description: "test event description", date: nil, tags: ["test": "test"], media: [:], links: [:])
         
         let list = [nilEvent, latest, middle]
         let sorted = list.sorted()

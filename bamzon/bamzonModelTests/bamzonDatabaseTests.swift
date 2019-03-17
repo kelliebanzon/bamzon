@@ -21,14 +21,14 @@ class bamzonDatabaseTests: XCTestCase {
     var joinReqID: ID = ID(type: "test", uuid: "joinReqID")
     
     override func setUp() {
-        DBUtility.writeToDB(objToWrite: Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [userID1, userID2], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"]))
+        DBUtility.writeToDB(objToWrite: Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [userID1:userID1, userID2:userID2], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"]))
         DBUtility.writeToDB(objToWrite: JoinRequest(joinReqID: joinReqID, userID: userID1, teamID: teamID))
         sleep(3)
     }
 
 
     func testEventFirebaseRead () {
-        let event: Event = Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [userID1, userID2], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"])
+        let event: Event = Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [userID1:userID1, userID2:userID2], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"])
         var readEvent: Event?
 
         let expectation = self.expectation(description: "read event")
