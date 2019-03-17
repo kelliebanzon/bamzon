@@ -85,18 +85,18 @@ class BamzonTests: XCTestCase {
         }
     }
     
-    func testIntegrationGetJoinRequestsFromDB() {
-        let joinReqVM = JoinRequestsVM()
-        joinReqVM.team = Team(teamID: IDUtility.generateIDFromString(idString: "t404"), orgID: IDUtility.generateIDFromString(idString: "o404"), userIDs: [:], teamName: "BAMZON", sport: nil, joinReqIDs: [:], blacklistUserIDs: [:])
-        
-        let expectedUser = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Gina", lastName: "Linetti", nickname: "", phone: "543216789", email: "glinetti@bamzon.gov", schoolYear: Year.firstYear, bio: nil, imageURL: "", teamIDs: [IDUtility.generateIDFromString(idString: "t404"): IDUtility.generateIDFromString(idString: "t404")])
-        
-        let dispatch = DispatchGroup()
-        dispatch.enter()
-        joinReqVM.loadRequests(dispatch: dispatch)
-        
-        dispatch.notify(queue: DispatchQueue.main) {
-            XCTAssertTrue(joinReqVM.reqUsers.contains(expectedUser))
-        }
-    }
+//    func testIntegrationGetJoinRequestsFromDB() {
+//        let joinReqVM = JoinRequestsVM()
+//        joinReqVM.team = Team(teamID: IDUtility.generateIDFromString(idString: "t404"), orgID: IDUtility.generateIDFromString(idString: "o404"), userIDs: [:], teamName: "BAMZON", sport: nil, joinReqIDs: [:], blacklistUserIDs: [:])
+//
+//        let expectedUser = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Gina", lastName: "Linetti", nickname: "", phone: "543216789", email: "glinetti@bamzon.gov", schoolYear: Year.firstYear, bio: nil, imageURL: "", teamIDs: [IDUtility.generateIDFromString(idString: "t404"): IDUtility.generateIDFromString(idString: "t404")])
+//
+//        let dispatch = DispatchGroup()
+//        dispatch.enter()
+//        joinReqVM.loadRequests(dispatch: dispatch)
+//
+//        dispatch.notify(queue: DispatchQueue.main) {
+//            XCTAssertTrue(joinReqVM.reqUsers.contains(expectedUser))
+//        }
+//    }
 }

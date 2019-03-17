@@ -37,7 +37,7 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         joinRequestsVM.loadRequests(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
-            self.display()
+            self.refresh()
         }
     }
     
@@ -121,7 +121,9 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Approve the request by identifying the user with the .tag attribute
     @objc func approveRequest(sender: UIButton) {
-        joinRequestsVM.approve(reqIndex: sender.tag)
+        let dispatch = DispatchGroup()
+        joinRequestsVM.approve(reqIndex: sender.tag, dispatch: dispatch)
+        refresh()
     }
     
     // Reject the request by identifying the user with the .tag attribute
@@ -129,11 +131,13 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("I'm supposed to reject: " + String(sender.tag))
         let dispatch = DispatchGroup()
         joinRequestsVM.reject(reqIndex: sender.tag, dispatch: dispatch)
+        refresh()
     }
     
     // Block this request and future requests by identifying the user with the .tag attribute
     @objc func blockRequest(sender: UIButton) {
         print("I'm supposed to block: " + String(sender.tag))
         alert(withTitle: "❌ Block Request ❌", withMessage: "Feature not implemented")
+        refresh()
     }
 }
