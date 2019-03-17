@@ -17,6 +17,7 @@ extension Date {
     
     static func fromString(from: String) -> Date {
         let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
         formatter.dateFormat = "yyyy-MM-dd hh:mm Z"
         return formatter.date(from: from) ?? Date(timeIntervalSince1970: -3600)
     }

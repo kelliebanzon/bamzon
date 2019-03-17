@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ID: Codable, Hashable {
+class ID: Codable, Hashable, CustomStringConvertible {
     var type: String
     var uuid: String
     
@@ -23,6 +23,10 @@ class ID: Codable, Hashable {
     
     func toString() -> String {
         return "\(type)\(uuid)"
+    }
+    
+    var description: String {
+        return self.toString()
     }
 }
 

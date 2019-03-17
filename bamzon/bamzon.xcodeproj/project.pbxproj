@@ -110,6 +110,7 @@
 		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
 		F11934B82239ABB0008AF98C /* TeamHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11934B72239ABB0008AF98C /* TeamHomeVM.swift */; };
 		F11934BA2239B1D8008AF98C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11934B92239B1D8008AF98C /* Date.swift */; };
+		F13A8025223DC3070093D0BE /* bamzonDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A8024223DC3070093D0BE /* bamzonDatabaseTests.swift */; };
 		F19FB6912235C02800ABC7E3 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FB6902235C02800ABC7E3 /* Practice.swift */; };
 		F19FB6932235C7B800ABC7E3 /* PlayerAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */; };
 /* End PBXBuildFile section */
@@ -253,6 +254,7 @@
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
 		F11934B72239ABB0008AF98C /* TeamHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHomeVM.swift; sourceTree = "<group>"; };
 		F11934B92239B1D8008AF98C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		F13A8024223DC3070093D0BE /* bamzonDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonDatabaseTests.swift; sourceTree = "<group>"; };
 		F19FB6902235C02800ABC7E3 /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
 		F19FB6922235C7B800ABC7E3 /* PlayerAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAttendance.swift; sourceTree = "<group>"; };
 		F659A6258051AE87DC6C8263 /* Pods-bamzon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bamzon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bamzon/Pods-bamzon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			children = (
 				C7157E472224870E00246EA0 /* bamzonModelTests.swift */,
 				C7157E492224870E00246EA0 /* Info.plist */,
+				F13A8024223DC3070093D0BE /* bamzonDatabaseTests.swift */,
 			);
 			path = bamzonModelTests;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7157E482224870E00246EA0 /* bamzonModelTests.swift in Sources */,
+				F13A8025223DC3070093D0BE /* bamzonDatabaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

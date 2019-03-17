@@ -16,12 +16,12 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     var description: String?
     var date: Date
     var tags: [String: String]?
-    var media: [String: Media]?
+    var media: [String: ID]?
     var links: [String: String]? // TODO: should this be a url or a string?
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, tags: [String: String]?, media: [String: Media]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, tags: [String: String]?, media: [String: ID]?, links: [String: String]?) {
         self.name = name
         self.locationID = locationID ?? IDUtility.generateIDFromString(idString: "z0")
         self.contactUserIDs = contactUserIDs
@@ -35,6 +35,10 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     }
     
     func formatForDB() -> [String: Any] {
+        var mediaConverted: [String: String] = [:]
+        for med in media ?? [:] {
+            mediaConverted[med.key] = med.value.toString()
+        }
         return
             ["name": name,
              "teamID": teamID.toString(),
@@ -43,7 +47,7 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
              "description": description ?? "",
              "date": date.toString(),
              "tags": tags ?? [:],
-             "media": media ?? [:],
+             "media": mediaConverted,
              "links": links ?? [:]]
     }
     
@@ -61,9 +65,15 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
         locationID = IDUtility.generateIDFromString(idString: payload["location"] as? String ?? "z0")
         contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
         description = payload["description"] as? String ?? "N/A"
-        date = Date.fromString(from: payload["date"] as? String ?? "1970-01-01 00:00:00")
+        date = Date.fromString(from: payload["date"] as? String ?? "1920-01-01 00:00 -0000")
         tags = payload["tags"] as? [String: String] ?? [:]
-        media = payload["media"] as? [String: Media] ?? [:]
+        let mediaDict = payload["media"] as? [String: String] ?? [:]
+        if !mediaDict.isEmpty {
+            media = [:]
+        }
+        for med in mediaDict {
+            media?.updateValue(IDUtility.generateIDFromString(idString: med.value), forKey: med.key)
+        }
         links = payload["links"] as? [String: String] ?? [:]
         teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
     }
