@@ -10,6 +10,7 @@ import UIKit
 
 class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
+    private let refreshControl = UIRefreshControl()
     let joinRequestsVM = JoinRequestsVM()
     var myTableView = UITableView()
     let cellId = "requestCell"
@@ -22,6 +23,17 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.register(RequestTableViewCell.self, forCellReuseIdentifier: self.cellId)
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
+        
+        if #available(iOS 10.0, *) {
+            myTableView.refreshControl = refreshControl
+        } else {
+            myTableView.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
+        
         joinRequestsVM.loadRequests(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
@@ -66,8 +78,18 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
+    }
+    
     func refresh() {
-        // TODO: implement refresh
+        let dispatch = DispatchGroup()
+        joinRequestsVM.refresh(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.myTableView.reloadData()
+            self.display()
+        }
     }
     
     func reject(request: JoinRequest) {

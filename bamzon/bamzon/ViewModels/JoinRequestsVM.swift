@@ -14,6 +14,10 @@ class JoinRequestsVM: LoggedInViewModel {
     
     var reqUsers: [User] = []
     
+    func refresh(dispatch: DispatchGroup) {
+        loadRequests(dispatch: dispatch)
+    }
+    
     //TODO: Check for duplicates within join requests. Spam join request shouldn't be allowed
     @objc func approve(reqIndex: Int) {
         let userID = reqUsers[reqIndex].userID
