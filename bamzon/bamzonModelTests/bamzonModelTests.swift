@@ -290,7 +290,7 @@ class bamzonModelTests: XCTestCase {
         dateComponents.day = 30
         dateComponents.hour = 11
         dateComponents.minute = 45
-        dateComponents.timeZone = TimeZone(abbreviation: "PST")
+        dateComponents.timeZone = TimeZone.current
         
       XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
     }
@@ -305,8 +305,7 @@ class bamzonModelTests: XCTestCase {
         dateComponents.day = 31
         dateComponents.hour = 04
         dateComponents.minute = 00
-        dateComponents.timeZone = TimeZone(abbreviation: "PST")
-        
+        dateComponents.timeZone = TimeZone.current
         XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
     }
     
