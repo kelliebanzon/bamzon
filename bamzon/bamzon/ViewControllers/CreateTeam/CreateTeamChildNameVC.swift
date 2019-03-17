@@ -74,7 +74,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Select Organization
+    // Select Organization from available organizations queried from the DB
     @objc func selectOrg(textField: UITextField) {
         orgTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         orgTableView.dataSource = self
@@ -85,6 +85,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         orgTableView.reloadData()
     }
     
+    // Select team from specific organization that's currently selected
     @objc func selectTeam(textField: UITextField) {
         sportTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         sportTableView.dataSource = self
@@ -93,10 +94,12 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         self.view.addSubview(sportTableView)
     }
     
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    // Number of organizations/sports to display with their corresponding section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orgTableView {
             return self.createTeamVM.allOrgs.count
@@ -106,6 +109,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         return 0
     }
     
+    // Populate each cell based on which section it's currently populating
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.highlightYellowOnSelection()
@@ -117,6 +121,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    // Set organization/sport in the text field and hide the tableview after selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == orgTableView {
             selectedOrg = createTeamVM.allOrgs[indexPath.row]
@@ -129,6 +134,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    // Hide keyboard if touched outside of fields
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

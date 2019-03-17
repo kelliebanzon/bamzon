@@ -74,15 +74,17 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         // TODO: implement reject join request
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
     
+    // Number of requests to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return joinRequestsVM.requestedUsers.count
     }
     
-    // Populate each cell in the table view
+    // Populate each cell with a user and 3 buttons
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RequestTableViewCell
@@ -95,16 +97,19 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    // Approve the request by identifying the user with the .tag attribute
     @objc func approveRequest(sender: UIButton) {
         joinRequestsVM.approve(requestIndex: sender.tag)
     }
     
+    // Reject the request by identifying the user with the .tag attribute
     @objc func rejectRequest(sender: UIButton) {
         print("I'm supposed to reject: " + String(sender.tag))
         let dispatch = DispatchGroup()
         joinRequestsVM.reject(requestIndex: sender.tag, dispatch: dispatch)
     }
     
+    // Block this request and future requests by identifying the user with the .tag attribute
     @objc func blockRequest(sender: UIButton) {
         print("I'm supposed to block: " + String(sender.tag))
         alert(withTitle: "❌ Block Request ❌", withMessage: "Feature not implemented")

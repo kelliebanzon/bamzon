@@ -57,14 +57,17 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         statsTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 
+    // Number of statTypes to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return statTypes.count
     }
     
+    // Populate each cell with a stat type
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! StatsTeamStatsViewCell

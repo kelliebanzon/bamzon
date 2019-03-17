@@ -60,27 +60,32 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
     }
     
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    // Number of members to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return attendanceVM.members.count
     }
     
-    // Populate each cell in the table
+    // Populate each cell with a member
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersAttendanceTableViewCell
         // swiftlint:enable force_cast
         cell.userName.text = attendanceVM.members[indexPath.row].getFullName()
         cell.userName.textColor = .white
+        // Sets the tag to the current index being used to populate the cell
+        // This can be used later to identify which user is being interacted with
         cell.attendanceType.tag = indexPath.row
         cell.attendanceType.backgroundColor = UIColor(named: "TSOrange")
         cell.attendanceType.addTarget(self, action: #selector(attendanceTypeClick), for: .touchUpInside)
         return cell
     }
     
+    // Cycle through attendance types of Absent/Present/Excused
     @objc func attendanceTypeClick(sender: UIButton) {
         if sender.currentTitle! == "Absent" {
             sender.setTitle("Present", for: .normal)
@@ -95,9 +100,11 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
             sender.setTitle("Uh oh! 😰", for: .normal)
             sender.backgroundColor = UIColor(named: "TSYellow")
         }
+        // Using sender.tag to index into the list of members to get specific user
         print(attendanceVM.members[sender.tag].getFullName() + " is " + sender.currentTitle!)
     }
     
+    // Display selected user's attendance history
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath)
         selectedCell?.contentView.backgroundColor = UIColor(named: "TSYellow")

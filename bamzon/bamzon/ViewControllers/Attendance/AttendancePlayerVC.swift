@@ -84,11 +84,12 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         self.view.addConstraints([attTableTopConstraint, attTableLeadingConstraint, attTableTrailingConstraint, attTableBottomConstraint])
     }
 
+    // Number of events to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: connect this to the actual number of events to display
         return events.count
     }
 
+    // Populate each cell with an event
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "attCell", for: indexPath) as? AttendancePlayerTableViewCell {
             let event = events[indexPath.row]
@@ -102,10 +103,12 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
 
+    // Section Headers
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let tableFrame = attTable.frame
         let headerView = UIView(frame: CGRect(x: tableFrame.minX, y: tableFrame.minY, width: tableFrame.width, height: 10))
@@ -128,8 +131,6 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func refresh() {
-        // TODO: implement refresh: should be able to pull down and refresh entire
-        // screen, not just the table view
         attTable.reloadData()
     }
 

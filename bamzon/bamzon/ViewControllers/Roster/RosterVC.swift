@@ -62,10 +62,12 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
+    // Display a specific users' profile from the roster
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedUser = rosterVM.members[indexPath.row]
         rosterVM.selectUser(user: selectedUser)
@@ -77,10 +79,12 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // Number of members to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rosterVM.members.count
     }
     
+    // Populate each cell with a player
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RosterTableViewCell

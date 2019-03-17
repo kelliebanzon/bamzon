@@ -57,16 +57,17 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         self.view.addConstraints([tableTop, tableLeading, tableTrailing, tableBottom])
     }
     
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // Number of rows to present
+    // Number of practices to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return attendanceVM.practices.count
     }
     
-    // Populate value at selected row
+    // Populate each cell with a practice
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AttendancePracticesTableViewCell
@@ -78,7 +79,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    // Function to handle what setting to call
+    // Display selected date's practice and corresponding attendance
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.practices[indexPath.row].name + "'s attendance")
     }

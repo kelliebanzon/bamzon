@@ -126,24 +126,29 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // TODO: implement logout
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
     
+    // Display selected team and set root view to TabBarController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTeam = selectTeamVM.teams[indexPath.row]
         selectTeamVM.selectTeam(team: selectedTeam)
         setRootView(toVC: "TabBarController")
     }
 
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    // Number of teams to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectTeamVM.teams.count
     }
     
+    // Populate each cell with a team
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! SelectTeamTableViewCell

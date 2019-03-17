@@ -74,10 +74,12 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
         self.view.addConstraints([tableTopConstraint, tableLeadingConstraint, tableTrailingConstraint, tableBottomConstraint])
     }
 
+    // Number of players to dislay
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return playerStatsVM.playerStats?.fields?.count ?? 0
     }
 
+    // Populate each cell with a player
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "statCell", for: indexPath) as? StatsPlayerStatsTableViewCell {
             let fieldName = playerStatsVM.playerStats?.fields?.keys.sorted()[indexPath.row]
@@ -94,6 +96,7 @@ class StatsChildPersonalVC: UIViewController, IndicatorInfoProvider, UITableView
         }
     }
 
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }

@@ -227,14 +227,17 @@ class EventVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIP
         arg.isScrollEnabled = false
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 
+    // Number of RSVP types to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rsvpTypes.count
     }
     
+    // Populate each cell with an RSVP type
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! EventTableViewCellVC

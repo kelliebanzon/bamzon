@@ -56,12 +56,14 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
         self.view.addConstraints([tableTopConstraint, tableLeadingConstraint, tableTrailingConstraint, tableBottomConstraint])
     }
 
+    // Number of players to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return players.count
         // should be:
         // return team.userIDs?.count ?? 0
     }
 
+    // Populate each cell with a player
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "otherPlayerCell", for: indexPath) as? StatsOtherPlayerNamesTableViewCell {
             cell.highlightYellowOnSelection()

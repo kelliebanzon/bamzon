@@ -58,12 +58,12 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Setting number of sections
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
 
-    // Number of rows to present
+    // Number of settings to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return settingsList.count
@@ -74,7 +74,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
     }
     
-    // Populate value at selected row
+    // Populate each cell with a setting
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.backgroundColor = UIColor(named: "TSTeal")
@@ -120,7 +120,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // Set the height of each row
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 50
         switch indexPath.section {

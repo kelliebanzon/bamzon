@@ -91,10 +91,12 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    // Number of sections to display
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    // Number of organizations/teams to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orgTableView {
             return self.joinTeamVM.allOrgs.count
@@ -104,6 +106,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         return 0
     }
     
+    // Populate each cell with an organization/team with their corresponding section
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.highlightYellowOnSelection()
@@ -116,6 +119,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
+    // Set text field to selected organization/team that's been selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == orgTableView {
             let org = self.joinTeamVM.allOrgs[indexPath.row]
@@ -130,6 +134,7 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    // Hide keyboard if touched outside of fields
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

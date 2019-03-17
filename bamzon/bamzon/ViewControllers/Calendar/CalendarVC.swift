@@ -122,14 +122,17 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         calenderView.changeTheme()
     }
     
+    // Cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
 
+    // Number of events to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
+    // Populate each cell with an event
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CalendarVCTableViewCell
