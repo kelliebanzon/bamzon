@@ -18,7 +18,6 @@ class RosterVM: LoggedInViewModel {
     }
     
     func loadUsers(dispatch: DispatchGroup) {
-        print("users: \(users)")
         members = users
     }
     

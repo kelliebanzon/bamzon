@@ -51,14 +51,12 @@ class SelectTeamVM: LoggedInViewModel {
     func selectTeam(team: Team, dispatch: DispatchGroup) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.curTeam = team
-            print("users")
             setTeamUsers(teamID: team.teamID, dispatch: dispatch)
             setTeamCalendar(teamID: team.teamID, dispatch: dispatch)
         }
     }
     
     func setTeamUsers(teamID: ID, dispatch: DispatchGroup) {
-        print("setTeamUsers")
         var queriedUsers: [User] = []
         
         dispatch.enter()
@@ -80,7 +78,6 @@ class SelectTeamVM: LoggedInViewModel {
     }
     
     func setTeamCalendar(teamID: ID, dispatch: DispatchGroup) {
-        print("setTeamCalendar")
         var queriedCalendar: TeamCalendar?
         
         dispatch.enter()

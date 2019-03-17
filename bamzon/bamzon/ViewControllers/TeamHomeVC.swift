@@ -53,11 +53,11 @@ class TeamHomeVC: UIViewController, DisplayableProtocol {
         view.backgroundColor = UIColor(named: "TSTeal")
         
         let nextPracticeDesc = teamHomeVM.nextPractice?.name ?? "--"
-        let nextPracticeTime = teamHomeVM.nextPractice?.date.toString() ?? "--"
+        let nextPracticeTime = teamHomeVM.nextPractice?.date.prettyPrint() ?? "--"
         let nextEventDesc = teamHomeVM.nextNonPractice?.name ?? "--"
-        let nextEventDate = teamHomeVM.nextNonPractice?.date.toString() ?? "--"
-        let departTime = ""
-        let returnTime = ""
+        let nextEventDate = teamHomeVM.nextNonPractice?.date.prettyPrint() ?? "--"
+        let departTime = "" // remove if we don't need
+        let returnTime = "" // remove if we don't need
         
         teamPictureImageView.contentMode = .scaleAspectFill
         teamPictureImageView.clipsToBounds = true

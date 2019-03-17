@@ -44,7 +44,13 @@ class CalendarVM: LoggedInViewModel {
     }
     
     func updateEvents(events: [Event]) {
-//        team.calendar?.setEvents(events: events)
-//        DBUtility.writeToDB(objToWrite: team.calendar ?? TeamCalendar(teamID: team.teamID, events: events)) TODO NEEDS SEPARATE CALENDAR
+        self.events = events
+
+        let eventIDs = events.map({(event) -> ID in
+            return event.eventID
+        })
+        
+        calendar?.eventIDs = eventIDs
+        DBUtility.writeToDB(objToWrite: calendar ?? TeamCalendar(teamID: team.teamID, eventIDs: eventIDs))
     }
 }

@@ -11,14 +11,15 @@ import Foundation
 extension Date {
     func toString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm Z"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm Z"
         return dateFormatter.string(from: self)
     }
     
     static func fromString(from: String) -> Date {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd hh:mm Z"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm Z"
         return formatter.date(from: from) ?? Date(timeIntervalSince1970: -3600)
     }
     
@@ -30,7 +31,14 @@ extension Date {
     
     static func fromStringNoTZMinSec(from: String) -> Date {
         let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.date(from: from) ?? Date(timeIntervalSince1970: -3600)
+    }
+    
+    func prettyPrint() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd @ h:mm a"
+        return formatter.string(from: self)
     }
 }

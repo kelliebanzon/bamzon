@@ -37,21 +37,17 @@ class AttendanceVM: LoggedInViewModel {
     
     func loadPractices(dispatch: DispatchGroup) {
         var tempEvent: Event?
-//        if let events = self.team.calendar?.getEvents() { TODO NEEDS EVENT LIST SEPARATE
-        let events = [Event]()
-        if true {
-            for event in events {
-                dispatch.enter()
-                print("looking at event")
-                DBUtility.readFromDB(table: FirTable.event, keys: event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                    tempEvent = Event(key: key, payload: userSnap)
-                    if tempEvent!.tags["practice"] != nil {
-                        print("found practice")
-                        self.practices.append(Event(key: key, payload: userSnap))
-                    }
-                    dispatch.leave()
-                })
-            }
+        for event in events {
+            dispatch.enter()
+            print("looking at event")
+            DBUtility.readFromDB(table: FirTable.event, keys: event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+                tempEvent = Event(key: key, payload: userSnap)
+                if tempEvent!.tags["practice"] != nil {
+                    print("found practice")
+                    self.practices.append(Event(key: key, payload: userSnap))
+                }
+                dispatch.leave()
+            })
         }
     }
     

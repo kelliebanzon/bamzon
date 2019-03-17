@@ -15,13 +15,24 @@ class TeamHomeVM: LoggedInViewModel {
     var nextNonPractice: Event?
     
     func refresh(dispatch: DispatchGroup) {
+        events.sort() // sorts by date
         for event in events {
-            if (nextPractice == nil && event.tags["practice"] != nil) {
+            if  isNextPractice(event: event) {
                 nextPractice = event
             }
-            if (nextNonPractice == nil && event.tags["practice"] == nil) {
+            if  isNextNonPractice(event: event) {
                 nextNonPractice = event
             }
         }
+    }
+    
+    func isNextPractice(event: Event) -> Bool {
+        let currentDate = Date.init(timeIntervalSinceNow: 0)
+        return nextPractice == nil && event.tags["practice"] != nil && event.date >= currentDate
+    }
+    
+    func isNextNonPractice(event: Event) -> Bool {
+        let currentDate = Date.init(timeIntervalSinceNow: 0)
+        return nextNonPractice == nil && event.tags["practice"] == nil && event.date >= currentDate
     }
 }

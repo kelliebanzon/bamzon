@@ -40,15 +40,12 @@ class LoggedInViewModel {
             self.users = appDelegate.users!
         }
         
-        print("USERS SET TO: \(self.users), }}}}}} appdelegate has \(String(describing: appDelegate.users))")
-        
         if appDelegate.events == nil {
             self.events = []
         } else {
             self.events = appDelegate.events!
         }
         
-                print("EVENTS SET TO: \(self.events), ||||||||||| appdelegate has \(String(describing: appDelegate.events))")
     }    
     
 }
