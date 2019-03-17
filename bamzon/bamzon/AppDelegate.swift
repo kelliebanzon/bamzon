@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var curTeam: Team?
     var curUser: User?
+    var users: [User]?
+    var calendar: TeamCalendar?
+    var events: [Event]?
     let dispatch = DispatchGroup()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

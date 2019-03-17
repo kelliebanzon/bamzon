@@ -15,15 +15,13 @@ class TeamHomeVM: LoggedInViewModel {
     var nextNonPractice: Event?
     
     func refresh(dispatch: DispatchGroup) {
-//        dispatch.enter()
-//        DBUtility.readFromDB(table: FirTable.event, keys: self.team.nextPractice ?? ID(type: "x", uuid: "0"), completion: {(key: String, payload: [String: AnyObject]) -> Void in
-//            self.nextPractice = Event(key: key, payload: payload)
-//                dispatch.leave()
-//        })
-//        dispatch.enter()
-//        DBUtility.readFromDB(table: FirTable.event, keys: self.team.nextEvent ?? ID(type: "x", uuid: "0"), completion: {(key: String, payload: [String: AnyObject]) -> Void in
-//            self.nextNonPractice = Event(key: key, payload: payload)
-//            dispatch.leave()
-//        })
+        for event in events {
+            if (nextPractice == nil && event.tags["practice"] != nil) {
+                nextPractice = event
+            }
+            if (nextNonPractice == nil && event.tags["practice"] == nil) {
+                nextNonPractice = event
+            }
+        }
     }
 }

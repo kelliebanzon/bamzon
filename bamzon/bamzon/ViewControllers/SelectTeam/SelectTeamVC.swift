@@ -118,9 +118,10 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.present(joinTeamNav, animated: true, completion: nil)
     }
     
-    func viewTeam(team: Team) {
-        selectTeamVM.selectTeam(team: team)
-    }
+//    func viewTeam(team: Team) {
+//        let dispatch = DispatchGroup()
+//        selectTeamVM.selectTeam(team: team, dispatch: dispatch)
+//    }
     
     func logout() {
     // TODO: implement logout
@@ -134,8 +135,11 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     // Display selected team and set root view to TabBarController
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTeam = selectTeamVM.teams[indexPath.row]
-        selectTeamVM.selectTeam(team: selectedTeam)
-        setRootView(toVC: "TabBarController")
+        let dispatch = DispatchGroup()
+        selectTeamVM.selectTeam(team: selectedTeam, dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.setRootView(toVC: "TabBarController")
+        }
     }
 
     // Number of sections to display
