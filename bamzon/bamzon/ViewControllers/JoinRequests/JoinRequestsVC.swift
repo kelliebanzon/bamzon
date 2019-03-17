@@ -121,23 +121,21 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Approve the request by identifying the user with the .tag attribute
     @objc func approveRequest(sender: UIButton) {
-        let dispatch = DispatchGroup()
-        joinRequestsVM.approve(reqIndex: sender.tag, dispatch: dispatch)
+        joinRequestsVM.approve(reqIndex: sender.tag)
         refresh()
     }
     
     // Reject the request by identifying the user with the .tag attribute
     @objc func rejectRequest(sender: UIButton) {
         print("I'm supposed to reject: " + String(sender.tag))
-        let dispatch = DispatchGroup()
-        joinRequestsVM.reject(reqIndex: sender.tag, dispatch: dispatch)
+        joinRequestsVM.reject(reqIndex: sender.tag)
         refresh()
     }
     
     // Block this request and future requests by identifying the user with the .tag attribute
     @objc func blockRequest(sender: UIButton) {
         print("I'm supposed to block: " + String(sender.tag))
-        alert(withTitle: "❌ Block Request ❌", withMessage: "Feature not implemented")
+        joinRequestsVM.block(reqIndex: sender.tag)
         refresh()
     }
 }

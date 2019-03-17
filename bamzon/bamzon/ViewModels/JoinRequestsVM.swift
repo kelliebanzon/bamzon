@@ -19,21 +19,35 @@ class JoinRequestsVM: LoggedInViewModel {
     }
     
     //TODO: Check for duplicates within join requests. Spam join request shouldn't be allowed
-    @objc func approve(reqIndex: Int, dispatch: DispatchGroup) {
+    @objc func approve(reqIndex: Int) {
         let userID = reqUsers[reqIndex].userID
         self.team.joinReqIDs.removeValue(forKey: userID)
         self.team.userIDs[userID] = userID
+        
         reqUsers.remove(at: reqIndex)
         DBUtility.writeToDB(objToWrite: self.team)
+        DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            var user = User(key: key, payload: payload)
+            user.teamIDs[self.team.teamID] = self.team.teamID
+            DBUtility.writeToDB(objToWrite: user)
+        })
     }
     
-    func reject(reqIndex: Int, dispatch: DispatchGroup) {
+    func reject(reqIndex: Int) {
         self.team.joinReqIDs.removeValue(forKey: reqUsers[reqIndex].userID)
         reqUsers.remove(at: reqIndex)
         DBUtility.writeToDB(objToWrite: self.team)
     }
     
+    func block(reqIndex: Int) {
+        self.team.joinReqIDs.removeValue(forKey: reqUsers[reqIndex].userID)
+        self.team.blacklistUserIDs[reqUsers[reqIndex].userID] = reqUsers[reqIndex].userID
+        reqUsers.remove(at: reqIndex)
+        DBUtility.writeToDB(objToWrite: self.team)
+    }
+    
     func reloadTeam(dispatch: DispatchGroup) {
+        dispatch.enter()
         DBUtility.readFromDB(table: FirTable.team, keys: self.team.teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
             let reloadedTeam = Team(key: key, payload: payload)
             self.team = reloadedTeam
@@ -44,7 +58,6 @@ class JoinRequestsVM: LoggedInViewModel {
     
     func loadRequests(dispatch: DispatchGroup) {
         self.reqUsers.removeAll()
-        dispatch.enter()
         reloadTeam(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             for userID in Array(self.team.joinReqIDs.values) {

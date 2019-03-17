@@ -144,8 +144,11 @@ class JoinTeamChildSelectTeamVC: UIViewController, UITableViewDataSource, UITabl
         let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "JoinTeamChildRequestSentVC")
 
         if let selectedTeamIndex = selectedTeamIndex {
-            self.joinTeamVM.sendJoinRequest(teamIndex: selectedTeamIndex)
-            self.navigationController!.pushViewController(nextVC, animated: true)
+            if let error = self.joinTeamVM.sendJoinRequest(teamIndex: selectedTeamIndex) {
+                self.alert(withTitle: "Blocked", withMessage: error)
+            } else {
+                self.navigationController!.pushViewController(nextVC, animated: true)
+            }
         } else {
             return
         }

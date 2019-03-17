@@ -16,11 +16,16 @@ class JoinTeamVM: LoggedInViewModel {
     var allOrgs: [Organization] = []
     var teams: [Team] = []
     
-    func sendJoinRequest(teamIndex: Int) {
+    //Returns error notification if user is blacklisted
+    func sendJoinRequest(teamIndex: Int) -> String? {
         var team = teams[teamIndex]
-        team.joinReqIDs[self.user.userID] = self.user.userID
-
-        DBUtility.writeToDB(objToWrite: team)
+        if team.blacklistUserIDs[self.user.userID] != nil {
+            return "You have been blocked from joining this team at this time."
+        } else {
+            team.joinReqIDs[self.user.userID] = self.user.userID
+            DBUtility.writeToDB(objToWrite: team)
+        }
+        return nil
     }
     
     func loadOrgs(dispatch: DispatchGroup) {
@@ -55,11 +60,5 @@ class JoinTeamVM: LoggedInViewModel {
                 dispatch.leave()
             })
         }
-    }
-    
-    func joinTeam(teamIndex: Int) {
-        var team = teams[teamIndex]
-        team.userIDs[self.user.userID] = self.user.userID
-        DBUtility.writeToDB(objToWrite: team)
     }
 }

@@ -17,16 +17,28 @@ class SelectTeamVM: LoggedInViewModel {
     var organizations: [Organization] = [] //correspond to matching index in teams array
     
     func refresh(dispatch: DispatchGroup) {
-        loadTeams(dispatch: dispatch)
+        reloadUser(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.loadTeams(dispatch: dispatch)
+        }
     }
     
     func loadTeams(dispatch: DispatchGroup) {
         teams.removeAll()
         organizations.removeAll()
         for teamID in self.user.teamIDs {
-            loadTeam(teamID: teamID.key, dispatch: dispatch)
+            self.loadTeam(teamID: teamID.key, dispatch: dispatch)
         }
-        
+    }
+    
+    func reloadUser(dispatch: DispatchGroup) {
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.user, keys: self.user.userID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
+            let reloadedUser = User(key: key, payload: teamSnap)
+            self.appDelegate.curUser = reloadedUser
+            self.user = reloadedUser
+            dispatch.leave()
+        })
     }
 
     func loadTeam(teamID: ID, dispatch: DispatchGroup) {
