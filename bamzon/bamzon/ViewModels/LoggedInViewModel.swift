@@ -19,13 +19,13 @@ class LoggedInViewModel {
     
     init() {
         if appDelegate.curUser == nil {
-            self.user = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", uuid: "404")])
+            self.user = User(userID: IDUtility.generateIDFromString(idString: "u404"), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: "(123) 456-7890", email: "jperal@calpoly.edu", schoolYear: nil, bio: "The best detective in all of Brooklyn!", imageURL: nil, teamIDs: [ID(type: "t", uuid: "404"): ID(type: "t", uuid: "404")])
         } else {
             self.user = appDelegate.curUser!
         }
         
         if appDelegate.curTeam == nil {
-            self.team = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", joinReqIDs: nil, blacklistUserIDs: nil)
+            self.team = Team(teamID: ID(type: "t", uuid: "404"), orgID: ID(type: "o", uuid: "404"), userIDs: [ID(type: "u", uuid: "404"): ID(type: "u", uuid: "404")], teamName: "Test Team", sport: "Cricket", joinReqIDs: [:], blacklistUserIDs: [:])
         } else {
             self.team = appDelegate.curTeam!
         }

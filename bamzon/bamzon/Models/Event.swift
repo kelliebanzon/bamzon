@@ -12,16 +12,16 @@ import Firebase
 struct Event: FirebaseCompatable, Equatable, Comparable {
     var name: String
     var locationID: ID?
-    var contactUserIDs: [ID]?
+    var contactUserIDs: [ID: ID]
     var description: String?
     var date: Date
-    var tags: [String: String]?
-    var media: [String: ID]?
-    var links: [String: String]? // TODO: should this be a url or a string?
+    var tags: [String: String]
+    var media: [String: ID]
+    var links: [String: String] // TODO: should this be a url or a string?
     var eventID: ID
     var teamID: ID
     
-    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID]?, description: String?, date: Date?, tags: [String: String]?, media: [String: ID]?, links: [String: String]?) {
+    init(eventID: ID, teamID: ID, name: String, locationID: ID?, contactUserIDs: [ID: ID], description: String?, date: Date?, tags: [String: String], media: [String: ID], links: [String: String]) {
         self.name = name
         self.locationID = locationID ?? IDUtility.generateIDFromString(idString: "z0")
         self.contactUserIDs = contactUserIDs
@@ -36,19 +36,19 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
     
     func formatForDB() -> [String: Any] {
         var mediaConverted: [String: String] = [:]
-        for med in media ?? [:] {
+        for med in media {
             mediaConverted[med.key] = med.value.toString()
         }
         return
             ["name": name,
              "teamID": teamID.toString(),
              "location": locationID?.toString() ?? "",
-             "contactUserIDs": IDUtility.idsToStrings(ids: contactUserIDs),
+             "contactUserIDs": IDUtility.idsToDict(ids: contactUserIDs),
              "description": description ?? "",
              "date": date.toString(),
-             "tags": tags ?? [:],
+             "tags": tags,
              "media": mediaConverted,
-             "links": links ?? [:]]
+             "links": links]
     }
     
     func getTable() -> FirTable {
@@ -63,17 +63,11 @@ struct Event: FirebaseCompatable, Equatable, Comparable {
         eventID = IDUtility.generateIDFromString(idString: key)
         name = payload["name"] as? String ?? "N/A"
         locationID = IDUtility.generateIDFromString(idString: payload["location"] as? String ?? "z0")
-        contactUserIDs = IDUtility.stringsToIDs(strs: payload["contactUserIDs"] as? [String] ?? [])
+        contactUserIDs = IDUtility.stringsToIDDict(strs: payload["contactUserIDs"] as? [String: String] ?? [:])
         description = payload["description"] as? String ?? "N/A"
         date = Date.fromString(from: payload["date"] as? String ?? "1920-01-01 00:00 -0000")
         tags = payload["tags"] as? [String: String] ?? [:]
-        let mediaDict = payload["media"] as? [String: String] ?? [:]
-        if !mediaDict.isEmpty {
-            media = [:]
-        }
-        for med in mediaDict {
-            media?.updateValue(IDUtility.generateIDFromString(idString: med.value), forKey: med.key)
-        }
+        media = IDUtility.stringsToStringIDDict(strs: payload["media"] as? [String: String] ?? [:])
         links = payload["links"] as? [String: String] ?? [:]
         teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
     }

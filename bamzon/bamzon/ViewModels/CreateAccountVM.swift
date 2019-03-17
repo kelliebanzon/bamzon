@@ -60,7 +60,7 @@ class CreateAccountVM {
     
     func initUser(fname: String, lname: String, email: String) -> User {
         let newUserID = IDUtility.generateUserID()
-        let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: email, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)
+        let newUser = User.init(userID: newUserID, firstName: fname, lastName: lname, nickname: String(fname + " " + lname), phone: nil, email: email, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: [:])
         return newUser
     }
 }

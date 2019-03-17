@@ -25,15 +25,14 @@ class AttendanceVM: LoggedInViewModel {
     }
     
     func loadPlayers(dispatch: DispatchGroup) {
-        if let userIDs = self.team.userIDs {
-            for userID in userIDs {
-                dispatch.enter()
-                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                    self.members.append(User(key: key, payload: userSnap))
-                    dispatch.leave()
-                })
-            }
+        for userID in self.team.userIDs {
+            dispatch.enter()
+            DBUtility.readFromDB(table: FirTable.user, keys: userID.key, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+                self.members.append(User(key: key, payload: userSnap))
+                dispatch.leave()
+            })
         }
+        
     }
     
     func loadPractices(dispatch: DispatchGroup) {
@@ -46,7 +45,7 @@ class AttendanceVM: LoggedInViewModel {
                 print("looking at event")
                 DBUtility.readFromDB(table: FirTable.event, keys: event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                     tempEvent = Event(key: key, payload: userSnap)
-                    if tempEvent!.tags?["practice"] != nil {
+                    if tempEvent!.tags["practice"] != nil {
                         print("found practice")
                         self.practices.append(Event(key: key, payload: userSnap))
                     }

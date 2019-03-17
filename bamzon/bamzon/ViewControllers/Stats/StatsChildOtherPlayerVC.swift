@@ -22,17 +22,26 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
         "inTableSpacing": 12
     ]
 
-    // get the team object from the database
-    let team = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", joinReqIDs: nil, blacklistUserIDs: nil)
-    // get the user objects from the database through the userIDs of the team
-    let players = [User(userID: IDUtility.generateUserID(), firstName: "Rosa", lastName: "Diaz", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Amy", lastName: "Santiago", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)]
+//    // get the team object from the database
+//    let team = Team(teamID: IDUtility.generateTeamID(), orgID: IDUtility.generateOrgID(), userIDs: [IDUtility.generateUserID()], teamName: "Swim Club", sport: "Swim", joinReqIDs: nil, blacklistUserIDs: nil)
+//    // get the user objects from the database through the userIDs of the team
+//    let players = [User(userID: IDUtility.generateUserID(), firstName: "Rosa", lastName: "Diaz", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Jake", lastName: "Peralta", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil), User(userID: IDUtility.generateUserID(), firstName: "Amy", lastName: "Santiago", nickname: nil, phone: nil, email: nil, schoolYear: nil, bio: nil, imageURL: nil, teamIDs: nil)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         statsTable.register(StatsOtherPlayerNamesTableViewCell.self, forCellReuseIdentifier: "otherPlayerCell")
         statsTable.delegate = self
         statsTable.dataSource = self
-        display()
+        
+        self.showSpinner(onView: self.view)
+        let dispatch = DispatchGroup()
+        statsVM.loadTeamStats(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
+            self.display()
+            self.setupAutoLayout()
+        }
+        
     }
     
     func display() {
@@ -58,7 +67,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
 
     // Number of players to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return statsVM.members.count
         // should be:
         // return team.userIDs?.count ?? 0
     }
@@ -67,7 +76,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "otherPlayerCell", for: indexPath) as? StatsOtherPlayerNamesTableViewCell {
             cell.highlightYellowOnSelection()
-            let player = players[indexPath.row]
+            let player = statsVM.members[indexPath.row]
             cell.nameLabel.text = player.getFullName()
             return cell
         } else {

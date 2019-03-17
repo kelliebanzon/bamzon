@@ -12,8 +12,9 @@ class ID: Codable, Hashable, CustomStringConvertible {
     var type: String
     var uuid: String
     
-    var hashValue: Int {
-        return type.hashValue * uuid.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(type)
+        hasher.combine(uuid)
     }
     
     init(type: String, uuid: String) {

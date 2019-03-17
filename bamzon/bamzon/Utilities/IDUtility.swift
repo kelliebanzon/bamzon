@@ -53,18 +53,44 @@ class IDUtility {
     }
     
     // these two might be better elsewhere
-    static func idsToStrings(ids: [ID]?) -> [String] {
+    static func idsToStrings(ids: [ID]) -> [String] {
         var stringArr = [String]()
-        ids?.forEach { nextID in
+        ids.forEach { nextID in
             stringArr.append(nextID.toString())
         }
         return stringArr
+    }
+    
+    static func idsToDict(ids: [ID: ID]) -> [String: String] {
+        var stringDict = [String: String]()
+        ids.forEach { nextID in
+            stringDict[nextID.key.toString()] = nextID.key.toString()
+        }
+        return stringDict
     }
     
     static func stringsToIDs(strs: [String]) -> [ID] {
         var idArr = [ID]()
         strs.forEach { str in
             idArr.append(generateIDFromString(idString: str))
+        }
+        return idArr
+    }
+    
+    static func stringsToIDDict(strs: [String: String]) -> [ID: ID] {
+        var idArr = [ID :ID]()
+        strs.forEach { str in
+            let str = generateIDFromString(idString: str.key)
+            idArr[str] =  str
+        }
+        return idArr
+    }
+    
+    static func stringsToStringIDDict(strs: [String: String]) -> [String: ID] {
+        var idArr = [String :ID]()
+        strs.forEach { str in
+            let id = generateIDFromString(idString: str.key)
+            idArr[str.key] =  id
         }
         return idArr
     }

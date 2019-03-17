@@ -25,12 +25,8 @@ class CreateTeamVM {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // swiftlint:enable force_cast
         if var user = appDelegate.curUser {
-            let team = Team.init(teamID: teamID, orgID: org.orgID, userIDs: [user.userID], teamName: teamName, sport: sport, joinReqIDs: nil, blacklistUserIDs: nil)
-            if user.teamIDs == nil {
-                user.teamIDs = [teamID]
-            } else {
-                user.teamIDs!.append(teamID)
-            }
+            let team = Team.init(teamID: teamID, orgID: org.orgID, userIDs: [user.userID: user.userID], teamName: teamName, sport: sport, joinReqIDs: [:], blacklistUserIDs: [:])
+            user.teamIDs = [teamID: teamID]
             
             var newOrg = org
             newOrg.teamIDs.append(teamID)

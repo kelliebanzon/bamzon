@@ -18,11 +18,8 @@ class JoinTeamVM: LoggedInViewModel {
     
     func sendJoinRequest(teamIndex: Int) {
         var team = teams[teamIndex]
-        if team.joinReqIDs != nil {
-            team.joinReqIDs!.append(self.user.userID)
-        } else {
-            team.joinReqIDs = [self.user.userID]
-        }
+        team.joinReqIDs[self.user.userID] = self.user.userID
+
         DBUtility.writeToDB(objToWrite: team)
     }
     
@@ -61,11 +58,7 @@ class JoinTeamVM: LoggedInViewModel {
     
     func joinTeam(teamIndex: Int) {
         var team = teams[teamIndex]
-        if team.userIDs != nil {
-            team.userIDs!.append(self.user.userID)
-        } else {
-            team.userIDs = [self.user.userID]
-        }
+        team.userIDs[self.user.userID] = self.user.userID
         DBUtility.writeToDB(objToWrite: team)
     }
 }

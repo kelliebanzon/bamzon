@@ -75,10 +75,11 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         cell.highlightYellowOnSelection()
         let statType = statTypes[indexPath.row]
         
-        let stat = stats[indexPath.row]
+        //TODO: Fix this
+        //let stat = stats[indexPath.row]
             
         cell.statsDescLabel.text = statType
-        cell.statsLabel.text = "\(stat)"
+        //cell.statsLabel.text = "\(stat)"
         return cell
     }
 

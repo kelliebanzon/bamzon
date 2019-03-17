@@ -19,9 +19,9 @@ struct User: FirebaseCompatable, Equatable {
     var schoolYear: Year?
     var bio: String?
     var imageURL: String? // TODO: should this be a URL?
-    var teamIDs: [ID]?
+    var teamIDs: [ID: ID]
     
-    init(userID: ID, firstName: String, lastName: String, nickname: String?, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teamIDs: [ID]?) {
+    init(userID: ID, firstName: String, lastName: String, nickname: String?, phone: String?, email: String?, schoolYear: Year?, bio: String?, imageURL: String?, teamIDs: [ID: ID]) {
         self.userID = userID
         self.firstName = firstName
         self.lastName = lastName
@@ -44,7 +44,7 @@ struct User: FirebaseCompatable, Equatable {
         schoolYear = Year(rawValue: payload["schoolYear"] as? Int ?? 0)
         bio = payload["bio"] as? String ?? "N/A"
         imageURL = payload["imageURL"] as? String ?? "N/A"
-        teamIDs = IDUtility.stringsToIDs(strs: payload["teamIDs"] as? [String] ?? [])
+        teamIDs = IDUtility.stringsToIDDict(strs: payload["teamIDs"] as? [String: String] ?? [:])
     }
     
     func formatForDB() -> [String: Any] {
@@ -57,7 +57,7 @@ struct User: FirebaseCompatable, Equatable {
              "schoolYear": schoolYear?.rawValue ?? "",
              "bio": bio ?? "",
              "imageURL": imageURL ?? "",
-             "teamIDs": IDUtility.idsToStrings(ids: teamIDs)]
+             "teamIDs": IDUtility.idsToDict(ids: teamIDs)]
     }
     
     func getTable() -> FirTable {

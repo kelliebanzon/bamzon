@@ -81,7 +81,7 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Number of requests to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return joinRequestsVM.requestedUsers.count
+        return joinRequestsVM.reqUsers.count
     }
     
     // Populate each cell with a user and 3 buttons
@@ -89,7 +89,7 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RequestTableViewCell
         // swiftlint:enable force_cast
-        cell.teamName.text = joinRequestsVM.requestedUsers[indexPath.row].getFullName()
+        cell.teamName.text = joinRequestsVM.reqUsers[indexPath.row].getFullName()
         cell.acceptButton.addTarget(self, action: #selector(approveRequest), for: .touchUpInside)
         cell.rejectButton.addTarget(self, action: #selector(rejectRequest), for: .touchUpInside)
         cell.blockButton.addTarget(self, action: #selector(blockRequest), for: .touchUpInside)
@@ -99,14 +99,14 @@ class JoinRequestsVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Approve the request by identifying the user with the .tag attribute
     @objc func approveRequest(sender: UIButton) {
-        joinRequestsVM.approve(requestIndex: sender.tag)
+        joinRequestsVM.approve(reqIndex: sender.tag)
     }
     
     // Reject the request by identifying the user with the .tag attribute
     @objc func rejectRequest(sender: UIButton) {
         print("I'm supposed to reject: " + String(sender.tag))
         let dispatch = DispatchGroup()
-        joinRequestsVM.reject(requestIndex: sender.tag, dispatch: dispatch)
+        joinRequestsVM.reject(reqIndex: sender.tag, dispatch: dispatch)
     }
     
     // Block this request and future requests by identifying the user with the .tag attribute

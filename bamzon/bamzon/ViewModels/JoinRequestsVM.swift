@@ -12,36 +12,30 @@ import Foundation
 
 class JoinRequestsVM: LoggedInViewModel {
     
-    var requestedUsers: [User] = []
+    var reqUsers: [User] = []
     
     //TODO: Check for duplicates within join requests. Spam join request shouldn't be allowed
-    @objc func approve(requestIndex: Int) {
-        self.team.joinReqIDs!.remove(at: requestIndex)
-        if self.team.userIDs != nil {
-            self.team.userIDs!.append(requestedUsers[requestIndex].userID)
-        } else {
-            self.team.userIDs = [requestedUsers[requestIndex].userID]
-        }
-        requestedUsers.remove(at: requestIndex)
+    @objc func approve(reqIndex: Int) {
+        let userID = reqUsers[reqIndex].userID
+        self.team.joinReqIDs.removeValue(forKey: userID)
+        self.team.userIDs[userID] = userID
+        reqUsers.remove(at: reqIndex)
         DBUtility.writeToDB(objToWrite: self.team)
     }
     
-    func reject(requestIndex: Int, dispatch: DispatchGroup) {
-        self.team.joinReqIDs!.remove(at: requestIndex)
-        requestedUsers.remove(at: requestIndex)
+    func reject(reqIndex: Int, dispatch: DispatchGroup) {
+        self.team.joinReqIDs.removeValue(forKey: reqUsers[reqIndex].userID)
+        reqUsers.remove(at: reqIndex)
         DBUtility.writeToDB(objToWrite: self.team)
     }
     
     func loadRequests(dispatch: DispatchGroup) {
-        if self.team.joinReqIDs != nil {
-            for userID in self.team.joinReqIDs! {
-                dispatch.enter()
-                DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                    self.requestedUsers.append(User(key: key, payload: payload))
-                    dispatch.leave()
-                })
-            }
+        for userID in Array(self.team.joinReqIDs.values) {
+            dispatch.enter()
+            DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+                self.reqUsers.append(User(key: key, payload: payload))
+                dispatch.leave()
+            })
         }
-        
     }
 }

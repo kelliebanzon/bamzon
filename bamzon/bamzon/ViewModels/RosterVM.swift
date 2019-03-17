@@ -21,9 +21,7 @@ class RosterVM: LoggedInViewModel {
         dispatch.enter()
         DBUtility.readFromDB(table: FirTable.team, keys: self.team.teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
             let newTeam = Team(key: key, payload: teamSnap)
-            if newTeam.userIDs != nil {
-                self.getUsers(userIDs: newTeam.userIDs!, dispatch: dispatch)
-            }
+            self.getUsers(userIDs: Array(newTeam.userIDs.values), dispatch: dispatch)
             dispatch.leave()
         })
     }
