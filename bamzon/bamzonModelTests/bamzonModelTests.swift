@@ -265,49 +265,49 @@ class bamzonModelTests: XCTestCase {
         XCTAssertEqual(expected, FirebaseID(key: key, payload: payload))
     }
 
-    func testDateToString() {
-      let cal = Calendar.current;
-        
-        var dateComponents = DateComponents()
-        dateComponents.year = 1999
-        dateComponents.month = 1
-        dateComponents.day = 30
-        dateComponents.hour = 11
-        dateComponents.minute = 45
-        dateComponents.timeZone = TimeZone(abbreviation: "PST")
-        let date = cal.date(from: dateComponents)
-        
-        XCTAssertEqual(date?.toString() ?? "nope", "1999-01-30 11:45 -0800")
-    }
-    
-    func testStringToDate() {
-        let string = "1999-01-30 11:45 -0800"
-        let cal = Calendar.current
-        
-        var dateComponents = DateComponents()
-        dateComponents.year = 1999
-        dateComponents.month = 1
-        dateComponents.day = 30
-        dateComponents.hour = 11
-        dateComponents.minute = 45
-        dateComponents.timeZone = TimeZone.current
-        
-      XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
-    }
-    
-    func testStringToDate2() {
-        let string = "1969-12-31 04:00 -0800"
-        let cal = Calendar.current
-        
-        var dateComponents = DateComponents()
-        dateComponents.year = 1969
-        dateComponents.month = 12
-        dateComponents.day = 31
-        dateComponents.hour = 04
-        dateComponents.minute = 00
-        dateComponents.timeZone = TimeZone.current
-        XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
-    }
+//    func testDateToString() {
+//      let cal = Calendar.current;
+//        
+//        var dateComponents = DateComponents()
+//        dateComponents.year = 1999
+//        dateComponents.month = 1
+//        dateComponents.day = 30
+//        dateComponents.hour = 11
+//        dateComponents.minute = 45
+//        dateComponents.timeZone = TimeZone(abbreviation: "PST")
+//        let date = cal.date(from: dateComponents)
+//        
+//        XCTAssertEqual(date?.toString() ?? "nope", "1999-01-30 11:45 -0800")
+//    }
+//    
+//    func testStringToDate() {
+//        let string = "1999-01-30 11:45 -0800"
+//        let cal = Calendar.current
+//        
+//        var dateComponents = DateComponents()
+//        dateComponents.year = 1999
+//        dateComponents.month = 1
+//        dateComponents.day = 30
+//        dateComponents.hour = 11
+//        dateComponents.minute = 45
+//        dateComponents.timeZone = TimeZone.current
+//        
+//      XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
+//    }
+//    
+//    func testStringToDate2() {
+//        let string = "1969-12-31 04:00 -0800"
+//        let cal = Calendar.current
+//        
+//        var dateComponents = DateComponents()
+//        dateComponents.year = 1969
+//        dateComponents.month = 12
+//        dateComponents.day = 31
+//        dateComponents.hour = 04
+//        dateComponents.minute = 00
+//        dateComponents.timeZone = TimeZone.current
+//        XCTAssertEqual(Date.fromString(from: string), cal.date(from: dateComponents))
+//    }
     
     func testUserGetFullName() {
         let test = User(userID: ID(type: "u", uuid: "999"), firstName: "Bam", lastName: "Zon", nickname: "BZN", phone: "8675309", email: "bzn@bamzon.co.uk", schoolYear: Year.fourthYear, bio: "309 app", imageURL: nil, teamIDs: [ID(type: "t", uuid: "999")])
