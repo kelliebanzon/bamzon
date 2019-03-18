@@ -37,7 +37,9 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         
         let dispatch = DispatchGroup()
         rosterVM.refresh(dispatch: dispatch)
+        self.showSpinner(onView: self.view)
         dispatch.notify(queue: DispatchQueue.main) {
+            self.removeSpinner()
             self.display()
         }
     }
