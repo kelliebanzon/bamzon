@@ -179,6 +179,17 @@ extension UIViewController {
         return textField
     }
     
+    func createTextFieldToConstrain(withText: String) -> UITextField {
+        let textField = UITextField()
+        textField.backgroundColor = .white
+        textField.layer.cornerRadius = 5
+        //textField.keyboardType = .default
+        textField.leftViewMode = .always
+        textField.attributedPlaceholder = NSAttributedString(string: withText, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSLightGray")!])
+        textField.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        return textField
+    }
+    
     func createDefaultTextButton(withText: String, withAction: Selector?, withFrame: CGRect?, withCenter: CGPoint?, withNumLines: Int?) -> UIButton {
         let textButton: UIButton
         
