@@ -38,10 +38,4 @@ class RosterVM: LoggedInViewModel {
         appDelegate.users = members
         users = members
     }
-    
-    func selectUser(user: User) {
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.curUser = user
-        }
-    }
 }

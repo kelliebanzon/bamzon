@@ -70,11 +70,10 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
     // Display a specific users' profile from the roster
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedUser = rosterVM.members[indexPath.row]
-        rosterVM.selectUser(user: selectedUser)
         // swiftlint:disable force_cast
         let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
         // swiftlint:enable force_cast
-        profileVC.user = selectedUser
+        profileVC.selectedUser = selectedUser
         self.navigationController?.pushViewController(profileVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -11,8 +11,8 @@ import UIKit
 
 class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let profileVM = ProfileVM()
-    var user: User?
+    var selectedUser: User?
+    var profileVM = ProfileVM()
     
     var profilePictureImageView = UIImageView()
     var nameLabel = UILabel()
@@ -25,7 +25,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
     var emailTextLabel = UILabel()
 
     var showClose: Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Profile"
@@ -41,11 +41,16 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
         }
 
         // TODO: change these to user name
+        if let selectedUser = selectedUser {
+            self.selectedUser = selectedUser
+        } else {
+            self.selectedUser = profileVM.user
+        }
         
-        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: user?.imageURL, style: .squircle)
+        profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: selectedUser!.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel = createDefaultHeader1Label(text: profileVM.user.firstName + " " + profileVM.user.lastName, numLines: 0)
+        nameLabel = createDefaultHeader1Label(text: selectedUser!.firstName + " " + selectedUser!.lastName, numLines: 0)
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.minimumScaleFactor = 0.8
         nameLabel.adjustsFontSizeToFitWidth = false
@@ -56,7 +61,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
  
         bio.textAlignment = .left
         bio.font = UIFont(name: "HelveticaNeue", size: 20)
-        bio.text = profileVM.user.bio
+        bio.text = selectedUser!.bio
         bio.textColor = .white
         bio.isEditable = false
         bio.backgroundColor = UIColor(named: "TSTeal")
@@ -69,13 +74,13 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
         phoneLabel = createDefaultBoldLabel(text: "Phone: ")
         self.view.addSubview(phoneLabel)
         
-        numberLabel = createDefaultBodyLabel(text: profileVM.user.phone ?? "")
+        numberLabel = createDefaultBodyLabel(text: selectedUser!.phone ?? "")
         self.view.addSubview(numberLabel)
 
         emailLabel = createDefaultBoldLabel(text: "Email: ")
         self.view.addSubview(emailLabel)
         
-        emailTextLabel = createDefaultBodyLabel(text: profileVM.user.email ?? "")
+        emailTextLabel = createDefaultBodyLabel(text: selectedUser!.email ?? "")
         emailTextLabel.minimumScaleFactor = 0.8
         emailTextLabel.adjustsFontSizeToFitWidth = true
         self.view.addSubview(emailTextLabel)
