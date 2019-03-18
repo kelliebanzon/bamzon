@@ -78,6 +78,7 @@ class BamzonTests: XCTestCase {
         login.password = pwField
 
         let dispatch = DispatchGroup()
+        dispatch.enter()
         login.loginVM.loadEmailVerified(dispatch: dispatch)
         
         dispatch.notify(queue: DispatchQueue.main) {
