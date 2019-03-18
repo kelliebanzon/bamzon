@@ -28,6 +28,7 @@ class RosterVM: LoggedInViewModel {
     
     //TODO: move userID to the VM and access from VC
     func getUsers(userIDs: [ID], dispatch: DispatchGroup) {
+        self.members.removeAll()
         for userID in userIDs {
             dispatch.enter()
             DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in

@@ -18,6 +18,7 @@ class StatsVM: LoggedInViewModel {
     var teamStats: TeamStats?
     
     func loadMembers(parent: DisplayableProtocol) {
+        self.members.removeAll()
         let group = DispatchGroup()
         for userID in Array(self.team.userIDs.values) {
             group.enter()

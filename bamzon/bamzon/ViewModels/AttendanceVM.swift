@@ -26,10 +26,13 @@ class AttendanceVM: LoggedInViewModel {
     
     func loadAttendance(dispatch: DispatchGroup) {
         loadPlayers(dispatch: dispatch)
-        loadPractices(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.loadPractices(dispatch: dispatch)
+        }
     }
     
     func loadPlayers(dispatch: DispatchGroup) {
+        self.members.removeAll()
         for userID in self.team.userIDs {
             dispatch.enter()
             DBUtility.readFromDB(table: FirTable.user, keys: userID.key, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
@@ -55,7 +58,9 @@ class AttendanceVM: LoggedInViewModel {
     }
     
     func getTodayPractice(dispatch: DispatchGroup) {
+        print("Well, shit grandma")
         for practice in practices {
+            print("Fuck")
             let formatter = DateFormatter()
             formatter.timeZone = TimeZone.current
             formatter.dateFormat = "yyyy-MM-dd"

@@ -1,5 +1,5 @@
 //
-//  AttendanceChildPlayersVC.swift
+//  AttendanceChildCurrentVC.swift
 //  bamzon
 //
 //  Created by Kellie Banzon on 02/19/19.
@@ -43,6 +43,7 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         showSpinner(onView: self.view)
         attendanceVM.loadAttendance(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
+            self.attendanceVM.getTodayPractice(dispatch: dispatch)
             self.removeSpinner()
             self.display()
         }
@@ -99,12 +100,15 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         if sender.currentTitle! == "Absent" {
             sender.setTitle("Present", for: .normal)
             sender.backgroundColor = UIColor(named: "TSGreen")
+            attendanceVM.markPresent(userIndex: sender.tag)
         } else if sender.currentTitle == "Present" {
             sender.setTitle("Excused", for: .normal)
             sender.backgroundColor = UIColor(named: "TSGray")
+            attendanceVM.markExcused(userIndex: sender.tag)
         } else if sender.currentTitle == "Excused" {
             sender.setTitle("Absent", for: .normal)
             sender.backgroundColor = UIColor(named: "TSOrange")
+            attendanceVM.markAbsent(userIndex: sender.tag)
         } else {
             sender.setTitle("Uh oh! 😰", for: .normal)
             sender.backgroundColor = UIColor(named: "TSYellow")
