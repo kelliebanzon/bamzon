@@ -328,6 +328,7 @@
 		6E611086222F5E7800A7DA17 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				6E059E2C223EF5B700188A47 /* CreateEventVC.swift */,
 				A8143A0E21B73048000E287A /* EventVC.swift */,
 				6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */,
 			);
@@ -369,7 +370,6 @@
 				A8143A0421B72E72000E287A /* CalendarView.swift */,
 				6ECB5367223879E7008E1A33 /* MonthView.swift */,
 				6ECB536922387A14008E1A33 /* WeekdaysView.swift */,
-				6E059E2C223EF5B700188A47 /* CreateEventVC.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
