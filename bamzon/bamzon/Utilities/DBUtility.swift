@@ -60,7 +60,7 @@ class DBUtility {
         let path = keyArr.joined(separator: "/")
         
         print("reading from \(table)/\(path)")
-        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+        fbDatabase.child(table.rawValue).child(path).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let payload = snapshot.value as? [String: AnyObject] ?? [:]
                 completion(snapshot.key as String, payload)
@@ -79,7 +79,7 @@ class DBUtility {
         let path = keyArr.joined(separator: "/")
         
         print("reading from \(table)/\(path)")
-        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+        fbDatabase.child(table.rawValue).child(path).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let payload = snapshot.value as? [String: AnyObject] ?? [:]
                 completion(snapshot.key as String, payload)
@@ -92,7 +92,7 @@ class DBUtility {
     static func readBaseFromDB(table: FirTable, completion: @escaping ([DataSnapshot]) -> Void) {
         
         print("reading from \(table)")
-        fbDatabase.child(table.rawValue).observeSingleEvent(of: .value, with: { (snapshot) in
+        fbDatabase.child(table.rawValue).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(snapshot.children.allObjects as? [DataSnapshot] ?? [snapshot])
             } else {
@@ -113,7 +113,7 @@ class DBUtility {
         let path = keyArr.joined(separator: "/")
         
         print("reading from \(table)/\(path)")
-        fbDatabase.child(table.rawValue).child(path).observeSingleEvent(of: .value, with: { (snapshot) in
+        fbDatabase.child(table.rawValue).child(path).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 completion(snapshot.children.allObjects as? [DataSnapshot] ?? [snapshot])
             } else {
@@ -132,4 +132,20 @@ class DBUtility {
         
         fbDatabase.child(table.rawValue).child(path).removeValue()
     }
+    
+//    static func getOrderedBy(table: FirTable) -> String? {
+//        switch(table.rawValue) {
+//
+//        case "events":
+//            return "date"
+//        case "teams":
+//            return "teamName"
+//        case "teamCalendars":
+//        case "teamStats":
+//        case "users":
+//        case "firebaseIDs":
+//        case "practices":
+//        case "playerAttendance":
+//        }
+//    }
 }
