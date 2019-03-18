@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct User: FirebaseCompatable, Equatable {
+struct User: FirebaseCompatable, Equatable, Comparable {
     var userID: ID
     var firstName: String
     var lastName: String
@@ -46,6 +46,11 @@ struct User: FirebaseCompatable, Equatable {
         imageURL = payload["imageURL"] as? String ?? "N/A"
         teamIDs = IDUtility.stringsToIDDict(strs: payload["teamIDs"] as? [String: String] ?? [:])
     }
+    
+    static func < (lhs: User, rhs: User) -> Bool {
+        return lhs.getFullName() < rhs.getFullName()
+    }
+    
     
     func formatForDB() -> [String: Any] {
         return

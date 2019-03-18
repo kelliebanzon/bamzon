@@ -9,7 +9,8 @@
 import Foundation
 import Firebase
 
-struct Organization: FirebaseCompatable, Equatable {
+struct Organization: FirebaseCompatable, Equatable, Comparable {
+    
     var orgID: ID
     var name: String
     var locationID: ID
@@ -27,6 +28,10 @@ struct Organization: FirebaseCompatable, Equatable {
         name = payload["name"] as? String ?? "N/A"
         locationID = IDUtility.generateIDFromString(idString: payload["locationID"] as? String ?? "z0")
         teamIDs = IDUtility.stringsToIDDict(strs: payload["teamIDs"] as? [String : String] ?? [:])
+    }
+    
+    static func < (lhs: Organization, rhs: Organization) -> Bool {
+        return lhs.name < rhs.name
     }
 
     func formatForDB() -> [String: Any] {

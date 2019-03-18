@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Team: FirebaseCompatable, Equatable {
+struct Team: FirebaseCompatable, Equatable, Comparable {
     
     var teamID: ID
     var orgID: ID
@@ -44,6 +44,10 @@ struct Team: FirebaseCompatable, Equatable {
         blacklistUserIDs = IDUtility.stringsToIDDict(strs: payload["blacklistUserIDs"] as? [String: String] ?? [:])
         nextPractice = IDUtility.generateIDFromString(idString: payload["nextPractice"] as? String ?? "z0")
         nextEvent = IDUtility.generateIDFromString(idString: payload["nextEvent"] as? String ?? "z0")
+    }
+    
+    static func < (lhs: Team, rhs: Team) -> Bool {
+        return lhs.teamName < rhs.teamName
     }
 
     func formatForDB() -> [String: Any] {
