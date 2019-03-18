@@ -17,8 +17,7 @@ class BlockedUsersVM: LoggedInViewModel {
     }
     
     func unblock(blockedIndex: Int) {
-        self.team.joinReqIDs.removeValue(forKey: blockedUsers[blockedIndex].userID)
-        self.team.blacklistUserIDs[blockedUsers[blockedIndex].userID] = blockedUsers[blockedIndex].userID
+        self.team.blacklistUserIDs.removeValue(forKey: blockedUsers[blockedIndex].userID)
         blockedUsers.remove(at: blockedIndex)
         DBUtility.writeToDB(objToWrite: self.team)
     }

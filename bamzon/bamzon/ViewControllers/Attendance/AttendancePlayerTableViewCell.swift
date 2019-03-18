@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class AttendancePlayerTableViewCell: UITableViewCell, DisplayableProtocol {
 
     var nameLabel = UILabel()

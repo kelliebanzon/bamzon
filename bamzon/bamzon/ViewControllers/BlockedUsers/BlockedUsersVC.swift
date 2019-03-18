@@ -9,10 +9,9 @@
 import Foundation
 import UIKit
 
-class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol {
+class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, RefreshableProtocol {
     
     private let refreshControl = UIRefreshControl()
-    //let blockedUsersVM = BlockedUsersVM()
     var blockedUsers = UITableView()
     let blockedUsersVM = BlockedUsersVM()
     let cellId = "requestCell"
@@ -25,18 +24,18 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         blockedUsers.register(BlockedUsersTableViewCell.self, forCellReuseIdentifier: self.cellId)
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
-        
+
         if #available(iOS 10.0, *) {
             blockedUsers.refreshControl = refreshControl
         } else {
             blockedUsers.addSubview(refreshControl)
         }
-        
+
         // Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         refreshControl.tintColor = .white
-        
-        //blockedUsersVM.loadRequests(dispatch: dispatch)
+
+        blockedUsersVM.loadBlocked(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
             self.refresh()
@@ -61,12 +60,12 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let teamLeftConstraint = blockedLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30)
         let teamTopConstraint = blockedLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50)
         self.view.addConstraints([teamLeftConstraint, teamTopConstraint])
-        
+
         //select team table view
         blockedUsers.backgroundColor = UIColor(named: "TSTeal")
         blockedUsers.allowsSelection = false
         self.view.addSubview(blockedUsers)
-        
+
         //tableview constraints
         blockedUsers.translatesAutoresizingMaskIntoConstraints = false
         let tableHeightConstraint = blockedUsers.heightAnchor.constraint(equalTo: view.heightAnchor)
@@ -87,7 +86,7 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func refresh() {
         let dispatch = DispatchGroup()
-        //blockedUsersVM.refresh(dispatch: dispatch)
+        blockedUsersVM.refresh(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.blockedUsers.reloadData()
             self.display()
@@ -117,7 +116,7 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Approve the request by identifying the user with the .tag attribute
     @objc func unblockUser(sender: UIButton) {
-        //        blockedUsersVM.unblockUser(reqIndex: sender.tag)
+        blockedUsersVM.unblock(blockedIndex: sender.tag)
         refresh()
     }
 }

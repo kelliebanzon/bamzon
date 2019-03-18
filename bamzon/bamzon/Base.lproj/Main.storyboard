@@ -361,10 +361,10 @@
             </objects>
             <point key="canvasLocation" x="6841" y="3090"/>
         </scene>
-        <!--View Controller-->
+        <!--Blocked UsersVC-->
         <scene sceneID="xex-KP-DSg">
             <objects>
-                <viewController storyboardIdentifier="BlockedUsersVC" id="6sn-v4-YD6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BlockedUsersVC" id="6sn-v4-YD6" customClass="BlockedUsersVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aJu-NP-omx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -469,7 +469,7 @@
         <!--Attendance Child CurrentVC-->
         <scene sceneID="KU0-Gu-4hE">
             <objects>
-                <viewController storyboardIdentifier="AttendanceChildPlayersVC" id="aea-Mc-zZU" customClass="AttendanceChildCurrentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttendanceChildCurrentVC" id="aea-Mc-zZU" customClass="AttendanceChildCurrentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cik-mg-ke3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

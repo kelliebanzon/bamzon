@@ -17,9 +17,9 @@ class BlockedUsersTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(named: "TSTeal")
         
-        userName = createLabelToConstrain(withText: "Requestor Name", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
+        userName = createLabelToConstrain(withText: "Blocked User", alignment: .left, boldType: "-Bold", fontSize: 20, numLines: 1, hasScaleFactor: true)
         
-        unblockButton = createButtonToConstrain(withText: "Block", size: 12)
+        unblockButton = createButtonToConstrain(withText: "Unblock", size: 12)
         
         addSubviews()
         setupAutoLayout()

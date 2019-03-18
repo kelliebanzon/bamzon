@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Table View cell for "Previous Practices"
 class AttendancePracticesTableViewCell: UITableViewCell {
 
     var practiceDate = UILabel()
