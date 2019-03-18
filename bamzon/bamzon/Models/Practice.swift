@@ -9,7 +9,7 @@
 import Firebase
 import Foundation
 
-struct Practice: FirebaseCompatable {
+struct Practice: FirebaseCompatable, Equatable {
     var teamID: ID
     var eventID: ID
     var date: Date

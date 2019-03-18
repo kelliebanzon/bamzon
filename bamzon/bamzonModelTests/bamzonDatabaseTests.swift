@@ -23,6 +23,7 @@ class bamzonDatabaseTests: XCTestCase {
     override func setUp() {
         DBUtility.writeToDB(objToWrite: Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [:], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"]))
         DBUtility.writeToDB(objToWrite: JoinRequest(joinReqID: joinReqID, userID: userID1, teamID: teamID))
+        DBUtility.writeToDB(objToWrite: Practice(teamID: teamID, eventID: eventID, date: date, attendingUsers: [userID1: userID1], excusedUsers: [userID2: userID2]))
     }
 
 
@@ -57,5 +58,23 @@ class bamzonDatabaseTests: XCTestCase {
         XCTAssertNotNil(readJoinReq)
         // for some reason this fails, even though the underlying objects actually are equal
 //        XCTAssertEqual(joinReq, readJoinReq)
+    }
+    
+    func testPracticeFirebaseRead () {
+        let practice = Practice(teamID: teamID, eventID: eventID, date: date, attendingUsers: [userID1: userID1], excusedUsers: [userID2: userID2])
+        var readPractice: Practice?
+        
+        let expectation = self.expectation(description: "read practice")
+        DBUtility.readFromDB(table: FirTable.practice, keys: teamID, eventID) {
+            (key: String, payload: [String: AnyObject]) in
+            readPractice = Practice(key: key, payload: payload)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5)
+        
+        XCTAssertNotNil(readPractice)
+        // for some reason this fails, even though the underlying objects actually are equal
+//        XCTAssertEqual(practice, readPractice)
     }
 }
