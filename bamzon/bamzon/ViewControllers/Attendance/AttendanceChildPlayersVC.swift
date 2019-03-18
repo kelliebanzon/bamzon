@@ -43,7 +43,6 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         showSpinner(onView: self.view)
         attendanceVM.loadAttendance(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
-            self.attendanceVM.getTodayPractice(dispatch: dispatch)
             self.removeSpinner()
             self.display()
         }
@@ -85,12 +84,22 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CurrentAttendanceTableViewCell
         // swiftlint:enable force_cast
-        cell.userName.text = attendanceVM.members[indexPath.row].getFullName()
+        let thisUser = attendanceVM.members[indexPath.row]
+        cell.userName.text = thisUser.getFullName()
         cell.userName.textColor = .white
         // Sets the tag to the current index being used to populate the cell
         // This can be used later to identify which user is being interacted with
         cell.attendanceType.tag = indexPath.row
-        cell.attendanceType.backgroundColor = UIColor(named: "TSOrange")
+        if let curPractice = attendanceVM.selectedPractice {
+            if curPractice.attendingUsers[thisUser.userID] != nil {
+                self.changePresent(sender: cell.attendanceType)
+            } else if curPractice.excusedUsers[thisUser.userID] != nil {
+                self.changeExcused(sender: cell.attendanceType)
+            } else {
+                self.changeAbsent(sender: cell.attendanceType)
+            }
+        }
+        
         cell.attendanceType.addTarget(self, action: #selector(attendanceTypeClick), for: .touchUpInside)
         return cell
     }
@@ -98,16 +107,13 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
     // Cycle through attendance types of Absent/Present/Excused
     @objc func attendanceTypeClick(sender: UIButton) {
         if sender.currentTitle! == "Absent" {
-            sender.setTitle("Present", for: .normal)
-            sender.backgroundColor = UIColor(named: "TSGreen")
+            changePresent(sender: sender)
             attendanceVM.markPresent(userIndex: sender.tag)
         } else if sender.currentTitle == "Present" {
-            sender.setTitle("Excused", for: .normal)
-            sender.backgroundColor = UIColor(named: "TSGray")
+            changeExcused(sender: sender)
             attendanceVM.markExcused(userIndex: sender.tag)
         } else if sender.currentTitle == "Excused" {
-            sender.setTitle("Absent", for: .normal)
-            sender.backgroundColor = UIColor(named: "TSOrange")
+            changeAbsent(sender: sender)
             attendanceVM.markAbsent(userIndex: sender.tag)
         } else {
             sender.setTitle("Uh oh! 😰", for: .normal)
@@ -115,6 +121,21 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         }
         // Using sender.tag to index into the list of members to get specific user
         print(attendanceVM.members[sender.tag].getFullName() + " is " + sender.currentTitle!)
+    }
+    
+    func changePresent(sender: UIButton) {
+        sender.setTitle("Present", for: .normal)
+        sender.backgroundColor = UIColor(named: "TSGreen")
+    }
+    
+    func changeExcused(sender: UIButton) {
+        sender.setTitle("Excused", for: .normal)
+        sender.backgroundColor = UIColor(named: "TSGray")
+    }
+    
+    func changeAbsent(sender: UIButton) {
+        sender.setTitle("Absent", for: .normal)
+        sender.backgroundColor = UIColor(named: "TSOrange")
     }
     
     // Display selected user's attendance history

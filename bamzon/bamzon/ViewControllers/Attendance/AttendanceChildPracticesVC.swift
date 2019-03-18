@@ -46,7 +46,6 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
             self.display()
-            print(self.attendanceVM.practices)
         }
     }
 
@@ -103,6 +102,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         let dispatch = DispatchGroup()
         attendanceVM.refreshPractices(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
+            self.datesTableView.reloadData()
             self.display()
         }
     }

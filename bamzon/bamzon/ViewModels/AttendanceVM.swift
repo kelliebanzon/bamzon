@@ -26,9 +26,7 @@ class AttendanceVM: LoggedInViewModel {
     
     func loadAttendance(dispatch: DispatchGroup) {
         loadPlayers(dispatch: dispatch)
-        dispatch.notify(queue: DispatchQueue.main) {
-            self.loadPractices(dispatch: dispatch)
-        }
+        loadPractices(dispatch: dispatch)
     }
     
     func loadPlayers(dispatch: DispatchGroup) {
@@ -40,37 +38,24 @@ class AttendanceVM: LoggedInViewModel {
                 dispatch.leave()
             })
         }
-        
     }
     
     func loadPractices(dispatch: DispatchGroup) {
-        for event in events {
+        practices.removeAll()
+        for event in events where event.tags["practice"] != nil {
             dispatch.enter()
-            print("looking at event")
             DBUtility.readFromDB(table: FirTable.practice, keys: team.teamID, event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
                 let tempPractice = Practice(key: key, payload: userSnap)
                 if tempPractice.date < Date() {
                     self.practices.append(tempPractice)
                 }
+                if tempPractice.date.toStringNoTZMinSec() == Date().toStringNoTZMinSec() {
+                    self.selectedPractice = tempPractice
+                }
                 dispatch.leave()
             })
         }
     }
-    
-    func getTodayPractice(dispatch: DispatchGroup) {
-        print("Well, shit grandma")
-        for practice in practices {
-            print("Fuck")
-            let formatter = DateFormatter()
-            formatter.timeZone = TimeZone.current
-            formatter.dateFormat = "yyyy-MM-dd"
-            if formatter.string(from: practice.date) == formatter.string(from: Date.init()) {
-                selectedPractice = practice
-                return
-            }
-        }
-    }
-    
     
     func markPresent(userIndex: Int) {
         selectedPractice!.attendingUsers[users[userIndex].userID] = users[userIndex].userID
@@ -79,6 +64,7 @@ class AttendanceVM: LoggedInViewModel {
     
     func markExcused(userIndex: Int) {
         selectedPractice!.excusedUsers[users[userIndex].userID] = users[userIndex].userID
+        selectedPractice!.attendingUsers.removeValue(forKey: users[userIndex].userID)
         DBUtility.writeToDB(objToWrite: selectedPractice!)
     }
     
