@@ -466,10 +466,10 @@
             </objects>
             <point key="canvasLocation" x="6838" y="2328"/>
         </scene>
-        <!--Attendance Child PlayersVC-->
+        <!--Attendance Child CurrentVC-->
         <scene sceneID="KU0-Gu-4hE">
             <objects>
-                <viewController storyboardIdentifier="AttendanceChildPlayersVC" id="aea-Mc-zZU" customClass="AttendanceChildPlayersVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AttendanceChildPlayersVC" id="aea-Mc-zZU" customClass="AttendanceChildCurrentVC" customModule="bamzon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Cik-mg-ke3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

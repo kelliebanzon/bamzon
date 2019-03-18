@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PlayersAttendanceTableViewCell: UITableViewCell {
+// Table View Cell for "Today's Practice"
+class CurrentAttendanceTableViewCell: UITableViewCell {
 
     var userName = UILabel()
     var attendanceType = UIButton()

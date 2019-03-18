@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 import XLPagerTabStrip
 
-class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
+class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
 
     private let refreshControl = UIRefreshControl()
     let cellId = "cellId"
     
     var playersTableView: UITableView = UITableView()
     var attendanceVM = AttendanceVM()
-    //var playersList: [String] = ["Chaussabel, Adrien", "Gallahue, Caoimhe", "Guadiamos, Ariela", "Hazell, Jordan", "Hofferth, Elliott", "Imobersteg, Andrew", "Lopez, Samuel", "Robinson, Greg", "Sichel, Ben", "Soo, Tyler", "Trudell, Avery", "Vu, Kyle", "Wasson, Jedd", "Webster, David", "Woods, Ana"]
     
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -29,7 +28,7 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         playersTableView.dataSource = self
         playersTableView.delegate = self
-        playersTableView.register(PlayersAttendanceTableViewCell.self, forCellReuseIdentifier: "cellId")
+        playersTableView.register(CurrentAttendanceTableViewCell.self, forCellReuseIdentifier: "cellId")
         
         if #available(iOS 10.0, *) {
             playersTableView.refreshControl = refreshControl
@@ -83,7 +82,7 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
     // Populate each cell with a member
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! PlayersAttendanceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CurrentAttendanceTableViewCell
         // swiftlint:enable force_cast
         cell.userName.text = attendanceVM.members[indexPath.row].getFullName()
         cell.userName.textColor = .white
