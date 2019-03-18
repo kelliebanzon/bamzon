@@ -16,7 +16,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     let cellId = "cellId"
     
     var settingsTableView: UITableView = UITableView()
-    var settingsList: [String] = ["Switch Teams", "Team Settings", "Join Requests"]
+    var settingsList: [String] = ["Switch Teams", "Team Settings", "Join Requests", "Blocked Users"]
     var logOut: [String] = ["Log Out"]
     var sections: [String] = ["Settings", "Log Out"]
     var topLabel = UILabel()
@@ -101,6 +101,8 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 alert(withTitle: "Do something here", withMessage: "Something is supposed to happen")
             } else if settingsList[indexPath.row] == "Join Requests" {
                 showJoinRequests()
+            } else if settingsList[indexPath.row] == "Blocked Users" {
+                showBlockedUsers()
             } else {
                 alert(withTitle: "Uh oh 😰", withMessage: "This isn't supposed to happen! Section 0")
             }
@@ -161,11 +163,13 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.present(joinRequestsNav, animated: true, completion: nil)
     }
     
-    func selectUser() {
-        // TODO: implement selectUser
+    func showBlockedUsers() {
+        let blockedUsersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BlockedUsersVC")
+        let blockedUsersNav = createDefaultNavigationController(rootViewController: blockedUsersVC)
+        self.present(blockedUsersNav, animated: true, completion: nil)
     }
     
-    func viewJoinRequests() {
-        // TODO: implement view join requests
+    func selectUser() {
+        // TODO: implement selectUser
     }
 }
