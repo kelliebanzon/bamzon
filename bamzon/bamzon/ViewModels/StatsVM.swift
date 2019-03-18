@@ -17,28 +17,22 @@ class StatsVM: LoggedInViewModel {
     var members: [User] = []
     var teamStats: TeamStats?
     
-    func loadMembers(parent: DisplayableProtocol) {
+    func loadMembers(dispatch: DispatchGroup) {
         self.members.removeAll()
-        let group = DispatchGroup()
         for userID in Array(self.team.userIDs.values) {
-            group.enter()
+            dispatch.enter()
             DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
                 self.members.append(User(key: key, payload: payload))
-                group.leave()
+                dispatch.leave()
             })
-        }
-        group.notify(queue: .main) {
-            parent.display()
         }
     }
     
     func loadTeamStats(dispatch: DispatchGroup) {
-        if self.team.joinReqIDs.count != 0 {
-            dispatch.enter()
-            DBUtility.readFromDB(table: FirTable.teamStats, keys: self.team.teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
-                self.teamStats = TeamStats(key: key, payload: payload)
-                dispatch.leave()
-            })
-        }
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.teamStats, keys: self.team.teamID, completion: {(key: String, payload: [String: AnyObject]) -> Void in
+            self.teamStats = TeamStats(key: key, payload: payload)
+            dispatch.leave()
+        })
     }
 }

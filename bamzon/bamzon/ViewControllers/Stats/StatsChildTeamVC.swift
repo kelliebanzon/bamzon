@@ -12,7 +12,7 @@ import XLPagerTabStrip
 
 class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol {
     
-    var statTypes = ["Wins", "Losses", "Ties"]
+    var statTypes: [String] = []
     var stats: [String] = []
     
     let statsVM = StatsVM()
@@ -23,15 +23,14 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        statsTableView.dataSource = self
-        statsTableView.delegate = self
-        statsTableView.register(StatsTeamStatsViewCell.self, forCellReuseIdentifier: self.cellId)
-
         self.showSpinner(onView: self.view)
         let dispatch = DispatchGroup()
         statsVM.loadTeamStats(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.addAdditionalStats()
+            self.statsTableView.dataSource = self
+            self.statsTableView.delegate = self
+            self.statsTableView.register(StatsTeamStatsViewCell.self, forCellReuseIdentifier: self.cellId)
     
             self.removeSpinner()
             self.display()
@@ -76,20 +75,19 @@ class StatsChildTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let statType = statTypes[indexPath.row]
         
         //TODO: Fix this
-        //let stat = stats[indexPath.row]
+        let stat = stats[indexPath.row]
             
         cell.statsDescLabel.text = statType
-        //cell.statsLabel.text = "\(stat)"
+        cell.statsLabel.text = "\(stat)"
         return cell
     }
 
     func addAdditionalStats() {
         if let teamStats = self.statsVM.teamStats {
             self.stats.append(contentsOf: [String(teamStats.wins), String(teamStats.losses), String(teamStats.ties)])
-        }
-
-        if let stats = statsVM.teamStats {
-            if let additionalStats = stats.fields {
+            self.statTypes.append(contentsOf: ["Wins", "Losses", "Ties"])
+      
+            if let additionalStats = teamStats.fields {
                 for stat in additionalStats {
                     self.statTypes.append(stat.key)
                     

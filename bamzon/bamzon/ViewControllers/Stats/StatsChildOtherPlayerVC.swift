@@ -36,6 +36,7 @@ class StatsChildOtherPlayerVC: UIViewController, IndicatorInfoProvider, UITableV
         self.showSpinner(onView: self.view)
         let dispatch = DispatchGroup()
         statsVM.loadTeamStats(dispatch: dispatch)
+        statsVM.loadMembers(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
             self.display()
