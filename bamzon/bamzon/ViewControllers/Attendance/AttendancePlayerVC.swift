@@ -132,10 +132,6 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         headerLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
         headerLabel.text = "Event"
         headerView.addSubview(headerLabel)
-
-        print(tableFrame)
-        print(headerFrame)
-        print(headerLabel.frame)
         return headerView
     }
 

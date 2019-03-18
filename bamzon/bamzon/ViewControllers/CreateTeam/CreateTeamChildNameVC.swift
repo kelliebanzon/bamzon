@@ -157,7 +157,7 @@ class CreateTeamChildNameVC: UIViewController, UITableViewDataSource, UITableVie
         let fillOrg = orgName?.text ?? "Organization"
         let fillSport = sportType?.text ?? "Sport Type"
 
-        teamName?.attributedPlaceholder = NSAttributedString(string: fillTeamName , attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
+        teamName?.attributedPlaceholder = NSAttributedString(string: fillTeamName, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         orgName?.attributedPlaceholder = NSAttributedString(string: fillOrg, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
         sportType?.attributedPlaceholder = NSAttributedString(string: fillSport, attributes: [NSAttributedStringKey.foregroundColor: UIColor(named: "TSOrange")!])
     }

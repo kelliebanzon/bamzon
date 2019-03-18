@@ -25,7 +25,6 @@ extension UIViewController {
         // swiftlint:disable force_cast
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         // swiftlint:enable force_cast
-        appDelegate.hideTabController()
         appDelegate.window?.rootViewController = nextVC
         UIView.transition(with: appDelegate.window!, duration: 0.75, options: UIViewAnimationOptions.transitionFlipFromRight, animations: { appDelegate.window?.rootViewController = nextVC}, completion: nil)
     }

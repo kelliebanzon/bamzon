@@ -32,7 +32,7 @@ class AttendanceTabVC: ButtonBarPagerTabStripViewController, DisplayableProtocol
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let playersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttendanceChildPlayersVC")
+        let playersVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttendanceChildCurrentVC")
         let practicesVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttendanceChildPracticesVC")
         return [playersVC, practicesVC]
     }

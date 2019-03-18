@@ -17,7 +17,6 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     var datesTableView: UITableView = UITableView()
     var attendanceVM = AttendanceVM()
-    //var datesList: [String] = ["03/01/2019", "03/02/2019", "03/03/2019", "03/04/2019", "03/05/2019", "03/06/2019", "03/07/2019", "03/08/2019", "03/09/2019", "03/10/2019", "03/11/2019", "03/12/2019", "03/13/2019", "03/14/2019 - Pi Day!"]
     
     let offsets: [String: CGFloat] = [
         "vertEdges": 40,
@@ -27,7 +26,11 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        datesTableView.dataSource = self
+        datesTableView.delegate = self
+        datesTableView.register(AttendancePracticesTableViewCell.self, forCellReuseIdentifier: "cellId")
+
         if #available(iOS 10.0, *) {
             datesTableView.refreshControl = refreshControl
         } else {
@@ -43,16 +46,13 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
             self.display()
+            print(self.attendanceVM.practices)
         }
     }
 
     func display() {
-        // TODO: implement display
         view.backgroundColor = UIColor(named: "TSTeal")
         datesTableView.backgroundColor = UIColor(named: "TSTeal")
-        datesTableView.dataSource = self
-        datesTableView.delegate = self
-        datesTableView.register(AttendancePracticesTableViewCell.self, forCellReuseIdentifier: "cellId")
         self.view.addSubview(datesTableView)
         setupAutoLayout()
     }
@@ -111,17 +111,8 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         // TODO: implement edit
     }
 
-    // MARK: - Navigation
-
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return IndicatorInfo(title: "Past Practices")
     }
 
-    /*
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

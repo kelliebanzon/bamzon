@@ -50,7 +50,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
         profilePictureImageView = ImageUtility().createProfilePictureImageView(imageName: selectedUser!.imageURL, style: .squircle)
         self.view.addSubview(profilePictureImageView)
 
-        nameLabel = createDefaultHeader1Label(text: selectedUser!.firstName + " " + selectedUser!.lastName, numLines: 0)
+        nameLabel = createDefaultHeader1Label(text: selectedUser!.getFullName(), numLines: 0)
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.minimumScaleFactor = 0.8
         nameLabel.adjustsFontSizeToFitWidth = false
@@ -111,7 +111,7 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImag
 
         profilePictureImageView.translatesAutoresizingMaskIntoConstraints = false
         let picTopConstraint = profilePictureImageView.topAnchor.constraint(equalTo:
-            margins.topAnchor, constant: 70)
+            margins.topAnchor, constant: 30)
         let picLeftConstraint = profilePictureImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 30)
         let picWidthConstraint = profilePictureImageView.widthAnchor.constraint(equalToConstant: 125)
         let picHeightConstraint = profilePictureImageView.heightAnchor.constraint(equalToConstant: 125)

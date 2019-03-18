@@ -74,7 +74,13 @@ struct User: FirebaseCompatable, Equatable, Comparable {
     }
 
     func getFullName() -> String {
-        return (nickname ?? firstName) + " " + lastName
+        let nameAcc: String
+        if nickname != nil, nickname!.count > 0 {
+            nameAcc = nickname!
+        } else {
+            nameAcc = firstName
+        }
+        return nameAcc + " " + lastName
     }
     
 }
@@ -88,12 +94,4 @@ enum Year: Int {
     case superSenior = 5
     case alumni = 6
     case professor = 7
-    /*case firstYear = "First Year"
-     case secondYear = "Second Year"
-     case thirdYear = "Third Year"
-     case fourthYear = "Fourth Year"
-     case superSenior = "Super Senior"
-     case alumni = "Alumni"
-     case professor = "Professor"
-     case unknown = "N/A"*/
 }
