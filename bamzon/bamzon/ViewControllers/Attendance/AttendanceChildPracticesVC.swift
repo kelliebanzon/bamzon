@@ -82,7 +82,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AttendancePracticesTableViewCell
         // swiftlint:enable force_cast
-        cell.practiceDate.text = attendanceVM.practices[indexPath.row].name
+        cell.practiceDate.text = attendanceVM.users[indexPath.row].getFullName()
         cell.practiceDate.textColor = .white
         cell.backgroundColor = UIColor(named: "TSTeal")
         cell.highlightYellowOnSelection()
@@ -91,7 +91,7 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     // Display selected date's practice and corresponding attendance
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.practices[indexPath.row].name + "'s attendance")
+        alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.users[indexPath.row].getFullName() + "'s attendance")
     }
     
     @objc private func refresh(_ sender: Any) {

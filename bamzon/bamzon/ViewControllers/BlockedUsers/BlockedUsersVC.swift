@@ -14,6 +14,7 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     private let refreshControl = UIRefreshControl()
     //let blockedUsersVM = BlockedUsersVM()
     var blockedUsers = UITableView()
+    let blockedUsersVM = BlockedUsersVM()
     let cellId = "requestCell"
     
     override func viewDidLoad() {
@@ -101,7 +102,7 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     // TODO: Return blocked users count from VM
     // Number of requests to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return blockedUsersVM.reqUsers.count
+        return blockedUsersVM.blockedUsers.count
     }
     
     // Populate each cell with a user and 3 buttons
@@ -109,7 +110,7 @@ class BlockedUsersVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         // swiftlint:disable force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BlockedUsersTableViewCell
         // swiftlint:enable force_cast
-        cell.teamName.text = blockedUsersVM.reqUsers[indexPath.row].getFullName()
+        cell.userName.text = blockedUsersVM.blockedUsers[indexPath.row].getFullName()
         cell.unblockButton.addTarget(self, action: #selector(unblockUser), for: .touchUpInside)
         return cell
     }

@@ -12,27 +12,31 @@ import Foundation
 struct Practice: FirebaseCompatable {
     var teamID: ID
     var eventID: ID
-    var attendingUsers: [ID]
-    var excusedUsers: [ID]
+    var date: Date
+    var attendingUsers: [ID:ID]
+    var excusedUsers: [ID:ID]
     
-    init(teamID: ID, eventID: ID, attendingUsers: [ID], excusedUsers: [ID]) {
+    init(teamID: ID, eventID: ID, date: Date, attendingUsers: [ID:ID], excusedUsers: [ID:ID]) {
         self.teamID = teamID
         self.eventID = eventID
+        self.date = date
         self.attendingUsers = attendingUsers
         self.excusedUsers = excusedUsers
     }
     
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
-        attendingUsers = IDUtility.stringsToIDs(strs: payload["attendingUsers"] as? [String] ?? [])
-        excusedUsers = IDUtility.stringsToIDs(strs: payload["excusedUsers"] as? [String] ?? [])
+        attendingUsers = IDUtility.stringsToIDDict(strs: payload["attendingUsers"] as? [String:String] ?? [:])
+        excusedUsers = IDUtility.stringsToIDDict(strs: payload["excusedUsers"] as? [String:String] ?? [:])
         eventID = IDUtility.generateIDFromString(idString: payload["eventID"] as? String ?? "z0")
+        date = Date.fromString(from: payload["date"] as? String ?? "1920-01-01 00:00 -0000")
     }
     
     func formatForDB() -> [String: Any] {
         return
-            ["excusedUsers": IDUtility.idsToStrings(ids: excusedUsers),
-             "attendingUsers": IDUtility.idsToStrings(ids: attendingUsers)]
+            ["excusedUsers": IDUtility.idsToDict(ids: excusedUsers),
+             "attendingUsers": IDUtility.idsToDict(ids: attendingUsers),
+             "date": date.toString()]
     }
     
     func getTable() -> FirTable {

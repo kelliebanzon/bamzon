@@ -110,6 +110,7 @@
 		D37DA9D32224C66B000E357E /* FirebaseID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D22224C66B000E357E /* FirebaseID.swift */; };
 		D37DA9D522251BA8000E357E /* StatsTeamStatsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */; };
 		D3B4CBAF22111CF700CD42BC /* VCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B4CBAE22111CF700CD42BC /* VCUtility.swift */; };
+		D3C2D4FE223F4B6A005C8F26 /* BlockedUsersVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C2D4FD223F4B6A005C8F26 /* BlockedUsersVM.swift */; };
 		EFBADB872EF72B3F31C8723A /* Pods_bamzonModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EBE096531224CBDB8547CE /* Pods_bamzonModelTests.framework */; };
 		F11934B82239ABB0008AF98C /* TeamHomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11934B72239ABB0008AF98C /* TeamHomeVM.swift */; };
 		F11934BA2239B1D8008AF98C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11934B92239B1D8008AF98C /* Date.swift */; };
@@ -259,6 +260,7 @@
 		D37DA9D22224C66B000E357E /* FirebaseID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseID.swift; sourceTree = "<group>"; };
 		D37DA9D422251BA7000E357E /* StatsTeamStatsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsTeamStatsViewCell.swift; sourceTree = "<group>"; };
 		D3B4CBAE22111CF700CD42BC /* VCUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtility.swift; sourceTree = "<group>"; };
+		D3C2D4FD223F4B6A005C8F26 /* BlockedUsersVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersVM.swift; sourceTree = "<group>"; };
 		F11934B72239ABB0008AF98C /* TeamHomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamHomeVM.swift; sourceTree = "<group>"; };
 		F11934B92239B1D8008AF98C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		F13A8024223DC3070093D0BE /* bamzonDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bamzonDatabaseTests.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 			isa = PBXGroup;
 			children = (
 				A81439D721B71E58000E287A /* AttendanceVM.swift */,
+				D3C2D4FD223F4B6A005C8F26 /* BlockedUsersVM.swift */,
 				A81439DB21B71E58000E287A /* CalendarVM.swift */,
 				D37DA9D0221F84A6000E357E /* LoggedInViewModel.swift */,
 				A81439DC21B71E58000E287A /* CreateAccountVM.swift */,
@@ -954,6 +957,7 @@
 				AB47757921B4E89900A1DCD5 /* RSVP.swift in Sources */,
 				A8143A0F21B73048000E287A /* EventVC.swift in Sources */,
 				A81439E821B71E58000E287A /* CreateAccountVM.swift in Sources */,
+				D3C2D4FE223F4B6A005C8F26 /* BlockedUsersVM.swift in Sources */,
 				AB0EB61F221D30D400C4917E /* AttendanceTabVC.swift in Sources */,
 				A81439E321B71E58000E287A /* AttendanceVM.swift in Sources */,
 				AB6E5D5B220F922100808283 /* CreateTeamChildLoadingVC.swift in Sources */,

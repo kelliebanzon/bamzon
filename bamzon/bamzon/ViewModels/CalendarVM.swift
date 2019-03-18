@@ -28,7 +28,8 @@ class CalendarVM: LoggedInViewModel {
     func addEvent(event: Event) {
         DBUtility.writeToDB(objToWrite: event)
         if event.tags["practice"] != nil {
-            let practice = Practice(teamID: event.teamID, eventID: event.eventID, attendingUsers: [], excusedUsers: [])
+            let practice = Practice(teamID: self.team.teamID, eventID: event.eventID, date: event.date
+                , attendingUsers: [:], excusedUsers: [:])
             DBUtility.writeToDB(objToWrite: practice)
         }
     }

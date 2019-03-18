@@ -13,7 +13,8 @@ import Foundation
 class AttendanceVM: LoggedInViewModel {
     
     var members: [User] = []
-    var practices: [Event] = [] //list of practices
+    var practices: [Practice] = [] //list of practices
+    var selectedPractice: Practice?
     
     func refreshCurrentPractice(dispatch: DispatchGroup) {
         loadAttendance(dispatch: dispatch)
@@ -40,19 +41,43 @@ class AttendanceVM: LoggedInViewModel {
     }
     
     func loadPractices(dispatch: DispatchGroup) {
-        var tempEvent: Event?
         for event in events {
             dispatch.enter()
             print("looking at event")
-            DBUtility.readFromDB(table: FirTable.event, keys: event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                tempEvent = Event(key: key, payload: userSnap)
-                if tempEvent!.tags["practice"] != nil {
-                    print("found practice")
-                    self.practices.append(Event(key: key, payload: userSnap))
-                }
+            DBUtility.readFromDB(table: FirTable.practice, keys: team.teamID, event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+                self.practices.append(Practice(key: key, payload: userSnap))
                 dispatch.leave()
             })
         }
+    }
+    
+    func getTodayPractice(dispatch: DispatchGroup) {
+        for practice in practices {
+            let formatter = DateFormatter()
+            formatter.timeZone = TimeZone.current
+            formatter.dateFormat = "yyyy-MM-dd"
+            if formatter.string(from: practice.date) == formatter.string(from: Date.init()) {
+                selectedPractice = practice
+                return
+            }
+        }
+    }
+    
+    
+    func markPresent(userIndex: Int) {
+        selectedPractice!.attendingUsers[users[userIndex].userID] = users[userIndex].userID
+        DBUtility.writeToDB(objToWrite: selectedPractice!)
+    }
+    
+    func markExcused(userIndex: Int) {
+        selectedPractice!.excusedUsers[users[userIndex].userID] = users[userIndex].userID
+        DBUtility.writeToDB(objToWrite: selectedPractice!)
+    }
+    
+    func markAbsent(userIndex: Int) {
+        selectedPractice!.attendingUsers.removeValue(forKey: users[userIndex].userID)
+        selectedPractice!.excusedUsers.removeValue(forKey: users[userIndex].userID)
+        DBUtility.writeToDB(objToWrite: selectedPractice!)
     }
     
     func loadAttendance(player: User) {
