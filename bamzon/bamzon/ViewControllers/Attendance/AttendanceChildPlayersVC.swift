@@ -12,6 +12,7 @@ import XLPagerTabStrip
 
 class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
 
+    private let refreshControl = UIRefreshControl()
     let cellId = "cellId"
     
     var playersTableView: UITableView = UITableView()
@@ -29,6 +30,15 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         playersTableView.dataSource = self
         playersTableView.delegate = self
         playersTableView.register(PlayersAttendanceTableViewCell.self, forCellReuseIdentifier: "cellId")
+        
+        if #available(iOS 10.0, *) {
+            playersTableView.refreshControl = refreshControl
+        } else {
+            playersTableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
         
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
@@ -111,8 +121,17 @@ class AttendanceChildPlayersVC: UIViewController, UITableViewDelegate, UITableVi
         alert(withTitle: "Player Selected", withMessage: "Show " + attendanceVM.members[indexPath.row].getFullName() + "'s personal attendance")
     }
     
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
+    }
+    
     func refresh() {
-        // TODO: implement refresh
+        let dispatch = DispatchGroup()
+        attendanceVM.refreshCurrentPractice(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
+        }
     }
 
     func edit() {

@@ -10,6 +10,8 @@ import UIKit
 
 class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
 
+    let attendanceVM = AttendanceVM()
+    private let refreshControl = UIRefreshControl()
     let events = [Event(eventID: IDUtility.generateEventID(), teamID: IDUtility.generateTeamID(), name: "Practice", locationID: nil, contactUserIDs: [:], description: "Dry Land", date: nil, tags: [:], media: [:], links: [:])]
 
     // TODO: connect to database
@@ -31,6 +33,17 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         attTable.delegate = self
         attTable.dataSource = self
         attTable.register(AttendancePlayerTableViewCell.self, forCellReuseIdentifier: "attCell")
+        
+        if #available(iOS 10.0, *) {
+            attTable.refreshControl = refreshControl
+        } else {
+            attTable.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
+        
         display()
     }
     
@@ -130,8 +143,18 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
         // TODO: implement edit
     }
     
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
+    }
+    
     func refresh() {
-        attTable.reloadData()
+        let dispatch = DispatchGroup()
+        // TODO: Refresh the user, not the current practice or previous practices
+        //attendanceVM.refresh(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
+        }
     }
 
 }

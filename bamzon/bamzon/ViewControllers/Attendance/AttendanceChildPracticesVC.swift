@@ -12,6 +12,7 @@ import XLPagerTabStrip
 
 class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider, DisplayableProtocol, RefreshableProtocol, EditableProtocol {
 
+    private let refreshControl = UIRefreshControl()
     let cellId = "cellId"
     
     var datesTableView: UITableView = UITableView()
@@ -26,6 +27,15 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 10.0, *) {
+            datesTableView.refreshControl = refreshControl
+        } else {
+            datesTableView.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = .white
         
         let dispatch = DispatchGroup()
         showSpinner(onView: self.view)
@@ -83,9 +93,18 @@ class AttendanceChildPracticesVC: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         alert(withTitle: "Date Selected", withMessage: "Show " + attendanceVM.practices[indexPath.row].name + "'s attendance")
     }
+    
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
+    }
 
     func refresh() {
-        // TODO: implement refresh
+        let dispatch = DispatchGroup()
+        attendanceVM.refreshPractices(dispatch: dispatch)
+        dispatch.notify(queue: DispatchQueue.main) {
+            self.display()
+        }
     }
 
     func edit() {

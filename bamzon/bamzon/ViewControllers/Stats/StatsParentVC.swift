@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class StatsParentVC: UIViewController, DisplayableProtocol {
     
     var statsVM = StatsVM()
     let containerView = UIView()
@@ -51,14 +51,4 @@ class StatsParentVC: UIViewController, DisplayableProtocol, EditableProtocol, Re
             childVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             ])
     }
-
-    // TODO: these functions no longer belong in this file
-    func refresh() {
-        // TODO: implement refresh
-    }
-    
-    func edit() {
-        // TODO: implement edit stats
-    }
-    
 }

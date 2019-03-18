@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let profileVM = ProfileVM()
     var user: User?
@@ -95,10 +95,6 @@ class ProfileVC: UIViewController, DisplayableProtocol, EditableProtocol, Refres
         arg.translatesAutoresizingMaskIntoConstraints = true
         arg.sizeToFit()
         arg.isScrollEnabled = false
-    }
-    
-    func refresh() {
-        // TODO: implement refresh
     }
     
     func edit() {

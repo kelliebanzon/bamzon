@@ -107,18 +107,17 @@ class RosterVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Di
         // TODO: implement edit
     }
     
+    @objc private func refresh(_ sender: Any) {
+        refresh()
+        self.refreshControl.endRefreshing()
+    }
+    
     func refresh() {
         let dispatch = DispatchGroup()
         rosterVM.refresh(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.display()
         }
-        
-    }
-    
-    @objc private func refresh(_ sender: Any) {
-        refresh()
-        self.refreshControl.endRefreshing()
     }
     
     func selectUser() {

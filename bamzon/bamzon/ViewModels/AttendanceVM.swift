@@ -15,7 +15,11 @@ class AttendanceVM: LoggedInViewModel {
     var members: [User] = []
     var practices: [Event] = [] //list of practices
     
-    func refresh(dispatch: DispatchGroup) {
+    func refreshCurrentPractice(dispatch: DispatchGroup) {
+        loadAttendance(dispatch: dispatch)
+    }
+    
+    func refreshPractices(dispatch: DispatchGroup) {
         loadPractices(dispatch: dispatch)
     }
     

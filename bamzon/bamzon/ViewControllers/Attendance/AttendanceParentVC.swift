@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AttendanceParentVC: UIViewController, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class AttendanceParentVC: UIViewController, DisplayableProtocol {
 
     let containerView = UIView()
     let childVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AttendanceTabVC")
@@ -51,17 +51,5 @@ class AttendanceParentVC: UIViewController, DisplayableProtocol, EditableProtoco
             childVC.view.topAnchor.constraint(equalTo: containerView.topAnchor),
             childVC.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             ])
-    }
-    
-    func refresh() {
-        // TODO: implement refresh
-    }
-    
-    func edit() {
-        // TODO: implement edit
-    }
-    
-    func viewPlayer(playerID: CLong) {
-        // TODO: implement view player
     }
 }
