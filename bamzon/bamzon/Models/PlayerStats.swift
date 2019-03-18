@@ -21,7 +21,7 @@ struct PlayerStats: FirebaseCompatable, Equatable {
     }
     
     init(key: String, payload: [String: AnyObject]) {
-        userID = IDUtility.generateIDFromString(idString: key)
+        userID = IDUtility.generateIDFromString(idString: payload["userID"] as? String ?? "z0")
         teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
         fields = payload["fields"] as? [String: Any] ?? [:]
     }
@@ -29,7 +29,8 @@ struct PlayerStats: FirebaseCompatable, Equatable {
     func formatForDB() -> [String: Any] {
         return
             ["fields": fields ?? [:],
-             "teamID": teamID.toString()]
+             "teamID": teamID.toString(),
+             "userID": userID.toString()]
     }
     
     func getTable() -> FirTable {
