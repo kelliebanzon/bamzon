@@ -108,7 +108,7 @@ class AttendancePlayerVC: UIViewController, UITableViewDelegate, UITableViewData
             let event = events[indexPath.row]
             cell.nameLabel.text = event.name
             cell.dateLabel.text = event.date.description
-//            cell.locationLabel.text = event.locationID?.street TODO NEEDS QUERY FOR LOCATION
+//            cell.locationLabel.text = event.locationID?.street TODO NEEDS QUERY FOR LOCATION (will skip for now, this isnt absolutely necessary)
             return cell
         } else {
             print("Unrecognized cell type in AttendancePlayerVC")

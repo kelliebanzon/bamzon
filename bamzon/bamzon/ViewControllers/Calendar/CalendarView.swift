@@ -43,9 +43,9 @@ struct Style {
     }
 }
 
-class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate {
+class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate, Observable {
     
-    var date = Date()
+    var dateString = ""
     var numOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     var currentMonthIndex: Int = 0
     var currentYear: Int = 0
@@ -53,6 +53,7 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     var presentYear = 0
     var todaysDate = 0
     var firstWeekDayOfMonth = 0   //(Sunday-Saturday 1-7)
+    var observers: [Observer] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -141,16 +142,33 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
             lbl.textColor=UIColor.white
         }
         
-        let currentDay = indexPath.row-firstWeekDayOfMonth+2
-        
-        let queryString = "\(currentYear)-\(currentMonthIndex)-\(currentDay)"
-        date = Date.fromString(from: queryString)
-        print(date.toString())
-        
+//        let currentDay = indexPath.row-firstWeekDayOfMonth+2
+//
+//        let yearString = String(format: "%04d", currentYear)
+//        let monthString = String(format: "%02d", currentMonthIndex)
+//        let dayString = String(format: "%02d", currentDay)
+//
+//        dateString = "\(yearString)-\(monthString)-\(dayString)"
+        dateString = "2019-03-22"
+        notifyObservers()
     }
     
-    func getDate() -> Date{
-        return date
+    func getDateString() -> String {
+        return dateString
+    }
+    
+    func addObserver(obs: Observer) {
+        observers.append(obs)
+    }
+    
+    func notifyObservers() {
+        for obs in observers {
+            obs.update()
+        }
+    }
+    
+    func removeObservers() {
+        observers = []
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -176,9 +194,9 @@ class CalenderView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func getFirstWeekDay() -> Int {
-        let day = ("\(currentYear)-\(currentMonthIndex)-01".date?.firstDayOfTheMonth.weekday)!
-        //return day == 7 ? 1 : day
-        return day
+//        let day = ("\(currentYear)-\(currentMonthIndex)-01".date?.firstDayOfTheMonth.weekday)!
+//        return day == 7 ? 1 : day
+        return 18 // todo fix this. The let day = ... line above worked before then wouldnt compile. This is a placeholder so I can push.
     }
     
     func didChangeMonth(monthIndex: Int, year: Int) {
@@ -292,18 +310,5 @@ extension Date {
     }
     var firstDayOfTheMonth: Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-    }
-}
-
-//get date from string
-extension String {
-    static var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-    
-    var date: Date? {
-        return String.dateFormatter.date(from: self)
     }
 }

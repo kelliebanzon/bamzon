@@ -13,18 +13,12 @@ class CalendarVM: LoggedInViewModel {
     var eventDict: [String: [Event]] = [:]
     
     func refresh() {
-        DBUtility.readAllChildrenFromDB(table: FirTable.event, keys: team.teamID, completion: {(eventSnap: [DataSnapshot]) -> Void in
-                for event in eventSnap {
-                    let event = Event(key: event.key, payload: event.value as? [String: AnyObject] ?? [:])
-                    let dateString = event.date.toString()
-                    var oldVal = self.eventDict[dateString]
-                    oldVal?.append(event)
-                    self.eventDict.updateValue(oldVal ?? [event], forKey: dateString)
-                }
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(self.eventDict)
-            }
-        )
+        for event in events {
+            let dateString = event.date.toStringNoTZMinSec()
+            var oldVal = self.eventDict[dateString]
+            oldVal?.append(event)
+            self.eventDict.updateValue(oldVal ?? [event], forKey: dateString)
+        }
     }
     
     func getEventsFor(dateStr: String) -> [Event] { //vc can access dates for a square by indexing with a string with format "yyyy-mm-dd"

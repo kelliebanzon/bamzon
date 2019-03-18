@@ -13,7 +13,7 @@ enum MyTheme {
     case dark
 }
 
-class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol {
+class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DisplayableProtocol, EditableProtocol, RefreshableProtocol, Observer {
     
     var theme = MyTheme.dark
     var events: [Event] = [] // need this to be from firebase based on date
@@ -22,9 +22,11 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var dateLabel = UILabel()
     var locLabel = UILabel()
     var calendarVM: CalendarVM = CalendarVM()
+    var observers: Observer?
+    var dateString: String = ""
     
-    var calenderView: CalenderView = {
-        let view = CalenderView(theme: MyTheme.dark)
+    var calendarView: CalendarView = {
+        let view = CalendarView(theme: MyTheme.dark)
         view.translatesAutoresizingMaskIntoConstraints=false
         return view
     }()
@@ -37,8 +39,9 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.title = "Calendar"
         self.view.backgroundColor=Style.bgColor
         calendarVM.refresh()
+        calendarView.addObserver(obs: self)
         
-        view.addSubview(calenderView)
+        view.addSubview(calendarView)
 
         let rightBarBtn = UIBarButtonItem(title: "Light", style: .plain, target: self, action: #selector(rightBarBtnAction))
         self.navigationItem.rightBarButtonItem = rightBarBtn
@@ -46,6 +49,13 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         display()
         addSubviews()
         setupAutoLayout()
+    }
+    
+    func update() {
+        dateString = calendarView.getDateString()
+        events = calendarVM.getEventsFor(dateStr: dateString)
+        print("events at date: \(dateString) : \(events)")
+        display()
     }
     
     func display() {
@@ -59,7 +69,6 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         eventLabel = createDefaultLabel(text: "Event", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         dateLabel = createDefaultLabel(text: "Date", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
         locLabel = createDefaultLabel(text: "Location", fontSize: 20, numLines: 0, fontColor: .white, fontAlignment: .left)
-        
     }
     
     func addSubviews() {
@@ -72,15 +81,15 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func setupAutoLayout() {
         let margins = view.safeAreaLayoutGuide
     
-        calenderView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0).isActive=true
-        calenderView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -12).isActive=true
-        calenderView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 12).isActive=true
-        calenderView.heightAnchor.constraint(equalToConstant: 365).isActive=true
+        calendarView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0).isActive=true
+        calendarView.rightAnchor.constraint(equalTo: margins.rightAnchor, constant: -12).isActive=true
+        calendarView.leftAnchor.constraint(equalTo: margins.leftAnchor, constant: 12).isActive=true
+        calendarView.heightAnchor.constraint(equalToConstant: 365).isActive=true
         
         //tableview constraints
         myTableView.translatesAutoresizingMaskIntoConstraints = false
         let tableHeightConstraint = myTableView.heightAnchor.constraint(equalToConstant: 280)
-        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: calenderView.bottomAnchor, constant: 30)
+        let tableTopConstraint = myTableView.topAnchor.constraint(equalTo: calendarView.bottomAnchor, constant: 30)
         let tableLeftConstraint = myTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let tableRightConstraint = margins.trailingAnchor.constraint(equalTo: myTableView.trailingAnchor)
         self.view.addConstraints([tableHeightConstraint, tableTopConstraint, tableLeftConstraint, tableRightConstraint])
@@ -105,7 +114,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        calenderView.myCollectionView.collectionViewLayout.invalidateLayout()
+        calendarView.myCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     @objc func rightBarBtnAction(sender: UIBarButtonItem) {
@@ -119,7 +128,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             Style.themeDark()
         }
         self.view.backgroundColor=Style.bgColor
-        calenderView.changeTheme()
+        calendarView.changeTheme()
     }
     
     // Cell height
@@ -142,7 +151,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let event = events[indexPath.row]
         
         cell.eventLabel.text = event.name
-        cell.dateLabel.text = event.date.toString()
+        cell.dateLabel.text = event.date.prettyPrint()
 //        cell.locLabel.text = event.locationID?.description
         
         return cell
