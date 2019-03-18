@@ -29,6 +29,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func toStringPretty() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        return dateFormatter.string(from: self)
+    }
+    
     static func fromStringNoTZMinSec(from: String) -> Date {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current

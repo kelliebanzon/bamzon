@@ -45,7 +45,10 @@ class AttendanceVM: LoggedInViewModel {
             dispatch.enter()
             print("looking at event")
             DBUtility.readFromDB(table: FirTable.practice, keys: team.teamID, event.eventID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
-                self.practices.append(Practice(key: key, payload: userSnap))
+                let tempPractice = Practice(key: key, payload: userSnap)
+                if tempPractice.date < Date() {
+                    self.practices.append(tempPractice)
+                }
                 dispatch.leave()
             })
         }
