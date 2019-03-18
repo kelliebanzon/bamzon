@@ -18,6 +18,7 @@
 		656EBA752208169800208DF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656EBA722208169600208DF8 /* GoogleService-Info.plist */; };
 		65DC5BF9221F8C7000783830 /* AttendancePlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */; };
 		65EBB43E2211524B00B06A3A /* DBUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC5821421B4A59F00DDC094 /* DBUtility.swift */; };
+		6E059E2D223EF5B700188A47 /* CreateEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E059E2C223EF5B700188A47 /* CreateEventVC.swift */; };
 		6E611088222F5E8E00A7DA17 /* EventTableViewCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */; };
 		6E6222E0221F7AD3000A2B94 /* CellUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6222DF221F7AD3000A2B94 /* CellUtility.swift */; };
 		6E6222E2221F7E36000A2B94 /* RosterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6222E1221F7E36000A2B94 /* RosterTableViewCell.swift */; };
@@ -156,6 +157,7 @@
 		655E8050221D381800BDA6A2 /* FirTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirTable.swift; sourceTree = "<group>"; };
 		656EBA722208169600208DF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendancePlayerTableViewCell.swift; sourceTree = "<group>"; };
+		6E059E2C223EF5B700188A47 /* CreateEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventVC.swift; sourceTree = "<group>"; };
 		6E611087222F5E8E00A7DA17 /* EventTableViewCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCellVC.swift; sourceTree = "<group>"; };
 		6E6222DF221F7AD3000A2B94 /* CellUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellUtility.swift; sourceTree = "<group>"; };
 		6E6222E1221F7E36000A2B94 /* RosterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTableViewCell.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				A8143A0421B72E72000E287A /* CalendarView.swift */,
 				6ECB5367223879E7008E1A33 /* MonthView.swift */,
 				6ECB536922387A14008E1A33 /* WeekdaysView.swift */,
+				6E059E2C223EF5B700188A47 /* CreateEventVC.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1039,6 +1042,7 @@
 				6ECB536C22387A7D008E1A33 /* CalendarVC.swift in Sources */,
 				A81439E121B71E58000E287A /* PlayerStatsVM.swift in Sources */,
 				A8143A0921B72FD5000E287A /* SettingsVC.swift in Sources */,
+				6E059E2D223EF5B700188A47 /* CreateEventVC.swift in Sources */,
 				F11934B82239ABB0008AF98C /* TeamHomeVM.swift in Sources */,
 				6E6222E2221F7E36000A2B94 /* RosterTableViewCell.swift in Sources */,
 			);
