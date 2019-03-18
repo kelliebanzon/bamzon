@@ -18,15 +18,25 @@ class RosterVM: LoggedInViewModel {
     }
     
     func loadUsers(dispatch: DispatchGroup) {
-        members = users
+        dispatch.enter()
+        DBUtility.readFromDB(table: FirTable.team, keys: self.team.teamID, completion: { (key: String, teamSnap: [String: AnyObject]) -> Void in
+            let newTeam = Team(key: key, payload: teamSnap)
+            self.getUsers(userIDs: Array(newTeam.userIDs.values), dispatch: dispatch)
+            dispatch.leave()
+        })
     }
     
-    func rosterToIDList(roster: [User]) -> [ID] {
-        var rosterIDs = [ID]()
-        for usr in roster {
-            rosterIDs.append(usr.userID)
+    //TODO: move userID to the VM and access from VC
+    func getUsers(userIDs: [ID], dispatch: DispatchGroup) {
+        for userID in userIDs {
+            dispatch.enter()
+            DBUtility.readFromDB(table: FirTable.user, keys: userID, completion: { (key: String, userSnap: [String: AnyObject]) -> Void in
+                self.members.append(User(key: key, payload: userSnap))
+                dispatch.leave()
+            })
         }
-        return rosterIDs
+        appDelegate.users = members
+        users = members
     }
     
     func selectUser(user: User) {
