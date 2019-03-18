@@ -25,10 +25,10 @@ struct Practice: FirebaseCompatable {
     }
     
     init(key: String, payload: [String: AnyObject]) {
-        eventID = IDUtility.generateIDFromString(idString: key)
+        teamID = IDUtility.generateIDFromString(idString: key)
         attendingUsers = IDUtility.stringsToIDDict(strs: payload["attendingUsers"] as? [String:String] ?? [:])
         excusedUsers = IDUtility.stringsToIDDict(strs: payload["excusedUsers"] as? [String:String] ?? [:])
-        teamID = IDUtility.generateIDFromString(idString: payload["teamID"] as? String ?? "z0")
+        eventID = IDUtility.generateIDFromString(idString: payload["eventID"] as? String ?? "z0")
         date = Date.fromString(from: payload["date"] as? String ?? "1920-01-01 00:00 -0000")
     }
     
@@ -36,8 +36,7 @@ struct Practice: FirebaseCompatable {
         return
             ["excusedUsers": IDUtility.idsToDict(ids: excusedUsers),
              "attendingUsers": IDUtility.idsToDict(ids: attendingUsers),
-             "date": date.toString(),
-             "teamID": teamID.toString()]
+             "date": date.toString()]
     }
     
     func getTable() -> FirTable {
