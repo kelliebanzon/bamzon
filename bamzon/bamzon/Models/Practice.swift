@@ -13,22 +13,25 @@ struct Practice: FirebaseCompatable {
     var teamID: ID
     var eventID: ID
     var attendingUsers: [ID]
+    var excusedUsers: [ID]
     
-    init(teamID: ID, eventID: ID, users: [ID]) {
+    init(teamID: ID, eventID: ID, attendingUsers: [ID], excusedUsers: [ID]) {
         self.teamID = teamID
         self.eventID = eventID
-        self.attendingUsers = users
+        self.attendingUsers = attendingUsers
+        self.excusedUsers = excusedUsers
     }
     
     init(key: String, payload: [String: AnyObject]) {
         teamID = IDUtility.generateIDFromString(idString: key)
         attendingUsers = IDUtility.stringsToIDs(strs: payload["attendingUsers"] as? [String] ?? [])
+        excusedUsers = IDUtility.stringsToIDs(strs: payload["excusedUsers"] as? [String] ?? [])
         eventID = IDUtility.generateIDFromString(idString: payload["eventID"] as? String ?? "z0")
     }
     
     func formatForDB() -> [String: Any] {
         return
-            ["eventID": eventID.toString(),
+            ["excusedUsers": IDUtility.idsToStrings(ids: excusedUsers),
              "attendingUsers": IDUtility.idsToStrings(ids: attendingUsers)]
     }
     
@@ -37,7 +40,7 @@ struct Practice: FirebaseCompatable {
     }
     
     func getChildPath() -> String {
-        return teamID.toString()
+        return "\(teamID.toString())/\(eventID.toString())"
     }
     
 }
