@@ -115,7 +115,6 @@ class SelectTeamVM: LoggedInViewModel {
         var queriedEvents: [Event] = []
         
         let eventDispatch = DispatchGroup()
-        
             for eventID in teamCal?.eventIDs ?? [] {
                 eventDispatch.enter()
                 DBUtility.readFromDB(table: FirTable.event, keys: eventID ?? ID(type: "zz", uuid: "00")) { (key: String, payload: [String: AnyObject]) in

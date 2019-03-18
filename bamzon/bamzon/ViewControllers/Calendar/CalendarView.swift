@@ -142,14 +142,13 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
             lbl.textColor=UIColor.white
         }
         
-//        let currentDay = indexPath.row-firstWeekDayOfMonth+2
-//
-//        let yearString = String(format: "%04d", currentYear)
-//        let monthString = String(format: "%02d", currentMonthIndex)
-//        let dayString = String(format: "%02d", currentDay)
-//
-//        dateString = "\(yearString)-\(monthString)-\(dayString)"
-        dateString = "2019-03-22"
+        let currentDay = indexPath.row-firstWeekDayOfMonth+2
+
+        let yearString = String(format: "%04d", currentYear)
+        let monthString = String(format: "%02d", currentMonthIndex)
+        let dayString = String(format: "%02d", currentDay)
+
+        dateString = "\(yearString)-\(monthString)-\(dayString)"
         notifyObservers()
     }
     
@@ -194,9 +193,9 @@ class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func getFirstWeekDay() -> Int {
-//        let day = ("\(currentYear)-\(currentMonthIndex)-01".date?.firstDayOfTheMonth.weekday)!
+        let day = ("\(currentYear)-\(currentMonthIndex)-01".date?.firstDayOfTheMonth.weekday)!
 //        return day == 7 ? 1 : day
-        return 18 // todo fix this. The let day = ... line above worked before then wouldnt compile. This is a placeholder so I can push.
+        return day
     }
     
     func didChangeMonth(monthIndex: Int, year: Int) {
@@ -312,3 +311,17 @@ extension Date {
         return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
     }
 }
+
+//get date from string
+extension String {
+    static var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    var date: Date? {
+        return String.dateFormatter.date(from: self)
+    }
+}
+

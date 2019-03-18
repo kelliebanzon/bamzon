@@ -56,6 +56,8 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         events = calendarVM.getEventsFor(dateStr: dateString)
         print("events at date: \(dateString) : \(events)")
         display()
+        addSubviews()
+        setupAutoLayout()
     }
     
     func display() {
@@ -152,7 +154,7 @@ class CalendarVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         cell.eventLabel.text = event.name
         cell.dateLabel.text = event.date.prettyPrint()
-//        cell.locLabel.text = event.locationID?.description
+        cell.locLabel.text = calendarVM.getLocationForEvent(event: event)
         
         return cell
     }

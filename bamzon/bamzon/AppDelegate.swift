@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         return true
     }
+    
+    func makeID(ids: String) -> ID {
+        return IDUtility.generateIDFromString(idString: ids)
+    }
 
     func showTabController() {
         self.window?.rootViewController = TabBarController()
