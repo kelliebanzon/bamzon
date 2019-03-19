@@ -154,6 +154,7 @@ class AttendanceChildCurrentVC: UIViewController, UITableViewDelegate, UITableVi
         let dispatch = DispatchGroup()
         attendanceVM.refreshCurrentPractice(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
+            self.playersTableView.reloadData()
             self.display()
         }
     }
