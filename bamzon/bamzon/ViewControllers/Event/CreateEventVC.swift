@@ -12,6 +12,7 @@ class CreateEventVC: UIViewController, UITextFieldDelegate, DisplayableProtocol,
    
     @IBOutlet weak var dateText: UITextField!
     
+    let createEventVM = CreateEventVM()
     var nameLabel = UILabel()
     var nameTextField = UITextField()
     var descLabel = UILabel()
@@ -164,10 +165,6 @@ class CreateEventVC: UIViewController, UITextFieldDelegate, DisplayableProtocol,
         return true
     }
     
-    func createDBEvent(event: Event) {
-        DBUtility.writeToDB(objToWrite: event)
-    }
-    
     func createDatePicker() {
         
         let datePicker = UIDatePicker()
@@ -218,13 +215,19 @@ class CreateEventVC: UIViewController, UITextFieldDelegate, DisplayableProtocol,
     
     @objc func createEvent() {
         
-        //contact name = contactText.text
+       // contact_name = contactText.text
         //don't know how to make ID out of it
         //location  = locationText.text, need to make actual Location
-
-        //let event = Event(eventID: <#T##ID#>, teamID: <#T##ID#>, name: nameTextField.text, locationID: <#T##ID?#>, contactUserIDs: <#T##[ID : ID]#>, description: descTextView.text, date: date, tags: <#T##[String : String]#>, media: <#T##[String : ID]#>, links: <#T##[String : String]#>)
+        let eventID = IDUtility.generateEventID()
         
-        //createDBEvent(event)
+
+        let event = Event(eventID: eventID, teamID: createEventVM.team.teamID, name: nameTextField.text!, locationID: nil, contactUserIDs: [:], description: descTextView.text, date: date, tags: [:], media: [:], links: [:])
+        
+        createDBEvent(event: event)
+    }
+    
+    func createDBEvent(event: Event) {
+        DBUtility.writeToDB(objToWrite: event)
     }
     
     override func didReceiveMemoryWarning() {
