@@ -98,7 +98,7 @@ class SettingsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             if settingsList[indexPath.row] == "Switch Teams" {
                 setRootView(toVC: "SelectTeamVC")
             } else if settingsList[indexPath.row] == "Team Settings" {
-                alert(withTitle: "Do something here", withMessage: "Something is supposed to happen")
+                alert(withTitle: "⚠️ Not Implemented ⚠️", withMessage: "Team Settings has not been implemeted yet.")
             } else if settingsList[indexPath.row] == "Join Requests" {
                 showJoinRequests()
             } else if settingsList[indexPath.row] == "Blocked Users" {

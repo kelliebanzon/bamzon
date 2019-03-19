@@ -61,7 +61,7 @@
 		A8143A1121B73078000E287A /* RSVPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A1021B73078000E287A /* RSVPVC.swift */; };
 		A8143A1321B730A3000E287A /* JoinRequestsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8143A1221B730A3000E287A /* JoinRequestsVC.swift */; };
 		AB0EB61F221D30D400C4917E /* AttendanceTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB61E221D30D400C4917E /* AttendanceTabVC.swift */; };
-		AB0EB621221D35A700C4917E /* AttendanceChildPlayersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */; };
+		AB0EB621221D35A700C4917E /* AttendanceChildCurrentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB620221D35A700C4917E /* AttendanceChildCurrentVC.swift */; };
 		AB0EB623221D36AD00C4917E /* AttendanceChildPracticesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB622221D36AD00C4917E /* AttendanceChildPracticesVC.swift */; };
 		AB0EB628221FA9D500C4917E /* JoinTeamChildSelectTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB627221FA9D500C4917E /* JoinTeamChildSelectTeamVC.swift */; };
 		AB0EB62A221FA9F400C4917E /* JoinTeamChildRequestSentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0EB629221FA9F400C4917E /* JoinTeamChildRequestSentVC.swift */; };
@@ -202,7 +202,7 @@
 		A8143A1021B73078000E287A /* RSVPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSVPVC.swift; sourceTree = "<group>"; };
 		A8143A1221B730A3000E287A /* JoinRequestsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestsVC.swift; sourceTree = "<group>"; };
 		AB0EB61E221D30D400C4917E /* AttendanceTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTabVC.swift; sourceTree = "<group>"; };
-		AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceChildPlayersVC.swift; sourceTree = "<group>"; };
+		AB0EB620221D35A700C4917E /* AttendanceChildCurrentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceChildCurrentVC.swift; sourceTree = "<group>"; };
 		AB0EB622221D36AD00C4917E /* AttendanceChildPracticesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceChildPracticesVC.swift; sourceTree = "<group>"; };
 		AB0EB627221FA9D500C4917E /* JoinTeamChildSelectTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamChildSelectTeamVC.swift; sourceTree = "<group>"; };
 		AB0EB629221FA9F400C4917E /* JoinTeamChildRequestSentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamChildRequestSentVC.swift; sourceTree = "<group>"; };
@@ -421,7 +421,7 @@
 				65DC5BF8221F8C6F00783830 /* AttendancePlayerTableViewCell.swift */,
 				AB0EB622221D36AD00C4917E /* AttendanceChildPracticesVC.swift */,
 				5EFBE9D42239C442003D22E3 /* AttendancePracticesTableViewCell.swift */,
-				AB0EB620221D35A700C4917E /* AttendanceChildPlayersVC.swift */,
+				AB0EB620221D35A700C4917E /* AttendanceChildCurrentVC.swift */,
 				5ED466B42238CDED00DF1AF3 /* CurrentAttendanceTableViewCell.swift */,
 			);
 			path = Attendance;
@@ -1001,7 +1001,7 @@
 				D37DA9D1221F84A6000E357E /* LoggedInViewModel.swift in Sources */,
 				ABF67C47220CBF5F00C25AF9 /* CreateAccountChildSuccessVC.swift in Sources */,
 				ABC5821721B4A5BA00DDC094 /* NotificationUtility.swift in Sources */,
-				AB0EB621221D35A700C4917E /* AttendanceChildPlayersVC.swift in Sources */,
+				AB0EB621221D35A700C4917E /* AttendanceChildCurrentVC.swift in Sources */,
 				AB0EB62A221FA9F400C4917E /* JoinTeamChildRequestSentVC.swift in Sources */,
 				ABEF641C21FBE68F00716ACB /* DisplayableProtocol.swift in Sources */,
 				ABEF642421FBECB200716ACB /* ID.swift in Sources */,
