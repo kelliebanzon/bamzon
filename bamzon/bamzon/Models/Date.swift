@@ -29,7 +29,7 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    func toStringPretty() -> String {
+    func toStringPretty() -> String { // lets rename this func
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         return dateFormatter.string(from: self)
@@ -42,7 +42,7 @@ extension Date {
         return formatter.date(from: from) ?? Date(timeIntervalSince1970: -3600)
     }
     
-    func prettyPrint() -> String {
+    func prettyPrint() -> String { // lets rename this func
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd @ h:mm a"
         return formatter.string(from: self)

@@ -10,10 +10,10 @@ import Foundation
 import Firebase
 
 struct TeamCalendar: FirebaseCompatable, Equatable {
-    var eventIDs: [ID?]
+    var eventIDs: [ID]?
     var teamID: ID
 
-    init(teamID: ID, eventIDs: [ID]) {
+    init(teamID: ID, eventIDs: [ID]?) {
         self.eventIDs = eventIDs
         self.teamID = teamID
     }
@@ -24,7 +24,7 @@ struct TeamCalendar: FirebaseCompatable, Equatable {
     }
     
     func formatForDB() -> [String: Any] {
-        return ["eventIDs": eventIDs]
+        return ["eventIDs": IDUtility.idsToStrings(ids: eventIDs ?? [])]
     }
     
     func getTable() -> FirTable {

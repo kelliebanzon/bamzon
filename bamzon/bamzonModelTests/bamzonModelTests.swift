@@ -280,6 +280,9 @@ class bamzonModelTests: XCTestCase {
 //        let date = cal.date(from: dateComponents)
 //        
 //        XCTAssertEqual(date?.toString() ?? "nope", "1999-01-30 11:45 -0800")
+//        XCTAssertEqual(date?.toStringNoTZMinSec() ?? "nope", "1999-01-30")
+//        XCTAssertEqual(date?.prettyPrint() ?? "nope", "1999-01-30 @ 11:45 AM")
+//        XCTAssertEqual(date?.toStringPretty() ?? "nope", "01/30/1999")
 //    }
 //    
 //    func testStringToDate() {
