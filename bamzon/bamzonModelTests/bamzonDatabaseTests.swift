@@ -20,6 +20,7 @@ class bamzonDatabaseTests: XCTestCase {
     var mediaID: ID = ID(type: "test", uuid: "mediaID")
     var joinReqID: ID = ID(type: "test", uuid: "joinReqID")
     var orgID: ID = ID(type: "test", uuid: "organizationID")
+    var teamID2: ID = ID(type: "test", uuid: "idkman")
     
     override func setUp() {
         DBUtility.writeToDB(objToWrite: Event(eventID: eventID, teamID: teamID, name: "Integration Test Event", locationID: locationID, contactUserIDs: [:], description: "Test event for integration testing", date: date, tags: ["tag": "tag"], media: ["test media": mediaID], links: ["testlink" : "testlinkval"]))
@@ -34,6 +35,7 @@ class bamzonDatabaseTests: XCTestCase {
         DBUtility.writeToDB(objToWrite: Team(teamID: teamID, orgID: orgID, userIDs: [userID1: userID1], teamName: "test team", sport: "integration testing", joinReqIDs: [userID2: userID2], blacklistUserIDs: [:]))
         DBUtility.writeToDB(objToWrite: TeamStats(teamID: teamID, memberCount: 69, wins: 4, losses: 2, ties: 0, fields: ["test stat": "test value"]))
         DBUtility.writeToDB(objToWrite: TeamCalendar(teamID: teamID, eventIDs: [eventID]))
+        DBUtility.writeToDB(objToWrite: TeamCalendar(teamID: teamID2, eventIDs: []))
         DBUtility.writeToDB(objToWrite: User(userID: userID1, firstName: "Test", lastName: "User", nickname: "McTesterson", phone: nil, email: "tests@bamzon.kr", schoolYear: Year.alumni, bio: "For all those integration tests", imageURL: nil, teamIDs: [teamID: teamID]))
         DBUtility.writeToDB(objToWrite: PlayerAttendance(userID: userID1, teamID: teamID, presentPractices: [eventID]))
         sleep(2)
@@ -189,7 +191,23 @@ class bamzonDatabaseTests: XCTestCase {
         var read: TeamCalendar?
         
         let expectation = self.expectation(description: "read teamCalendar")
-        DBUtility.readFromDB(table: FirTable.team, keys: teamID) {
+        DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID) {
+            (key: String, payload: [String: AnyObject]) in
+            read = TeamCalendar(key: key, payload: payload)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5)
+        
+        XCTAssertNotNil(read)
+    }
+    
+    func testTeamCalendarFirebaseReadNoEvents () {
+        let expected = TeamCalendar(teamID: teamID, eventIDs: []) // will contain sample user
+        var read: TeamCalendar?
+        
+        let expectation = self.expectation(description: "read teamCalendar")
+        DBUtility.readFromDB(table: FirTable.teamCalendar, keys: teamID2) {
             (key: String, payload: [String: AnyObject]) in
             read = TeamCalendar(key: key, payload: payload)
             expectation.fulfill()

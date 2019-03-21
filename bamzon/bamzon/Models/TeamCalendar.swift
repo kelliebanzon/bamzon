@@ -24,7 +24,16 @@ struct TeamCalendar: FirebaseCompatable, Equatable {
     }
     
     func formatForDB() -> [String: Any] {
-        return ["eventIDs": IDUtility.idsToStrings(ids: eventIDs ?? [])]
+        let idStrings = IDUtility.idsToStrings(ids: eventIDs ?? [])
+        var toWrite: AnyObject
+        
+        if (idStrings.isEmpty) {
+            toWrite = ["e404"] as AnyObject
+        } else {
+            toWrite = idStrings as AnyObject
+        }
+        
+        return ["eventIDs": toWrite]
     }
     
     func getTable() -> FirTable {
