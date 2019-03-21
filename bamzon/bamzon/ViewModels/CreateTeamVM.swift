@@ -31,10 +31,13 @@ class CreateTeamVM {
             var newOrg = org
             newOrg.teamIDs[teamID] = teamID
             
+            let newCalendar = TeamCalendar(teamID: teamID, eventIDs: [])
+            
             appDelegate.curUser = user
             DBUtility.writeToDB(objToWrite: appDelegate.curUser!)
             DBUtility.writeToDB(objToWrite: newOrg)
             DBUtility.writeToDB(objToWrite: team)
+            DBUtility.writeToDB(objToWrite: newCalendar)
         } else {
             print("an error has occurred creating team")
         }

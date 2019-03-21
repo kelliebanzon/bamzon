@@ -94,7 +94,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func refresh() {
         let dispatch = DispatchGroup()
-        selectTeamVM.loadTeams(dispatch: dispatch)
+        selectTeamVM.reloadUser(dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
             self.removeSpinner()
             self.display()
@@ -138,6 +138,7 @@ class SelectTeamVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let dispatch = DispatchGroup()
         selectTeamVM.selectTeam(team: selectedTeam, dispatch: dispatch)
         dispatch.notify(queue: DispatchQueue.main) {
+            self.teamsTableView.reloadData()
             self.setRootView(toVC: "TabBarController")
         }
     }

@@ -26,6 +26,7 @@ class SelectTeamVM: LoggedInViewModel {
     func loadTeams(dispatch: DispatchGroup) {
         teams.removeAll()
         organizations.removeAll()
+        
         for teamID in self.user.teamIDs {
             self.loadTeam(teamID: teamID.key, dispatch: dispatch)
         }
@@ -37,6 +38,7 @@ class SelectTeamVM: LoggedInViewModel {
             let reloadedUser = User(key: key, payload: teamSnap)
             self.appDelegate.curUser = reloadedUser
             self.user = reloadedUser
+            self.loadTeams(dispatch: dispatch)
             dispatch.leave()
         })
     }
